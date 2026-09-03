@@ -1,0 +1,50 @@
+# ==============================================================================
+# VASP Attribution Engine Configuration
+# Heuristic Feature Weights and Decay Parameters for Wallet Attribution
+# ==============================================================================
+
+# NOTE: These weights represent prototype heuristic scoring parameters designed
+# for explainability and transparency. They can be calibrated against labeled ground truth.
+
+weights:
+  graph_proximity: 0.35      # Importance of shortest path distance to known VASP cluster
+  fund_flow: 0.25            # Importance of observed volume proportion routed to VASP
+  interaction_frequency: 0.20 # Importance of transaction count along observed path
+  behavioral_pattern: 0.10   # Importance of structural transfer cadence (rapid vs dispersed)
+  recency: 0.10              # Importance of how recently transactions occurred
+
+hop_decay_factors:
+  hop_1: 1.00  # Direct interaction with VASP
+  hop_2: 0.60  # 1 intermediary wallet
+  hop_3: 0.30  # 2 intermediary wallets
+
+thresholds:
+  high_confidence_score: 75.0
+  medium_confidence_score: 45.0
+  low_confidence_score: 20.0
+
+risk_engine:
+  rapid_passthrough_seconds: 3600    # < 1 hour between hop in and hop out = rapid layering
+  high_velocity_tx_count: 10         # > 10 transactions in 24h
+  max_intermediary_hops: 3           # Multi-hop layering indicator
+  heavy_outflow_ratio: 0.80          # > 80% of funds immediately forwarded
+
+# ==============================================================================
+# Unknown Wallet Candidate Discovery & Quality Scoring Configuration
+# ==============================================================================
+candidate_discovery:
+  thresholds:
+    min_transactions: 10              # Minimum transactions observed to survive basic filter
+    min_token_transfers: 2           # Minimum ERC20 / TRC20 transfers
+    min_unique_counterparties: 2     # Minimum unique counterparty addresses
+    min_volume_usd: 10.0             # Minimum dollar volume
+    ready_min_transactions: 50       # Threshold for 'investigation_ready' badge
+    ready_min_quality_score: 45.0    # Threshold for 'investigation_ready' badge
+
+  weights:
+    history_quality: 0.25            # Depth of transaction history and active timespan
+    activity_quality: 0.20           # Transfer cadence, burstiness, and bidirectional flow
+    graph_quality: 0.20              # Degree centrality and counterparty breadth
+    vasp_connectivity: 0.20          # Reachable VASP count, minimum hop proximity, path multiplicity
+    flow_quality: 0.15               # Observed volume proportion routed to/from VASP clusters
+

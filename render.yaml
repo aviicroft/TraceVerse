@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: TRACEVERSE-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    envVars:
+      - key: BLOCKCHAIN_API_KEY
+        sync: false
+      - key: BLOCKCHAIN_API_URL
+        value: https://api.etherscan.io/v2/api
+      - key: TRONGRID_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///./data/crypto_trace.db
+      - key: PYTHONPATH
+        value: .
+      - key: MAX_HOPS
+        value: "3"

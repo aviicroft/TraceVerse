@@ -1,0 +1,21 @@
+{
+  "target_transactions": 100000,
+  "current_transactions": 40430,
+  "ethereum_transactions": 40430,
+  "tron_transactions": 0,
+  "erc20_transactions": 17786,
+  "trc20_transactions": 0,
+  "usdt_transactions": 2250,
+  "unique_counterparties": 7590,
+  "vasp_seed_addresses": 1595,
+  "addresses_processed": 1595,
+  "addresses_remaining": 0,
+  "api_requests_made": 2855,
+  "failed_requests": 0,
+  "duplicate_records_skipped": 41618,
+  "is_running": false,
+  "last_updated": "2026-08-26T06:07:45.334751",
+  "last_active_address": "[CoinDCX] 0x39aa39c0... (ethereum)",
+  "error_log": [],
+  "progress_percent": 40.43
+}

@@ -1,0 +1,507 @@
+{
+  "summary": {
+    "total": 49,
+    "passed": 45,
+    "failed": 1,
+    "partial": 3,
+    "untestable": 0
+  },
+  "results": [
+    {
+      "test_id": "VAL-ETH-01",
+      "category": "Address Validation",
+      "description": "Valid lowercase Ethereum address",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "LOW",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-02",
+      "category": "Address Validation",
+      "description": "Valid mixed-case EIP-55 address regex check",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "LOW",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-03",
+      "category": "Address Validation",
+      "description": "Invalid EIP-55 checksum verification (strict vs regex)",
+      "expected": "Strict validation should flag invalid checksum",
+      "actual": "Accepted via regex (returned True)",
+      "status": "PARTIAL",
+      "severity": "MEDIUM",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-04",
+      "category": "Address Validation",
+      "description": "EIP-55 checksum algorithm correctness",
+      "expected": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "actual": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-05",
+      "category": "Address Validation",
+      "description": "Invalid hex character 'g' rejection",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-06",
+      "category": "Address Validation",
+      "description": "Wrong length address rejection",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-07",
+      "category": "Address Validation",
+      "description": "Empty string & whitespace rejection",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-08",
+      "category": "Address Validation",
+      "description": "Uppercase '0X' prefix handling",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-ETH-09",
+      "category": "Address Validation",
+      "description": "Non-address string rejection",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-TRON-01",
+      "category": "Address Validation",
+      "description": "Valid Tron Base58 address format",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "LOW",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-TRON-02",
+      "category": "Address Validation",
+      "description": "Invalid Base58 char '0' rejection",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-TRON-03",
+      "category": "Address Validation",
+      "description": "Tron Base58Check double-SHA256 checksum verification",
+      "expected": "Should reject invalid checksum bytes",
+      "actual": "Accepted via regex (returned True)",
+      "status": "FAIL",
+      "severity": "HIGH",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-TRON-04",
+      "category": "Address Validation",
+      "description": "Wrong length Tron address rejection",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "VAL-CH-01",
+      "category": "Address Validation",
+      "description": "Chain detection ETH vs Tron",
+      "expected": [
+        "ethereum",
+        "tron"
+      ],
+      "actual": [
+        "ethereum",
+        "tron"
+      ],
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "address_validator.py"
+    },
+    {
+      "test_id": "PROV-ETH-01",
+      "category": "Blockchain Provider",
+      "description": "Normalize standard native ETH transaction",
+      "expected": 1.5,
+      "actual": 1.5,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "etherscan.py"
+    },
+    {
+      "test_id": "PROV-ETH-02",
+      "category": "Blockchain Provider",
+      "description": "Reverted ETH transaction marked is_error=True",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "etherscan.py"
+    },
+    {
+      "test_id": "PROV-ETH-03",
+      "category": "Blockchain Provider",
+      "description": "Normalize ERC-20 USDT token transfer with 6 decimals",
+      "expected": 2500.0,
+      "actual": 2500.0,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "etherscan.py"
+    },
+    {
+      "test_id": "PROV-TRON-01",
+      "category": "Blockchain Provider",
+      "description": "TronGrid native TRX address format (Hex vs Base58 conversion)",
+      "expected": "Base58 address (T...)",
+      "actual": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "tron.py"
+    },
+    {
+      "test_id": "CHAOS-01",
+      "category": "Chaos Testing",
+      "description": "Rate limit exponential backoff retry terminates gracefully",
+      "expected": "Terminates after max_retries",
+      "actual": "Terminates with max_retries bound",
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "etherscan.py"
+    },
+    {
+      "test_id": "CHAOS-02",
+      "category": "Chaos Testing",
+      "description": "Invalid API Key raises explicit PermissionError",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "etherscan.py"
+    },
+    {
+      "test_id": "GRAPH-01",
+      "category": "Graph Traversal",
+      "description": "Bounded 3-hop linear path traversal",
+      "expected": "A=0, B=1, C=2, D=3, E not visited",
+      "actual": "A=0, B=1, C=2, D=3, E=None",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "builder.py"
+    },
+    {
+      "test_id": "GRAPH-02",
+      "category": "Graph Traversal",
+      "description": "Cycle handling (A -> B -> C -> A) terminates without infinite loop",
+      "expected": 3,
+      "actual": 3,
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "builder.py"
+    },
+    {
+      "test_id": "GRAPH-03",
+      "category": "Graph Traversal",
+      "description": "Max node explosion guard strictly enforces <= 150 nodes",
+      "expected": "<= 150 nodes",
+      "actual": "150 nodes",
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "builder.py"
+    },
+    {
+      "test_id": "GRAPH-04",
+      "category": "Graph Traversal",
+      "description": "VASP terminal node stops crawling beyond known VASP",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "builder.py"
+    },
+    {
+      "test_id": "GRAPH-05",
+      "category": "Graph Traversal",
+      "description": "Self-transfer (A -> A) handled gracefully without duplicate node corruption",
+      "expected": 1,
+      "actual": 1,
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "module": "builder.py"
+    },
+    {
+      "test_id": "GRAPH-06",
+      "category": "Graph Traversal",
+      "description": "Tron address support in TransactionGraphBuilder",
+      "expected": "Success",
+      "actual": "Success",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "builder.py"
+    },
+    {
+      "test_id": "ATTR-01",
+      "category": "VASP Attribution",
+      "description": "Direct 1-Hop VASP attribution to Binance",
+      "expected": "Binance, hop 1",
+      "actual": "Binance, hop 1, score=80.0",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "ATTR-02",
+      "category": "VASP Attribution",
+      "description": "2-Hop VASP attribution",
+      "expected": "Binance, hop 2",
+      "actual": "Score: 63.0",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "ATTR-03",
+      "category": "VASP Attribution",
+      "description": "Monotonic hop score decay (Hop 1 > Hop 2 > Hop 3)",
+      "expected": true,
+      "actual": "1-Hop: 80.0, 2-Hop: 63.0, 3-Hop: 49.5",
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "ATTR-04",
+      "category": "VASP Attribution",
+      "description": "Attribution mathematical formula consistency",
+      "expected": 80.0,
+      "actual": 80.0,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "ATTR-05",
+      "category": "VASP Attribution",
+      "description": "Zero root outflow division-by-zero protection",
+      "expected": "0 <= Score <= 100",
+      "actual": "Score=53.0",
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "ATTR-06",
+      "category": "VASP Attribution",
+      "description": "Recency score dynamic timestamp evaluation vs hardcoded constant",
+      "expected": "Dynamic based on tx timestamp",
+      "actual": "Hardcoded to 80.0",
+      "status": "PARTIAL",
+      "severity": "MEDIUM",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "ADV-01",
+      "category": "Adversarial Attribution",
+      "description": "Multi-VASP competition: Hop 1 (0.01 ETH) vs Hop 2 (1000 ETH)",
+      "expected": "Coinbase higher or explained",
+      "actual": "Binance: 55.0 (Rank 2), Coinbase: 63.0 (Rank 1)",
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "ADV-02",
+      "category": "Adversarial Attribution",
+      "description": "Attribution claims non-custodial probabilistic framing",
+      "expected": "No definitive ownership/criminal claims",
+      "actual": "Uses observable fund flow associations",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "engine.py"
+    },
+    {
+      "test_id": "RISK-01",
+      "category": "Risk Classifier",
+      "description": "Multi-hop layering indicator trigger (max_hop=3 -> +40.0)",
+      "expected": 40.0,
+      "actual": 40.0,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "classifier.py"
+    },
+    {
+      "test_id": "RISK-02",
+      "category": "Risk Classifier",
+      "description": "Burst activity threshold sensitivity (20 tx vs 21 tx)",
+      "expected": "20 tx: 10.0, 21 tx: 25.0",
+      "actual": "20 tx: 10.0, 21 tx: 25.0",
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "module": "classifier.py"
+    },
+    {
+      "test_id": "RISK-03",
+      "category": "Risk Classifier",
+      "description": "Counterparty dispersion (2 vs 3 intermediaries -> +25.0)",
+      "expected": "2 inter: 0.0, 3 inter: 25.0",
+      "actual": "2 inter: 0.0, 3 inter: 25.0",
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "module": "classifier.py"
+    },
+    {
+      "test_id": "RISK-04",
+      "category": "Risk Classifier",
+      "description": "Mixed timezone (naive vs aware) robustness in timestamp comparison",
+      "expected": "Handled gracefully",
+      "actual": "Handled",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "classifier.py"
+    },
+    {
+      "test_id": "EVID-01",
+      "category": "Evidence Integrity",
+      "description": "Evidence links exact underlying transaction hash and amount",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "generator.py"
+    },
+    {
+      "test_id": "REP-01",
+      "category": "Report Generation",
+      "description": "Section 65B Indian Evidence Act Certificate included",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "generator.py"
+    },
+    {
+      "test_id": "REP-02",
+      "category": "Report Generation",
+      "description": "Statutory Section 91 CrPC / BNSS legal disclaimer included",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "generator.py"
+    },
+    {
+      "test_id": "DISC-01",
+      "category": "Candidate Discovery",
+      "description": "Candidate Quality Score bounded between 0 and 100",
+      "expected": true,
+      "actual": "Score: 74.8",
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "candidate_scorer.py"
+    },
+    {
+      "test_id": "DISC-02",
+      "category": "Candidate Discovery",
+      "description": "Exclude known VASP registry addresses from candidate list",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "candidate_miner.py"
+    },
+    {
+      "test_id": "DISC-03",
+      "category": "Candidate Discovery",
+      "description": "Exclude null and burn addresses (0x0... and 0xdead)",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "candidate_miner.py"
+    },
+    {
+      "test_id": "API-01",
+      "category": "API Contract",
+      "description": "All 12 required core API endpoints registered on FastAPI router",
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "router.py"
+    },
+    {
+      "test_id": "ML-01",
+      "category": "ML Sanity Check",
+      "description": "Feature vector dimension exactly 22 features",
+      "expected": 22,
+      "actual": 22,
+      "status": "PASS",
+      "severity": "HIGH",
+      "module": "features.py"
+    },
+    {
+      "test_id": "ML-02",
+      "category": "ML Sanity Check",
+      "description": "Live attribution engine uses deterministic 5-pillar rules as primary",
+      "expected": "Deterministic rule engine",
+      "actual": "Deterministic rule engine (ML in experimental mode)",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "module": "analysis_worker.py"
+    },
+    {
+      "test_id": "ML-03",
+      "category": "ML Sanity Check",
+      "description": "Offline evaluation feature generation realism",
+      "expected": "Real graph feature extraction",
+      "actual": "Synthetic feature simulation (simulate_candidate_feature_vector)",
+      "status": "PARTIAL",
+      "severity": "HIGH",
+      "module": "evaluate.py"
+    },
+    {
+      "test_id": "PERF-01",
+      "category": "Performance",
+      "description": "10 Sequential graph & attribution cycles runtime",
+      "expected": "< 0.5s avg",
+      "actual": "Avg: 1.91ms, Worst: 2.21ms, Max Nodes: 31, Max Edges: 30",
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "module": "pipeline"
+    }
+  ]
+}

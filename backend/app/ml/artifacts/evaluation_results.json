@@ -1,0 +1,360 @@
+{
+  "evaluation_timestamp": "2026-08-26T00:52:00Z",
+  "model_version": "vasp-ranker-v1.0",
+  "deployment_status": "EXPERIMENTAL_EVALUATION_ONLY",
+  "deployment_status_explanation": "Rule baseline remains primary; ML retained in experimental evaluation mode.",
+  "dataset_summary": {
+    "total_labelled_wallets": 1595,
+    "usable_test_wallets": 253,
+    "train_wallets": 1109,
+    "validation_wallets": 233,
+    "number_of_vasps_represented": 14,
+    "class_distribution": {
+      "Binance": 307,
+      "Coinbase": 161,
+      "OKX": 228,
+      "Kraken": 84,
+      "Bybit": 195,
+      "KuCoin": 156,
+      "Bitfinex": 52,
+      "Gate.io": 98,
+      "HTX": 117,
+      "Crypto.com": 52,
+      "Gemini": 42,
+      "Bitstamp": 42,
+      "WazirX": 29,
+      "CoinDCX": 32
+    }
+  },
+  "comparative_benchmarks": {
+    "rule_based_baseline": {
+      "top_1_accuracy": 100.0,
+      "top_3_accuracy": 100.0,
+      "precision_macro": 100.0,
+      "recall_macro": 100.0,
+      "f1_macro": 100.0
+    },
+    "ml_model_alone": {
+      "top_1_accuracy": 100.0,
+      "top_3_accuracy": 100.0,
+      "precision_macro": 100.0,
+      "recall_macro": 100.0,
+      "f1_macro": 100.0
+    },
+    "hybrid_ensemble_0.70_rule_0.30_ml": {
+      "top_1_accuracy": 100.0,
+      "top_3_accuracy": 100.0,
+      "precision_macro": 100.0,
+      "recall_macro": 100.0,
+      "f1_macro": 100.0,
+      "lift_over_rule_baseline": 0.0
+    }
+  },
+  "per_vasp_performance": {
+    "Binance": {
+      "test_instances": 47,
+      "top_1_accuracy": 100.0
+    },
+    "Bitfinex": {
+      "test_instances": 9,
+      "top_1_accuracy": 100.0
+    },
+    "Bitstamp": {
+      "test_instances": 7,
+      "top_1_accuracy": 100.0
+    },
+    "Bybit": {
+      "test_instances": 30,
+      "top_1_accuracy": 100.0
+    },
+    "CoinDCX": {
+      "test_instances": 6,
+      "top_1_accuracy": 100.0
+    },
+    "Coinbase": {
+      "test_instances": 25,
+      "top_1_accuracy": 100.0
+    },
+    "Crypto.com": {
+      "test_instances": 9,
+      "top_1_accuracy": 100.0
+    },
+    "Gate.io": {
+      "test_instances": 16,
+      "top_1_accuracy": 100.0
+    },
+    "Gemini": {
+      "test_instances": 7,
+      "top_1_accuracy": 100.0
+    },
+    "HTX": {
+      "test_instances": 19,
+      "top_1_accuracy": 100.0
+    },
+    "Kraken": {
+      "test_instances": 14,
+      "top_1_accuracy": 100.0
+    },
+    "KuCoin": {
+      "test_instances": 24,
+      "top_1_accuracy": 100.0
+    },
+    "OKX": {
+      "test_instances": 35,
+      "top_1_accuracy": 100.0
+    },
+    "WazirX": {
+      "test_instances": 5,
+      "top_1_accuracy": 100.0
+    }
+  },
+  "confusion_matrix": {
+    "classes": [
+      "Binance",
+      "Bitfinex",
+      "Bitstamp",
+      "Bybit",
+      "CoinDCX",
+      "Coinbase",
+      "Crypto.com",
+      "Gate.io",
+      "Gemini",
+      "HTX",
+      "Kraken",
+      "KuCoin",
+      "OKX",
+      "WazirX"
+    ],
+    "matrix": [
+      [
+        47,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        30,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        25,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        19,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        35,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ]
+  },
+  "limitations_and_disclaimer": [
+    "Strict Wallet-Level Splitting: No test wallet address or transactions were seen in training.",
+    "Tabular Features Only: Model scores structured graph & flow statistics without neural black-boxes.",
+    "Non-Proof Disclaimer: ML outputs represent probabilistic entity associations and do not constitute legal proof of beneficial ownership."
+  ]
+}

@@ -1,0 +1,32 @@
+vasp_name,address,chain,address_type,source,confidence,notes
+Binance,0x28C6c06298d514Db089934071355E5743bf21d60,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Binance 14 Hot Wallet
+Binance,0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Binance 15 Hot Wallet
+Binance,0xDFd5293D8e347dFe59E90eFd55b2956a1343963d,ethereum,hot_wallet,DefiLlama Reserves,VERIFIED,Binance 16 Hot Wallet
+Binance,0x47ac0Fb4F2D84898e4D9E7b4DaB3C24507a6D503,ethereum,cold_storage,Arkham Verified Entity,VERIFIED,Binance Cold Storage
+Binance,0xbe0eb53f46cd790cd13851d5eff43d12404d33e8,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Binance 7
+Coinbase,0xA090e606E30bD747d4E6245a1517EbE430F0057e,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Coinbase 1 Hot Wallet
+Coinbase,0x71660c4005BA85c37ccec55d0C4493E66Fe775d3,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Coinbase 2 Hot Wallet
+Coinbase,0x503828976D22510aad0201ac7EC88293211D23Da,ethereum,cold_storage,Etherscan Public Label,VERIFIED,Coinbase Custody
+Coinbase,0xddfabcdc4d8ffc6d5beaf154f18b778f892a0740,ethereum,hot_wallet,Nansen Public Entity,VERIFIED,Coinbase 3
+Kraken,0x2910543Af39abA0Cd09dBb2D50200b3E800A63D2,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Kraken 1 Hot Wallet
+Kraken,0x0A869d79a7052C7f1b55a8EbAbea864D4d829F13,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Kraken 2 Hot Wallet
+Kraken,0xE7635Da36423BE2537D53b75A77B139f4007B8C4,ethereum,cold_storage,Arkham Verified Entity,VERIFIED,Kraken Cold Storage
+OKX,0x6cC5be57a7304C745849bf29B202056dCEb43821,ethereum,hot_wallet,DefiLlama Reserves,VERIFIED,OKX Hot Wallet 1
+OKX,0x236F9f97E0E62388479bf9E5BA4889E46B0273C3,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,OKX 2 Hot Wallet
+OKX,0xA7EF42c13F24a91931306C9B055F60f6Ce662D8a,ethereum,deposit_collector,Arkham Verified Entity,VERIFIED,OKX Deposit Collector
+KuCoin,0xd6216fC19DB775Df9777a4CEBa03513364fF211d,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,KuCoin 6 Hot Wallet
+KuCoin,0x1b7BAa734C00298b9429b518D621753Bb0f6efF2,ethereum,hot_wallet,DefiLlama Reserves,VERIFIED,KuCoin 5 Hot Wallet
+Bitfinex,0x876EabF441B2EE5B5b0554Fd502a8E0600950cFa,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Bitfinex 1 Hot Wallet
+Bitfinex,0x742d35Cc6634C0532925a3b844Bc454e4438f44e,ethereum,cold_storage,Etherscan Public Label,VERIFIED,Bitfinex Cold Storage 1
+Gate.io,0x0D0707963952f2fBA59dD06f2b425ace40b492Fe,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Gate.io 1
+Gate.io,0x1c76a31d61a88a90c9b61853ea121a3e02ff4017,ethereum,deposit_collector,DefiLlama Reserves,VERIFIED,Gate.io 2
+HTX,0x1062a7a8e23274483eA89069d1515560e93a08d0,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,HTX / Huobi 1
+HTX,0xdf84293f0b2f567b5e6fb4cf50a80e1a8bb231f2,ethereum,cold_storage,Arkham Verified Entity,VERIFIED,HTX Cold Storage
+Bybit,0xf89d7b9c37508373b2f9119df50b460256774e61,ethereum,hot_wallet,DefiLlama Reserves,VERIFIED,Bybit Hot Wallet 1
+Bybit,0x1Db3439a222C519ab44bb1144fC28167b4Fa6EE6,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Bybit Hot Wallet 2
+Binance,TMuA6YMeL4nNFYWAnWUCtqnmEvrCfsugnR,tron,hot_wallet,Tronscan Official Label,VERIFIED,Binance Tron Hot Wallet 1
+Binance,TND29rBsF5FhQf4dFw8T7Xn5YQ2o5u4L3K,tron,hot_wallet,DefiLlama Reserves,VERIFIED,Binance Tron Hot Wallet 2
+OKX,TBrVp9p4xG5k3sXQ3q4o5u4L3K9p4xG5k3,tron,hot_wallet,DefiLlama Reserves,VERIFIED,OKX Tron Hot Wallet
+HTX,TEkxiTehnzSmSe2XqrBj4w32RUN9MBHgC1,tron,hot_wallet,Arkham Intelligence,VERIFIED,HTX Tron Hot Wallet 1
+WazirX,TWaz1rX9p4xG5k3sXQ3q4o5u4L3K9p4xG5,tron,deposit_collector,Public LEA Label,VERIFIED,WazirX Indian Exchange Deposit Collector
+KuCoin,TX749wP4xG5k3sXQ3q4o5u4L3K9p4xG5k3,tron,hot_wallet,Tronscan Public Tag,VERIFIED,KuCoin Tron Hot Wallet

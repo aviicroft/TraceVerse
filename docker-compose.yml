@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: TRACEVERSE-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - BLOCKCHAIN_API_KEY=${BLOCKCHAIN_API_KEY}
+      - BLOCKCHAIN_API_URL=${BLOCKCHAIN_API_URL:-https://api.etherscan.io/v2/api}
+      - TRONGRID_API_KEY=${TRONGRID_API_KEY}
+      - DATABASE_URL=sqlite+aiosqlite:///./data/crypto_trace.db
+      - MAX_HOPS=3
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+    container_name: TRACEVERSE-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=production

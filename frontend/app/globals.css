@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light Theme Variables (Clean Paper / Institutional Off-White) */
+:root {
+  --forensic-bg: #f8fafc;
+  --forensic-surface: #ffffff;
+  --forensic-surface-raised: #f1f5f9;
+  --forensic-border: #cbd5e1;
+  --forensic-border-muted: #e2e8f0;
+  --forensic-text: #0f172a;
+  --forensic-text-muted: #334155;
+  --forensic-text-dim: #64748b;
+  --forensic-accent: #1d4ed8;
+  --forensic-teal: #0f766e;
+  --forensic-amber: #b45309;
+  --forensic-rose: #b91c1c;
+}
+
+/* Dark Theme Variables (Deep Navy Slate / Obsidian) */
+.dark {
+  --forensic-bg: #080c14;
+  --forensic-surface: #0e1524;
+  --forensic-surface-raised: #141e33;
+  --forensic-border: #20304c;
+  --forensic-border-muted: #172338;
+  --forensic-text: #f1f5f9;
+  --forensic-text-muted: #94a3b8;
+  --forensic-text-dim: #64748b;
+  --forensic-accent: #3b82f6;
+  --forensic-teal: #14b8a6;
+  --forensic-amber: #f59e0b;
+  --forensic-rose: #ef4444;
+}
+
+body {
+  color: var(--forensic-text);
+  background-color: var(--forensic-bg);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Compact forensic scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--forensic-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--forensic-border);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--forensic-text-dim);
+}
+
+/* Law Enforcement Print & Statutory Order Formatting */
+@media print {
+  /* Hide all non-printable application chrome, navbars, buttons */
+  header, nav, footer, .no-print, button, input, select, textarea, .backdrop-blur-sm {
+    display: none !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-family: "Times New Roman", Times, Georgia, serif !important;
+    font-size: 11pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure modal dialog backdrop does not obscure or position-clip print output */
+  .fixed.inset-0 {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  .print-document-container {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-content {
+    display: block !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+    font-family: "Times New Roman", Times, Georgia, serif !important;
+    line-height: 1.5 !important;
+    font-size: 11pt !important;
+    padding: 10mm 15mm !important;
+    white-space: pre-wrap !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+}

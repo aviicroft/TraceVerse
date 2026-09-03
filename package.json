@@ -1,0 +1,14 @@
+{
+  "name": "sih-crypto-attribution-platform",
+  "version": "1.0.0",
+  "description": "Automated Attribution of Unknown Cryptocurrency Wallets to Nearest Virtual Asset Service Providers (VASPs)",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix frontend run start",
+    "test": "pytest tests/ -v"
+  },
+  "keywords": ["sih", "blockchain", "ethereum", "vasp", "attribution", "cytoscape"],
+  "author": "",
+  "license": "ISC"
+}

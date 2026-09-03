@@ -1,0 +1,570 @@
+[
+  {
+    "slide_index": 1,
+    "shapes": [
+      {
+        "id": 2,
+        "name": "Freeform 2",
+        "left": 8485165,
+        "top": 1277283,
+        "width": 6957908,
+        "height": 7732452,
+        "has_text": true,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 3,
+        "name": "Group 3",
+        "left": 10637806,
+        "top": 2736817,
+        "width": 4805267,
+        "height": 5139357,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 5,
+        "name": "TextBox 5",
+        "left": 1959969,
+        "top": 990067,
+        "width": 12618720,
+        "height": 2566035,
+        "has_text": true,
+        "has_table": false,
+        "text": [
+          "TITLE PAGE"
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Group 6",
+        "left": 496929,
+        "top": -790137,
+        "width": 15544800,
+        "height": 3114675,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 9,
+        "name": "TextBox 9",
+        "left": 440055,
+        "top": 1968745,
+        "width": 10460725,
+        "height": 7919084,
+        "has_text": true,
+        "has_table": false,
+        "text": [
+          "SMART INDIA HACKATHON 2026",
+          "Problem Statement ID: SIH26183  |  Category: Software  |  Theme: Blockchain & Cybersecurity",
+          "TRACEVERSE",
+          "Automated Real-Time Cryptocurrency Fraud Attribution & Statutory Asset Freeze Platform",
+          "• Multi-Chain Directed Graph Crawl (Ethereum Mainnet + TRON TRC-20 USDT)\u000b• 5-Pillar Deterministic Attribution Scoring + Auxiliary GBDT ML Ranker\u000b• Instant Section 91 CrPC / Section 94 BNSS Emergency Legal Freeze Notice Generator\u000b• Integrated NCRP Incident Triage & Interactive Forensic Graph Studio"
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Group 10",
+        "left": 14670129,
+        "top": 2248,
+        "width": 3374774,
+        "height": 1593504,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      }
+    ]
+  },
+  {
+    "slide_index": 2,
+    "shapes": [
+      {
+        "id": 2,
+        "name": "Group 2",
+        "left": 0,
+        "top": 9532144,
+        "width": 18288000,
+        "height": 754856,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 4,
+        "name": "Group 4",
+        "left": 2614577,
+        "top": 359321,
+        "width": 12055552,
+        "height": 2141844,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 7,
+        "name": "TextBox 7",
+        "left": 731520,
+        "top": 1645920,
+        "width": 6858000,
+        "height": 4389120,
+        "has_text": true,
+        "has_table": false,
+        "text": [
+          "CORE SOLUTION OVERVIEW",
+          "• Automated Multi-Hop Tracing: Recursively crawls on-chain transfers from suspect wallets to regulated exchange deposit clusters within seconds.",
+          "• 5-Pillar Attribution Engine: Calculates court-admissible attribution scores combining Proximity (35%), Flow Volume (25%), Frequency (15%), Behavior (15%), and Recency (10%).",
+          "• Auxiliary ML Ranking Layer: GBDT candidate ranker evaluated across 22 tabular graph features with strict wallet-level stratified splitting (100.0% Top-1 accuracy on test partition).",
+          "KEY INNOVATIONS & BREAKTHROUGHS",
+          "• Zero-Fabrication Real Ledger: 37,000+ to 100,000+ genuine transaction records anchored to 1,595 verified VASP seed clusters (Binance, OKX, Bybit, Coinbase, WazirX, CoinDCX).",
+          "• Graph Studio Workstation: Real-time path isolation, cycle suppression, flow direction animation, and node forensic inspector.",
+          "• 1-Click Statutory Freeze Action: Auto-generates Section 91 CrPC / Section 94 BNSS Emergency Notices mapped to verified exchange compliance nodal contacts."
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Group 8",
+        "left": 13106400,
+        "top": 9534525,
+        "width": 4267200,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 11,
+        "name": "Group 11",
+        "left": 6972300,
+        "top": 9635728,
+        "width": 4806001,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 14,
+        "name": "Group 14",
+        "left": 475612,
+        "top": 359321,
+        "width": 1915887,
+        "height": 1249099,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 17,
+        "name": "Group 17",
+        "left": 14670129,
+        "top": 187119,
+        "width": 3374774,
+        "height": 1593504,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 19,
+        "name": "Picture 18",
+        "left": 7772400,
+        "top": 1645920,
+        "width": 3931920,
+        "height": 4389120,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      }
+    ]
+  },
+  {
+    "slide_index": 3,
+    "shapes": [
+      {
+        "id": 2,
+        "name": "Group 2",
+        "left": 0,
+        "top": 9532144,
+        "width": 18288000,
+        "height": 754856,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 4,
+        "name": "Group 4",
+        "left": 914400,
+        "top": -71438,
+        "width": 16459200,
+        "height": 1714500,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 7,
+        "name": "TextBox 7",
+        "left": 731520,
+        "top": 1645920,
+        "width": 5303520,
+        "height": 4572000,
+        "has_text": true,
+        "has_table": false,
+        "text": [
+          "6-STAGE AUTOMATED ATTRIBUTION PIPELINE",
+          "1. NCRP Triage & Ingestion",
+          "• Ingests victim complaint, wallet address, tx hash, and auto-assigns risk priority.",
+          "2. Multi-Chain Graph Crawl",
+          "• DB-first cache lookup + live Etherscan & TronGrid API BFS crawl (depth <= 3 hops).",
+          "3. VASP Cluster Matching",
+          "• Subgraph matching against 1,595 verified seed addresses across 14 regulated exchanges.",
+          "4. 5-Pillar + ML Scoring",
+          "• Calculates deterministic proximity, flow volume ratio, burst velocity, & GBDT rank.",
+          "5. Graph Studio Workspace",
+          "• Visual fund-flow rendering with primary path focus & forensic inspector drawer.",
+          "6. Statutory Freeze Output",
+          "• Generates court-admissible Section 91 CrPC notice + cryptographic hash audit trail."
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Group 8",
+        "left": 13106400,
+        "top": 9534525,
+        "width": 4267200,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 11,
+        "name": "Group 11",
+        "left": 6972300,
+        "top": 9534525,
+        "width": 4806001,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 14,
+        "name": "Group 14",
+        "left": 475612,
+        "top": 359321,
+        "width": 1915887,
+        "height": 1249101,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 17,
+        "name": "Group 17",
+        "left": 14670129,
+        "top": 2248,
+        "width": 3374774,
+        "height": 1593504,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 19,
+        "name": "Picture 18",
+        "left": 6217920,
+        "top": 1645920,
+        "width": 5486400,
+        "height": 4480560,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      }
+    ]
+  },
+  {
+    "slide_index": 4,
+    "shapes": [
+      {
+        "id": 2,
+        "name": "Group 2",
+        "left": 0,
+        "top": 9532144,
+        "width": 18288000,
+        "height": 754856,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 4,
+        "name": "Group 4",
+        "left": 800100,
+        "top": 171450,
+        "width": 16459200,
+        "height": 1714500,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 7,
+        "name": "TextBox 7",
+        "left": 731520,
+        "top": 1645920,
+        "width": 10789920,
+        "height": 4572000,
+        "has_text": true,
+        "has_table": false,
+        "text": [
+          "FEASIBILITY, PROVENANCE & RISK DEFENSE MATRIX",
+          "• Technical Feasibility: Built on asynchronous FastAPI backend, PostgreSQL/SQLite normalized ledger, Next.js 14, and Cytoscape.js. Sub-second graph traversal (<2.5s) without expensive GPU overhead.",
+          "• Data Provenance & Integrity: Anchored to 1,595 verified VASP seed clusters from official Proof of Reserves Merkle trees, DefiLlama, and public labels. 37,600+ real transactions with 100.0% data integrity.",
+          "• Resource & Operational Viability: Lightweight GBDT model and linear-time BFS graph construction; easily deployable in on-premise LEA forensic labs or secure government cloud.",
+          "• Economic Value to LEAs: Cuts blockchain tracing time from weeks to under 60 seconds, drastically expanding the critical 'Golden Hour' asset freeze window before cash-out.",
+          "• Key Risk & Mitigation (Mixers): Heuristic fan-out detection and multi-hop peel chain analysis flag tumbling attempts while tracing un-mixed peripheral flows.",
+          "• Cross-Chain Swaps Mitigation: Monitors bridge contract deposits and correlates timestamps/amounts across Ethereum and TRON networks."
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Group 8",
+        "left": 13106400,
+        "top": 9534525,
+        "width": 4267200,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 11,
+        "name": "Group 11",
+        "left": 6972300,
+        "top": 9534525,
+        "width": 4806001,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 14,
+        "name": "Group 14",
+        "left": 475612,
+        "top": 359321,
+        "width": 1915887,
+        "height": 1249099,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 17,
+        "name": "Group 17",
+        "left": 14670129,
+        "top": 2248,
+        "width": 3374774,
+        "height": 1593504,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      }
+    ]
+  },
+  {
+    "slide_index": 5,
+    "shapes": [
+      {
+        "id": 2,
+        "name": "Group 2",
+        "left": 0,
+        "top": 9532144,
+        "width": 18288000,
+        "height": 754856,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 4,
+        "name": "Group 4",
+        "left": 914400,
+        "top": -71438,
+        "width": 16459200,
+        "height": 1714500,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 7,
+        "name": "TextBox 7",
+        "left": 731520,
+        "top": 1645920,
+        "width": 6217920,
+        "height": 4572000,
+        "has_text": true,
+        "has_table": false,
+        "text": [
+          "MEASURABLE LAW-ENFORCEMENT OUTCOMES",
+          "• 'Golden Hour' Asset Freezing: Cuts emergency freeze notice dispatch time from 7-14 days to under 60 seconds, securing stolen funds before off-ramping.",
+          "• 98%+ Investigation Time Reduction: Automates multi-hop transaction ledger analysis, replacing manual explorer lookups with instant graph intelligence.",
+          "• Serial Scam Syndicate Detection: NCRP Triage module clusters disparate FIRs sharing common intermediary deposit addresses.",
+          "• Court-Admissible Proof Chains: Generates SHA-256 verifiable evidence dossiers compliant with Section 65B of Indian Evidence Act.",
+          "• 14 Global & Indian Exchanges Covered: Binance, OKX, Bybit, Coinbase, KuCoin, Kraken, CoinDCX, WazirX, Bitfinex, HTX, Gate.io, Crypto.com, Gemini, Bitstamp."
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Group 8",
+        "left": 13106400,
+        "top": 9534525,
+        "width": 4267200,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 11,
+        "name": "Group 11",
+        "left": 6972300,
+        "top": 9534525,
+        "width": 4806001,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 14,
+        "name": "Group 14",
+        "left": 475612,
+        "top": 359321,
+        "width": 1915887,
+        "height": 1249099,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 17,
+        "name": "Group 17",
+        "left": 14670129,
+        "top": 2248,
+        "width": 3374774,
+        "height": 1593504,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 19,
+        "name": "Picture 18",
+        "left": 7132320,
+        "top": 1645920,
+        "width": 4572000,
+        "height": 4389120,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      }
+    ]
+  },
+  {
+    "slide_index": 6,
+    "shapes": [
+      {
+        "id": 2,
+        "name": "Group 2",
+        "left": 0,
+        "top": 9532144,
+        "width": 18288000,
+        "height": 754856,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 4,
+        "name": "Group 4",
+        "left": 800100,
+        "top": 126621,
+        "width": 16459200,
+        "height": 1714500,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 7,
+        "name": "TextBox 7",
+        "left": 731520,
+        "top": 1645920,
+        "width": 10789920,
+        "height": 4572000,
+        "has_text": true,
+        "has_table": false,
+        "text": [
+          "RESEARCH FOUNDATIONS, VALIDATION & ARCHITECTURE STACK",
+          "• Deterministic Attribution Formulation: Formal multi-factor mathematical scoring: S_VASP = 0.35 S_prox + 0.25 S_flow + 0.15 S_freq + 0.15 S_behav + 0.10 S_rec (100% auditable and reproducible).",
+          "• Leakage-Free ML Validation: Evaluated on N=253 held-out test wallets with strict wallet-level stratified partitioning; achieves 100.0% Top-1 accuracy matching rule baseline without label contamination.",
+          "• Backend Core & Graph Engine: Python 3.12, FastAPI (Async), NetworkX MultiDiGraph, SQLAlchemy Async ORM, Scikit-Learn GBDT.",
+          "• Frontend Forensic Workstation: Next.js 14, React 18, Cytoscape.js (Dagre, CoSE, Concentric), Tailwind CSS Dark Forensic Interface.",
+          "• Blockchain Connectors & Data: Etherscan V2 API, TronGrid / TronScan REST, Web3.py with resilient token-bucket rate limiting and exponential backoff.",
+          "• Statutory Law Enforcement Compliance: Automated legal notice templates aligned with Section 91 CrPC, Section 94 BNSS, and FIU-IND AML/CFT reporting directives."
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Group 8",
+        "left": 13106400,
+        "top": 9534525,
+        "width": 4267200,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 11,
+        "name": "Group 11",
+        "left": 6972300,
+        "top": 9534525,
+        "width": 4806001,
+        "height": 547688,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 14,
+        "name": "Group 14",
+        "left": 475612,
+        "top": 359321,
+        "width": 1915887,
+        "height": 1249099,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      },
+      {
+        "id": 17,
+        "name": "Group 17",
+        "left": 14670129,
+        "top": 2248,
+        "width": 3374774,
+        "height": 1593504,
+        "has_text": false,
+        "has_table": false,
+        "text": []
+      }
+    ]
+  }
+]
