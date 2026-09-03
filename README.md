@@ -15,7 +15,7 @@
 
 <br/>
 
-[🌐 Live Workstation](https://TRACEVERSE-sand.vercel.app/app) • [⚙️ REST API Docs](https://TRACEVERSE-backend.onrender.com/docs) • [📖 Architecture Spec](docs/ARCHITECTURE.md) • [📊 Model Card](docs/MODEL_CARD.md) • [🐳 Docker Quickstart](#-docker-deployment)
+[🌐 Live Workstation]([https://beta.thezerotrace.in/app) • [⚙️ REST API Docs](https://traceverse.onrender.com/docs) • [📖 Architecture Spec](docs/ARCHITECTURE.md) • [📊 Model Card](docs/MODEL_CARD.md) • [🐳 Docker Quickstart](#-docker-deployment)
 
 </div>
 
@@ -47,10 +47,10 @@ Section 91 CrPC / Section 94 BNSS Legal Requisition Dossier
 
 | Component | Cloud Platform | Live Production URL | CI/CD Status |
 | :--- | :--- | :--- | :---: |
-| **Investigator Workstation (UI)** | **Vercel** | **[https://TRACEVERSE-sand.vercel.app](https://TRACEVERSE-sand.vercel.app)** | ⚡ Auto-deployed from `main` |
-| **Forensic Intelligence API** | **Render** | **[https://TRACEVERSE-backend.onrender.com/api/v1](https://TRACEVERSE-backend.onrender.com/api/v1)** | ⚡ Auto-deployed from `main` |
-| **System Diagnostics & Health** | **Render** | **[`/api/v1/health`](https://TRACEVERSE-backend.onrender.com/api/v1/health)** | 🟢 1,595 VASP Clusters Indexed |
-| **Interactive API Documentation** | **Render / Swagger** | **[`/docs`](https://TRACEVERSE-backend.onrender.com/docs)** | 📜 OpenAPI 3.1 Spec |
+| **Investigator Workstation (UI)** | **Vercel** | **[https://TRACEVERSE-sand.vercel.app](https://beta.thezerotrace.in/)** | ⚡ Auto-deployed from `main` |
+| **Forensic Intelligence API** | **Render** | **[https://TRACEVERSE-backend.onrender.com/api/v1]([https://TRACEVERSE-backend.onrender.com/api/v1](https://traceverse.onrender.com/api/v1/)** | ⚡ Auto-deployed from `main` |
+| **System Diagnostics & Health** | **Render** | **[`/api/v1/health`](https://traceverse.onrender.com/api/v1/health)** | 🟢 1,595 VASP Clusters Indexed |
+| **Interactive API Documentation** | **Render / Swagger** | **[`/docs`](https://traceverse.onrender.com/docs)** | 📜 OpenAPI 3.1 Spec |
 
 ---
 
