@@ -6,9 +6,8 @@
 
 **Automated Attribution of Unknown Cryptocurrency Wallets to Nearest Virtual Asset Service Providers (VASPs) through Multi-Chain Blockchain Intelligence APIs**
 
-[![Live Frontend](https://img.shields.io/badge/Frontend-Vercel%20Live-black.svg?style=for-the-badge&logo=vercel)](https://TRACEVERSE-sand.vercel.app)
-[![Live Backend](https://img.shields.io/badge/Backend-Render%20Live-46E3B7.svg?style=for-the-badge&logo=render)](https://TRACEVERSE-backend.onrender.com/api/v1/health)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-NINJA981%2FTRACEVERSE-181717.svg?style=for-the-badge&logo=github)](https://github.com/NINJA981/TRACEVERSE)
+[![Live Frontend](https://img.shields.io/badge/Frontend-Vercel%20Live-black.svg?style=for-the-badge&logo=vercel)](https://beta.thezerotrace.in/)
+[![Live Backend](https://img.shields.io/badge/Backend-Render%20Live-46E3B7.svg?style=for-the-badge&logo=render)](https://traceverse.onrender.com/api/v1/health)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2%20App%20Router-000000.svg?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![Python Tests](https://img.shields.io/badge/Tests-18%2F18%20Passing-success.svg?style=for-the-badge&logo=pytest)](https://pytest.org)
