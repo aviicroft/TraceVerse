@@ -108,7 +108,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
       { title: 'ROOT SUSPECT', nodes: hop0Nodes, color: 'border-amber-500/40 text-amber-400' },
       { title: 'HOP 1 DIRECT', nodes: hop1Nodes.slice(0, 6), color: 'border-[#E6C766]/40 text-[#E6C766]' },
       { title: 'HOP 2 LAYERING', nodes: hop2Nodes.slice(0, 6), color: 'border-[#D95C63]/40 text-[#EA747A]' },
-      { title: 'DESTINATION VASPS', nodes: vaspNodes, color: 'border-emerald-500/40 text-emerald-400' }
+      { title: 'DESTINATION VASPS', nodes: vaspNodes, color: 'border-[#E6C766]/40 text-[#E6C766]' }
     ].filter(c => c.nodes.length > 0);
 
     return { columns: cols, flows: flowList, totalRootVolume: rootOutflow };
@@ -205,7 +205,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
                         isHovered
                           ? 'border-[#E6C766] bg-[#E6C766]/10 shadow-lg scale-[1.02]'
                           : isVasp
-                          ? 'border-emerald-500/30 bg-emerald-500/5 hover:border-emerald-500/60'
+                          ? 'border-[#E6C766]/30 bg-[#E6C766]/5 hover:border-[#E6C766]/60'
                           : isRoot
                           ? 'border-amber-500/40 bg-amber-500/5 hover:border-amber-500/70'
                           : 'border-forensic-border bg-forensic-surfaceRaised/60 hover:border-forensic-borderHover'
@@ -214,7 +214,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
                       {/* Flow percentage bar background */}
                       <div
                         className={`absolute left-0 bottom-0 top-0 opacity-15 transition-all ${
-                          isVasp ? 'bg-emerald-500' : isRoot ? 'bg-amber-500' : 'bg-[#E6C766]'
+                          isVasp ? 'bg-[#E6C766]' : isRoot ? 'bg-amber-500' : 'bg-[#E6C766]'
                         }`}
                         style={{ width: `${Math.max(8, node.percentage)}%` }}
                       />
@@ -223,7 +223,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
                         <div className="flex items-center justify-between">
                           <span className="font-bold text-[11px] font-mono text-forensic-text truncate max-w-[150px]">
                             {node.vaspName ? (
-                              <span className="text-emerald-400 font-bold flex items-center space-x-1">
+                              <span className="text-[#E6C766] font-bold flex items-center space-x-1">
                                 <Building2 className="h-3 w-3 inline" />
                                 <span>{node.vaspName}</span>
                               </span>
@@ -268,7 +268,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
               <span>Layering Hop 2</span>
             </span>
             <span className="flex items-center space-x-1.5">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              <span className="h-2 w-2 rounded-full bg-[#E6C766]" />
               <span>VASP Endpoint</span>
             </span>
           </div>

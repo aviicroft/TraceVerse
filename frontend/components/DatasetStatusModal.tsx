@@ -209,9 +209,9 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                 <div className="p-3.5 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-forensic-textDim text-[11px] uppercase tracking-wider">USDT Movements</span>
-                    <Coins className="h-4 w-4 text-[#D98282]" />
+                    <Coins className="h-4 w-4 text-[#E6C766]" />
                   </div>
-                  <div className="text-xl font-bold font-mono text-[#D98282]">
+                  <div className="text-xl font-bold font-mono text-[#E6C766]">
                     {status.usdt_transactions.toLocaleString()}
                   </div>
                   <div className="text-[10px] text-forensic-textDim mt-0.5">Tether ERC-20 + TRC-20</div>
@@ -233,7 +233,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                     </div>
                     <div className="flex justify-between pt-1">
                       <span className="text-forensic-textDim">Unique Counterparties Observed:</span>
-                      <span className="font-bold text-emerald-400">{status.unique_counterparties.toLocaleString()} Unique Addresses</span>
+                      <span className="font-bold text-[#E6C766]">{status.unique_counterparties.toLocaleString()} Unique Addresses</span>
                     </div>
                     <div className="flex justify-between pt-1">
                       <span className="text-forensic-textDim">Seed Addresses Ingested:</span>
@@ -241,7 +241,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                     </div>
                     <div className="flex justify-between pt-1">
                       <span className="text-forensic-textDim">Duplicate Records Prevented:</span>
-                      <span className="text-emerald-400 font-bold">{status.duplicate_records_skipped.toLocaleString()} Skipped</span>
+                      <span className="text-[#E6C766] font-bold">{status.duplicate_records_skipped.toLocaleString()} Skipped</span>
                     </div>
                   </div>
                 </div>
@@ -267,7 +267,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                     </div>
                     <div className="flex justify-between pt-1">
                       <span className="text-forensic-textDim">Local Disk Page Cache:</span>
-                      <span className="text-emerald-400 font-bold">Enabled (data/cache/transactions/)</span>
+                      <span className="text-[#E6C766] font-bold">Enabled (data/cache/transactions/)</span>
                     </div>
                   </div>
                 </div>

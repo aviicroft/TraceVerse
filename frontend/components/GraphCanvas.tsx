@@ -333,10 +333,10 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node[?isVasp]',
           style: {
-            'background-color': isDarkMode ? 'rgba(230,199,102,0.10)' : 'rgba(230,199,102,0.15)',
-            'border-color': '#E6C766',
+            'background-color': isDarkMode ? 'rgba(217,92,99,0.10)' : 'rgba(217,92,99,0.15)',
+            'border-color': '#D95C63',
             'border-width': 2.5,
-            'color': isDarkMode ? '#F1D98A' : '#101116',
+            'color': isDarkMode ? '#EA747A' : '#7A252B',
             'width': 68,
             'height': 56,
             'shape': 'roundrectangle',
@@ -347,9 +347,9 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node[hop = 1]:not([?isRoot]):not([?isVasp])',
           style: {
-            'border-color': '#E6C766',
-            'background-color': isDarkMode ? 'rgba(230,199,102,0.10)' : 'rgba(230,199,102,0.15)',
-            'color': isDarkMode ? '#F1D98A' : '#101116',
+            'border-color': '#A94A52',
+            'background-color': isDarkMode ? 'rgba(217,92,99,0.06)' : 'rgba(217,92,99,0.10)',
+            'color': isDarkMode ? '#A5A8AF' : '#7A252B',
           },
         },
         {
@@ -363,17 +363,17 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node[hop = 3]:not([?isRoot]):not([?isVasp])',
           style: {
-            'border-color': '#EBD27A',
-            'background-color': isDarkMode ? 'rgba(230,199,102,0.08)' : 'rgba(230,199,102,0.10)',
-            'color': isDarkMode ? '#F1D98A' : '#E5E7EB',
+            'border-color': '#B94D55',
+            'background-color': isDarkMode ? 'rgba(217,92,99,0.08)' : 'rgba(217,92,99,0.10)',
+            'color': isDarkMode ? '#EA747A' : '#7A252B',
           },
         },
         {
           selector: 'edge',
           style: {
             'width': 1.8,
-            'line-color': isDarkMode ? '#334155' : '#94a3b8',
-            'target-arrow-color': isDarkMode ? '#64748b' : '#64748b',
+            'line-color': isDarkMode ? '#A94A52' : '#A94A52',
+            'target-arrow-color': isDarkMode ? '#A94A52' : '#A94A52',
             'target-arrow-shape': 'triangle',
             'arrow-scale': 0.9,
             'curve-style': 'bezier',
@@ -394,8 +394,8 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: '.path-focused',
           style: {
-            'line-color': '#E6C766',
-            'target-arrow-color': '#E6C766',
+            'line-color': '#EA747A',
+            'target-arrow-color': '#EA747A',
             'width': 3.5,
             'z-index': 999,
           },
@@ -403,7 +403,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node.path-focused',
           style: {
-            'border-color': '#E6C766',
+            'border-color': '#EA747A',
             'border-width': 3,
             'z-index': 999,
           },
@@ -417,8 +417,8 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: '.replay-active-edge',
           style: {
-            'line-color': '#f59e0b',
-            'target-arrow-color': '#f59e0b',
+            'line-color': '#F08086',
+            'target-arrow-color': '#F08086',
             'width': 4.5,
             'z-index': 1000,
           },
@@ -426,7 +426,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node.replay-active-node',
           style: {
-            'border-color': '#f59e0b',
+            'border-color': '#F08086',
             'border-width': 4,
             'z-index': 1000,
           },
@@ -434,10 +434,10 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: ':selected',
           style: {
-            'border-color': '#E6C766',
+            'border-color': '#F08086',
             'border-width': 3.5,
-            'line-color': '#E6C766',
-            'target-arrow-color': '#E6C766',
+            'line-color': '#F08086',
+            'target-arrow-color': '#F08086',
           },
         },
       ],
@@ -613,7 +613,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                   className="hover:text-forensic-text transition-colors p-0.5"
                   title="Copy Target Wallet"
                 >
-                  {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+                  {copied ? <Check className="h-3 w-3 text-[#E6C766]" /> : <Copy className="h-3 w-3" />}
                 </button>
               </div>
             </div>
@@ -625,13 +625,13 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
               <strong className="text-forensic-accent">{graphMetrics.totalNodes}</strong> Nodes
             </span>
             <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
-              <strong className="text-emerald-400">{graphMetrics.totalTransfers}</strong> Transfers
+              <strong className="text-[#E6C766]">{graphMetrics.totalTransfers}</strong> Transfers
             </span>
             <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
               <strong className="text-forensic-rose">{graphMetrics.maxHops}</strong> Hops
             </span>
-            <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-emerald-400 font-medium">
-              <strong className="text-emerald-400">{graphMetrics.vaspEndpoints}</strong> VASP Endpoints
+            <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-[#E6C766] font-medium">
+              <strong className="text-[#E6C766]">{graphMetrics.vaspEndpoints}</strong> VASP Endpoints
             </span>
             {graphMetrics.totalObservedVolume > 0 && (
               <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-amber-400 font-medium">
@@ -745,7 +745,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           <div className="p-2.5 border-b border-forensic-border flex items-center justify-between">
             {isSidebarOpen ? (
               <div className="flex items-center space-x-2 font-mono text-xs font-bold text-forensic-text uppercase">
-                <SlidersHorizontal className="h-3.5 w-3.5 text-emerald-400" />
+                <SlidersHorizontal className="h-3.5 w-3.5 text-[#E6C766]" />
                 <span>Investigation Filters</span>
               </div>
             ) : (
@@ -818,7 +818,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                 <div className="space-y-1.5 font-mono text-[11px]">
                   {[
                     { id: 'TARGET', label: 'Target Suspect Wallet', color: 'text-rose-400' },
-                    { id: 'VASP', label: 'VASP Custodial Clusters', color: 'text-emerald-400' },
+                    { id: 'VASP', label: 'VASP Custodial Clusters', color: 'text-[#E6C766]' },
                     { id: 'INTERMEDIARY', label: 'Intermediary Wallets', color: 'text-forensic-rose' },
                     { id: 'EXTERNAL', label: 'External Contracts / Unknown', color: 'text-forensic-textDim' },
                   ].map((e) => (
@@ -858,7 +858,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <label className="text-[11px] text-forensic-textDim">Minimum Transfer</label>
-                    <span className="font-mono text-[10px] text-emerald-400">
+                    <span className="font-mono text-[10px] text-[#E6C766]">
                       {minAmount > 0 ? `≥ ${minAmount}` : 'No Minimum'}
                     </span>
                   </div>
@@ -920,7 +920,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                             : r === 'MEDIUM'
                             ? 'bg-amber-600 text-white border-amber-500'
                             : r === 'LOW'
-                            ? 'bg-emerald-600 text-white border-emerald-500'
+                            ? 'bg-[#E6C766] text-white border-[#E6C766]'
                             : 'bg-forensic-accent text-[#111111] border-forensic-accent'
                           : 'bg-forensic-surface border-forensic-border text-forensic-textDim hover:text-forensic-text'
                       }`}
@@ -1027,7 +1027,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                 <div className="text-[11px] text-forensic-textDim space-y-1">
                   <div>
                     Destination:{' '}
-                    <strong className="text-emerald-400">
+                    <strong className="text-[#E6C766]">
                       {focusedPath.destinationName || focusedPath.targetNodeId.slice(0, 10) + '...'}
                     </strong>
                   </div>
@@ -1050,7 +1050,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
               {/* Header */}
               <div className="flex items-center justify-between pb-3 border-b border-forensic-border">
                 <div className="flex items-center space-x-2 font-mono font-bold text-forensic-text uppercase text-[11px]">
-                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                  <ShieldCheck className="h-4 w-4 text-[#E6C766]" />
                   <span>{selectedElement.type === 'NODE' ? 'Node Forensics' : 'Transfer Details'}</span>
                 </div>
                 <button
@@ -1076,21 +1076,21 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                         className="ml-2 p-1 text-forensic-textDim hover:text-forensic-text"
                         title="Copy Address"
                       >
-                        {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                        {copied ? <Check className="h-3.5 w-3.5 text-[#E6C766]" /> : <Copy className="h-3.5 w-3.5" />}
                       </button>
                     </div>
                   </div>
 
                   {/* Entity Provenance if VASP */}
                   {selectedElement.data.isVasp && (
-                    <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-[11px] space-y-1">
-                      <div className="text-emerald-400 font-bold">
+                    <div className="p-3 rounded-lg bg-[#E6C766]/10 border border-[#E6C766]/25 text-[11px] space-y-1">
+                      <div className="text-[#E6C766] font-bold">
                         {selectedElement.data.vaspName} ({selectedElement.data.addressType})
                       </div>
                       <div className="text-forensic-textDim text-[10px]">
                         Provenance: Verified Proof of Reserves / Etherscan Public Label
                       </div>
-                      <div className="text-emerald-400 text-[10px]">
+                      <div className="text-[#E6C766] text-[10px]">
                         Confidence: {selectedElement.data.vaspConfidence || 98}% (HIGH)
                       </div>
                     </div>
@@ -1107,7 +1107,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                     </div>
                     <div className="flex justify-between">
                       <span className="text-forensic-textDim">Total Inflow:</span>
-                      <span className="text-emerald-400 font-bold">{Number(selectedElement.data.totalInflow || 0).toFixed(2)}</span>
+                      <span className="text-[#E6C766] font-bold">{Number(selectedElement.data.totalInflow || 0).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-forensic-textDim">Total Outflow:</span>
@@ -1157,7 +1157,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                   <div className="p-3 rounded-lg bg-forensic-surface border border-forensic-border space-y-1.5 font-mono text-[11px]">
                     <div className="flex justify-between">
                       <span className="text-forensic-textDim">Transfer Amount:</span>
-                      <span className="text-emerald-400 font-bold">
+                      <span className="text-[#E6C766] font-bold">
                         {selectedElement.data.amount} {selectedElement.data.tokenSymbol}
                       </span>
                     </div>

@@ -128,10 +128,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-forensic-textMuted hover:text-forensic-text hover:bg-forensic-surfaceRaised/50'
               }`}
             >
-              <Network className="h-3.5 w-3.5 text-forensic-teal" />
+              <Network className="h-3.5 w-3.5 text-forensic-accent" />
               <span>Graph Studio</span>
               {hasActiveTarget && (
-                <span className="w-1.5 h-1.5 rounded-full bg-forensic-teal animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-forensic-accent animate-pulse" />
               )}
             </button>
 
@@ -222,7 +222,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <div className="hidden lg:flex items-center space-x-2 px-2.5 py-1 rounded bg-forensic-surfaceRaised border border-forensic-border text-[11px] text-forensic-textMuted font-mono">
-            <Activity className="h-3 w-3 text-[#D98282] animate-pulse" />
+            <Activity className="h-3 w-3 text-[#E6C766] animate-pulse" />
             <span>EVM + TRON TRC-20</span>
           </div>
 

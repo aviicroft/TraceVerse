@@ -138,7 +138,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
               onClick={handleCopy}
               className="flex items-center space-x-1.5 px-3 py-1.5 rounded bg-forensic-surfaceRaised hover:bg-forensic-border border border-forensic-border text-forensic-text font-medium text-[11px] transition-colors"
             >
-              {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5 text-forensic-textDim" />}
+              {copied ? <Check className="h-3.5 w-3.5 text-[#E6C766]" /> : <Copy className="h-3.5 w-3.5 text-forensic-textDim" />}
               <span>{copied ? 'Copied' : 'Copy'}</span>
             </button>
 
@@ -193,7 +193,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                     </p>
                   </div>
                   <div className="text-right font-mono text-[11px] space-y-1">
-                    <div className="inline-block px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                    <div className="inline-block px-2.5 py-0.5 rounded bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/20 font-bold">
                       VERIFIED ON-CHAIN PROOF
                     </div>
                     <div className="text-forensic-textDim print:text-black/70">
@@ -239,9 +239,9 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                 {reportJson.top_attribution ? (
                   <div className="p-4 rounded bg-forensic-bg/60 border border-forensic-border print:bg-gray-50 print:border-black/20">
                     <div className="text-sm font-bold text-forensic-text print:text-black flex items-center space-x-2">
-                      <span className="text-emerald-400 font-mono">✓</span>
+                      <span className="text-[#E6C766] font-mono">✓</span>
                       <span>Primary Attribution: {reportJson.top_attribution.vasp_name}</span>
-                      <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      <span className="text-xs px-2 py-0.5 rounded bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/20">
                         {reportJson.top_attribution.evidence_strength} Strength
                       </span>
                     </div>
@@ -326,7 +326,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
               {/* Section 3: Key Forensic Evidence Audit Trail */}
               {reportJson.key_evidence && reportJson.key_evidence.length > 0 && (
                 <div className="p-5 rounded-lg bg-forensic-surface border border-forensic-border print:border-black/30 space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center space-x-1.5">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-[#E6C766] flex items-center space-x-1.5">
                     <CheckCircle2 className="h-4 w-4" />
                     <span>3. Tamper-Evident Forensic Audit Trail</span>
                   </h3>
@@ -404,7 +404,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
           ) : (
             /* JSON Raw Data View */
             <div className="max-w-4xl mx-auto">
-              <pre className="p-5 rounded-lg bg-forensic-surface border border-forensic-border font-mono text-[11px] text-emerald-400 leading-relaxed whitespace-pre-wrap select-all overflow-x-auto">
+              <pre className="p-5 rounded-lg bg-forensic-surface border border-forensic-border font-mono text-[11px] text-[#E6C766] leading-relaxed whitespace-pre-wrap select-all overflow-x-auto">
                 {JSON.stringify(reportJson, null, 2)}
               </pre>
             </div>

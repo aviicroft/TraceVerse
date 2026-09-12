@@ -163,7 +163,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
 
           <div className="p-2.5 bg-forensic-surfaceRaised/40 border border-forensic-border rounded">
             <span className="text-[10px] text-forensic-textDim uppercase block">Investigation Ready</span>
-            <strong className="text-sm font-bold text-[#D98282]">{stats?.investigation_ready_count || candidates.filter(c => c.status === 'investigation_ready').length}</strong>
+            <strong className="text-sm font-bold text-[#E6C766]">{stats?.investigation_ready_count || candidates.filter(c => c.status === 'investigation_ready').length}</strong>
           </div>
 
           <div className="p-2.5 bg-forensic-surfaceRaised/40 border border-forensic-border rounded">
@@ -173,7 +173,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
 
           <div className="p-2.5 bg-forensic-surfaceRaised/40 border border-forensic-border rounded">
             <span className="text-[10px] text-forensic-textDim uppercase block">1-Hop Direct VASP</span>
-            <strong className="text-sm font-bold text-[#D98282]">{stats?.hop_1_count || candidates.filter(c => c.min_hop_to_vasp === 1).length}</strong>
+            <strong className="text-sm font-bold text-[#E6C766]">{stats?.hop_1_count || candidates.filter(c => c.min_hop_to_vasp === 1).length}</strong>
           </div>
 
           <div className="p-2.5 bg-forensic-surfaceRaised/40 border border-forensic-border rounded">
@@ -228,7 +228,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                 onClick={() => setMinScore(score)}
                 className={`px-2 py-1 rounded border transition-colors ${
                   minScore === score
-                    ? 'bg-[#D98282]/10 text-[#D98282] border-[#D98282]/30 font-bold'
+                    ? 'bg-[#E6C766]/10 text-[#E6C766] border-[#E6C766]/30 font-bold'
                     : 'bg-forensic-bg text-forensic-textDim border-forensic-border hover:text-forensic-text'
                 }`}
               >
@@ -326,7 +326,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                             className="text-forensic-textDim hover:text-forensic-text p-0.5"
                             title="Copy full address"
                           >
-                            {copiedAddress === cand.address ? <Check className="h-3 w-3 text-[#D98282]" /> : <Copy className="h-3 w-3" />}
+                            {copiedAddress === cand.address ? <Check className="h-3 w-3 text-[#E6C766]" /> : <Copy className="h-3 w-3" />}
                           </button>
                           <a
                             href={
@@ -372,7 +372,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                               key={vIdx}
                               className={`px-1.5 py-0.5 rounded text-[10px] font-medium flex items-center space-x-1 ${
                                 v.min_hop === 1
-                                  ? 'bg-[#D98282]/10 text-[#D98282] border border-[#D98282]/25'
+                                  ? 'bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/25'
                                   : v.min_hop === 2
                                   ? 'bg-amber-500/10 text-amber-400 border border-amber-500/25'
                                   : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
@@ -399,13 +399,13 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                           <div className="w-16 h-2 bg-forensic-surfaceRaised rounded-full overflow-hidden border border-forensic-border">
                             <div
                               className={`h-full rounded-full ${
-                                score >= 70 ? 'bg-[#D98282]' : score >= 50 ? 'bg-forensic-accent' : 'bg-amber-400'
+                                score >= 70 ? 'bg-[#E6C766]' : score >= 50 ? 'bg-forensic-accent' : 'bg-amber-400'
                               }`}
                               style={{ width: `${score}%` }}
                             />
                           </div>
                           <span className={`font-bold ${
-                            score >= 70 ? 'text-[#D98282]' : score >= 50 ? 'text-forensic-accent' : 'text-amber-400'
+                            score >= 70 ? 'text-[#E6C766]' : score >= 50 ? 'text-forensic-accent' : 'text-amber-400'
                           }`}>
                             {score.toFixed(1)}
                           </span>
@@ -423,7 +423,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                       <td className="py-2.5 px-3">
                         <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
                           cand.status === 'investigation_ready'
-                            ? 'bg-[#D98282]/10 text-[#D98282] border border-[#D98282]/30'
+                            ? 'bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/30'
                             : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
                         }`}>
                           {cand.status === 'investigation_ready' ? 'READY' : 'LOW ACTIVITY'}
@@ -474,7 +474,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                 <div className="font-bold text-forensic-text text-sm break-all select-all mt-0.5">
                   {selectedCandidateForModal.address}
                 </div>
-                <div className="text-[11px] text-[#D98282] mt-1">
+                <div className="text-[11px] text-[#E6C766] mt-1">
                   Composite Quality Score: <strong>{selectedCandidateForModal.candidate_quality_score.toFixed(1)} / 100</strong>
                 </div>
               </div>
@@ -518,7 +518,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                       <span className="font-bold text-forensic-text">{selectedCandidateForModal.quality_breakdown.vasp_connectivity} / 100</span>
                     </div>
                     <div className="h-1.5 bg-forensic-surfaceRaised rounded overflow-hidden">
-                      <div className="h-full bg-[#D98282] rounded" style={{ width: `${selectedCandidateForModal.quality_breakdown.vasp_connectivity}%` }} />
+                      <div className="h-full bg-[#E6C766] rounded" style={{ width: `${selectedCandidateForModal.quality_breakdown.vasp_connectivity}%` }} />
                     </div>
                   </div>
 
@@ -528,7 +528,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                       <span className="font-bold text-forensic-text">{selectedCandidateForModal.quality_breakdown.flow_quality} / 100</span>
                     </div>
                     <div className="h-1.5 bg-forensic-surfaceRaised rounded overflow-hidden">
-                      <div className="h-full bg-[#D98282] rounded" style={{ width: `${selectedCandidateForModal.quality_breakdown.flow_quality}%` }} />
+                      <div className="h-full bg-[#E6C766] rounded" style={{ width: `${selectedCandidateForModal.quality_breakdown.flow_quality}%` }} />
                     </div>
                   </div>
                 </div>

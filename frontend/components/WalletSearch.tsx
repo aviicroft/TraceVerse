@@ -321,7 +321,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
               <Radar className="h-3 w-3 text-[#E6C766]" />
               <span>Auto-Discovered High-Quality Target Leads ({dynamicCandidates.length}):</span>
             </span>
-            <span className="text-[9px] text-[#39D98A] font-semibold">Real Blockchain Counterparties</span>
+            <span className="text-[9px] text-[#E6C766] font-semibold">Real Blockchain Counterparties</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 font-mono">
@@ -337,7 +337,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                     <span className="font-bold text-forensic-text group-hover:text-[#E6C766] transition-colors truncate max-w-[160px]">
                       {cand.address.slice(0, 8)}...{cand.address.slice(-6)}
                     </span>
-                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20">
+                    <span className="text-[10px] font-bold text-[#E6C766] bg-[#E6C766]/10 px-1.5 py-0.2 rounded border border-[#E6C766]/20">
                       Score: {cand.candidate_quality_score.toFixed(1)}
                     </span>
                   </div>

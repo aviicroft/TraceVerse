@@ -13,11 +13,15 @@
   --forensic-text-muted: #A5A8AF;
   --forensic-text-dim: #747983;
   --forensic-accent: #E6C766;
-  --forensic-teal: #D98282;
-  --forensic-success: #D98282;
-  --forensic-success-hover: #E29A9A;
-  --forensic-success-soft: rgba(217, 130, 130, 0.10);
-  --forensic-success-border: rgba(217, 130, 130, 0.25);
+  --forensic-teal: #D95C63;
+  --forensic-success: #E6C766;
+  --forensic-success-hover: #F1D98A;
+  --forensic-success-soft: rgba(230, 199, 102, 0.10);
+  --forensic-success-border: rgba(230, 199, 102, 0.25);
+  --forensic-verified: #55C98A;
+  --forensic-verified-bright: #72D9A0;
+  --forensic-verified-soft: rgba(85, 201, 138, 0.10);
+  --forensic-verified-border: rgba(85, 201, 138, 0.28);
   --forensic-amber: #F1D98A;
   --forensic-rose: #E66A70;
 }
@@ -32,11 +36,15 @@
   --forensic-text-muted: #A5A8AF;
   --forensic-text-dim: #747983;
   --forensic-accent: #E6C766;
-  --forensic-teal: #D98282;
-  --forensic-success: #D98282;
-  --forensic-success-hover: #E29A9A;
-  --forensic-success-soft: rgba(217, 130, 130, 0.10);
-  --forensic-success-border: rgba(217, 130, 130, 0.25);
+  --forensic-teal: #D95C63;
+  --forensic-success: #E6C766;
+  --forensic-success-hover: #F1D98A;
+  --forensic-success-soft: rgba(230, 199, 102, 0.10);
+  --forensic-success-border: rgba(230, 199, 102, 0.25);
+  --forensic-verified: #55C98A;
+  --forensic-verified-bright: #72D9A0;
+  --forensic-verified-soft: rgba(85, 201, 138, 0.10);
+  --forensic-verified-border: rgba(85, 201, 138, 0.28);
   --forensic-amber: #F1D98A;
   --forensic-rose: #E66A70;
 }

@@ -189,7 +189,7 @@ export const TimelineReplayBar: React.FC<TimelineReplayBarProps> = ({
       {currentTx && (
         <div className="p-2 rounded bg-forensic-bg/80 border border-forensic-border flex flex-wrap items-center justify-between text-[11px] font-mono text-forensic-textDim gap-2">
           <div className="flex items-center space-x-2">
-            <span className="text-emerald-400 font-bold flex items-center space-x-1">
+            <span className="text-[#E6C766] font-bold flex items-center space-x-1">
               <Zap className="h-3 w-3 inline" />
               <span>
                 {currentTx.amount.toFixed(4)} {currentTx.token_symbol || 'ETH'}

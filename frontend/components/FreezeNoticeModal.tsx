@@ -135,7 +135,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
             onClick={handleCopy}
             className="flex items-center space-x-1.5 px-3 py-1.5 rounded bg-forensic-surfaceRaised hover:bg-forensic-border border border-forensic-border text-forensic-text font-medium text-[11px]"
           >
-            {copied ? <Check className="h-3.5 w-3.5 text-[#D98282]" /> : <Copy className="h-3.5 w-3.5 text-forensic-textDim" />}
+            {copied ? <Check className="h-3.5 w-3.5 text-[#E6C766]" /> : <Copy className="h-3.5 w-3.5 text-forensic-textDim" />}
             <span>{copied ? 'Copied' : 'Copy Notice'}</span>
           </button>
 
@@ -207,7 +207,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
           </div>
           <div className="flex items-center space-x-3 text-forensic-textDim font-mono">
             <span className="flex items-center space-x-1">
-              <Mail className="h-3 w-3 text-[#D98282]" />
+              <Mail className="h-3 w-3 text-[#E6C766]" />
               <span className="text-forensic-text">{noticeData.compliance_email}</span>
             </span>
             <span>•</span>
@@ -308,7 +308,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
             {/* Critical On-Chain Transaction Evidence */}
             {noticeData.critical_txs && noticeData.critical_txs.length > 0 && (
               <div className="p-5 rounded-lg bg-forensic-surface border border-forensic-border print:border-black/30 space-y-3 font-mono text-[11px]">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#D98282] print:text-[#D98282]">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#E6C766] print:text-[#E6C766]">
                   Verified On-Chain Transaction Evidence Schedule:
                 </h3>
 
@@ -327,7 +327,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
                         <tr key={idx}>
                           <td className="p-2.5 font-bold text-forensic-accent print:text-amber-700 break-all">{tx.tx_hash}</td>
                           <td className="p-2.5 break-all">{tx.from_address}</td>
-                          <td className="p-2.5 break-all text-[#D98282] print:text-[#D98282] font-bold">{tx.to_address}</td>
+                          <td className="p-2.5 break-all text-[#E6C766] print:text-[#E6C766] font-bold">{tx.to_address}</td>
                           <td className="p-2.5 font-bold">{tx.amount} {tx.token_symbol || 'ETH'}</td>
                         </tr>
                       ))}

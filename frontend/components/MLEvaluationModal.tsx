@@ -216,17 +216,17 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                   </div>
 
                   {/* Card 3: Hybrid Ensemble */}
-                  <div className="p-4 rounded-xl bg-forensic-surfaceRaised/60 border border-[#D98282]/30">
+                  <div className="p-4 rounded-xl bg-forensic-surfaceRaised/60 border border-[#E6C766]/30">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="font-bold text-[#D98282]">3. Hybrid Ensemble</span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#D98282]/10 text-[#D98282] border border-[#D98282]/20">
+                      <span className="font-bold text-[#E6C766]">3. Hybrid Ensemble</span>
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/20">
                         0.70 R + 0.30 ML
                       </span>
                     </div>
                     <div className="space-y-2 font-mono text-[11px]">
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-1 Accuracy:</span>
-                        <span className="font-bold text-[#D98282]">{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_1_accuracy}%</span>
+                        <span className="font-bold text-[#E6C766]">{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_1_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-3 Accuracy:</span>
@@ -234,7 +234,7 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Lift Over Baseline:</span>
-                        <span className="text-[#D98282] font-bold">+{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].lift_over_rule_baseline}%</span>
+                        <span className="text-[#E6C766] font-bold">+{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].lift_over_rule_baseline}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Macro F1 Score:</span>
@@ -265,7 +265,7 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                     <div className="text-[10px] text-forensic-textDim uppercase">Validation Wallets (15%)</div>
                   </div>
                   <div className="p-3 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border text-center">
-                    <div className="text-lg font-bold text-[#D98282]">{data.dataset_summary.usable_test_wallets}</div>
+                    <div className="text-lg font-bold text-[#E6C766]">{data.dataset_summary.usable_test_wallets}</div>
                     <div className="text-[10px] text-forensic-textDim uppercase">Held-Out Test Wallets (15%)</div>
                   </div>
                 </div>
@@ -305,9 +305,9 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                         <tr key={vasp} className="hover:bg-forensic-surfaceRaised/30 transition-colors">
                           <td className="py-2 px-3 font-medium text-forensic-text">{vasp}</td>
                           <td className="py-2 px-3 text-forensic-textDim">{perf.test_instances}</td>
-                          <td className="py-2 px-3 text-[#D98282] font-bold">{perf.top_1_accuracy}%</td>
+                          <td className="py-2 px-3 text-[#E6C766] font-bold">{perf.top_1_accuracy}%</td>
                           <td className="py-2 px-3">
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#D98282]/10 text-[#D98282] border border-[#D98282]/20">
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/20">
                               PASS
                             </span>
                           </td>
