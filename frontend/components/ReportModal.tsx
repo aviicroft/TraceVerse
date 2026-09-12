@@ -351,7 +351,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                             <td className="p-2.5">{ev.hop_distance}</td>
                             <td className="p-2.5 text-[10px] break-all">
                               {ev.tx_hash ? (
-                                <span className="text-emerald-400 font-bold">{ev.tx_hash.slice(0, 14)}...</span>
+                                <span className="text-forensic-verified font-bold">{ev.tx_hash.slice(0, 14)}...</span>
                               ) : (
                                 '-'
                               )}

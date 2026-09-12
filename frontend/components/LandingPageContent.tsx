@@ -649,7 +649,7 @@ export const LandingPageContent: React.FC = () => {
                                 <div class="flex gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-[#475569]"></span>
                                     <span class="w-2 h-2 rounded-full bg-[#475569]"></span>
-                                    <span class="w-2 h-2 rounded-full bg-[#55C98A]"></span>
+                                    <span class="w-2 h-2 rounded-full bg-[#D95C63]"></span>
                                 </div>
                                 <span class="label">Investigation Console</span>
                                 <span class="tag tag-amber">LEA EDITION</span>
@@ -703,7 +703,7 @@ export const LandingPageContent: React.FC = () => {
                                         <span class="flex items-center gap-1.5"><span
                                                 class="w-2 h-2 rounded-full bg-[#FBBF24]"></span>INTERMEDIARY</span>
                                         <span class="flex items-center gap-1.5"><span
-                                                class="w-2 h-2 rounded-full bg-[#55C98A]"></span>VASP</span>
+                                                class="w-2 h-2 rounded-full bg-[#D95C63]"></span>VASP</span>
                                     </div>
                                 </div>
                                 <div class="relative h-[280px] bg-[#060A12] bg-grid-fine">
@@ -789,13 +789,13 @@ export const LandingPageContent: React.FC = () => {
                                         </g>
                                         <!-- VASP endpoint -->
                                         <g class="node-pulse">
-                                            <circle cx="490" cy="140" r="22" fill="rgba(85,201,138,0.08)"
-                                                stroke="#55C98A" stroke-width="1.4" />
-                                            <circle cx="490" cy="140" r="13" fill="rgba(74,222,128,0.04)"
-                                                stroke="#55C98A" stroke-width="0.6" />
-                                            <circle cx="490" cy="140" r="5" fill="#55C98A" />
+                                            <circle cx="490" cy="140" r="22" fill="rgba(217,92,99,0.08)"
+                                                stroke="#D95C63" stroke-width="1.4" />
+                                            <circle cx="490" cy="140" r="13" fill="rgba(217,92,99,0.04)"
+                                                stroke="#D95C63" stroke-width="0.6" />
+                                            <circle cx="490" cy="140" r="5" fill="#D95C63" />
                                             <text x="490" y="178" text-anchor="middle" font-family="IBM Plex Mono"
-                                                font-size="9" fill="#55C98A">VASP ENDPOINT</text>
+                                                font-size="9" fill="#D95C63">VASP ENDPOINT</text>
                                             <text x="490" y="190" text-anchor="middle" font-family="IBM Plex Mono"
                                                 font-size="8" fill="#475569">COINBASE · CLUSTER</text>
                                         </g>
@@ -823,7 +823,7 @@ export const LandingPageContent: React.FC = () => {
                                 </div>
                                 <div class="p-3 space-y-2.5">
                                     <div class="panel-2 rounded-sm p-3 relative">
-                                        <div class="absolute top-0 left-0 w-1 h-full bg-[#55C98A] rounded-l-sm"></div>
+                                        <div class="absolute top-0 left-0 w-1 h-full bg-[#D95C63] rounded-l-sm"></div>
                                         <div class="flex items-start justify-between mb-2">
                                             <div>
                                                 <div class="text-[11px] font-mono text-slate-500">01 · PRIMARY</div>
@@ -831,14 +831,14 @@ export const LandingPageContent: React.FC = () => {
                                             </div>
                                             <div class="text-right">
                                                 <div
-                                                    class="font-mono text-[18px] text-[#55C98A] font-medium leading-none">
+                                                    class="font-mono text-[18px] text-[#D95C63] font-medium leading-none">
                                                     67.5</div>
                                                 <div class="text-[9px] font-mono text-slate-500 mt-1">/ 100</div>
                                             </div>
                                         </div>
                                         <div class="bar-track">
                                             <div class="bar-fill"
-                                                style="--w:67.5%; background:linear-gradient(90deg,#55C98A,#72D9A0);"
+                                                style="--w:67.5%; background:linear-gradient(90deg,#D95C63,#EA747A);"
                                                 data-w="67.5"></div>
                                         </div>
                                         <div class="text-[10px] font-mono text-slate-500 mt-1.5">MEDIUM STRENGTH ·
@@ -921,7 +921,7 @@ export const LandingPageContent: React.FC = () => {
                                         <tr class="ledger-row">
                                             <td class="text-[#E6C766]">0x1f8c…3b22</td>
                                             <td>TQ3r…m4Lz</td>
-                                            <td class="text-[#55C98A]">TK7v…oP2x <span class="text-slate-600">·
+                                            <td class="text-[#D95C63]">TK7v…oP2x <span class="text-slate-600">·
                                                     COINBASE</span></td>
                                             <td class="text-slate-300">8,950 USDT</td>
                                             <td>48,221,071</td>
@@ -1147,7 +1147,7 @@ export const LandingPageContent: React.FC = () => {
                                     </marker>
                                     <marker id="arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
                                         markerHeight="6" orient="auto">
-                                        <path d="M0,0 L10,5 L0,10 z" fill="#55C98A" opacity="0.8" />
+                                        <path d="M0,0 L10,5 L0,10 z" fill="#D95C63" opacity="0.8" />
                                     </marker>
                                 </defs>
 
@@ -1189,11 +1189,11 @@ export const LandingPageContent: React.FC = () => {
                                     fill="none" opacity="0.4" stroke-dasharray="3 3" />
 
                                 <!-- hop2 -> vasp -->
-                                <path d="M 545 165 C 600 165, 640 200, 695 220" stroke="#55C98A" stroke-width="1.6"
+                                <path d="M 545 165 C 600 165, 640 200, 695 220" stroke="#D95C63" stroke-width="1.6"
                                     fill="none" marker-end="url(#arr-g)" class="flow-edge" />
-                                <path d="M 545 245 C 600 245, 640 235, 695 235" stroke="#55C98A" stroke-width="1.6"
+                                <path d="M 545 245 C 600 245, 640 235, 695 235" stroke="#D95C63" stroke-width="1.6"
                                     fill="none" marker-end="url(#arr-g)" class="flow-edge" />
-                                <path d="M 545 330 C 600 320, 640 280, 695 260" stroke="#55C98A" stroke-width="1.2"
+                                <path d="M 545 330 C 600 320, 640 280, 695 260" stroke="#D95C63" stroke-width="1.2"
                                     fill="none" marker-end="url(#arr-g)" class="flow-edge" opacity="0.6" />
 
                                 <!-- Input node -->
@@ -1255,13 +1255,13 @@ export const LandingPageContent: React.FC = () => {
 
                                 <!-- VASP endpoint -->
                                 <g class="node-pulse">
-                                    <circle cx="720" cy="235" r="32" fill="rgba(85,201,138,0.08)" stroke="#55C98A"
+                                    <circle cx="720" cy="235" r="32" fill="rgba(217,92,99,0.08)" stroke="#D95C63"
                                         stroke-width="1.6" />
-                                    <circle cx="720" cy="235" r="22" fill="rgba(74,222,128,0.04)" stroke="#55C98A"
+                                    <circle cx="720" cy="235" r="22" fill="rgba(217,92,99,0.04)" stroke="#D95C63"
                                         stroke-width="0.6" />
-                                    <circle cx="720" cy="235" r="8" fill="#55C98A" />
+                                    <circle cx="720" cy="235" r="8" fill="#D95C63" />
                                     <text x="720" y="280" text-anchor="middle" font-family="IBM Plex Mono"
-                                        font-size="11" fill="#55C98A" font-weight="500">TK7v2oP2x</text>
+                                        font-size="11" fill="#D95C63" font-weight="500">TK7v2oP2x</text>
                                     <text x="720" y="293" text-anchor="middle" font-family="IBM Plex Mono" font-size="9"
                                         fill="#475569">COINBASE · CLUSTER</text>
                                 </g>
@@ -1272,9 +1272,9 @@ export const LandingPageContent: React.FC = () => {
                                         stroke="#1A2436" />
                                     <text x="550" y="70" font-family="IBM Plex Mono" font-size="9" fill="#94A3B8">MATCH
                                         · COINBASE</text>
-                                    <text x="550" y="82" font-family="IBM Plex Mono" font-size="9" fill="#55C98A">CONF ·
+                                    <text x="550" y="82" font-family="IBM Plex Mono" font-size="9" fill="#D95C63">CONF ·
                                         67.5 / 100</text>
-                                    <line x1="640" y1="89" x2="700" y2="215" stroke="#55C98A" stroke-width="0.5"
+                                    <line x1="640" y1="89" x2="700" y2="215" stroke="#D95C63" stroke-width="0.5"
                                         stroke-dasharray="2 3" />
                                 </g>
                             </svg>
@@ -1299,7 +1299,7 @@ export const LandingPageContent: React.FC = () => {
                         <div class="mt-4 space-y-3 text-[13px]">
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Bounded graph traversal</span>
-                                <span class="font-mono text-[#55C98A] text-[12px]">ENABLED</span>
+                                <span class="font-mono text-[#D95C63] text-[12px]">ENABLED</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Maximum depth</span>
@@ -1307,11 +1307,11 @@ export const LandingPageContent: React.FC = () => {
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Cycle suppression</span>
-                                <span class="font-mono text-[#55C98A] text-[12px]">ON</span>
+                                <span class="font-mono text-[#D95C63] text-[12px]">ON</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">VASP terminal pruning</span>
-                                <span class="font-mono text-[#55C98A] text-[12px]">ON</span>
+                                <span class="font-mono text-[#D95C63] text-[12px]">ON</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Observable paths</span>
@@ -1331,7 +1331,7 @@ export const LandingPageContent: React.FC = () => {
                             <div class="label mt-1">Transfers</div>
                         </div>
                         <div class="bg-[#0E1626] p-4">
-                            <div class="font-mono text-2xl text-[#55C98A] font-medium">2</div>
+                            <div class="font-mono text-2xl text-[#D95C63] font-medium">2</div>
                             <div class="label mt-1">VASP Ends</div>
                         </div>
                     </div>
@@ -1375,7 +1375,7 @@ export const LandingPageContent: React.FC = () => {
                 <div class="lg:col-span-5">
                     <div class="panel-2 rounded-sm relative overflow-hidden">
                         <div
-                            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#55C98A] to-transparent">
+                            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D95C63] to-transparent">
                         </div>
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-1">
@@ -1391,13 +1391,13 @@ export const LandingPageContent: React.FC = () => {
                                 </div>
                             </div>
                             <div class="mt-8 flex items-baseline gap-3">
-                                <span class="font-mono text-[64px] text-[#55C98A] font-medium leading-none">67.5</span>
+                                <span class="font-mono text-[64px] text-[#D95C63] font-medium leading-none">67.5</span>
                                 <span class="font-mono text-slate-500">/ 100</span>
                                 <span class="ml-auto tag tag-amber">MEDIUM STRENGTH</span>
                             </div>
                             <div class="mt-3 bar-track" style="height:6px;">
                                 <div class="bar-fill" data-w="67.5"
-                                    style="background:linear-gradient(90deg,#55C98A,#72D9A0);"></div>
+                                    style="background:linear-gradient(90deg,#D95C63,#EA747A);"></div>
                             </div>
                             <div class="mt-6 grid grid-cols-2 gap-3 text-[11px] font-mono">
                                 <div>
@@ -1621,14 +1621,14 @@ export const LandingPageContent: React.FC = () => {
                         </svg>
                         <div class="text-center">
                             <div
-                                class="w-14 h-14 border border-[#55C98A] bg-[rgba(74,222,128,0.06)] rounded-sm flex items-center justify-center">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                                class="w-14 h-14 border border-[#D95C63] bg-[rgba(74,222,128,0.06)] rounded-sm flex items-center justify-center">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="1.5">
                                     <path d="M9 11l3 3L22 4" />
                                     <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                                 </svg>
                             </div>
-                            <div class="label mt-2 text-[#55C98A]">Source</div>
+                            <div class="label mt-2 text-[#D95C63]">Source</div>
                         </div>
                     </div>
                     <div class="text-[11px] font-mono text-slate-500">CHAIN OF CUSTODY · 6 LINKS</div>
@@ -1653,7 +1653,7 @@ export const LandingPageContent: React.FC = () => {
                             </div>
                             <div>
                                 <div class="text-slate-600">ENTITY</div>
-                                <div class="text-[#55C98A] mt-0.5">COINBASE · CLUSTER 04</div>
+                                <div class="text-[#D95C63] mt-0.5">COINBASE · CLUSTER 04</div>
                             </div>
                             <div>
                                 <div class="text-slate-600">PROVENANCE</div>
@@ -1719,7 +1719,7 @@ export const LandingPageContent: React.FC = () => {
                             </div>
                             <div>
                                 <div class="text-slate-600">TO</div>
-                                <div class="text-[#55C98A] mt-0.5">TK7v2oP2x9mQ4fR8...</div>
+                                <div class="text-[#D95C63] mt-0.5">TK7v2oP2x9mQ4fR8...</div>
                             </div>
                             <div>
                                 <div class="text-slate-600">VALUE · BLOCK</div>
@@ -1813,7 +1813,7 @@ export const LandingPageContent: React.FC = () => {
                                 <td>TRON</td>
                                 <td>Hot Wallet</td>
                                 <td>Public PoR · 2024-Q4</td>
-                                <td><span class="text-[#55C98A]">HIGH · 92</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 92</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
@@ -1822,7 +1822,7 @@ export const LandingPageContent: React.FC = () => {
                                 <td>TRON</td>
                                 <td>Consolidation</td>
                                 <td>Public PoR · 2024-Q3</td>
-                                <td><span class="text-[#55C98A]">HIGH · 89</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 89</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
@@ -1831,7 +1831,7 @@ export const LandingPageContent: React.FC = () => {
                                 <td>ETH</td>
                                 <td>Hot Wallet</td>
                                 <td>Institutional Tag</td>
-                                <td><span class="text-[#55C98A]">HIGH · 94</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 94</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
@@ -1840,7 +1840,7 @@ export const LandingPageContent: React.FC = () => {
                                 <td>ETH</td>
                                 <td>Cold Storage</td>
                                 <td>Public Entity Label</td>
-                                <td><span class="text-[#55C98A]">HIGH · 87</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 87</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
@@ -1849,7 +1849,7 @@ export const LandingPageContent: React.FC = () => {
                                 <td>ETH</td>
                                 <td>Hot Wallet</td>
                                 <td>Public PoR · 2024-Q4</td>
-                                <td><span class="text-[#55C98A]">HIGH · 88</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 88</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
@@ -1867,7 +1867,7 @@ export const LandingPageContent: React.FC = () => {
                                 <td>ETH</td>
                                 <td>Cold Storage</td>
                                 <td>Public Entity Label</td>
-                                <td><span class="text-[#55C98A]">HIGH · 85</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 85</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
@@ -1876,7 +1876,7 @@ export const LandingPageContent: React.FC = () => {
                                 <td>ETH</td>
                                 <td>Hot Wallet</td>
                                 <td>Public PoR · 2024-Q4</td>
-                                <td><span class="text-[#55C98A]">HIGH · 90</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 90</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                         </tbody>
@@ -2072,27 +2072,27 @@ export const LandingPageContent: React.FC = () => {
                                     stroke="#E6C766" stroke-width="1.4">
                                     <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="2 2" />
                                 </svg></div>
-                            <div class="flex items-center gap-2 pl-24"><span class="text-[#55C98A]">Evidence</span><span
+                            <div class="flex items-center gap-2 pl-24"><span class="text-[#D95C63]">Evidence</span><span
                                     class="tag tag-green ml-2">VERIFIABLE</span></div>
                         </div>
                     </div>
                     <div class="mt-6 space-y-2 text-[12px] text-slate-400">
                         <div class="flex items-center gap-2">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                 stroke-width="2.5">
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
                             <span>Every link independently auditable</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                 stroke-width="2.5">
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
                             <span>Facts separated from inference</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                 stroke-width="2.5">
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
@@ -2152,7 +2152,7 @@ export const LandingPageContent: React.FC = () => {
                             </div>
                             <div>
                                 <div class="text-slate-500">STATUS</div>
-                                <div class="text-[#55C98A] mt-1">ACTIVE</div>
+                                <div class="text-[#D95C63] mt-1">ACTIVE</div>
                             </div>
                             <div>
                                 <div class="text-slate-500">API</div>
@@ -2254,7 +2254,7 @@ export const LandingPageContent: React.FC = () => {
                                     <span class="font-mono text-[10px] text-[#E6C766] w-6">05</span>
                                     <span class="text-[13px] text-white font-medium">Evidence Layer</span>
                                 </div>
-                                <span class="text-[11px] font-mono text-[#55C98A]">SIGNED · EXPORTABLE</span>
+                                <span class="text-[11px] font-mono text-[#D95C63]">SIGNED · EXPORTABLE</span>
                             </div>
                         </div>
                     </div>
@@ -2317,28 +2317,28 @@ export const LandingPageContent: React.FC = () => {
                         </div>
                         <ul class="space-y-3 text-[13px] text-slate-400">
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 <span>Observable transaction relationships</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 <span>Probabilistic VASP attribution</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 <span>Verifiable on-chain evidence</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#55C98A"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
@@ -2546,12 +2546,12 @@ export const LandingPageContent: React.FC = () => {
                     <!-- Status / progress -->
                     <div
                         class="px-4 py-3 border-b border-[#1A2436] bg-[#0A1020] flex items-center gap-4 flex-wrap text-[11px] font-mono">
-                        <span class="text-[#55C98A] flex items-center gap-1.5"><span
+                        <span class="text-[#D95C63] flex items-center gap-1.5"><span
                                 class="status-dot live"></span>GRAPH CONSTRUCTED · 153 NODES</span>
                         <span class="text-slate-600">·</span>
-                        <span class="text-[#55C98A]">VASP MATCH · 2 ENDPOINTS</span>
+                        <span class="text-[#D95C63]">VASP MATCH · 2 ENDPOINTS</span>
                         <span class="text-slate-600">·</span>
-                        <span class="text-[#55C98A]">ATTRIBUTION COMPLETE</span>
+                        <span class="text-[#D95C63]">ATTRIBUTION COMPLETE</span>
                         <span class="ml-auto text-slate-500">CASE 4821-A · 18:42:09 UTC</span>
                     </div>
 
@@ -2567,7 +2567,7 @@ export const LandingPageContent: React.FC = () => {
                                     <span class="flex items-center gap-1.5"><span
                                             class="w-2 h-2 rounded-full bg-[#FBBF24]"></span>INTERMEDIARY</span>
                                     <span class="flex items-center gap-1.5"><span
-                                            class="w-2 h-2 rounded-full bg-[#55C98A]"></span>VASP</span>
+                                            class="w-2 h-2 rounded-full bg-[#D95C63]"></span>VASP</span>
                                 </div>
                             </div>
                             <div class="relative h-[360px] bg-[#060A12] bg-grid-fine">
@@ -2583,7 +2583,7 @@ export const LandingPageContent: React.FC = () => {
                                         </marker>
                                         <marker id="arr-g2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5"
                                             markerHeight="5" orient="auto">
-                                            <path d="M0,0 L10,5 L0,10 z" fill="#55C98A" opacity="0.8" />
+                                            <path d="M0,0 L10,5 L0,10 z" fill="#D95C63" opacity="0.8" />
                                         </marker>
                                     </defs>
                                     <text x="60" y="30" font-family="IBM Plex Mono" font-size="9" fill="#475569"
@@ -2603,9 +2603,9 @@ export const LandingPageContent: React.FC = () => {
                                         fill="none" marker-end="url(#arr-s2)" class="flow-edge" />
                                     <path d="M 290 220 C 360 200, 400 170, 440 170" stroke="#64748B" stroke-width="1.2"
                                         fill="none" marker-end="url(#arr-s2)" class="flow-edge" />
-                                    <path d="M 480 130 C 540 130, 580 160, 620 175" stroke="#55C98A" stroke-width="1.5"
+                                    <path d="M 480 130 C 540 130, 580 160, 620 175" stroke="#D95C63" stroke-width="1.5"
                                         fill="none" marker-end="url(#arr-g2)" class="flow-edge" />
-                                    <path d="M 480 170 C 540 170, 580 180, 620 185" stroke="#55C98A" stroke-width="1.5"
+                                    <path d="M 480 170 C 540 170, 580 180, 620 185" stroke="#D95C63" stroke-width="1.5"
                                         fill="none" marker-end="url(#arr-g2)" class="flow-edge" />
 
                                     <g>
@@ -2640,13 +2640,13 @@ export const LandingPageContent: React.FC = () => {
                                         <circle cx="460" cy="170" r="3" fill="#FBBF24" />
                                     </g>
                                     <g class="node-pulse">
-                                        <circle cx="640" cy="180" r="26" fill="rgba(85,201,138,0.08)" stroke="#55C98A"
+                                        <circle cx="640" cy="180" r="26" fill="rgba(217,92,99,0.08)" stroke="#D95C63"
                                             stroke-width="1.5" />
-                                        <circle cx="640" cy="180" r="16" fill="rgba(74,222,128,0.04)" stroke="#55C98A"
+                                        <circle cx="640" cy="180" r="16" fill="rgba(217,92,99,0.04)" stroke="#D95C63"
                                             stroke-width="0.5" />
-                                        <circle cx="640" cy="180" r="6" fill="#55C98A" />
+                                        <circle cx="640" cy="180" r="6" fill="#D95C63" />
                                         <text x="640" y="225" text-anchor="middle" font-family="IBM Plex Mono"
-                                            font-size="10" fill="#55C98A" font-weight="500">COINBASE</text>
+                                            font-size="10" fill="#D95C63" font-weight="500">COINBASE</text>
                                         <text x="640" y="237" text-anchor="middle" font-family="IBM Plex Mono"
                                             font-size="8" fill="#475569">CLUSTER 04</text>
                                     </g>
@@ -2662,21 +2662,21 @@ export const LandingPageContent: React.FC = () => {
                             </div>
                             <div class="p-3 space-y-2.5">
                                 <div class="panel-2 rounded-sm p-3 relative">
-                                    <div class="absolute top-0 left-0 w-1 h-full bg-[#55C98A] rounded-l-sm"></div>
+                                    <div class="absolute top-0 left-0 w-1 h-full bg-[#D95C63] rounded-l-sm"></div>
                                     <div class="flex items-start justify-between mb-2">
                                         <div>
                                             <div class="text-[11px] font-mono text-slate-500">01 · PRIMARY</div>
                                             <div class="text-[15px] font-semibold text-white mt-0.5">Coinbase</div>
                                         </div>
                                         <div class="text-right">
-                                            <div class="font-mono text-[18px] text-[#55C98A] font-medium leading-none">
+                                            <div class="font-mono text-[18px] text-[#D95C63] font-medium leading-none">
                                                 67.5</div>
                                             <div class="text-[9px] font-mono text-slate-500 mt-1">/ 100</div>
                                         </div>
                                     </div>
                                     <div class="bar-track">
                                         <div class="bar-fill" data-w="67.5"
-                                            style="background:linear-gradient(90deg,#55C98A,#72D9A0);"></div>
+                                            style="background:linear-gradient(90deg,#D95C63,#EA747A);"></div>
                                     </div>
                                     <div class="text-[10px] font-mono text-slate-500 mt-1.5">MEDIUM · INVESTIGATIVE LEAD
                                     </div>
@@ -2756,7 +2756,7 @@ export const LandingPageContent: React.FC = () => {
                                     <tr class="ledger-row">
                                         <td class="text-[#F1D98A]">0x1f8c3a2b…3b2299d4</td>
                                         <td>TQ3r…m4Lz</td>
-                                        <td class="text-[#55C98A]">TK7v…oP2x <span class="text-slate-600">·
+                                        <td class="text-[#D95C63]">TK7v…oP2x <span class="text-slate-600">·
                                                 COINBASE</span></td>
                                         <td class="text-slate-300">8,950.00 USDT</td>
                                         <td>48,221,071</td>
@@ -2775,7 +2775,7 @@ export const LandingPageContent: React.FC = () => {
                                     <tr class="ledger-row">
                                         <td class="text-[#F1D98A]">0xa1b2c3d4…e5f60718</td>
                                         <td>TW9f…N3bQ</td>
-                                        <td class="text-[#55C98A]">TK7v…oP2x <span class="text-slate-600">·
+                                        <td class="text-[#D95C63]">TK7v…oP2x <span class="text-slate-600">·
                                                 COINBASE</span></td>
                                         <td class="text-slate-300">3,450.00 USDT</td>
                                         <td>48,221,052</td>

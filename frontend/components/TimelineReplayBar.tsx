@@ -181,7 +181,7 @@ export const TimelineReplayBar: React.FC<TimelineReplayBarProps> = ({
           max={totalSteps - 1}
           value={currentIndex}
           onChange={handleSliderChange}
-          className="w-full h-1.5 bg-forensic-surfaceRaised rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
+          className="w-full h-1.5 bg-forensic-surfaceRaised rounded-lg appearance-none cursor-pointer accent-forensic-accent"
         />
       </div>
 
