@@ -4,22 +4,74 @@
 
 ### Institutional Multi-Chain Cryptocurrency Intelligence & VASP Attribution Platform
 
-**Automated Attribution of Unknown Cryptocurrency Wallets to Nearest Virtual Asset Service Providers (VASPs) through Multi-Chain Blockchain Intelligence APIs**
-
-[![Live Frontend](https://img.shields.io/badge/Frontend-Vercel%20Live-black.svg?style=for-the-badge&logo=vercel)](https://beta.thezerotrace.in/)
-[![Live Backend](https://img.shields.io/badge/Backend-Render%20Live-46E3B7.svg?style=for-the-badge&logo=render)](https://traceverse.onrender.com/api/v1/health)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com)
-[![Next.js](https://img.shields.io/badge/Next.js-14.2%20App%20Router-000000.svg?style=for-the-badge&logo=next.js)](https://nextjs.org)
-[![Python Tests](https://img.shields.io/badge/Tests-18%2F18%20Passing-success.svg?style=for-the-badge&logo=pytest)](https://pytest.org)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+**Automated attribution of unknown cryptocurrency wallets to nearest Virtual Asset Service Providers (VASPs) through multi-chain blockchain intelligence APIs.**
 
 <br/>
 
-[🌐 Live Workstation]([https://beta.thezerotrace.in/app) • [⚙️ REST API Docs](https://traceverse.onrender.com/docs) • [📖 Architecture Spec](docs/ARCHITECTURE.md) • [📊 Model Card](docs/MODEL_CARD.md) • [🐳 Docker Quickstart](#-docker-deployment)
+[![Frontend](https://img.shields.io/badge/Frontend-Vercel-black?style=for-the-badge&logo=vercel)](https://beta.thezerotrace.in/)
+[![Backend](https://img.shields.io/badge/Backend-Render-46E3B7?style=for-the-badge&logo=render)](https://traceverse.onrender.com/api/v1/health)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-14.2-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Tests](https://img.shields.io/badge/Tests-18%2F18%20Passing-success?style=for-the-badge&logo=pytest)](https://pytest.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+
+<br/>
+
+**[🌐 Live Workstation](https://beta.thezerotrace.in/)** ·
+**[⚙️ REST API Docs](https://traceverse.onrender.com/docs)** ·
+**[📖 Architecture](docs/ARCHITECTURE.md)** ·
+**[📊 Model Card](docs/MODEL_CARD.md)** ·
+**[🐳 Docker](#-docker-deployment)**
 
 </div>
 
 ---
+
+## 🎯 What is TRACEVERSE?
+
+TRACEVERSE is an institutional-grade blockchain forensic intelligence platform designed for **law-enforcement agencies, Financial Intelligence Units, cybercrime investigation cells, and regulatory compliance teams**.
+
+It turns an unknown wallet into an explainable investigation trail:
+
+```text
+┌──────────────────────┐
+│   Suspect Wallet     │
+│  0x... / T...        │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Bounded BFS Traversal│
+│      1–3 Hops        │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ VASP Registry Match  │
+│   1,595+ Addresses   │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ 5-Pillar Attribution │
+│       0–100          │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Structural Risk      │
+│ Layering / Burst /   │
+│ Velocity indicators  │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Evidence & Legal     │
+│ Requisition Dossier  │
+└──────────────────────┘
+```
+
+> **Core principle:** TRACEVERSE produces **explainable analytical associations**, not claims of identity or criminal liability.
 
 ## 📌 Executive Summary
 
@@ -43,16 +95,67 @@ Section 91 CrPC / Section 94 BNSS Legal Requisition Dossier
 
 ---
 
-## 🌐 Live Production Environments
+---
 
-| Component | Cloud Platform | Live Production URL | CI/CD Status |
-| :--- | :--- | :--- | :---: |
-| **Investigator Workstation (UI)** | **Vercel** | **[https://TRACEVERSE-sand.vercel.app](https://beta.thezerotrace.in/)** | ⚡ Auto-deployed from `main` |
-| **Forensic Intelligence API** | **Render** | **[https://TRACEVERSE-backend.onrender.com/api/v1]([https://TRACEVERSE-backend.onrender.com/api/v1](https://traceverse.onrender.com/api/v1/)** | ⚡ Auto-deployed from `main` |
-| **System Diagnostics & Health** | **Render** | **[`/api/v1/health`](https://traceverse.onrender.com/api/v1/health)** | 🟢 1,595 VASP Clusters Indexed |
-| **Interactive API Documentation** | **Render / Swagger** | **[`/docs`](https://traceverse.onrender.com/docs)** | 📜 OpenAPI 3.1 Spec |
+## 🧭 Platform at a Glance
+
+| Layer | What TRACEVERSE does |
+|---|---|
+| 🔗 **Blockchain Intelligence** | Traces ETH/ERC-20 and TRX/TRC-20 activity |
+| 🕸️ **Graph Analysis** | Discovers bounded multi-hop transaction paths |
+| 🏦 **VASP Attribution** | Matches wallets against a curated 1,595+ address registry |
+| 🧮 **Explainable Scoring** | Produces deterministic 0–100 attribution scores |
+| 🚨 **Risk Analytics** | Detects structural layering, burst, and velocity patterns |
+| 🧑‍⚖️ **Evidence Generation** | Builds transaction and provenance audit trails |
+| 📄 **Legal Dossiers** | Generates Section 91 CrPC / Section 94 BNSS-oriented notices |
+| 🤖 **Candidate Ranking** | Uses a lightweight tabular ML ranker as an auxiliary component |
+| 🖥️ **Investigator Console** | Provides graph, ledger, evidence, candidate, and triage views |
 
 ---
+
+## 🏗️ Architecture Overview
+
+```text
+                         ┌────────────────────────────┐
+                         │   Investigator Workstation │
+                         │ Next.js + Tailwind + Cyto  │
+                         └─────────────┬──────────────┘
+                                       │ REST
+                                       ▼
+                         ┌────────────────────────────┐
+                         │       FastAPI Backend      │
+                         │ Router + Async Coordinator │
+                         └─────────────┬──────────────┘
+                                       │
+             ┌─────────────────────────┼─────────────────────────┐
+             ▼                         ▼                         ▼
+     ┌──────────────┐          ┌──────────────┐          ┌──────────────┐
+     │ Etherscan v2 │          │ TronGrid Pro │          │ VASP Registry│
+     │ ETH/ERC-20   │          │ TRX/TRC-20   │          │ 1,595+ addrs │
+     └──────┬───────┘          └──────┬───────┘          └──────┬───────┘
+            └──────────────┬──────────┴────────────────────────┘
+                           ▼
+                 ┌─────────────────────┐
+                 │ NetworkX Graph Core  │
+                 │ Bounded 1–3 Hop BFS  │
+                 └──────────┬──────────┘
+                            ▼
+                 ┌─────────────────────┐
+                 │ Attribution Engine   │
+                 │ 5-Pillar Score 0–100 │
+                 └──────────┬──────────┘
+                            │
+               ┌────────────┴─────────────┐
+               ▼                          ▼
+       ┌────────────────┐         ┌─────────────────┐
+       │ Risk Classifier│         │ Evidence Engine │
+       └───────┬────────┘         └────────┬────────┘
+               └────────────┬──────────────┘
+                            ▼
+                   ┌──────────────────┐
+                   │ Case / Dossier DB│
+                   └──────────────────┘
+```
 
 ## ⚡ Key Capabilities & Architectural Innovations
 
@@ -392,8 +495,80 @@ Explore the comprehensive technical specifications in the [`docs/`](docs/) direc
 
 <div align="center">
 
-**Developed with ❤️ for Smart India Hackathon (SIH)**
 
 ⭐ *Star this repository if you find TRACEVERSE useful for blockchain forensic research!*
+
+</div>
+
+---
+
+## 🔐 Security & Data Handling
+
+TRACEVERSE is intended for controlled investigative environments.
+
+- Keep blockchain-provider credentials in `.env`; never commit secrets.
+- Treat generated dossiers and transaction evidence as potentially sensitive case material.
+- Validate wallet addresses before initiating provider calls.
+- Use the platform's provenance and audit outputs when reviewing analytical conclusions.
+- Follow applicable organizational, statutory, evidentiary, privacy, and data-retention requirements before operational use.
+
+---
+
+## 🗺️ Investigation Workflow
+
+```mermaid
+flowchart LR
+    A[Unknown Wallet] --> B[Address Validation]
+    B --> C[Multi-Chain Data Retrieval]
+    C --> D[1–3 Hop Graph Traversal]
+    D --> E[VASP Registry Matching]
+    E --> F[Attribution Score]
+    F --> G[Risk Classification]
+    G --> H[Evidence & Provenance]
+    H --> I[Investigation Dossier]
+```
+
+---
+
+## 🚀 Deployment Modes
+
+| Mode | Best for | Entry point |
+|---|---|---|
+| ☁️ **Production Cloud** | Hosted investigation workstation | Vercel + Render |
+| 🐳 **Docker** | Self-hosted / controlled environments | `docker-compose.yml` |
+| 💻 **Local Development** | Development and testing | FastAPI + Next.js |
+
+---
+
+## 📌 Important Notes
+
+### Attribution is not identity
+
+A high attribution score indicates **graph proximity, flow association, interaction frequency, behavioral continuity, and temporal recency** relative to known VASP infrastructure. It does not, by itself, establish beneficial ownership.
+
+### ML is auxiliary
+
+The tabular ML ranker is presented as an auxiliary candidate-ranking component. The core attribution methodology remains deterministic and explainable.
+
+### Evidence requires verification
+
+Generated notices, hashes, timestamps, provenance records, and transaction paths should be reviewed by qualified personnel before being relied upon in an investigation or legal proceeding.
+
+---
+
+<div align="center">
+
+## ⭐ TRACEVERSE
+
+**From unknown wallet → transaction graph → VASP attribution → explainable evidence.**
+
+<br/>
+
+
+<br/>
+
+[🌐 Open Workstation](https://beta.thezerotrace.in/) ·
+[⚙️ API Docs](https://traceverse.onrender.com/docs) ·
+[📚 Documentation](docs/)
 
 </div>
