@@ -98,7 +98,7 @@ export const NCRPTriageView: React.FC<NCRPTriageViewProps> = ({ onSelectCase }) 
             ) : (
               filtered.map((c, idx) => (
                 <tr key={idx} className="hover:bg-forensic-surfaceRaised/60 transition-colors">
-                  <td className="py-2.5 px-3 font-bold text-blue-500">
+                  <td className="py-2.5 px-3 font-bold text-[#E6C766]">
                     {c.complaint_id}
                   </td>
 
@@ -133,7 +133,7 @@ export const NCRPTriageView: React.FC<NCRPTriageViewProps> = ({ onSelectCase }) 
                   <td className="py-2.5 px-3 text-right">
                     <button
                       onClick={() => onSelectCase(c.suspect_wallet, 3)}
-                      className="px-2.5 py-1 bg-blue-700 hover:bg-blue-600 text-white font-medium rounded text-[10px] transition-colors"
+                      className="px-2.5 py-1 bg-[#E6C766] hover:bg-[#F1D98A] text-[#101116] font-medium rounded text-[10px] transition-colors"
                     >
                       Trace Target →
                     </button>

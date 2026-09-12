@@ -141,7 +141,7 @@ export default function InvestigationAppPage() {
         <div className="flex items-center space-x-3">
           <Link
             href="/"
-            className="flex items-center space-x-1 text-blue-500 hover:underline font-semibold"
+            className="flex items-center space-x-1 text-forensic-accent hover:underline font-semibold"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             <span>Landing Page</span>
@@ -149,7 +149,7 @@ export default function InvestigationAppPage() {
           <span>•</span>
           <Link
             href="/docs"
-            className="flex items-center space-x-1 text-amber-400 hover:underline font-semibold"
+            className="flex items-center space-x-1 text-forensic-accent hover:underline font-semibold"
           >
             <BookOpen className="h-3.5 w-3.5" />
             <span>Judge Docs (/docs)</span>
@@ -161,14 +161,14 @@ export default function InvestigationAppPage() {
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setShowMLEvalModal(true)}
-            className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 hover:bg-purple-500/20 transition-colors flex items-center space-x-1"
+            className="px-2 py-0.5 rounded bg-forensic-accent/10 text-forensic-accent border border-forensic-accent/20 hover:bg-forensic-accent/20 transition-colors flex items-center space-x-1"
           >
             <BrainCircuit className="h-3 w-3" />
             <span>ML Benchmarks</span>
           </button>
           <button
             onClick={() => setShowDatasetModal(true)}
-            className="px-2 py-0.5 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20 hover:bg-teal-500/20 transition-colors flex items-center space-x-1"
+            className="px-2 py-0.5 rounded bg-forensic-accent/10 text-forensic-accent border border-forensic-accent/20 hover:bg-forensic-accent/20 transition-colors flex items-center space-x-1"
           >
             <Database className="h-3 w-3" />
             <span>Data Ingestion</span>
@@ -193,7 +193,7 @@ export default function InvestigationAppPage() {
                       <span>•</span>
                       <span>STATUS: <strong className="text-forensic-teal">ACTIVE INVESTIGATION</strong></span>
                       <span>•</span>
-                      <span>CHAIN: <strong className="text-blue-500">{analysisStatus.wallet_address.startsWith('0x') ? 'ETHEREUM MAINNET' : 'TRON NETWORK'}</strong></span>
+                      <span>CHAIN: <strong className="text-forensic-accent">{analysisStatus.wallet_address.startsWith('0x') ? 'ETHEREUM MAINNET' : 'TRON NETWORK'}</strong></span>
                     </div>
 
                     <div className="flex items-center space-x-2 pt-0.5">
@@ -215,7 +215,7 @@ export default function InvestigationAppPage() {
                         }
                         target="_blank"
                         rel="noreferrer"
-                        className="p-1 text-blue-500 hover:underline"
+                        className="p-1 text-forensic-accent hover:underline"
                         title="Inspect on Public Explorer"
                       >
                         <ExternalLink className="h-3.5 w-3.5" />
@@ -243,7 +243,7 @@ export default function InvestigationAppPage() {
 
                       <button
                         onClick={() => setShowReportModal(true)}
-                        className="flex items-center space-x-1.5 px-3 py-1.5 bg-blue-700 hover:bg-blue-600 text-white font-medium text-[11px] rounded transition-colors shadow-sm"
+                        className="flex items-center space-x-1.5 px-3 py-1.5 bg-forensic-accent hover:bg-[#F1D98A] text-[#111111] font-medium text-[11px] rounded transition-colors shadow-sm"
                       >
                         <FileText className="h-3.5 w-3.5" />
                         <span>Export Dossier</span>
@@ -264,7 +264,7 @@ export default function InvestigationAppPage() {
                   </div>
                   <div>
                     <span className="block uppercase text-forensic-textDim">Attributed VASP</span>
-                    <strong className="text-blue-500 text-xs">
+                    <strong className="text-forensic-accent text-xs">
                       {attributions[0]?.vasp_name || 'Evaluating...'}
                     </strong>
                   </div>
@@ -333,14 +333,14 @@ export default function InvestigationAppPage() {
                           {run.wallet_address.slice(0, 8)}...{run.wallet_address.slice(-6)}
                         </span>
                         <span className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase ${
-                          run.status === 'COMPLETED' ? 'bg-teal-500/15 text-forensic-teal border border-teal-500/30' : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
+                          run.status === 'COMPLETED' ? 'bg-[#E6C766]/15 text-[#E6C766] border border-[#E6C766]/30' : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
                         }`}>
                           {run.status}
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-[10px] text-forensic-textDim pt-0.5">
                         <span>{run.num_transactions} Transfers • {run.num_nodes} Nodes</span>
-                        <span className="text-blue-500 group-hover:underline font-semibold">Load Case →</span>
+                        <span className="text-[#E6C766] group-hover:underline font-semibold">Load Case →</span>
                       </div>
                     </button>
                   ))}

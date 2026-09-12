@@ -43,12 +43,12 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
       {/* Header */}
       <div className="flex items-center justify-between border-b border-forensic-border pb-2.5">
         <div className="flex items-center space-x-2">
-          <ShieldCheck className="h-4 w-4 text-blue-500" />
+          <ShieldCheck className="h-4 w-4 text-forensic-accent" />
           <h3 className="font-mono uppercase font-bold text-forensic-text text-xs tracking-wider">
             Primary Attribution Assessment
           </h3>
         </div>
-        <span className="font-mono text-[10px] uppercase px-2 py-0.5 rounded bg-teal-500/15 text-forensic-teal border border-teal-500/30 font-bold">
+        <span className="font-mono text-[10px] uppercase px-2 py-0.5 rounded bg-forensic-accent/15 text-forensic-accent border border-forensic-accent/30 font-bold">
           {primary.evidence_strength} CONFIDENCE
         </span>
       </div>

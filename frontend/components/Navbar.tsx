@@ -76,13 +76,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Left: Branding & Core Navigation */}
         <div className="flex items-center space-x-5">
           <div className="flex items-center space-x-2.5 pr-4 border-r border-forensic-border">
-            <div className="h-7 w-7 rounded bg-blue-600/15 border border-blue-500/30 flex items-center justify-center text-blue-500">
+            <div className="h-7 w-7 rounded bg-forensic-accent/15 border border-forensic-accent/30 flex items-center justify-center text-forensic-accent">
               <Shield className="h-4 w-4" />
             </div>
             <div>
               <div className="flex items-center space-x-1.5 leading-none">
                 <span className="font-bold text-forensic-text tracking-wider text-sm">
-                  TRACE<span className="text-blue-500">VERSE</span>
+                  TRACE<span className="text-forensic-accent">VERSE</span>
                 </span>
                 <span className="text-[9px] px-1 py-0.2 rounded bg-forensic-surfaceRaised border border-forensic-border text-forensic-textMuted font-mono uppercase">
                   v1.2
@@ -104,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-forensic-textMuted hover:text-forensic-text hover:bg-forensic-surfaceRaised/50'
               }`}
             >
-              <Search className="h-3.5 w-3.5 text-blue-500" />
+              <Search className="h-3.5 w-3.5 text-forensic-accent" />
               <span>Target Workspace</span>
             </button>
 
@@ -116,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-forensic-textMuted hover:text-forensic-text hover:bg-forensic-surfaceRaised/50'
               }`}
             >
-              <Radar className="h-3.5 w-3.5 text-blue-400" />
+              <Radar className="h-3.5 w-3.5 text-forensic-accent" />
               <span>Candidate Discovery</span>
             </button>
 
@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <ListFilter className="h-3.5 w-3.5 text-forensic-amber" />
               <span>NCRP Queue</span>
-              <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-amber-500/20 text-forensic-amber border border-amber-500/30">
+              <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-forensic-accent/15 text-forensic-accent border border-forensic-accent/30">
                 {caseCount} Active
               </span>
             </button>
@@ -158,7 +158,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-forensic-textMuted hover:text-forensic-text hover:bg-forensic-surfaceRaised/50'
               }`}
             >
-              <Database className="h-3.5 w-3.5 text-blue-500" />
+              <Database className="h-3.5 w-3.5 text-forensic-accent" />
               <span>VASP Registry</span>
             </button>
 
@@ -193,7 +193,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {onOpenDatasetStatus && (
             <button
               onClick={onOpenDatasetStatus}
-              className="flex items-center space-x-1.5 px-2.5 py-1 rounded bg-teal-500/10 hover:bg-teal-500/20 text-forensic-teal border border-teal-500/30 transition-colors font-mono text-[11px]"
+              className="flex items-center space-x-1.5 px-2.5 py-1 rounded bg-forensic-accent/10 hover:bg-forensic-accent/20 text-forensic-accent border border-forensic-accent/30 transition-colors font-mono text-[11px]"
               title="View 100K+ Blockchain Dataset Ingestion Intelligence"
             >
               <Database className="h-3.5 w-3.5" />
@@ -204,7 +204,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {onOpenMLEval && (
             <button
               onClick={onOpenMLEval}
-              className="flex items-center space-x-1.5 px-2.5 py-1 rounded bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 transition-colors font-mono text-[11px]"
+              className="flex items-center space-x-1.5 px-2.5 py-1 rounded bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 transition-colors font-mono text-[11px]"
               title="View Offline ML Evaluation & Benchmark Diagnostics"
             >
               <BrainCircuit className="h-3.5 w-3.5" />
@@ -222,7 +222,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <div className="hidden lg:flex items-center space-x-2 px-2.5 py-1 rounded bg-forensic-surfaceRaised border border-forensic-border text-[11px] text-forensic-textMuted font-mono">
-            <Activity className="h-3 w-3 text-forensic-teal animate-pulse" />
+            <Activity className="h-3 w-3 text-[#D98282] animate-pulse" />
             <span>EVM + TRON TRC-20</span>
           </div>
 
@@ -239,7 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </>
             ) : (
               <>
-                <Moon className="h-3.5 w-3.5 text-blue-600" />
+                <Moon className="h-3.5 w-3.5 text-forensic-accent" />
                 <span className="font-medium">Dark</span>
               </>
             )}

@@ -75,7 +75,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
         {/* Header Bar */}
         <div className="no-print p-4 border-b border-forensic-border flex items-center justify-between bg-forensic-bg/95">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded bg-blue-500/10 border border-blue-500/30 text-blue-400">
+            <div className="p-2 rounded bg-[#E6C766]/10 border border-[#E6C766]/30 text-[#E6C766]">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
@@ -83,7 +83,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                 <h2 className="text-sm font-bold text-forensic-text tracking-wide uppercase">
                   Forensic Investigation Dossier & Audit Report
                 </h2>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#E6C766]/15 text-[#E6C766] border border-[#E6C766]/30">
                   {refNumber}
                 </span>
               </div>
@@ -101,7 +101,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                 onClick={() => setActiveTab('visual')}
                 className={`flex items-center space-x-1.5 px-3 py-1 rounded text-[11px] font-medium transition-all ${
                   activeTab === 'visual'
-                    ? 'bg-blue-600 text-white shadow'
+                    ? 'bg-[#E6C766] text-[#101116] shadow'
                     : 'text-forensic-textDim hover:text-forensic-text'
                 }`}
               >
@@ -113,7 +113,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                 onClick={() => setActiveTab('markdown')}
                 className={`flex items-center space-x-1.5 px-3 py-1 rounded text-[11px] font-medium transition-all ${
                   activeTab === 'markdown'
-                    ? 'bg-blue-600 text-white shadow'
+                    ? 'bg-[#E6C766] text-[#101116] shadow'
                     : 'text-forensic-textDim hover:text-forensic-text'
                 }`}
               >
@@ -125,7 +125,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                 onClick={() => setActiveTab('json')}
                 className={`flex items-center space-x-1.5 px-3 py-1 rounded text-[11px] font-medium transition-all ${
                   activeTab === 'json'
-                    ? 'bg-blue-600 text-white shadow'
+                    ? 'bg-[#E6C766] text-[#101116] shadow'
                     : 'text-forensic-textDim hover:text-forensic-text'
                 }`}
               >
@@ -152,7 +152,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
 
             <button
               onClick={handlePrint}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] shadow-sm transition-all cursor-pointer"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded bg-[#D95C63] hover:bg-[#EA747A] text-white font-semibold text-[11px] shadow-sm transition-all cursor-pointer"
             >
               <Printer className="h-3.5 w-3.5" />
               <span>Print / Export PDF</span>
@@ -171,7 +171,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
         <div className="overflow-y-auto flex-1 bg-forensic-bg p-6 print:bg-white print:text-black">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-24 text-forensic-textDim">
-              <div className="h-8 w-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+              <div className="h-8 w-8 border-2 border-[#E6C766] border-t-transparent rounded-full animate-spin mb-3"></div>
               <span className="text-xs font-mono">Compiling multi-chain case dossier & audit evidence...</span>
             </div>
           ) : activeTab === 'visual' && reportJson ? (
@@ -182,7 +182,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
               <div className="p-5 rounded-lg bg-forensic-surface border border-forensic-border print:border-black/30 print:bg-transparent">
                 <div className="flex items-start justify-between">
                   <div>
-                    <div className="text-[10px] font-mono tracking-widest text-blue-400 uppercase font-bold mb-1">
+                    <div className="text-[10px] font-mono tracking-widest text-[#E6C766] uppercase font-bold mb-1">
                       FINANCIAL INTELLIGENCE UNIT // FORENSIC REPORT
                     </div>
                     <h1 className="text-lg font-bold text-forensic-text print:text-black">
@@ -225,12 +225,12 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
               {/* Section 1: Executive Summary & VASP Attribution */}
               <div className="p-5 rounded-lg bg-forensic-surface border border-forensic-border print:border-black/30 space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center space-x-1.5">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-[#E6C766] flex items-center space-x-1.5">
                     <ShieldCheck className="h-4 w-4" />
                     <span>1. Executive Summary & VASP Attribution</span>
                   </h3>
                   {reportJson.top_attribution && (
-                    <span className="px-2.5 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30 font-bold font-mono">
+                    <span className="px-2.5 py-0.5 rounded bg-[#E6C766]/15 text-[#E6C766] border border-[#E6C766]/30 font-bold font-mono">
                       Top Match: {reportJson.top_attribution.vasp_name} ({reportJson.top_attribution.score.toFixed(1)}/100)
                     </span>
                   )}
@@ -274,7 +274,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                           {reportJson.all_attributions.map((attr, idx) => (
                             <tr key={idx} className="hover:bg-forensic-surfaceRaised/50">
                               <td className="p-2.5 font-bold">#{attr.rank}</td>
-                              <td className="p-2.5 font-bold text-blue-400 print:text-blue-700">{attr.vasp_name}</td>
+                              <td className="p-2.5 font-bold text-[#E6C766] print:text-[#7A5E00]">{attr.vasp_name}</td>
                               <td className="p-2.5">{attr.score.toFixed(1)} / 100</td>
                               <td className="p-2.5">
                                 <span className="px-1.5 py-0.5 rounded bg-forensic-surfaceRaised border border-forensic-border">
@@ -346,7 +346,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
                         {reportJson.key_evidence.slice(0, 10).map((ev, i) => (
                           <tr key={i} className="hover:bg-forensic-surfaceRaised/50">
                             <td className="p-2.5 font-bold">{i + 1}</td>
-                            <td className="p-2.5 text-blue-400">{ev.evidence_type}</td>
+                            <td className="p-2.5 text-[#E6C766]">{ev.evidence_type}</td>
                             <td className="p-2.5">{ev.strength}</td>
                             <td className="p-2.5">{ev.hop_distance}</td>
                             <td className="p-2.5 text-[10px] break-all">

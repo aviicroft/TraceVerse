@@ -22,7 +22,7 @@ export default function RootLayout({
         />
         <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" async></script>
       </head>
-      <body className="bg-[#060A12] text-slate-100 antialiased min-h-screen">
+      <body className="bg-[#0B0D11] text-[#F1F1EC] antialiased min-h-screen">
         {children}
       </body>
     </html>

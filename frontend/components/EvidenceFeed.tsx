@@ -36,7 +36,7 @@ export const EvidenceFeed: React.FC<EvidenceFeedProps> = ({ evidence }) => {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-forensic-border pb-2.5">
         <div className="flex items-center space-x-2">
-          <FileCheck2 className="h-4 w-4 text-forensic-teal" />
+          <FileCheck2 className="h-4 w-4 text-[#D98282]" />
           <h3 className="font-mono uppercase font-bold text-forensic-text text-xs tracking-wider">
             Evidence & Analytical Findings Register
           </h3>
@@ -68,7 +68,7 @@ export const EvidenceFeed: React.FC<EvidenceFeedProps> = ({ evidence }) => {
                 </div>
 
                 <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold uppercase ${
-                  item.strength === 'HIGH' ? 'bg-teal-500/15 text-forensic-teal border border-teal-500/30' : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
+                  item.strength === 'HIGH' ? 'bg-[#D98282]/10 text-[#D98282] border border-[#D98282]/30' : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
                 }`}>
                   {item.strength} STRENGTH
                 </span>
@@ -87,7 +87,7 @@ export const EvidenceFeed: React.FC<EvidenceFeedProps> = ({ evidence }) => {
 
                 {item.amount !== null && item.amount !== undefined && (
                   <span>
-                    Volume: <strong className="text-forensic-teal">{item.amount.toFixed(4)} {item.asset_symbol || 'ETH'}</strong>
+                    Volume: <strong className="text-[#D98282]">{item.amount.toFixed(4)} {item.asset_symbol || 'ETH'}</strong>
                   </span>
                 )}
 
@@ -100,7 +100,7 @@ export const EvidenceFeed: React.FC<EvidenceFeedProps> = ({ evidence }) => {
                       className="p-0.5 hover:text-forensic-text text-forensic-textDim"
                     >
                       {copiedId === evidenceId ? (
-                        <Check className="h-3 w-3 text-forensic-teal" />
+                        <Check className="h-3 w-3 text-[#D98282]" />
                       ) : (
                         <Copy className="h-3 w-3" />
                       )}

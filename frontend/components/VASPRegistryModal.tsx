@@ -84,7 +84,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
       {/* Header */}
       <div className="p-4 border-b border-forensic-border flex items-center justify-between bg-forensic-bg">
         <div className="flex items-center space-x-3">
-          <div className="p-1.5 rounded bg-forensic-surfaceRaised border border-forensic-border text-blue-500">
+          <div className="p-1.5 rounded bg-forensic-surfaceRaised border border-forensic-border text-forensic-accent">
             <Database className="h-4 w-4" />
           </div>
           <div>
@@ -92,7 +92,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
               <h2 className="text-xs font-bold text-forensic-text uppercase tracking-wider">
                 VASPs & Entity Intelligence Registry
               </h2>
-              <span className="px-1.5 py-0.2 rounded bg-teal-500/15 text-forensic-teal border border-teal-500/30 text-[10px] font-bold">
+              <span className="px-1.5 py-0.2 rounded bg-forensic-accent/15 text-forensic-accent border border-forensic-accent/30 text-[10px] font-bold">
                 {stats ? `${stats.total_addresses.toLocaleString()} VERIFIED ADDRESSES` : 'LOADING...'}
               </span>
             </div>
@@ -117,7 +117,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-3 bg-forensic-bg border-b border-forensic-border text-xs">
           <div className="p-2.5 bg-forensic-surface rounded border border-forensic-border">
             <span className="text-[10px] uppercase text-forensic-textDim block">Registered Entities</span>
-            <strong className="text-base text-blue-500">{stats.total_vasps} VASPs</strong>
+            <strong className="text-base text-forensic-accent">{stats.total_vasps} VASPs</strong>
           </div>
           <div className="p-2.5 bg-forensic-surface rounded border border-forensic-border">
             <span className="text-[10px] uppercase text-forensic-textDim block">Known Addresses</span>
@@ -152,7 +152,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
               setPage(0);
             }}
             placeholder="Search by address (0x... or T...), VASP, or notes..."
-            className="w-full pl-8 pr-3 py-1.5 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-[11px] focus:outline-none focus:border-blue-500"
+            className="w-full pl-8 pr-3 py-1.5 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-[11px] focus:outline-none focus:border-forensic-accent"
           />
         </div>
 
@@ -260,7 +260,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
                           }
                           target="_blank"
                           rel="noreferrer"
-                          className="p-0.5 text-blue-500 hover:underline"
+                          className="p-0.5 text-[#E6C766] hover:underline"
                         >
                           <ExternalLink className="h-3 w-3" />
                         </a>
@@ -269,7 +269,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
 
                     <td className="py-2 px-3">
                       <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${
-                        item.chain === 'ethereum' ? 'bg-sky-500/15 text-blue-600 dark:text-sky-300 border border-sky-500/30' : 'bg-rose-500/15 text-red-600 dark:text-rose-300 border border-rose-500/30'
+                        item.chain === 'ethereum' ? 'bg-[#E6C766]/15 text-[#E6C766] border border-[#E6C766]/30' : 'bg-rose-500/15 text-red-600 dark:text-rose-300 border border-rose-500/30'
                       }`}>
                         {item.chain?.toUpperCase()}
                       </span>
@@ -285,7 +285,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
                           href={item.source_url}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-blue-500 hover:underline inline-flex items-center space-x-1 text-[10px]"
+                          className="text-[#E6C766] hover:underline inline-flex items-center space-x-1 text-[10px]"
                         >
                           <span>{item.source_name || item.source}</span>
                           <ExternalLink className="h-2.5 w-2.5 ml-0.5" />

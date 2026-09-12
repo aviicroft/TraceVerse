@@ -39,7 +39,7 @@ export const LiveProgress: React.FC<LiveProgressProps> = ({ status }) => {
     <div className="bg-forensic-surface border border-forensic-border rounded p-3 text-xs shadow-sm space-y-2.5 transition-colors">
       <div className="flex items-center justify-between border-b border-forensic-border pb-2">
         <div className="flex items-center space-x-2">
-          <Activity className="h-3.5 w-3.5 text-blue-500" />
+          <Activity className="h-3.5 w-3.5 text-forensic-accent" />
           <span className="font-mono uppercase font-bold text-forensic-text text-[11px]">
             Investigation Pipeline Status
           </span>
@@ -47,8 +47,8 @@ export const LiveProgress: React.FC<LiveProgressProps> = ({ status }) => {
             isFailed
               ? 'bg-red-500/20 text-forensic-rose border border-red-500/30'
               : status.status === 'COMPLETED'
-              ? 'bg-teal-500/20 text-forensic-teal border border-teal-500/30'
-              : 'bg-blue-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 animate-pulse'
+              ? 'bg-forensic-accent/15 text-forensic-accent border border-forensic-accent/30'
+              : 'bg-forensic-accent/15 text-forensic-accent border border-forensic-accent/30 animate-pulse'
           }`}>
             {status.status}
           </span>
@@ -75,7 +75,7 @@ export const LiveProgress: React.FC<LiveProgressProps> = ({ status }) => {
                 isDone
                   ? 'bg-forensic-surfaceRaised border-forensic-border text-forensic-text'
                   : isCurrent
-                  ? 'bg-blue-500/10 border-blue-500/40 text-blue-600 dark:text-blue-200'
+                  ? 'bg-forensic-accent/10 border-forensic-accent/40 text-forensic-accent'
                   : 'bg-forensic-bg/60 border-forensic-borderMuted text-forensic-textDim'
               }`}
             >
@@ -83,7 +83,7 @@ export const LiveProgress: React.FC<LiveProgressProps> = ({ status }) => {
                 {isDone ? (
                   <CheckCircle2 className="h-3.5 w-3.5 text-forensic-teal flex-shrink-0" />
                 ) : isCurrent ? (
-                  <div className="h-2 w-2 rounded-full bg-blue-500 animate-ping mr-1" />
+                  <div className="h-2 w-2 rounded-full bg-forensic-accent animate-ping mr-1" />
                 ) : (
                   <div className="h-2 w-2 rounded-full bg-forensic-border flex-shrink-0" />
                 )}

@@ -135,7 +135,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
             onClick={handleCopy}
             className="flex items-center space-x-1.5 px-3 py-1.5 rounded bg-forensic-surfaceRaised hover:bg-forensic-border border border-forensic-border text-forensic-text font-medium text-[11px]"
           >
-            {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5 text-forensic-textDim" />}
+            {copied ? <Check className="h-3.5 w-3.5 text-[#D98282]" /> : <Copy className="h-3.5 w-3.5 text-forensic-textDim" />}
             <span>{copied ? 'Copied' : 'Copy Notice'}</span>
           </button>
 
@@ -207,7 +207,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
           </div>
           <div className="flex items-center space-x-3 text-forensic-textDim font-mono">
             <span className="flex items-center space-x-1">
-              <Mail className="h-3 w-3 text-emerald-400" />
+              <Mail className="h-3 w-3 text-[#D98282]" />
               <span className="text-forensic-text">{noticeData.compliance_email}</span>
             </span>
             <span>•</span>
@@ -260,7 +260,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
                 <div>
                   <span className="text-[10px] text-forensic-textDim block uppercase">TO (COMPLIANCE OFFICER):</span>
                   <div className="font-bold text-forensic-text print:text-black text-xs">{noticeData.vasp_name} Compliance Department</div>
-                  <div className="text-blue-400 print:text-blue-700">{noticeData.compliance_email}</div>
+                  <div className="text-forensic-accent print:text-amber-700">{noticeData.compliance_email}</div>
                 </div>
 
                 <div>
@@ -308,7 +308,7 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
             {/* Critical On-Chain Transaction Evidence */}
             {noticeData.critical_txs && noticeData.critical_txs.length > 0 && (
               <div className="p-5 rounded-lg bg-forensic-surface border border-forensic-border print:border-black/30 space-y-3 font-mono text-[11px]">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-400 print:text-emerald-700">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#D98282] print:text-[#D98282]">
                   Verified On-Chain Transaction Evidence Schedule:
                 </h3>
 
@@ -325,9 +325,9 @@ export const FreezeNoticeModal: React.FC<FreezeNoticeModalProps> = ({
                     <tbody className="divide-y divide-forensic-border print:divide-gray-200">
                       {noticeData.critical_txs.map((tx: any, idx: number) => (
                         <tr key={idx}>
-                          <td className="p-2.5 font-bold text-blue-400 print:text-blue-700 break-all">{tx.tx_hash}</td>
+                          <td className="p-2.5 font-bold text-forensic-accent print:text-amber-700 break-all">{tx.tx_hash}</td>
                           <td className="p-2.5 break-all">{tx.from_address}</td>
-                          <td className="p-2.5 break-all text-emerald-400 print:text-emerald-700 font-bold">{tx.to_address}</td>
+                          <td className="p-2.5 break-all text-[#D98282] print:text-[#D98282] font-bold">{tx.to_address}</td>
                           <td className="p-2.5 font-bold">{tx.amount} {tx.token_symbol || 'ETH'}</td>
                         </tr>
                       ))}

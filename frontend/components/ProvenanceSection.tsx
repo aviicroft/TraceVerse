@@ -19,7 +19,7 @@ export const ProvenanceSection: React.FC = () => {
       <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Pillar 1: Deterministic Pipeline */}
         <div className="p-3 bg-forensic-surfaceRaised rounded border border-forensic-border space-y-2">
-          <div className="flex items-center space-x-1.5 text-blue-500 font-bold text-xs uppercase">
+          <div className="flex items-center space-x-1.5 text-[#E6C766] font-bold text-xs uppercase">
             <Layers className="h-3.5 w-3.5" />
             <span>1. Deterministic Data Pipeline</span>
           </div>

@@ -115,7 +115,7 @@ export const TimelineReplayBar: React.FC<TimelineReplayBarProps> = ({
             className={`flex items-center space-x-1.5 px-3 py-1.5 rounded font-bold text-xs shadow-sm transition-all ${
               isPlaying
                 ? 'bg-amber-600 hover:bg-amber-500 text-white'
-                : 'bg-blue-600 hover:bg-blue-500 text-white'
+                : 'bg-[#E6C766] hover:bg-[#F1D98A] text-[#101116]'
             }`}
           >
             {isPlaying ? (
@@ -148,7 +148,7 @@ export const TimelineReplayBar: React.FC<TimelineReplayBarProps> = ({
                 onClick={() => setSpeed(s)}
                 className={`px-1.5 py-0.5 rounded transition-all ${
                   speed === s
-                    ? 'bg-blue-600 text-white font-bold'
+                    ? 'bg-[#E6C766] text-[#101116] font-bold'
                     : 'text-forensic-textDim hover:text-forensic-text'
                 }`}
               >
@@ -161,7 +161,7 @@ export const TimelineReplayBar: React.FC<TimelineReplayBarProps> = ({
         {/* Step Indicator & Active Timestamp */}
         <div className="flex items-center space-x-3 font-mono text-xs text-forensic-textDim">
           <span className="flex items-center space-x-1">
-            <Clock className="h-3.5 w-3.5 text-blue-400" />
+            <Clock className="h-3.5 w-3.5 text-[#E6C766]" />
             <span className="text-forensic-text font-bold">
               {currentTx ? new Date(currentTx.timestamp).toUTCString() : '-'}
             </span>

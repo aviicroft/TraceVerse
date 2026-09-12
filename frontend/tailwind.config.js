@@ -20,7 +20,7 @@ module.exports = {
           textMuted: "var(--forensic-text-muted)",
           textDim: "var(--forensic-text-dim)",
           accent: "var(--forensic-accent)",
-          teal: "var(--forensic-teal)",
+          teal: "var(--forensic-success)",
           amber: "var(--forensic-amber)",
           rose: "var(--forensic-rose)",
         },

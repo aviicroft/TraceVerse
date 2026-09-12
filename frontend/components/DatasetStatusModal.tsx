@@ -101,7 +101,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
         {/* Header */}
         <div className="p-4 border-b border-forensic-border flex items-center justify-between bg-forensic-surfaceRaised/60">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg bg-teal-500/10 border border-teal-500/20 text-forensic-teal">
+            <div className="p-2 rounded-lg bg-forensic-accent/10 border border-forensic-accent/20 text-forensic-accent">
               <Database className="h-5 w-5" />
             </div>
             <div>
@@ -110,8 +110,8 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                   Blockchain Dataset Intelligence & 100K+ Ingestion Monitor
                 </h2>
                 {status?.is_running ? (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-teal-500/15 text-forensic-teal border border-teal-500/30 flex items-center space-x-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-forensic-teal animate-pulse" />
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-forensic-accent/15 text-forensic-accent border border-forensic-accent/30 flex items-center space-x-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-forensic-accent animate-pulse" />
                     <span>Live Ingestion Active</span>
                   </span>
                 ) : (
@@ -160,7 +160,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                 </div>
                 <div className="w-full bg-forensic-bg rounded-full h-3 overflow-hidden border border-forensic-border">
                   <div
-                    className="bg-gradient-to-r from-blue-600 via-teal-500 to-emerald-400 h-3 rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-forensic-accent via-forensic-accent to-forensic-teal h-3 rounded-full transition-all duration-500"
                     style={{ width: `${Math.min(100, Math.max(2, status.progress_percent || 0))}%` }}
                   />
                 </div>
@@ -176,7 +176,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                 <div className="p-3.5 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-forensic-textDim text-[11px] uppercase tracking-wider">Total Records</span>
-                    <Database className="h-4 w-4 text-blue-400" />
+                    <Database className="h-4 w-4 text-forensic-accent" />
                   </div>
                   <div className="text-xl font-bold font-mono text-forensic-text">
                     {status.current_transactions.toLocaleString()}
@@ -187,9 +187,9 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                 <div className="p-3.5 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-forensic-textDim text-[11px] uppercase tracking-wider">Ethereum (ETH / ERC-20)</span>
-                    <Layers className="h-4 w-4 text-blue-400" />
+                    <Layers className="h-4 w-4 text-forensic-accent" />
                   </div>
-                  <div className="text-xl font-bold font-mono text-blue-400">
+                  <div className="text-xl font-bold font-mono text-forensic-accent">
                     {status.ethereum_transactions.toLocaleString()}
                   </div>
                   <div className="text-[10px] text-forensic-textDim mt-0.5">{status.erc20_transactions.toLocaleString()} ERC-20 Transfers</div>
@@ -209,9 +209,9 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                 <div className="p-3.5 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-forensic-textDim text-[11px] uppercase tracking-wider">USDT Movements</span>
-                    <Coins className="h-4 w-4 text-emerald-400" />
+                    <Coins className="h-4 w-4 text-[#D98282]" />
                   </div>
-                  <div className="text-xl font-bold font-mono text-emerald-400">
+                  <div className="text-xl font-bold font-mono text-[#D98282]">
                     {status.usdt_transactions.toLocaleString()}
                   </div>
                   <div className="text-[10px] text-forensic-textDim mt-0.5">Tether ERC-20 + TRC-20</div>
@@ -233,7 +233,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                     </div>
                     <div className="flex justify-between pt-1">
                       <span className="text-forensic-textDim">Unique Counterparties Observed:</span>
-                      <span className="font-bold text-teal-400">{status.unique_counterparties.toLocaleString()} Unique Addresses</span>
+                      <span className="font-bold text-emerald-400">{status.unique_counterparties.toLocaleString()} Unique Addresses</span>
                     </div>
                     <div className="flex justify-between pt-1">
                       <span className="text-forensic-textDim">Seed Addresses Ingested:</span>
@@ -249,7 +249,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                 {/* Right Card: API Throttling & Rate Limiting Health */}
                 <div className="p-4 rounded-xl bg-forensic-surfaceRaised/40 border border-forensic-border space-y-3 font-mono text-[11px]">
                   <div className="font-bold text-forensic-text uppercase tracking-wider font-sans text-xs flex items-center space-x-2">
-                    <Cpu className="h-4 w-4 text-blue-400" />
+                    <Cpu className="h-4 w-4 text-forensic-accent" />
                     <span>API Performance & Throttling Health</span>
                   </div>
                   <div className="space-y-2 divide-y divide-forensic-border/40">
@@ -295,7 +295,7 @@ export const DatasetStatusModal: React.FC<DatasetStatusModalProps> = ({ isOpen, 
                     <button
                       onClick={handleStartIngestion}
                       disabled={actionLoading}
-                      className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-medium text-xs transition-colors"
+                      className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#D95C63] hover:bg-[#EA747A] text-white font-medium text-xs transition-colors"
                     >
                       <Play className="h-3.5 w-3.5" />
                       <span>Start 100K Ingestion</span>

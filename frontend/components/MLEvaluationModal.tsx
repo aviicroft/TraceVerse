@@ -100,7 +100,7 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
         {/* Header */}
         <div className="p-4 border-b border-forensic-border flex items-center justify-between bg-forensic-surfaceRaised/50">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400">
+            <div className="p-2 rounded-lg bg-forensic-accent/10 border border-forensic-accent/20 text-forensic-accent">
               <BrainCircuit className="h-5 w-5" />
             </div>
             <div>
@@ -129,7 +129,7 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
         <div className="p-6 overflow-y-auto space-y-6 text-xs">
           {loading ? (
             <div className="py-20 text-center text-forensic-textMuted flex flex-col items-center justify-center space-y-3">
-              <RefreshCw className="h-8 w-8 animate-spin text-purple-400" />
+              <RefreshCw className="h-8 w-8 animate-spin text-forensic-accent" />
               <span>Running benchmark over held-out test partitions...</span>
             </div>
           ) : error ? (
@@ -140,10 +140,10 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
           ) : data ? (
             <>
               {/* Top Deployment Gate Notice */}
-              <div className="p-3.5 rounded-lg bg-purple-950/30 border border-purple-800/40 flex items-start space-x-3">
-                <ShieldAlert className="h-5 w-5 text-purple-400 shrink-0 mt-0.5" />
+              <div className="p-3.5 rounded-lg bg-red-500/10 border border-red-500/25 flex items-start space-x-3">
+                <ShieldAlert className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-semibold text-purple-300">
+                  <div className="font-semibold text-red-300">
                     Offline Evaluation Gate Status: {data.deployment_status}
                   </div>
                   <div className="text-forensic-textDim text-[11px] mt-0.5">
@@ -155,7 +155,7 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
               {/* Tri-Way Benchmark Comparison Cards */}
               <div>
                 <div className="text-xs font-bold uppercase tracking-wider text-forensic-textDim mb-3 flex items-center space-x-2">
-                  <BarChart3 className="h-4 w-4 text-blue-400" />
+                  <BarChart3 className="h-4 w-4 text-forensic-accent" />
                   <span>Held-Out Test Set Performance (N = {data.dataset_summary.usable_test_wallets} Unique Wallets)</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -163,14 +163,14 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                   <div className="p-4 rounded-xl bg-forensic-surfaceRaised/60 border border-forensic-border">
                     <div className="flex items-center justify-between mb-3">
                       <span className="font-bold text-forensic-text">1. Rule-Based Baseline</span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-forensic-accent/10 text-forensic-accent border border-forensic-accent/20">
                         Deterministic
                       </span>
                     </div>
                     <div className="space-y-2 font-mono text-[11px]">
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-1 Accuracy:</span>
-                        <span className="font-bold text-blue-400">{data.comparative_benchmarks.rule_based_baseline.top_1_accuracy}%</span>
+                        <span className="font-bold text-forensic-accent">{data.comparative_benchmarks.rule_based_baseline.top_1_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-3 Accuracy:</span>
@@ -191,14 +191,14 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                   <div className="p-4 rounded-xl bg-forensic-surfaceRaised/60 border border-forensic-border">
                     <div className="flex items-center justify-between mb-3">
                       <span className="font-bold text-forensic-text">2. ML Pointwise Model</span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20">
                         GradientBoosting
                       </span>
                     </div>
                     <div className="space-y-2 font-mono text-[11px]">
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-1 Accuracy:</span>
-                        <span className="font-bold text-purple-400">{data.comparative_benchmarks.ml_model_alone.top_1_accuracy}%</span>
+                        <span className="font-bold text-red-400">{data.comparative_benchmarks.ml_model_alone.top_1_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-3 Accuracy:</span>
@@ -216,17 +216,17 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                   </div>
 
                   {/* Card 3: Hybrid Ensemble */}
-                  <div className="p-4 rounded-xl bg-forensic-surfaceRaised/60 border border-emerald-500/30">
+                  <div className="p-4 rounded-xl bg-forensic-surfaceRaised/60 border border-[#D98282]/30">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="font-bold text-emerald-400">3. Hybrid Ensemble</span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      <span className="font-bold text-[#D98282]">3. Hybrid Ensemble</span>
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#D98282]/10 text-[#D98282] border border-[#D98282]/20">
                         0.70 R + 0.30 ML
                       </span>
                     </div>
                     <div className="space-y-2 font-mono text-[11px]">
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-1 Accuracy:</span>
-                        <span className="font-bold text-emerald-400">{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_1_accuracy}%</span>
+                        <span className="font-bold text-[#D98282]">{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_1_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Top-3 Accuracy:</span>
@@ -234,7 +234,7 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Lift Over Baseline:</span>
-                        <span className="text-emerald-400 font-bold">+{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].lift_over_rule_baseline}%</span>
+                        <span className="text-[#D98282] font-bold">+{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].lift_over_rule_baseline}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-forensic-textDim">Macro F1 Score:</span>
@@ -257,15 +257,15 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                     <div className="text-[10px] text-forensic-textDim uppercase">Total Labelled Wallets</div>
                   </div>
                   <div className="p-3 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border text-center">
-                    <div className="text-lg font-bold text-blue-400">{data.dataset_summary.train_wallets}</div>
+                    <div className="text-lg font-bold text-forensic-accent">{data.dataset_summary.train_wallets}</div>
                     <div className="text-[10px] text-forensic-textDim uppercase">Training Wallets (70%)</div>
                   </div>
                   <div className="p-3 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border text-center">
-                    <div className="text-lg font-bold text-purple-400">{data.dataset_summary.validation_wallets}</div>
+                    <div className="text-lg font-bold text-red-400">{data.dataset_summary.validation_wallets}</div>
                     <div className="text-[10px] text-forensic-textDim uppercase">Validation Wallets (15%)</div>
                   </div>
                   <div className="p-3 rounded-lg bg-forensic-surfaceRaised/40 border border-forensic-border text-center">
-                    <div className="text-lg font-bold text-emerald-400">{data.dataset_summary.usable_test_wallets}</div>
+                    <div className="text-lg font-bold text-[#D98282]">{data.dataset_summary.usable_test_wallets}</div>
                     <div className="text-[10px] text-forensic-textDim uppercase">Held-Out Test Wallets (15%)</div>
                   </div>
                 </div>
@@ -305,9 +305,9 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
                         <tr key={vasp} className="hover:bg-forensic-surfaceRaised/30 transition-colors">
                           <td className="py-2 px-3 font-medium text-forensic-text">{vasp}</td>
                           <td className="py-2 px-3 text-forensic-textDim">{perf.test_instances}</td>
-                          <td className="py-2 px-3 text-emerald-400 font-bold">{perf.top_1_accuracy}%</td>
+                          <td className="py-2 px-3 text-[#D98282] font-bold">{perf.top_1_accuracy}%</td>
                           <td className="py-2 px-3">
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#D98282]/10 text-[#D98282] border border-[#D98282]/20">
                               PASS
                             </span>
                           </td>

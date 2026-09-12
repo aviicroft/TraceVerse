@@ -2,36 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light Theme Variables (Clean Paper / Institutional Off-White) */
+/* Premium Dark Obsidian / Champagne Gold Theme */
 :root {
-  --forensic-bg: #f8fafc;
-  --forensic-surface: #ffffff;
-  --forensic-surface-raised: #f1f5f9;
-  --forensic-border: #cbd5e1;
-  --forensic-border-muted: #e2e8f0;
-  --forensic-text: #0f172a;
-  --forensic-text-muted: #334155;
-  --forensic-text-dim: #64748b;
-  --forensic-accent: #1d4ed8;
-  --forensic-teal: #0f766e;
-  --forensic-amber: #b45309;
-  --forensic-rose: #b91c1c;
+  --forensic-bg: #0B0D11;
+  --forensic-surface: #11141A;
+  --forensic-surface-raised: #151920;
+  --forensic-border: rgba(255, 255, 255, 0.06);
+  --forensic-border-muted: rgba(255, 255, 255, 0.04);
+  --forensic-text: #F1F1EC;
+  --forensic-text-muted: #A5A8AF;
+  --forensic-text-dim: #747983;
+  --forensic-accent: #E6C766;
+  --forensic-teal: #D98282;
+  --forensic-success: #D98282;
+  --forensic-success-hover: #E29A9A;
+  --forensic-success-soft: rgba(217, 130, 130, 0.10);
+  --forensic-success-border: rgba(217, 130, 130, 0.25);
+  --forensic-amber: #F1D98A;
+  --forensic-rose: #E66A70;
 }
 
-/* Dark Theme Variables (Deep Navy Slate / Obsidian) */
 .dark {
-  --forensic-bg: #080c14;
-  --forensic-surface: #0e1524;
-  --forensic-surface-raised: #141e33;
-  --forensic-border: #20304c;
-  --forensic-border-muted: #172338;
-  --forensic-text: #f1f5f9;
-  --forensic-text-muted: #94a3b8;
-  --forensic-text-dim: #64748b;
-  --forensic-accent: #3b82f6;
-  --forensic-teal: #14b8a6;
-  --forensic-amber: #f59e0b;
-  --forensic-rose: #ef4444;
+  --forensic-bg: #0B0D11;
+  --forensic-surface: #11141A;
+  --forensic-surface-raised: #151920;
+  --forensic-border: rgba(255, 255, 255, 0.06);
+  --forensic-border-muted: rgba(255, 255, 255, 0.04);
+  --forensic-text: #F1F1EC;
+  --forensic-text-muted: #A5A8AF;
+  --forensic-text-dim: #747983;
+  --forensic-accent: #E6C766;
+  --forensic-teal: #D98282;
+  --forensic-success: #D98282;
+  --forensic-success-hover: #E29A9A;
+  --forensic-success-soft: rgba(217, 130, 130, 0.10);
+  --forensic-success-border: rgba(217, 130, 130, 0.25);
+  --forensic-amber: #F1D98A;
+  --forensic-rose: #E66A70;
+}
+
+@layer utilities {
+  .dark [class*='text-blue-'],
+  .dark [class*='bg-blue-'],
+  .dark [class*='border-blue-'],
+  .dark [class*='ring-blue-'],
+  .dark [class*='from-blue-'],
+  .dark [class*='to-blue-'],
+  .dark [class*='via-blue-'],
+  .dark [class*='text-cyan-'],
+  .dark [class*='bg-cyan-'],
+  .dark [class*='border-cyan-'],
+  .dark [class*='ring-cyan-'],
+  .dark [class*='text-purple-'],
+  .dark [class*='bg-purple-'],
+  .dark [class*='border-purple-'],
+  .dark [class*='ring-purple-'],
+  .dark [class*='text-sky-'],
+  .dark [class*='bg-sky-'],
+  .dark [class*='border-sky-'],
+  .dark [class*='ring-sky-'],
+  .dark [class*='text-indigo-'],
+  .dark [class*='bg-indigo-'],
+  .dark [class*='border-indigo-'],
+  .dark [class*='ring-indigo-'],
+  .dark [class*='text-violet-'],
+  .dark [class*='bg-violet-'],
+  .dark [class*='border-violet-'],
+  .dark [class*='ring-violet-'],
+  .dark [class*='text-teal-'],
+  .dark [class*='bg-teal-'],
+  .dark [class*='border-teal-'],
+  .dark [class*='ring-teal-'],
+  .dark [class*='text-emerald-'],
+  .dark [class*='bg-emerald-'],
+  .dark [class*='border-emerald-'],
+  .dark [class*='ring-emerald-'] {
+    color: var(--forensic-accent) !important;
+  }
+
+  .dark [class*='bg-blue-'],
+  .dark [class*='bg-cyan-'],
+  .dark [class*='bg-sky-'],
+  .dark [class*='bg-indigo-'],
+  .dark [class*='bg-violet-'],
+  .dark [class*='bg-purple-'],
+  .dark [class*='bg-teal-'],
+  .dark [class*='bg-emerald-'] {
+    background-color: rgba(230, 199, 102, 0.12) !important;
+  }
+
+  .dark [class*='border-blue-'],
+  .dark [class*='border-cyan-'],
+  .dark [class*='border-sky-'],
+  .dark [class*='border-indigo-'],
+  .dark [class*='border-violet-'],
+  .dark [class*='border-purple-'],
+  .dark [class*='border-teal-'],
+  .dark [class*='border-emerald-'] {
+    border-color: rgba(230, 199, 102, 0.35) !important;
+  }
 }
 
 body {

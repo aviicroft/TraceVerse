@@ -73,26 +73,26 @@ export const LandingPageContent: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#060A12] text-[#E2E8F0] font-sans antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-[#0B0D11] text-[#F1F1EC] font-sans antialiased overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
-            --bg: #060A12;
-            --bg-2: #0A1020;
-            --surface: #0E1626;
-            --surface-2: #131E32;
-            --surface-3: #18243D;
-            --border: #1A2436;
-            --border-bright: #2A3A55;
-            --text: #E2E8F0;
-            --text-secondary: #94A3B8;
-            --text-muted: #64748B;
-            --text-dim: #475569;
-            --accent: #38BDF8;
-            --accent-bright: #7DD3FC;
-            --accent-dim: rgba(56, 189, 248, 0.12);
-            --green: #4ADE80;
-            --amber: #FBBF24;
-            --red: #F87171;
+            --bg: #0B0D11;
+            --bg-2: #11141A;
+            --surface: #11141A;
+            --surface-2: #151920;
+            --surface-3: #1A1E26;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-bright: rgba(230, 199, 102, 0.25);
+            --text: #F1F1EC;
+            --text-secondary: #A5A8AF;
+            --text-muted: #747983;
+            --text-dim: #50545D;
+            --accent: #E6C766;
+            --accent-bright: #F1D98A;
+            --accent-dim: rgba(230, 199, 102, 0.12);
+            --success: #D98282;
+            --amber: #F1D98A;
+            --red: #D95C63;
         }
 
         * {
@@ -127,7 +127,7 @@ export const LandingPageContent: React.FC = () => {
         }
 
         .glow-top {
-            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(56, 189, 248, 0.08), transparent 70%);
+            background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(230, 199, 102, 0.08), transparent 70%);
         }
 
         .panel {
@@ -160,42 +160,45 @@ export const LandingPageContent: React.FC = () => {
 
         .btn-primary {
             background: var(--accent);
-            color: #061018;
+            color: #101116;
             font-weight: 600;
             padding: 11px 20px;
-            border-radius: 3px;
+            border-radius: 10px;
             font-size: 13px;
             letter-spacing: 0.01em;
-            transition: all 0.18s ease;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            border: 1px solid var(--accent);
+            border: 1px solid transparent;
+            box-shadow: 0 10px 18px -14px rgba(230, 199, 102, 0.8);
         }
 
         .btn-primary:hover {
             background: var(--accent-bright);
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 22px -14px rgba(230, 199, 102, 0.75);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border-bright);
+            background: #151920;
+            color: #E8E8E4;
+            border: 1px solid rgba(230, 199, 102, 0.25);
             font-weight: 500;
             padding: 11px 20px;
-            border-radius: 3px;
+            border-radius: 10px;
             font-size: 13px;
-            transition: all 0.18s ease;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
         .btn-secondary:hover {
-            border-color: var(--accent);
+            border-color: rgba(230, 199, 102, 0.45);
             color: var(--accent-bright);
-            background: rgba(56, 189, 248, 0.04);
+            background: #20242C;
+            transform: translateY(-1px);
         }
 
         .tag {
@@ -214,15 +217,15 @@ export const LandingPageContent: React.FC = () => {
         }
 
         .tag-accent {
-            border-color: rgba(56, 189, 248, 0.4);
+            border-color: rgba(230, 199, 102, 0.35);
             color: var(--accent-bright);
-            background: rgba(56, 189, 248, 0.06);
+            background: rgba(230, 199, 102, 0.10);
         }
 
         .tag-green {
-            border-color: rgba(74, 222, 128, 0.35);
-            color: var(--green);
-            background: rgba(74, 222, 128, 0.06);
+            border-color: rgba(217, 130, 130, 0.35);
+            color: var(--success);
+            background: rgba(217, 130, 130, 0.08);
         }
 
         .tag-amber {
@@ -260,7 +263,7 @@ export const LandingPageContent: React.FC = () => {
         }
 
         .data-table tr:hover td {
-            background: rgba(56, 189, 248, 0.03);
+            background: rgba(230, 199, 102, 0.045);
             color: var(--text);
         }
 
@@ -426,12 +429,12 @@ export const LandingPageContent: React.FC = () => {
             color: var(--text-secondary);
             font-size: 13px;
             font-weight: 500;
-            transition: color 0.15s;
+            transition: color 0.2s ease, opacity 0.2s ease;
             position: relative;
         }
 
         .nav-link:hover {
-            color: var(--text);
+            color: var(--accent-bright);
         }
 
         .nav-link::after {
@@ -443,7 +446,7 @@ export const LandingPageContent: React.FC = () => {
             height: 1px;
             background: var(--accent);
             transform: scaleX(0);
-            transition: transform 0.2s;
+            transition: transform 0.2s ease;
         }
 
         .nav-link:hover::after {
@@ -457,7 +460,7 @@ export const LandingPageContent: React.FC = () => {
         }
 
         .step-card:hover {
-            border-color: var(--border-bright);
+            border-color: rgba(230, 199, 102, 0.25);
             background: var(--surface-2);
         }
 
@@ -468,18 +471,18 @@ export const LandingPageContent: React.FC = () => {
         }
 
         .feature-card:hover {
-            border-color: rgba(56, 189, 248, 0.3);
+            border-color: rgba(230, 199, 102, 0.25);
             transform: translateY(-2px);
         }
 
         .console-frame {
             background: linear-gradient(180deg, var(--surface) 0%, var(--bg-2) 100%);
             border: 1px solid var(--border-bright);
-            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.06);
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(230, 199, 102, 0.06);
         }
 
         .ledger-row:hover {
-            background: rgba(56, 189, 248, 0.04);
+            background: rgba(230, 199, 102, 0.04);
         }
 
         details summary {
@@ -503,8 +506,8 @@ export const LandingPageContent: React.FC = () => {
             background: repeating-linear-gradient(0deg,
                     transparent,
                     transparent 2px,
-                    rgba(56, 189, 248, 0.015) 2px,
-                    rgba(56, 189, 248, 0.015) 4px);
+                    rgba(230, 199, 102, 0.015) 2px,
+                    rgba(230, 199, 102, 0.015) 4px);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -520,7 +523,7 @@ export const LandingPageContent: React.FC = () => {
       <div dangerouslySetInnerHTML={{ __html: `
 
     <!-- Top status strip -->
-    <div class="border-b border-[#1A2436] bg-[#0A1020] relative z-50">
+    <div class="border-b border-[rgba(255,255,255,0.06)] bg-[#11141A] relative z-50">
         <div
             class="max-w-[1480px] mx-auto px-6 py-2 flex items-center justify-between text-[11px] font-mono text-slate-500">
             <div class="flex items-center gap-5">
@@ -540,17 +543,17 @@ export const LandingPageContent: React.FC = () => {
     </div>
 
     <!-- Header -->
-    <header class="sticky top-0 z-40 backdrop-blur-md bg-[#060A12]/85 border-b border-[#1A2436]">
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-[#0B0D11]/88 border-b border-[rgba(255,255,255,0.06)]">
         <div class="max-w-[1480px] mx-auto px-6 h-16 flex items-center justify-between">
             <a href="#hero" class="flex items-center gap-3 group">
                 <div class="relative">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                         <path d="M14 1L3 5.5V14C3 20.5 7.5 25.8 14 27C20.5 25.8 25 20.5 25 14V5.5L14 1Z"
-                            stroke="#38BDF8" stroke-width="1.2" fill="rgba(56,189,248,0.06)" />
-                        <path d="M14 7L9 9.2V14C9 17.5 11 20.6 14 21.5C17 20.6 19 17.5 19 14V9.2L14 7Z" stroke="#7DD3FC"
+                            stroke="#E6C766" stroke-width="1.2" fill="rgba(230, 199, 102, 0.08)" />
+                        <path d="M14 7L9 9.2V14C9 17.5 11 20.6 14 21.5C17 20.6 19 17.5 19 14V9.2L14 7Z" stroke="#F1D98A"
                             stroke-width="1" fill="none" />
-                        <circle cx="14" cy="14" r="1.5" fill="#38BDF8" />
-                        <path d="M14 14L17 11M14 14L11 17M14 14L17 17M14 14L11 11" stroke="#38BDF8" stroke-width="0.6"
+                        <circle cx="14" cy="14" r="1.5" fill="#E6C766" />
+                        <path d="M14 14L17 11M14 14L11 17M14 14L17 17M14 14L11 11" stroke="#E6C766" stroke-width="0.6"
                             opacity="0.5" />
                     </svg>
                 </div>
@@ -590,13 +593,13 @@ export const LandingPageContent: React.FC = () => {
                 <!-- Left: copy -->
                 <div class="lg:col-span-5">
                     <div class="flex items-center gap-3 mb-7">
-                        <span class="h-px w-8 bg-[#38BDF8]"></span>
+                        <span class="h-px w-8 bg-[#E6C766]"></span>
                         <span class="label-accent">Blockchain Investigation · VASP Attribution · Evidence</span>
                     </div>
                     <h1 class="text-[44px] md:text-[56px] leading-[1.04] font-bold tracking-tight text-white">
                         Trace the flow.<br>
                         Identify the endpoint.<br>
-                        <span class="text-[#7DD3FC]">Build the evidence.</span>
+                        <span class="text-[#E6C766]">Build the evidence.</span>
                     </h1>
                     <p class="mt-7 text-[15px] text-slate-400 leading-relaxed max-w-[480px]">
                         TRACEVERSE analyzes blockchain transaction flows to identify probable Virtual Asset Service
@@ -707,9 +710,9 @@ export const LandingPageContent: React.FC = () => {
                                     <svg viewBox="0 0 560 280" class="w-full h-full">
                                         <!-- Edges -->
                                         <defs>
-                                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="9" refY="5"
+                                            <marker id="arrow-gold" viewBox="0 0 10 10" refX="9" refY="5"
                                                 markerWidth="5" markerHeight="5" orient="auto">
-                                                <path d="M0,0 L10,5 L0,10 z" fill="#38BDF8" opacity="0.7" />
+                                                <path d="M0,0 L10,5 L0,10 z" fill="#E6C766" opacity="0.7" />
                                             </marker>
                                             <marker id="arrow-slate" viewBox="0 0 10 10" refX="9" refY="5"
                                                 markerWidth="5" markerHeight="5" orient="auto">
@@ -732,20 +735,20 @@ export const LandingPageContent: React.FC = () => {
                                         <path d="M 250 180 C 300 220, 320 220, 360 200" stroke="#475569"
                                             stroke-width="1" fill="none" opacity="0.4" />
                                         <!-- hop2 to vasp -->
-                                        <path d="M 390 110 C 430 110, 440 130, 470 140" stroke="#38BDF8"
-                                            stroke-width="1.4" fill="none" marker-end="url(#arrow-cyan)"
+                                        <path d="M 390 110 C 430 110, 440 130, 470 140" stroke="#E6C766"
+                                            stroke-width="1.4" fill="none" marker-end="url(#arrow-gold)"
                                             class="flow-edge" />
-                                        <path d="M 390 130 C 430 130, 440 140, 470 140" stroke="#38BDF8"
-                                            stroke-width="1.4" fill="none" marker-end="url(#arrow-cyan)"
+                                        <path d="M 390 130 C 430 130, 440 140, 470 140" stroke="#E6C766"
+                                            stroke-width="1.4" fill="none" marker-end="url(#arrow-gold)"
                                             class="flow-edge" />
-                                        <path d="M 390 200 C 430 200, 440 160, 470 150" stroke="#38BDF8"
-                                            stroke-width="1" fill="none" opacity="0.5" marker-end="url(#arrow-cyan)" />
+                                        <path d="M 390 200 C 430 200, 440 160, 470 150" stroke="#E6C766"
+                                            stroke-width="1" fill="none" opacity="0.5" marker-end="url(#arrow-gold)" />
 
                                         <!-- Input node -->
                                         <g>
-                                            <circle cx="50" cy="140" r="20" fill="rgba(56,189,248,0.08)"
-                                                stroke="#38BDF8" stroke-width="1.4" />
-                                            <circle cx="50" cy="140" r="4" fill="#38BDF8" />
+                                            <circle cx="50" cy="140" r="20" fill="rgba(230,199,102,0.08)"
+                                                stroke="#E6C766" stroke-width="1.4" />
+                                            <circle cx="50" cy="140" r="4" fill="#E6C766" />
                                             <text x="50" y="178" text-anchor="middle" font-family="IBM Plex Mono"
                                                 font-size="9" fill="#94A3B8">INPUT WALLET</text>
                                             <text x="50" y="190" text-anchor="middle" font-family="IBM Plex Mono"
@@ -900,7 +903,7 @@ export const LandingPageContent: React.FC = () => {
                                     </thead>
                                     <tbody>
                                         <tr class="ledger-row">
-                                            <td class="text-[#7DD3FC]">0x4a5b…f2a3</td>
+                                            <td class="text-[#E6C766]">0x4a5b…f2a3</td>
                                             <td>T9xK…cWZ</td>
                                             <td>TX8m…k9Qp</td>
                                             <td class="text-slate-300">12,400 USDT</td>
@@ -908,7 +911,7 @@ export const LandingPageContent: React.FC = () => {
                                             <td><span class="tag tag-green">VERIFIED</span></td>
                                         </tr>
                                         <tr class="ledger-row">
-                                            <td class="text-[#7DD3FC]">0x9d2e…7c81</td>
+                                            <td class="text-[#E6C766]">0x9d2e…7c81</td>
                                             <td>TX8m…k9Qp</td>
                                             <td>TQ3r…m4Lz</td>
                                             <td class="text-slate-300">8,950 USDT</td>
@@ -916,7 +919,7 @@ export const LandingPageContent: React.FC = () => {
                                             <td><span class="tag tag-green">VERIFIED</span></td>
                                         </tr>
                                         <tr class="ledger-row">
-                                            <td class="text-[#7DD3FC]">0x1f8c…3b22</td>
+                                            <td class="text-[#E6C766]">0x1f8c…3b22</td>
                                             <td>TQ3r…m4Lz</td>
                                             <td class="text-[#4ADE80]">TK7v…oP2x <span class="text-slate-600">·
                                                     COINBASE</span></td>
@@ -943,7 +946,7 @@ export const LandingPageContent: React.FC = () => {
                 <div
                     class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#1A2436] border border-[#1A2436] rounded-sm overflow-hidden">
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <path d="M21 12a9 9 0 11-9-9c2.5 0 4.7 1 6.4 2.6" />
                             <path d="M21 3v6h-6" />
                         </svg>
@@ -953,7 +956,7 @@ export const LandingPageContent: React.FC = () => {
                         </div>
                     </div>
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <circle cx="12" cy="12" r="9" />
                             <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" />
                         </svg>
@@ -963,7 +966,7 @@ export const LandingPageContent: React.FC = () => {
                         </div>
                     </div>
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <path d="M9 11l3 3L22 4" />
                             <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                         </svg>
@@ -973,7 +976,7 @@ export const LandingPageContent: React.FC = () => {
                         </div>
                     </div>
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <path
                                 d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                         </svg>
@@ -1009,8 +1012,8 @@ export const LandingPageContent: React.FC = () => {
                 <!-- 01 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">01</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">01</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <ellipse cx="12" cy="5" rx="9" ry="3" />
                             <path d="M3 5v14a9 3 0 0018 0V5" />
                             <path d="M3 12a9 3 0 0018 0" />
@@ -1028,8 +1031,8 @@ export const LandingPageContent: React.FC = () => {
                 <!-- 02 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">02</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">02</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <circle cx="6" cy="6" r="3" />
                             <circle cx="18" cy="6" r="3" />
                             <circle cx="6" cy="18" r="3" />
@@ -1049,8 +1052,8 @@ export const LandingPageContent: React.FC = () => {
                 <!-- 03 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">03</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">03</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <circle cx="12" cy="12" r="9" />
                             <circle cx="12" cy="12" r="4" />
                             <path d="M12 3v2M12 19v2M3 12h2M19 12h2" />
@@ -1068,8 +1071,8 @@ export const LandingPageContent: React.FC = () => {
                 <!-- 04 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">04</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">04</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <path d="M3 3v18h18" />
                             <path d="M7 14l3-3 3 3 5-7" />
                         </svg>
@@ -1086,8 +1089,8 @@ export const LandingPageContent: React.FC = () => {
                 <!-- 05 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">05</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">05</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                             <path d="M14 2v6h6M8 13h8M8 17h5" />
                         </svg>
@@ -1136,7 +1139,7 @@ export const LandingPageContent: React.FC = () => {
                                 <defs>
                                     <marker id="arr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
                                         markerHeight="6" orient="auto">
-                                        <path d="M0,0 L10,5 L0,10 z" fill="#38BDF8" opacity="0.8" />
+                                        <path d="M0,0 L10,5 L0,10 z" fill="#E6C766" opacity="0.8" />
                                     </marker>
                                     <marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5"
                                         markerHeight="5" orient="auto">
@@ -1195,11 +1198,11 @@ export const LandingPageContent: React.FC = () => {
 
                                 <!-- Input node -->
                                 <g>
-                                    <circle cx="100" cy="240" r="28" fill="rgba(56,189,248,0.08)" stroke="#38BDF8"
+                                    <circle cx="100" cy="240" r="28" fill="rgba(230,199,102,0.10)" stroke="#E6C766"
                                         stroke-width="1.5" />
-                                    <circle cx="100" cy="240" r="20" fill="none" stroke="#38BDF8" stroke-width="0.5"
+                                    <circle cx="100" cy="240" r="20" fill="none" stroke="#E6C766" stroke-width="0.5"
                                         opacity="0.5" />
-                                    <circle cx="100" cy="240" r="6" fill="#38BDF8" />
+                                    <circle cx="100" cy="240" r="6" fill="#E6C766" />
                                     <text x="100" y="285" text-anchor="middle" font-family="IBM Plex Mono"
                                         font-size="10" fill="#94A3B8">T9xK2aF4...</text>
                                     <text x="100" y="298" text-anchor="middle" font-family="IBM Plex Mono" font-size="8"

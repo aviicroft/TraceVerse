@@ -333,10 +333,10 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node[?isVasp]',
           style: {
-            'background-color': isDarkMode ? '#042f2e' : '#ccfbf1',
-            'border-color': '#14b8a6',
+            'background-color': isDarkMode ? 'rgba(230,199,102,0.10)' : 'rgba(230,199,102,0.15)',
+            'border-color': '#E6C766',
             'border-width': 2.5,
-            'color': isDarkMode ? '#5eead4' : '#0f766e',
+            'color': isDarkMode ? '#F1D98A' : '#101116',
             'width': 68,
             'height': 56,
             'shape': 'roundrectangle',
@@ -347,25 +347,25 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node[hop = 1]:not([?isRoot]):not([?isVasp])',
           style: {
-            'border-color': '#3b82f6',
-            'background-color': isDarkMode ? '#1e293b' : '#dbeafe',
-            'color': isDarkMode ? '#93c5fd' : '#1d4ed8',
+            'border-color': '#E6C766',
+            'background-color': isDarkMode ? 'rgba(230,199,102,0.10)' : 'rgba(230,199,102,0.15)',
+            'color': isDarkMode ? '#F1D98A' : '#101116',
           },
         },
         {
           selector: 'node[hop = 2]:not([?isRoot]):not([?isVasp])',
           style: {
-            'border-color': '#8b5cf6',
-            'background-color': isDarkMode ? '#1e1b4b' : '#ede9fe',
-            'color': isDarkMode ? '#c4b5fd' : '#6d28d9',
+            'border-color': '#D95C63',
+            'background-color': isDarkMode ? 'rgba(217,92,99,0.10)' : 'rgba(217,92,99,0.12)',
+            'color': isDarkMode ? '#EA747A' : '#F3F4F6',
           },
         },
         {
           selector: 'node[hop = 3]:not([?isRoot]):not([?isVasp])',
           style: {
-            'border-color': '#6366f1',
-            'background-color': isDarkMode ? '#1e1e38' : '#e0e7ff',
-            'color': isDarkMode ? '#a5b4fc' : '#4338ca',
+            'border-color': '#EBD27A',
+            'background-color': isDarkMode ? 'rgba(230,199,102,0.08)' : 'rgba(230,199,102,0.10)',
+            'color': isDarkMode ? '#F1D98A' : '#E5E7EB',
           },
         },
         {
@@ -394,8 +394,8 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: '.path-focused',
           style: {
-            'line-color': '#06b6d4',
-            'target-arrow-color': '#06b6d4',
+            'line-color': '#E6C766',
+            'target-arrow-color': '#E6C766',
             'width': 3.5,
             'z-index': 999,
           },
@@ -403,7 +403,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: 'node.path-focused',
           style: {
-            'border-color': '#06b6d4',
+            'border-color': '#E6C766',
             'border-width': 3,
             'z-index': 999,
           },
@@ -434,10 +434,10 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {
           selector: ':selected',
           style: {
-            'border-color': '#38bdf8',
+            'border-color': '#E6C766',
             'border-width': 3.5,
-            'line-color': '#38bdf8',
-            'target-arrow-color': '#38bdf8',
+            'line-color': '#E6C766',
+            'target-arrow-color': '#E6C766',
           },
         },
       ],
@@ -595,13 +595,13 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         {/* Left: Target & Core Stats */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center space-x-2 pr-3 border-r border-forensic-border">
-            <div className="p-1.5 rounded bg-blue-600/15 border border-blue-500/30 text-blue-400">
+            <div className="p-1.5 rounded bg-forensic-accent/10 border border-forensic-accent/30 text-forensic-accent">
               <Network className="h-4 w-4" />
             </div>
             <div>
               <div className="flex items-center space-x-1.5 font-mono text-[11px] font-bold text-forensic-text uppercase">
                 <span>GRAPH STUDIO</span>
-                <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-normal">
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-forensic-accent/10 text-forensic-accent border border-forensic-accent/20 font-normal">
                   PRO
                 </span>
               </div>
@@ -622,13 +622,13 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           {/* Genuine Response Metrics Badges */}
           <div className="hidden sm:flex items-center space-x-2 font-mono text-[11px]">
             <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
-              <strong className="text-blue-400">{graphMetrics.totalNodes}</strong> Nodes
+              <strong className="text-forensic-accent">{graphMetrics.totalNodes}</strong> Nodes
             </span>
             <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
-              <strong className="text-teal-400">{graphMetrics.totalTransfers}</strong> Transfers
+              <strong className="text-emerald-400">{graphMetrics.totalTransfers}</strong> Transfers
             </span>
             <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
-              <strong className="text-purple-400">{graphMetrics.maxHops}</strong> Hops
+              <strong className="text-forensic-rose">{graphMetrics.maxHops}</strong> Hops
             </span>
             <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-emerald-400 font-medium">
               <strong className="text-emerald-400">{graphMetrics.vaspEndpoints}</strong> VASP Endpoints
@@ -654,7 +654,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                 onClick={() => setViewMode(mode)}
                 className={`px-2 py-1 rounded font-medium transition-colors ${
                   viewMode === mode
-                    ? 'bg-blue-600 text-white font-bold'
+                    ? 'bg-forensic-accent text-[#111111] font-bold'
                     : 'text-forensic-textMuted hover:text-forensic-text hover:bg-forensic-surfaceRaised'
                 }`}
               >
@@ -679,7 +679,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                 onClick={() => toggleHopFilter(hop)}
                 className={`px-2 py-1 rounded transition-colors ${
                   selectedHops.has(hop) && selectedHops.size < 3
-                    ? 'bg-blue-600 text-white font-bold'
+                    ? 'bg-forensic-accent text-[#111111] font-bold'
                     : 'text-forensic-textMuted hover:text-forensic-text'
                 }`}
               >
@@ -745,7 +745,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           <div className="p-2.5 border-b border-forensic-border flex items-center justify-between">
             {isSidebarOpen ? (
               <div className="flex items-center space-x-2 font-mono text-xs font-bold text-forensic-text uppercase">
-                <SlidersHorizontal className="h-3.5 w-3.5 text-teal-400" />
+                <SlidersHorizontal className="h-3.5 w-3.5 text-emerald-400" />
                 <span>Investigation Filters</span>
               </div>
             ) : (
@@ -779,11 +779,11 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                       onClick={() => setLayoutMode(l.id as LayoutType)}
                       className={`px-2 py-1.5 rounded text-left flex items-center space-x-1.5 border transition-colors ${
                         layoutMode === l.id
-                          ? 'bg-blue-600/15 border-blue-500/40 text-blue-400 font-bold'
+                          ? 'bg-forensic-accent/10 border-forensic-accent/40 text-forensic-accent font-bold'
                           : 'bg-forensic-surface border-forensic-border text-forensic-textMuted hover:text-forensic-text'
                       }`}
                     >
-                      <span className={`w-2 h-2 rounded-full ${layoutMode === l.id ? 'bg-blue-400' : 'bg-transparent border border-forensic-border'}`} />
+                      <span className={`w-2 h-2 rounded-full ${layoutMode === l.id ? 'bg-forensic-accent' : 'bg-transparent border border-forensic-border'}`} />
                       <span>{l.label}</span>
                     </button>
                   ))}
@@ -802,7 +802,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                         type="checkbox"
                         checked={selectedHops.has(hop)}
                         onChange={() => toggleHopFilter(hop)}
-                        className="rounded border-forensic-border bg-forensic-surface text-blue-600 focus:ring-0 focus:ring-offset-0 h-3.5 w-3.5"
+                        className="rounded border-forensic-border bg-forensic-surface text-forensic-accent focus:ring-0 focus:ring-offset-0 h-3.5 w-3.5"
                       />
                       <span>Hop {hop} Counterparties</span>
                     </label>
@@ -818,8 +818,8 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                 <div className="space-y-1.5 font-mono text-[11px]">
                   {[
                     { id: 'TARGET', label: 'Target Suspect Wallet', color: 'text-rose-400' },
-                    { id: 'VASP', label: 'VASP Custodial Clusters', color: 'text-teal-400' },
-                    { id: 'INTERMEDIARY', label: 'Intermediary Wallets', color: 'text-purple-400' },
+                    { id: 'VASP', label: 'VASP Custodial Clusters', color: 'text-emerald-400' },
+                    { id: 'INTERMEDIARY', label: 'Intermediary Wallets', color: 'text-forensic-rose' },
                     { id: 'EXTERNAL', label: 'External Contracts / Unknown', color: 'text-forensic-textDim' },
                   ].map((e) => (
                     <label key={e.id} className="flex items-center space-x-2 cursor-pointer">
@@ -827,7 +827,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                         type="checkbox"
                         checked={selectedEntityTypes.has(e.id)}
                         onChange={() => toggleEntityType(e.id)}
-                        className="rounded border-forensic-border bg-forensic-surface text-blue-600 focus:ring-0 focus:ring-offset-0 h-3.5 w-3.5"
+                        className="rounded border-forensic-border bg-forensic-surface text-forensic-accent focus:ring-0 focus:ring-offset-0 h-3.5 w-3.5"
                       />
                       <span className={e.color}>{e.label}</span>
                     </label>
@@ -845,7 +845,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                   <select
                     value={selectedToken}
                     onChange={(e) => setSelectedToken(e.target.value)}
-                    className="w-full bg-forensic-surface border border-forensic-border rounded px-2 py-1.5 text-forensic-text font-mono text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full bg-forensic-surface border border-forensic-border rounded px-2 py-1.5 text-forensic-text font-mono text-xs focus:outline-none focus:border-forensic-accent"
                   >
                     {graphMetrics.tokensAvailable.map((t) => (
                       <option key={t} value={t}>
@@ -858,7 +858,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <label className="text-[11px] text-forensic-textDim">Minimum Transfer</label>
-                    <span className="font-mono text-[10px] text-teal-400">
+                    <span className="font-mono text-[10px] text-emerald-400">
                       {minAmount > 0 ? `≥ ${minAmount}` : 'No Minimum'}
                     </span>
                   </div>
@@ -869,7 +869,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                     placeholder="0.00"
                     value={minAmount || ''}
                     onChange={(e) => setMinAmount(Number(e.target.value) || 0)}
-                    className="w-full bg-forensic-surface border border-forensic-border rounded px-2 py-1.5 text-forensic-text font-mono text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full bg-forensic-surface border border-forensic-border rounded px-2 py-1.5 text-forensic-text font-mono text-xs focus:outline-none focus:border-forensic-accent"
                   />
                   <div className="flex gap-1 mt-1.5">
                     {[0, 100, 1000, 5000].map((preset) => (
@@ -878,7 +878,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                         onClick={() => setMinAmount(preset)}
                         className={`flex-1 py-0.5 rounded text-[10px] font-mono border transition-colors ${
                           minAmount === preset
-                            ? 'bg-blue-600 text-white border-blue-500'
+                            ? 'bg-forensic-accent text-[#111111] border-forensic-accent'
                             : 'bg-forensic-surface border-forensic-border text-forensic-textDim hover:text-forensic-text'
                         }`}
                       >
@@ -893,7 +893,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                   <select
                     value={timeRange}
                     onChange={(e) => setTimeRange(e.target.value)}
-                    className="w-full bg-forensic-surface border border-forensic-border rounded px-2 py-1.5 text-forensic-text font-mono text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full bg-forensic-surface border border-forensic-border rounded px-2 py-1.5 text-forensic-text font-mono text-xs focus:outline-none focus:border-forensic-accent"
                   >
                     <option value="ALL">All Time</option>
                     <option value="24H">Last 24 Hours</option>
@@ -921,7 +921,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                             ? 'bg-amber-600 text-white border-amber-500'
                             : r === 'LOW'
                             ? 'bg-emerald-600 text-white border-emerald-500'
-                            : 'bg-blue-600 text-white border-blue-500'
+                            : 'bg-forensic-accent text-[#111111] border-forensic-accent'
                           : 'bg-forensic-surface border-forensic-border text-forensic-textDim hover:text-forensic-text'
                       }`}
                     >
@@ -1008,9 +1008,9 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
 
             {/* Active Path Focus Banner (Bottom Left of Canvas) */}
             {focusedPath && (
-              <div className="absolute bottom-20 left-4 z-10 p-3 rounded-lg bg-forensic-surface/95 border border-cyan-500/40 shadow-xl backdrop-blur-md font-mono text-xs max-w-md animate-fade-in">
+              <div className="absolute bottom-20 left-4 z-10 p-3 rounded-lg bg-forensic-surface/95 border border-forensic-accent/30 shadow-xl backdrop-blur-md font-mono text-xs max-w-md animate-fade-in">
                 <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center space-x-1.5 text-cyan-400 font-bold">
+                  <div className="flex items-center space-x-1.5 text-forensic-accent font-bold">
                     <Sparkles className="h-3.5 w-3.5 animate-pulse" />
                     <span>PRIMARY FUND FLOW FOCUS</span>
                   </div>
@@ -1033,7 +1033,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                   </div>
                   <div className="flex justify-between">
                     <span>Hop Distance: <strong>{focusedPath.hopDistance} Hop(s)</strong></span>
-                    <span>Observable Flow: <strong className="text-cyan-400">{focusedPath.totalVolume.toFixed(2)} {graphMetrics.primaryToken}</strong></span>
+                    <span>Observable Flow: <strong className="text-forensic-accent">{focusedPath.totalVolume.toFixed(2)} {graphMetrics.primaryToken}</strong></span>
                   </div>
                 </div>
               </div>
@@ -1050,7 +1050,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
               {/* Header */}
               <div className="flex items-center justify-between pb-3 border-b border-forensic-border">
                 <div className="flex items-center space-x-2 font-mono font-bold text-forensic-text uppercase text-[11px]">
-                  <ShieldCheck className="h-4 w-4 text-teal-400" />
+                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
                   <span>{selectedElement.type === 'NODE' ? 'Node Forensics' : 'Transfer Details'}</span>
                 </div>
                 <button
@@ -1083,8 +1083,8 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
 
                   {/* Entity Provenance if VASP */}
                   {selectedElement.data.isVasp && (
-                    <div className="p-3 rounded-lg bg-teal-950/30 border border-teal-800/40 text-[11px] space-y-1">
-                      <div className="text-teal-400 font-bold">
+                    <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-[11px] space-y-1">
+                      <div className="text-emerald-400 font-bold">
                         {selectedElement.data.vaspName} ({selectedElement.data.addressType})
                       </div>
                       <div className="text-forensic-textDim text-[10px]">
@@ -1134,7 +1134,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                     {onPivotTarget && (
                       <button
                         onClick={() => onPivotTarget(selectedElement.data.fullAddress || selectedElement.data.id)}
-                        className="w-full py-2 rounded bg-blue-600 hover:bg-blue-500 text-white font-bold font-mono text-xs flex items-center justify-center space-x-1.5 shadow-sm transition-all cursor-pointer"
+                        className="w-full py-2 rounded bg-forensic-accent hover:bg-[#F1D98A] text-[#111111] font-bold font-mono text-xs flex items-center justify-center space-x-1.5 shadow-sm transition-all cursor-pointer"
                       >
                         <Share2 className="h-3.5 w-3.5" />
                         <span>Pivot & Trace This Target</span>
@@ -1181,7 +1181,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                       href={`https://etherscan.io/tx/${selectedElement.data.txHash}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center justify-center space-x-1.5 w-full py-2 rounded bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs transition-colors"
+                      className="flex items-center justify-center space-x-1.5 w-full py-2 rounded bg-forensic-accent hover:bg-[#F1D98A] text-[#111111] font-medium text-xs transition-colors"
                     >
                       <ExternalLink className="h-3.5 w-3.5" />
                       <span>Verify on Explorer</span>

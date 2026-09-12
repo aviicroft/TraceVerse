@@ -249,7 +249,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
           Target Wallet Acquisition & Depth Parameters
         </span>
         {detectedChain && (
-          <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30">
+          <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-[#E6C766]/15 text-[#E6C766] border border-[#E6C766]/30">
             Detected: {detectedChain}
           </span>
         )}
@@ -269,7 +269,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                 if (error) setError(null);
               }}
               placeholder="Enter suspect target wallet address (0x... for ETH or T... for Tron TRC-20 USDT)"
-              className="w-full pl-9 pr-3 py-2 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-xs focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full pl-9 pr-3 py-2 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-xs focus:outline-none focus:border-[#E6C766] transition-colors"
             />
           </div>
 
@@ -290,7 +290,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
             <button
               type="submit"
               disabled={isLoading}
-              className="px-4 py-2 bg-blue-700 hover:bg-blue-600 disabled:opacity-50 text-white font-medium rounded transition-colors flex items-center space-x-1.5 shadow-sm"
+              className="px-4 py-2 bg-[#E6C766] hover:bg-[#F1D98A] disabled:opacity-50 text-[#101116] font-medium rounded transition-colors flex items-center space-x-1.5 shadow-sm"
             >
               {isLoading ? (
                 <>
@@ -318,10 +318,10 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
         <div className="pt-2 border-t border-forensic-border space-y-1.5">
           <div className="flex items-center justify-between text-[10px] text-forensic-textDim uppercase font-mono">
             <span className="flex items-center space-x-1">
-              <Radar className="h-3 w-3 text-blue-400" />
+              <Radar className="h-3 w-3 text-[#E6C766]" />
               <span>Auto-Discovered High-Quality Target Leads ({dynamicCandidates.length}):</span>
             </span>
-            <span className="text-[9px] text-forensic-teal font-semibold">Real Blockchain Counterparties</span>
+            <span className="text-[9px] text-[#39D98A] font-semibold">Real Blockchain Counterparties</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 font-mono">
@@ -334,7 +334,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                   className="p-2 text-left bg-forensic-bg hover:bg-forensic-surfaceRaised border border-forensic-border rounded transition-colors group flex flex-col justify-between space-y-1"
                 >
                   <div className="flex items-center justify-between text-[11px]">
-                    <span className="font-bold text-forensic-text group-hover:text-blue-400 transition-colors truncate max-w-[160px]">
+                    <span className="font-bold text-forensic-text group-hover:text-[#E6C766] transition-colors truncate max-w-[160px]">
                       {cand.address.slice(0, 8)}...{cand.address.slice(-6)}
                     </span>
                     <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20">

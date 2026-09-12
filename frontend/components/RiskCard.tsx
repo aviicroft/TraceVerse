@@ -32,7 +32,7 @@ export const RiskCard: React.FC<RiskCardProps> = ({ riskAssessment }) => {
       case 'MEDIUM':
         return 'bg-amber-500/15 text-forensic-amber border-amber-500/30';
       default:
-        return 'bg-teal-500/15 text-forensic-teal border-teal-500/30';
+        return 'bg-[#E6C766]/15 text-[#E6C766] border-[#E6C766]/30';
     }
   };
 

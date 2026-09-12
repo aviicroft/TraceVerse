@@ -82,7 +82,7 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
       {/* Header & Controls Toolbar */}
       <div className="p-3 border-b border-forensic-border bg-forensic-bg flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center space-x-2">
-          <List className="h-4 w-4 text-blue-500" />
+          <List className="h-4 w-4 text-[#E6C766]" />
           <h3 className="font-mono uppercase font-bold text-forensic-text text-xs tracking-wider">
             Forensic Transaction Ledger
           </h3>
@@ -102,7 +102,7 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
                 setPage(0);
               }}
               placeholder="Search tx hash or counterparty..."
-              className="pl-8 pr-3 py-1 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-[11px] focus:outline-none focus:border-blue-500 w-48 sm:w-64 transition-colors"
+              className="pl-8 pr-3 py-1 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-[11px] focus:outline-none focus:border-[#E6C766] w-48 sm:w-64 transition-colors"
             />
           </div>
 
@@ -194,7 +194,7 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
                         e.stopPropagation();
                         setSelectedTx(tx);
                       }}
-                      className="text-blue-500 hover:underline text-[10px] uppercase font-semibold"
+                      className="text-[#E6C766] hover:underline text-[10px] uppercase font-semibold"
                     >
                       Details →
                     </button>
@@ -302,7 +302,7 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
                 }
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-2 bg-blue-700 hover:bg-blue-600 rounded text-center block text-white font-medium text-xs transition-colors"
+                className="w-full py-2 bg-[#E6C766] hover:bg-[#F1D98A] rounded text-center block text-[#101116] font-medium text-xs transition-colors"
               >
                 Inspect on Public Blockchain Explorer
               </a>

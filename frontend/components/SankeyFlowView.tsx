@@ -106,8 +106,8 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
 
     const cols = [
       { title: 'ROOT SUSPECT', nodes: hop0Nodes, color: 'border-amber-500/40 text-amber-400' },
-      { title: 'HOP 1 DIRECT', nodes: hop1Nodes.slice(0, 6), color: 'border-blue-500/40 text-blue-400' },
-      { title: 'HOP 2 LAYERING', nodes: hop2Nodes.slice(0, 6), color: 'border-purple-500/40 text-purple-400' },
+      { title: 'HOP 1 DIRECT', nodes: hop1Nodes.slice(0, 6), color: 'border-[#E6C766]/40 text-[#E6C766]' },
+      { title: 'HOP 2 LAYERING', nodes: hop2Nodes.slice(0, 6), color: 'border-[#D95C63]/40 text-[#EA747A]' },
       { title: 'DESTINATION VASPS', nodes: vaspNodes, color: 'border-emerald-500/40 text-emerald-400' }
     ].filter(c => c.nodes.length > 0);
 
@@ -131,36 +131,36 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
         </div>
 
         <div className="p-3.5 rounded-lg bg-forensic-surface border border-forensic-border flex items-center space-x-3">
-          <div className="p-2 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
+          <div className="p-2 rounded bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/25">
             <TrendingUp className="h-4 w-4" />
           </div>
           <div>
             <span className="text-[10px] text-forensic-textDim uppercase font-mono block">Observed Flow</span>
-            <span className="text-xs font-bold font-mono text-blue-400">
+            <span className="text-xs font-bold font-mono text-[#E6C766]">
               ${totalRootVolume > 1000 ? totalRootVolume.toLocaleString('en-US', { maximumFractionDigits: 0 }) : totalRootVolume.toFixed(2)}
             </span>
           </div>
         </div>
 
         <div className="p-3.5 rounded-lg bg-forensic-surface border border-forensic-border flex items-center space-x-3">
-          <div className="p-2 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">
+          <div className="p-2 rounded bg-[#D95C63]/10 text-[#EA747A] border border-[#D95C63]/25">
             <Layers className="h-4 w-4" />
           </div>
           <div>
             <span className="text-[10px] text-forensic-textDim uppercase font-mono block">Layering Depth</span>
-            <span className="text-xs font-bold font-mono text-purple-400">
+            <span className="text-xs font-bold font-mono text-[#EA747A]">
               {columns.length} Topological Stages
             </span>
           </div>
         </div>
 
         <div className="p-3.5 rounded-lg bg-forensic-surface border border-forensic-border flex items-center space-x-3">
-          <div className="p-2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <div className="p-2 rounded bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/25">
             <Building2 className="h-4 w-4" />
           </div>
           <div>
             <span className="text-[10px] text-forensic-textDim uppercase font-mono block">Top Attributed VASP</span>
-            <span className="text-xs font-bold font-mono text-emerald-400">
+            <span className="text-xs font-bold font-mono text-[#E6C766]">
               {attributions && attributions[0] ? `${attributions[0].vasp_name} (${attributions[0].score.toFixed(0)}%)` : 'Scanning...'}
             </span>
           </div>
@@ -171,7 +171,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
       <div className="p-5 rounded-lg bg-forensic-surface border border-forensic-border flex-1 flex flex-col justify-between">
         <div className="flex items-center justify-between border-b border-forensic-border pb-3 mb-6">
           <div className="flex items-center space-x-2">
-            <ShieldCheck className="h-4 w-4 text-blue-400" />
+            <ShieldCheck className="h-4 w-4 text-[#E6C766]" />
             <h3 className="text-xs font-bold text-forensic-text uppercase tracking-wider">
               Volumetric Fund Flow & Entity Distribution Waterfall
             </h3>
@@ -203,7 +203,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
                       onClick={() => onSelectAddress?.(node.id)}
                       className={`p-3 rounded-lg border transition-all cursor-pointer relative overflow-hidden ${
                         isHovered
-                          ? 'border-blue-400 bg-blue-500/10 shadow-lg scale-[1.02]'
+                          ? 'border-[#E6C766] bg-[#E6C766]/10 shadow-lg scale-[1.02]'
                           : isVasp
                           ? 'border-emerald-500/30 bg-emerald-500/5 hover:border-emerald-500/60'
                           : isRoot
@@ -214,7 +214,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
                       {/* Flow percentage bar background */}
                       <div
                         className={`absolute left-0 bottom-0 top-0 opacity-15 transition-all ${
-                          isVasp ? 'bg-emerald-500' : isRoot ? 'bg-amber-500' : 'bg-blue-500'
+                          isVasp ? 'bg-emerald-500' : isRoot ? 'bg-amber-500' : 'bg-[#E6C766]'
                         }`}
                         style={{ width: `${Math.max(8, node.percentage)}%` }}
                       />
@@ -260,11 +260,11 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
               <span>Input Suspect</span>
             </span>
             <span className="flex items-center space-x-1.5">
-              <span className="h-2 w-2 rounded-full bg-blue-400" />
+              <span className="h-2 w-2 rounded-full bg-[#E6C766]" />
               <span>Direct Hop 1</span>
             </span>
             <span className="flex items-center space-x-1.5">
-              <span className="h-2 w-2 rounded-full bg-purple-400" />
+              <span className="h-2 w-2 rounded-full bg-[#D95C63]" />
               <span>Layering Hop 2</span>
             </span>
             <span className="flex items-center space-x-1.5">
