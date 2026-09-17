@@ -1,26 +1,33 @@
 import Link from 'next/link';
+import { ArrowLeft, Compass } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#0B0D11] text-[#F1F1EC] flex flex-col items-center justify-center p-6 font-mono text-xs">
-      <div className="p-6 bg-[#11141A] border border-[rgba(255,255,255,0.06)] rounded max-w-md text-center space-y-4 shadow-xl">
-        <div className="text-3xl font-bold text-[#E6C766]">404</div>
-        <h1 className="text-sm uppercase tracking-wider text-[#A5A8AF] font-bold">
-          Investigation Dossier Not Found
-        </h1>
-        <p className="text-[#747983] text-[11px]">
-          The requested endpoint, case file, or route does not exist.
-        </p>
-        <div className="pt-2 flex justify-center gap-3">
+    <div className="min-h-screen bg-bg text-text flex flex-col items-center justify-center p-6 font-mono text-xs">
+      <div className="p-8 bg-surface border border-border rounded-xl max-w-md w-full text-center space-y-5 shadow-vercel">
+        <div className="w-12 h-12 rounded-xl bg-surface-raised border border-border flex items-center justify-center mx-auto text-text-muted">
+          <Compass className="h-6 w-6" />
+        </div>
+        <div>
+          <div className="text-3xl font-bold tracking-tight text-text">404</div>
+          <h1 className="text-sm font-semibold tracking-wide text-text-muted mt-1 uppercase">
+            Investigation Record Not Found
+          </h1>
+          <p className="text-text-dim text-xs mt-2 font-sans leading-relaxed">
+            The requested forensic route, case file, or target workspace does not exist or has been archived.
+          </p>
+        </div>
+        <div className="pt-2 flex items-center justify-center gap-2.5 font-sans">
           <Link
             href="/"
-            className="px-3 py-1.5 rounded bg-[#151920] hover:bg-[#20242C] text-[#E8E8E4] border border-[rgba(230,199,102,0.25)] transition-colors"
+            className="px-3.5 py-1.5 rounded-md bg-surface-raised hover:bg-surface-hover text-text border border-border transition-colors font-medium flex items-center space-x-1.5"
           >
-            ← Landing Page
+            <ArrowLeft className="h-3.5 w-3.5" />
+            <span>Landing Page</span>
           </Link>
           <Link
             href="/app"
-            className="px-3 py-1.5 rounded bg-[#E6C766] hover:bg-[#F1D98A] text-[#101116] font-semibold transition-colors"
+            className="px-3.5 py-1.5 rounded-md bg-text text-bg hover:opacity-90 font-medium transition-opacity"
           >
             Launch Console →
           </Link>

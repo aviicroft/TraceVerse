@@ -2,87 +2,331 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Dark Obsidian / Champagne Gold Theme */
+/* ==============================================================================
+   TRACEVERSE DESIGN SYSTEM — VERCEL-INSPIRED TOKENS
+   Dual-Theme Architecture (Pure Light Mode & Obsidian Dark Mode)
+   ============================================================================== */
+
 :root {
-  --forensic-bg: #0B0D11;
-  --forensic-surface: #11141A;
-  --forensic-surface-raised: #151920;
-  --forensic-border: rgba(255, 255, 255, 0.06);
-  --forensic-border-muted: rgba(255, 255, 255, 0.04);
-  --forensic-text: #F1F1EC;
-  --forensic-text-muted: #A5A8AF;
-  --forensic-text-dim: #747983;
-  --forensic-accent: #E6C766;
-  --forensic-teal: #D95C63;
-  --forensic-success: #E6C766;
-  --forensic-success-hover: #F1D98A;
-  --forensic-success-soft: rgba(230, 199, 102, 0.10);
-  --forensic-success-border: rgba(230, 199, 102, 0.25);
-  --forensic-verified: #55C98A;
-  --forensic-verified-bright: #72D9A0;
-  --forensic-verified-soft: rgba(85, 201, 138, 0.10);
-  --forensic-verified-border: rgba(85, 201, 138, 0.28);
-  --forensic-amber: #F1D98A;
-  --forensic-rose: #E66A70;
+  /* Surface & Background */
+  --bg: #ffffff;
+  --bg-subtle: #fafafa;
+  --bg-canvas: #f4f4f5;
+  --surface: #ffffff;
+  --surface-raised: #f4f4f5;
+  --surface-hover: #ebebef;
+  --surface-overlay: rgba(255, 255, 255, 0.85);
+
+  /* Borders */
+  --border: #e4e4e7;
+  --border-subtle: #f4f4f5;
+  --border-hover: #d4d4d8;
+  --border-bright: #0070f3;
+
+  /* Typography */
+  --text: #09090b;
+  --text-muted: #71717a;
+  --text-dim: #a1a1aa;
+  --text-inverse: #ffffff;
+
+  /* Accent & Brand */
+  --accent: #0070f3;
+  --accent-hover: #005bb5;
+  --accent-subtle: rgba(0, 112, 243, 0.08);
+  --accent-border: rgba(0, 112, 243, 0.25);
+
+  /* Status Tokens */
+  --verified: #10b981;
+  --verified-hover: #059669;
+  --verified-subtle: rgba(16, 185, 129, 0.08);
+  --verified-border: rgba(16, 185, 129, 0.25);
+
+  --warning: #f59e0b;
+  --warning-subtle: rgba(245, 158, 11, 0.08);
+  --warning-border: rgba(245, 158, 11, 0.25);
+
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --danger-subtle: rgba(239, 68, 68, 0.08);
+  --danger-border: rgba(239, 68, 68, 0.25);
+
+  /* Compatibility Aliases for existing components */
+  --forensic-bg: var(--bg);
+  --forensic-surface: var(--surface);
+  --forensic-surface-raised: var(--surface-raised);
+  --forensic-border: var(--border);
+  --forensic-border-muted: var(--border-subtle);
+  --forensic-text: var(--text);
+  --forensic-text-muted: var(--text-muted);
+  --forensic-text-dim: var(--text-dim);
+  --forensic-accent: var(--accent);
+  --forensic-teal: var(--accent);
+  --forensic-success: var(--verified);
+  --forensic-success-hover: var(--verified-hover);
+  --forensic-success-soft: var(--verified-subtle);
+  --forensic-success-border: var(--verified-border);
+  --forensic-verified: var(--verified);
+  --forensic-verified-bright: #34d399;
+  --forensic-verified-soft: var(--verified-subtle);
+  --forensic-verified-border: var(--verified-border);
+  --forensic-amber: var(--warning);
+  --forensic-rose: var(--danger);
+  /* Standard Aliases */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+  --primary: #18181b;
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface-raised);
+  --secondary-foreground: var(--text);
+  --muted: var(--surface-raised);
+  --muted-foreground: var(--text-muted);
+  --input: #ffffff;
+  --ring: var(--border-hover);
+  --success: var(--verified);
+  --info: var(--accent);
 }
 
 .dark {
-  --forensic-bg: #0B0D11;
-  --forensic-surface: #11141A;
-  --forensic-surface-raised: #151920;
-  --forensic-border: rgba(255, 255, 255, 0.06);
-  --forensic-border-muted: rgba(255, 255, 255, 0.04);
-  --forensic-text: #F1F1EC;
-  --forensic-text-muted: #A5A8AF;
-  --forensic-text-dim: #747983;
-  --forensic-accent: #E6C766;
-  --forensic-teal: #D95C63;
-  --forensic-success: #E6C766;
-  --forensic-success-hover: #F1D98A;
-  --forensic-success-soft: rgba(230, 199, 102, 0.10);
-  --forensic-success-border: rgba(230, 199, 102, 0.25);
-  --forensic-verified: #55C98A;
-  --forensic-verified-bright: #72D9A0;
-  --forensic-verified-soft: rgba(85, 201, 138, 0.10);
-  --forensic-verified-border: rgba(85, 201, 138, 0.28);
-  --forensic-amber: #F1D98A;
-  --forensic-rose: #E66A70;
+  /* Surface & Background — Deep Black with Subtle Red Gradient */
+  --bg: #000000;
+  --bg-subtle: #080303;
+  --bg-canvas: #000000;
+  --surface: #090909;
+  --surface-raised: #0d0d0d;
+  --surface-hover: #121212;
+  --surface-overlay: rgba(0, 0, 0, 0.92);
+
+  /* Borders (Subtle Dark Gray, Eye-Comfort Minimal Contrast) */
+  --border: #242424;
+  --border-subtle: #181818;
+  --border-hover: rgba(185, 28, 50, 0.35);
+  --border-bright: #b91c32;
+
+  /* Typography (Soft White & Clean Cool Gray, Zero Glare, 100% Neutral) */
+  --text: #eeeeee;
+  --text-muted: #a1a1a1;
+  --text-dim: #707070;
+  --text-inverse: #000000;
+
+  /* Accent & Brand (Muted Crimson Red) */
+  --accent: #b91c32;
+  --accent-hover: #d12a43;
+  --accent-subtle: rgba(185, 28, 50, 0.12);
+  --accent-border: rgba(185, 28, 50, 0.28);
+
+  /* Status Tokens (Calm, Desaturated Harmony) */
+  --verified: #6fa889;
+  --verified-hover: #84be9e;
+  --verified-subtle: rgba(111, 168, 137, 0.12);
+  --verified-border: rgba(111, 168, 137, 0.28);
+
+  --warning: #c49a61;
+  --warning-subtle: rgba(196, 154, 97, 0.12);
+  --warning-border: rgba(196, 154, 97, 0.28);
+
+  --danger: #c24156;
+  --danger-hover: #d95368;
+  --danger-subtle: rgba(194, 65, 86, 0.12);
+  --danger-border: rgba(194, 65, 86, 0.28);
+
+  /* Standard Aliases */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface-raised);
+  --popover-foreground: var(--text);
+  --primary: #b91c32;
+  --primary-foreground: #eeeeee;
+  --secondary: var(--surface-raised);
+  --secondary-foreground: var(--text);
+  --muted: var(--surface-raised);
+  --muted-foreground: var(--text-muted);
+  --input: #0a0a0a;
+  --ring: rgba(185, 28, 50, 0.45);
+  --success: var(--verified);
+  --info: var(--accent);
+
+  /* Compatibility Aliases */
+  --forensic-bg: var(--bg);
+  --forensic-surface: var(--surface);
+  --forensic-surface-raised: var(--surface-raised);
+  --forensic-border: var(--border);
+  --forensic-border-muted: var(--border-subtle);
+  --forensic-text: var(--text);
+  --forensic-text-muted: var(--text-muted);
+  --forensic-text-dim: var(--text-dim);
+  --forensic-accent: var(--accent);
+  --forensic-teal: var(--accent);
+  --forensic-success: var(--verified);
+  --forensic-success-hover: var(--verified-hover);
+  --forensic-success-soft: var(--verified-subtle);
+  --forensic-success-border: var(--verified-border);
+  --forensic-verified: var(--verified);
+  --forensic-verified-bright: #84be9e;
+  --forensic-verified-soft: var(--verified-subtle);
+  --forensic-verified-border: var(--verified-border);
+  --forensic-amber: var(--warning);
+  --forensic-rose: var(--danger);
 }
 
 body {
-  color: var(--forensic-text);
-  background-color: var(--forensic-bg);
+  color: var(--text);
+  background-color: var(--bg);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Compact forensic scrollbar */
+.dark html {
+  background-color: #000000;
+}
+
+.dark body {
+  background-color: #000000;
+  background-image: linear-gradient(
+    135deg,
+    #000000 0%,
+    #080303 50%,
+    #000000 100%
+  );
+  position: relative;
+  overflow-x: hidden;
+}
+
+.dark body::before {
+  content: "";
+  position: fixed;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 75% 20%,
+      rgba(130, 10, 25, 0.16) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 45% at 20% 80%,
+      rgba(95, 5, 18, 0.13) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 40% 40% at 50% 50%,
+      rgba(110, 8, 20, 0.08) 0%,
+      transparent 60%
+    );
+  animation: dynamicCrimsonDrift 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes dynamicCrimsonDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(-3%, 4%, 0) scale(1.04) rotate(1.5deg);
+  }
+  66% {
+    transform: translate3d(4%, -2%, 0) scale(0.97) rotate(-1.5deg);
+  }
+  100% {
+    transform: translate3d(-2%, -3%, 0) scale(1.02) rotate(1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dark body::before {
+    animation: none;
+  }
+}
+
+.dark body > * {
+  position: relative;
+  z-index: 1;
+}
+
+.dark body .min-h-screen.bg-bg {
+  background-color: transparent;
+}
+
+/* Consistent icon alignment utilities */
+.icon-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Vercel-style precision scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--forensic-bg);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--forensic-border);
-  border-radius: 2px;
+  background: var(--border);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--forensic-text-dim);
+  background: var(--text-dim);
 }
 
-/* Law Enforcement Print & Statutory Order Formatting */
+/* Modern Card Glow Utilities */
+.vercel-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dark .vercel-card {
+  background: rgba(9, 9, 9, 0.94);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.vercel-card:hover {
+  border-color: var(--border-hover);
+}
+
+.vercel-input {
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.vercel-input:focus {
+  outline: 2px solid rgba(185, 28, 50, 0.45);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+/* Statutory Print Format */
 @media print {
-  /* Hide all non-printable application chrome, navbars, buttons */
-  header, nav, footer, .no-print, button, input, select, textarea, .backdrop-blur-sm {
+  header, nav, footer, .no-print, button, input, select, textarea, .backdrop-blur-sm, .backdrop-blur-md {
     display: none !important;
   }
 
@@ -95,7 +339,6 @@ body {
     padding: 0 !important;
   }
 
-  /* Ensure modal dialog backdrop does not obscure or position-clip print output */
   .fixed.inset-0 {
     position: static !important;
     background: transparent !important;
@@ -135,6 +378,6 @@ body {
 
   @page {
     size: A4 portrait;
-    margin: 15mm 15mm 15mm 15mm;
+    margin: 15mm;
   }
 }

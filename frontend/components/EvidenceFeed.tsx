@@ -19,30 +19,30 @@ export const EvidenceFeed: React.FC<EvidenceFeedProps> = ({ evidence }) => {
 
   if (!evidence || evidence.length === 0) {
     return (
-      <div className="bg-forensic-surface border border-forensic-border rounded p-4 text-xs transition-colors">
-        <div className="flex items-center space-x-2 border-b border-forensic-border pb-2.5 mb-2">
-          <FileCheck2 className="h-4 w-4 text-forensic-textDim" />
-          <h3 className="font-mono uppercase font-bold text-forensic-text text-xs tracking-wider">
+      <div className="bg-surface border border-border rounded-xl p-4 text-xs shadow-vercel transition-colors">
+        <div className="inline-flex items-center gap-2 border-b border-border pb-3 mb-2 w-full">
+          <FileCheck2 className="h-4 w-4 text-text-dim shrink-0" />
+          <h3 className="font-mono uppercase font-semibold text-text text-xs tracking-wider">
             Evidence & Analytical Findings
           </h3>
         </div>
-        <p className="text-forensic-textDim text-[11px] font-mono">No evidence items generated for this run.</p>
+        <p className="text-text-dim text-[11px] font-mono">No evidence records generated for this run.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-forensic-surface border border-forensic-border rounded shadow-sm text-xs space-y-3 p-4 transition-colors">
+    <div className="bg-surface border border-border rounded-xl shadow-vercel text-xs space-y-3.5 p-4 sm:p-5 transition-colors">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-forensic-border pb-2.5">
-        <div className="flex items-center space-x-2">
-          <FileCheck2 className="h-4 w-4 text-[#E6C766]" />
-          <h3 className="font-mono uppercase font-bold text-forensic-text text-xs tracking-wider">
-            Evidence & Analytical Findings Register
+      <div className="flex items-center justify-between border-b border-border pb-3">
+        <div className="inline-flex items-center gap-2">
+          <FileCheck2 className="h-4 w-4 text-accent shrink-0" />
+          <h3 className="font-mono uppercase font-semibold text-text text-xs tracking-wider">
+            Evidence Findings Register
           </h3>
         </div>
-        <span className="font-mono text-[10px] uppercase px-2 py-0.5 rounded bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border">
-          {evidence.length} Items Recorded
+        <span className="font-mono text-[10px] uppercase px-2 py-0.5 rounded-full bg-surface-raised text-text-muted border border-border font-medium shrink-0">
+          {evidence.length} Records
         </span>
       </div>
 
@@ -54,55 +54,64 @@ export const EvidenceFeed: React.FC<EvidenceFeedProps> = ({ evidence }) => {
           return (
             <div
               key={idx}
-              className="p-3 bg-forensic-bg border border-forensic-border rounded space-y-2 font-mono text-[11px]"
+              className="p-3.5 bg-bg border border-border rounded-lg space-y-2 font-mono text-[11px] hover:border-border-hover transition-colors"
             >
               {/* Top Row: Evidence ID & Strength */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <span className="font-bold text-forensic-text bg-forensic-surfaceRaised px-1.5 py-0.5 rounded border border-forensic-border">
+                <div className="inline-flex items-center gap-2">
+                  <span className="font-semibold text-text bg-surface-raised px-1.5 py-0.5 rounded border border-border">
                     {evidenceId}
                   </span>
-                  <span className="text-forensic-textDim uppercase text-[10px]">
+                  <span className="text-text-dim uppercase text-[10px] font-medium">
                     {item.evidence_type}
                   </span>
                 </div>
 
-                <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold uppercase ${
-                  item.strength === 'HIGH' ? 'bg-[#E6C766]/10 text-[#E6C766] border border-[#E6C766]/30' : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
-                }`}>
-                  {item.strength} STRENGTH
+                <span
+                  className={`px-2 py-0.2 rounded-full text-[9px] font-semibold uppercase border shrink-0 ${
+                    item.strength === 'HIGH'
+                      ? 'bg-verified-subtle text-verified border-verified-border'
+                      : 'bg-surface-raised text-text-muted border border-border'
+                  }`}
+                >
+                  {item.strength} Strength
                 </span>
               </div>
 
               {/* Narrative Finding */}
-              <p className="font-sans text-xs text-forensic-text leading-relaxed">
+              <p className="font-sans text-xs text-text leading-relaxed">
                 {item.explanation}
               </p>
 
               {/* Associated Technical Artifacts */}
-              <div className="pt-1.5 border-t border-forensic-borderMuted flex flex-wrap items-center justify-between gap-1 text-[10px] text-forensic-textDim">
+              <div className="pt-2 border-t border-border/60 flex flex-wrap items-center justify-between gap-1 text-[10px] text-text-dim">
                 {item.hop_distance !== null && item.hop_distance !== undefined && (
-                  <span>Hop Position: <strong className="text-forensic-text">{item.hop_distance}</strong></span>
+                  <span>
+                    Hop: <strong className="text-text font-medium">{item.hop_distance}</strong>
+                  </span>
                 )}
 
                 {item.amount !== null && item.amount !== undefined && (
                   <span>
-                    Volume: <strong className="text-[#E6C766]">{item.amount.toFixed(4)} {item.asset_symbol || 'ETH'}</strong>
+                    Volume:{' '}
+                    <strong className="text-text font-medium">
+                      {item.amount.toFixed(4)} {item.asset_symbol || 'ETH'}
+                    </strong>
                   </span>
                 )}
 
                 {item.tx_hash && (
-                  <div className="flex items-center space-x-1">
+                  <div className="inline-flex items-center gap-1.5">
                     <span>Tx: {item.tx_hash.slice(0, 10)}...</span>
                     <button
                       onClick={() => handleCopy(item.tx_hash!, evidenceId)}
-                      title="Copy Tx Hash"
-                      className="p-0.5 hover:text-forensic-text text-forensic-textDim"
+                      title="Copy Transaction Hash"
+                      className="h-5 w-5 rounded hover:text-text text-text-dim transition-colors inline-flex items-center justify-center shrink-0"
                     >
                       {copiedId === evidenceId ? (
-                        <Check className="h-3 w-3 text-[#E6C766]" />
+                        <Check className="h-3 w-3 text-verified shrink-0" />
                       ) : (
-                        <Copy className="h-3 w-3" />
+                        <Copy className="h-3 w-3 shrink-0" />
                       )}
                     </button>
                   </div>

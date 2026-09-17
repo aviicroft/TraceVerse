@@ -1,14 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import {
-  Database,
-  Search,
-  ExternalLink,
-  Copy,
-  Check,
-  X,
-} from 'lucide-react';
+import { Database, Search, ExternalLink, Copy, Check, X, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 import { api } from '../lib/api';
 
 interface VASPRegistryModalProps {
@@ -16,7 +9,10 @@ interface VASPRegistryModalProps {
   isFullPageView?: boolean;
 }
 
-export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, isFullPageView = false }) => {
+export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
+  onClose,
+  isFullPageView = false,
+}) => {
   const [stats, setStats] = useState<any>(null);
   const [addresses, setAddresses] = useState<any[]>([]);
   const [totalMatches, setTotalMatches] = useState<number>(0);
@@ -78,263 +74,208 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
   const totalPages = Math.ceil(totalMatches / pageSize) || 1;
 
   const content = (
-    <div className={`bg-forensic-surface border border-forensic-border rounded w-full flex flex-col font-mono text-xs overflow-hidden transition-colors ${
-      isFullPageView ? 'shadow-sm' : 'max-w-6xl max-h-[92vh] shadow-2xl'
-    }`}>
+    <div
+      className={`bg-surface border border-border rounded-xl w-full flex flex-col font-mono text-xs overflow-hidden transition-colors ${
+        isFullPageView ? 'shadow-vercel' : 'max-w-6xl max-h-[92vh] shadow-vercel-lg'
+      }`}
+    >
       {/* Header */}
-      <div className="p-4 border-b border-forensic-border flex items-center justify-between bg-forensic-bg">
-        <div className="flex items-center space-x-3">
-          <div className="p-1.5 rounded bg-forensic-surfaceRaised border border-forensic-border text-forensic-accent">
-            <Database className="h-4 w-4" />
+      <div className="p-4 sm:p-5 border-b border-border flex flex-wrap items-center justify-between bg-surface-raised/40 gap-3">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 text-accent inline-flex items-center justify-center shrink-0">
+            <Database className="h-4 w-4 shrink-0" />
           </div>
           <div>
-            <div className="flex items-center space-x-2">
-              <h2 className="text-xs font-bold text-forensic-text uppercase tracking-wider">
+            <div className="flex items-center gap-2">
+              <h2 className="text-xs font-semibold text-text uppercase tracking-wider">
                 VASPs & Entity Intelligence Registry
               </h2>
-              <span className="px-1.5 py-0.2 rounded bg-forensic-accent/15 text-forensic-accent border border-forensic-accent/30 text-[10px] font-bold">
+              <span className="px-2 py-0.5 rounded-full bg-verified-subtle text-verified border border-verified-border text-[10px] font-bold">
                 {stats ? `${stats.total_addresses.toLocaleString()} VERIFIED ADDRESSES` : 'LOADING...'}
               </span>
             </div>
-            <p className="text-[10px] text-forensic-textDim font-sans">
+            <p className="text-[10px] text-text-dim font-sans mt-0.5">
               Curated public Proof-of-Reserves, Etherscan verified labels, Tronscan tags & FIU-IND registrations
             </p>
           </div>
         </div>
 
-        {onClose && (
+        {onClose && !isFullPageView && (
           <button
             onClick={onClose}
-            className="p-1 rounded text-forensic-textDim hover:text-forensic-text hover:bg-forensic-surfaceRaised"
+            className="w-8 h-8 rounded-lg text-text-dim hover:text-text hover:bg-surface-hover transition-colors inline-flex items-center justify-center shrink-0"
+            aria-label="Close modal"
           >
-            <X className="h-4 w-4" />
+            <X className="h-4 w-4 shrink-0" />
           </button>
         )}
       </div>
 
-      {/* High-Level Stat Counters */}
-      {stats && (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-3 bg-forensic-bg border-b border-forensic-border text-xs">
-          <div className="p-2.5 bg-forensic-surface rounded border border-forensic-border">
-            <span className="text-[10px] uppercase text-forensic-textDim block">Registered Entities</span>
-            <strong className="text-base text-forensic-accent">{stats.total_vasps} VASPs</strong>
-          </div>
-          <div className="p-2.5 bg-forensic-surface rounded border border-forensic-border">
-            <span className="text-[10px] uppercase text-forensic-textDim block">Known Addresses</span>
-            <strong className="text-base text-forensic-teal">
-              {stats.total_addresses.toLocaleString()}
-            </strong>
-          </div>
-          <div className="p-2.5 bg-forensic-surface rounded border border-forensic-border">
-            <span className="text-[10px] uppercase text-forensic-textDim block">ETH Addresses</span>
-            <strong className="text-base text-forensic-text">
-              {stats.by_chain?.ETHEREUM || 0}
-            </strong>
-          </div>
-          <div className="p-2.5 bg-forensic-surface rounded border border-forensic-border">
-            <span className="text-[10px] uppercase text-forensic-textDim block">TRON Addresses</span>
-            <strong className="text-base text-forensic-rose">
-              {stats.by_chain?.TRON || 0}
-            </strong>
-          </div>
-        </div>
-      )}
-
-      {/* Filters Toolbar */}
-      <div className="p-3 bg-forensic-surfaceRaised border-b border-forensic-border flex flex-wrap items-center justify-between gap-2 text-xs">
-        <div className="flex-1 min-w-[220px] relative">
-          <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-forensic-textDim" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setPage(0);
-            }}
-            placeholder="Search by address (0x... or T...), VASP, or notes..."
-            className="w-full pl-8 pr-3 py-1.5 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-[11px] focus:outline-none focus:border-forensic-accent"
-          />
-        </div>
-
+      {/* Filter Toolbar */}
+      <div className="p-3 bg-bg border-b border-border flex flex-wrap items-center justify-between gap-2.5 text-[11px]">
         <div className="flex flex-wrap items-center gap-2">
+          {/* Search Box */}
+          <div className="relative">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-dim pointer-events-none shrink-0" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setPage(0);
+              }}
+              placeholder="Search address, label, or entity..."
+              className="pl-8 pr-3 py-1.5 bg-surface border border-border rounded-lg text-text placeholder:text-text-dim text-[11px] focus:outline-none focus:border-accent w-48 sm:w-64 transition-colors"
+            />
+          </div>
+
+          {/* Chain Select */}
           <select
             value={selectedChain}
             onChange={(e) => {
               setSelectedChain(e.target.value);
               setPage(0);
             }}
-            className="bg-forensic-bg border border-forensic-border text-forensic-text rounded px-2 py-1.5 text-[11px] font-mono"
+            className="bg-surface border border-border rounded-lg text-text px-2 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
           >
             <option value="ALL">All Chains</option>
             <option value="ethereum">Ethereum</option>
-            <option value="tron">Tron (TRC-20)</option>
+            <option value="tron">Tron TRC-20</option>
           </select>
 
+          {/* VASP Select */}
           <select
             value={selectedVasp}
             onChange={(e) => {
               setSelectedVasp(e.target.value);
               setPage(0);
             }}
-            className="bg-forensic-bg border border-forensic-border text-forensic-text rounded px-2 py-1.5 text-[11px] font-mono"
+            className="bg-surface border border-border rounded-lg text-text px-2 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
           >
-            <option value="ALL">All VASPs</option>
-            {stats?.by_vasp &&
-              Object.keys(stats.by_vasp).map((vname) => (
-                <option key={vname} value={vname}>
-                  {vname} ({stats.by_vasp[vname]})
-                </option>
-              ))}
+            <option value="ALL">All Entities</option>
+            {stats?.supported_vasps?.map((v: string) => (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            ))}
           </select>
+        </div>
 
-          <select
-            value={selectedType}
-            onChange={(e) => {
-              setSelectedType(e.target.value);
-              setPage(0);
-            }}
-            className="bg-forensic-bg border border-forensic-border text-forensic-text rounded px-2 py-1.5 text-[11px] font-mono"
-          >
-            <option value="ALL">All Types</option>
-            <option value="hot_wallet">Hot Wallet</option>
-            <option value="cold_storage">Cold Storage</option>
-            <option value="deposit">Deposit Collector</option>
-            <option value="withdrawal">Withdrawal Hub</option>
-            <option value="treasury">Treasury</option>
-          </select>
+        <div className="text-text-dim text-[11px]">
+          Showing {totalMatches.toLocaleString()} matching records
         </div>
       </div>
 
-      {/* Address Records Table */}
-      <div className={`overflow-y-auto p-3 bg-forensic-bg ${isFullPageView ? 'min-h-[400px]' : 'flex-1'}`}>
-        {loading ? (
-          <div className="flex items-center justify-center py-20 text-forensic-textDim">
-            <span>Querying verified entity registry...</span>
-          </div>
-        ) : addresses.length === 0 ? (
-          <div className="text-center py-16 text-forensic-textDim">
-            No verified VASP addresses match your filters.
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border-collapse">
-              <thead>
-                <tr className="border-b border-forensic-border bg-forensic-surface text-[10px] uppercase font-mono tracking-wider text-forensic-textDim">
-                  <th className="py-2 px-3">Entity Name</th>
-                  <th className="py-2 px-3">Blockchain Address</th>
-                  <th className="py-2 px-3">Chain</th>
-                  <th className="py-2 px-3">Cluster Role</th>
-                  <th className="py-2 px-3">Provenance Authority</th>
-                  <th className="py-2 px-3">Confidence</th>
-                  <th className="py-2 px-3">Status</th>
+      {/* Addresses Table */}
+      <div className="overflow-y-auto flex-1">
+        <table className="w-full text-left border-collapse text-[11px]">
+          <thead>
+            <tr className="border-b border-border bg-surface-raised/20 text-[10px] uppercase text-text-dim tracking-wider font-semibold sticky top-0">
+              <th className="py-2.5 px-4">Entity / VASP</th>
+              <th className="py-2.5 px-4">Chain</th>
+              <th className="py-2.5 px-4">Address Type</th>
+              <th className="py-2.5 px-4">Verified Cluster Address</th>
+              <th className="py-2.5 px-4 text-center">Confidence</th>
+              <th className="py-2.5 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border/60">
+            {loading ? (
+              <tr>
+                <td colSpan={6} className="py-12 text-center text-text-dim font-sans">
+                  <div className="inline-flex items-center justify-center gap-2">
+                    <RefreshCw className="h-4 w-4 animate-spin text-accent shrink-0" />
+                    <span>Loading registry records...</span>
+                  </div>
+                </td>
+              </tr>
+            ) : addresses.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="py-12 text-center text-text-dim font-sans">
+                  No addresses found matching filter criteria.
+                </td>
+              </tr>
+            ) : (
+              addresses.map((item, idx) => (
+                <tr key={idx} className="hover:bg-surface-raised/40 transition-colors">
+                  <td className="py-2.5 px-4 font-bold text-text">
+                    <span className="text-accent">{item.vasp_name}</span>
+                  </td>
+                  <td className="py-2.5 px-4 uppercase text-[10px] text-text-muted">
+                    {item.chain}
+                  </td>
+                  <td className="py-2.5 px-4">
+                    <span className="px-1.5 py-0.2 rounded bg-surface-raised border border-border text-text-muted text-[10px]">
+                      {item.address_type}
+                    </span>
+                  </td>
+                  <td className="py-2.5 px-4 font-semibold text-text select-all break-all">
+                    {item.address}
+                  </td>
+                  <td className="py-2.5 px-4 text-center">
+                    <span className="text-verified font-semibold text-[10px]">
+                      {item.confidence || 'HIGH'}
+                    </span>
+                  </td>
+                  <td className="py-2.5 px-4 text-right">
+                    <div className="inline-flex items-center justify-end gap-1.5">
+                      <button
+                        onClick={() => handleCopy(item.address)}
+                        className="w-6 h-6 inline-flex items-center justify-center rounded hover:bg-surface-raised/80 text-text-dim hover:text-text transition-colors shrink-0"
+                        title="Copy Address"
+                      >
+                        {copiedAddr === item.address ? (
+                          <Check className="h-3.5 w-3.5 text-verified shrink-0" />
+                        ) : (
+                          <Copy className="h-3.5 w-3.5 shrink-0" />
+                        )}
+                      </button>
+                      <a
+                        href={
+                          item.chain === 'tron'
+                            ? `https://tronscan.org/#/address/${item.address}`
+                            : `https://etherscan.io/address/${item.address}`
+                        }
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-6 h-6 inline-flex items-center justify-center rounded hover:bg-surface-raised/80 text-text-dim hover:text-text transition-colors shrink-0"
+                        title="View on Explorer"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                      </a>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-forensic-borderMuted font-mono text-[11px]">
-                {addresses.map((item, idx) => (
-                  <tr key={idx} className="hover:bg-forensic-surfaceRaised/50 transition-colors">
-                    <td className="py-2 px-3">
-                      <strong className="text-forensic-text">{item.vasp_name}</strong>
-                    </td>
-
-                    <td className="py-2 px-3">
-                      <div className="flex items-center space-x-1.5">
-                        <span className="text-forensic-textMuted truncate max-w-[220px]">
-                          {item.address}
-                        </span>
-                        <button
-                          onClick={() => handleCopy(item.address)}
-                          title="Copy address"
-                          className="p-0.5 hover:text-forensic-text text-forensic-textDim"
-                        >
-                          {copiedAddr === item.address ? (
-                            <Check className="h-3 w-3 text-forensic-teal" />
-                          ) : (
-                            <Copy className="h-3 w-3" />
-                          )}
-                        </button>
-                        <a
-                          href={
-                            item.chain === 'ethereum'
-                              ? `https://etherscan.io/address/${item.address}`
-                              : `https://tronscan.org/#/address/${item.address}`
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                          className="p-0.5 text-[#E6C766] hover:underline"
-                        >
-                          <ExternalLink className="h-3 w-3" />
-                        </a>
-                      </div>
-                    </td>
-
-                    <td className="py-2 px-3">
-                      <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${
-                        item.chain === 'ethereum' ? 'bg-[#E6C766]/15 text-[#E6C766] border border-[#E6C766]/30' : 'bg-rose-500/15 text-red-600 dark:text-rose-300 border border-rose-500/30'
-                      }`}>
-                        {item.chain?.toUpperCase()}
-                      </span>
-                    </td>
-
-                    <td className="py-2 px-3 text-forensic-textDim text-[10px]">
-                      {item.address_type?.replace('_', ' ')}
-                    </td>
-
-                    <td className="py-2 px-3">
-                      {item.source_url ? (
-                        <a
-                          href={item.source_url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-[#E6C766] hover:underline inline-flex items-center space-x-1 text-[10px]"
-                        >
-                          <span>{item.source_name || item.source}</span>
-                          <ExternalLink className="h-2.5 w-2.5 ml-0.5" />
-                        </a>
-                      ) : (
-                        <span className="text-forensic-textDim text-[10px]">{item.source_name || item.source}</span>
-                      )}
-                    </td>
-
-                    <td className="py-2 px-3 text-forensic-teal font-bold text-[10px]">
-                      {item.confidence_score ? `${item.confidence_score}%` : '95%'}
-                    </td>
-
-                    <td className="py-2 px-3">
-                      <span className="text-forensic-teal text-[10px] font-bold">
-                        VERIFIED
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
 
-      {/* Pagination Bar */}
-      <div className="p-2.5 bg-forensic-surface border-t border-forensic-border flex items-center justify-between text-[11px] text-forensic-textDim font-mono">
+      {/* Pagination Footer */}
+      <div className="p-3 border-t border-border bg-surface-raised/30 flex items-center justify-between text-text-muted text-[11px]">
         <div>
-          Showing {addresses.length} of {totalMatches.toLocaleString()} records
+          Page {page + 1} of {totalPages}
         </div>
-
-        <div className="flex items-center space-x-2">
+        <div className="inline-flex items-center gap-1.5">
           <button
-            onClick={() => setPage((p) => Math.max(p - 1, 0))}
+            onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="px-2 py-0.5 rounded bg-forensic-surfaceRaised border border-forensic-border disabled:opacity-40 hover:bg-forensic-border text-forensic-text transition-colors"
+            className="w-6 h-6 rounded bg-surface hover:bg-surface-raised border border-border text-text disabled:opacity-40 transition-colors inline-flex items-center justify-center shrink-0"
+            aria-label="Previous page"
           >
-            Prev
+            <ChevronLeft className="h-3.5 w-3.5 shrink-0" />
           </button>
-          <span>
-            Page {page + 1} of {totalPages}
+          <span className="px-2 py-0.5 rounded bg-surface border border-border text-text text-[10px]">
+            {page + 1}
           </span>
           <button
-            onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
+            onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
             disabled={page >= totalPages - 1}
-            className="px-2 py-0.5 rounded bg-forensic-surfaceRaised border border-forensic-border disabled:opacity-40 hover:bg-forensic-border text-forensic-text transition-colors"
+            className="w-6 h-6 rounded bg-surface hover:bg-surface-raised border border-border text-text disabled:opacity-40 transition-colors inline-flex items-center justify-center shrink-0"
+            aria-label="Next page"
           >
-            Next
+            <ChevronRight className="h-3.5 w-3.5 shrink-0" />
           </button>
         </div>
       </div>
@@ -346,7 +287,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({ onClose, i
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
       {content}
     </div>
   );

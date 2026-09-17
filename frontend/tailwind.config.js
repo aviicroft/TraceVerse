@@ -9,7 +9,70 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // High-Visibility Institutional Theme Tokens
+        // Vercel Semantic Tokens
+        bg: {
+          DEFAULT: "var(--bg)",
+          subtle: "var(--bg-subtle)",
+          canvas: "var(--bg-canvas)",
+        },
+        surface: {
+          DEFAULT: "var(--surface)",
+          raised: "var(--surface-raised)",
+          hover: "var(--surface-hover)",
+          overlay: "var(--surface-overlay)",
+        },
+        border: {
+          DEFAULT: "var(--border)",
+          subtle: "var(--border-subtle)",
+          hover: "var(--border-hover)",
+          bright: "var(--border-bright)",
+        },
+        text: {
+          DEFAULT: "var(--text)",
+          muted: "var(--text-muted)",
+          dim: "var(--text-dim)",
+          inverse: "var(--text-inverse)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          hover: "var(--accent-hover)",
+          subtle: "var(--accent-subtle)",
+          border: "var(--accent-border)",
+        },
+        verified: {
+          DEFAULT: "var(--verified)",
+          hover: "var(--verified-hover)",
+          subtle: "var(--verified-subtle)",
+          border: "var(--verified-border)",
+        },
+        warning: {
+          DEFAULT: "var(--warning)",
+          subtle: "var(--warning-subtle)",
+          border: "var(--warning-border)",
+        },
+        danger: {
+          DEFAULT: "var(--danger)",
+          hover: "var(--danger-hover)",
+          subtle: "var(--danger-subtle)",
+          border: "var(--danger-border)",
+        },
+        input: {
+          DEFAULT: "var(--input)",
+        },
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+
+        // Forensic Tokens (backward compatibility)
         forensic: {
           bg: "var(--forensic-bg)",
           surface: "var(--forensic-surface)",
@@ -35,6 +98,11 @@ module.exports = {
       },
       fontSize: {
         '2xs': '0.65rem',
+        '3xs': '0.55rem',
+      },
+      boxShadow: {
+        'vercel': '0 0 0 1px var(--border), 0 2px 4px rgba(0,0,0,0.04)',
+        'vercel-lg': '0 0 0 1px var(--border), 0 8px 16px rgba(0,0,0,0.08)',
       },
     },
   },

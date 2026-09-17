@@ -8,7 +8,10 @@ import {
   Check,
   Download,
   X,
-  ShieldCheck,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+  Filter,
 } from 'lucide-react';
 import { NormalizedTransaction } from '../lib/types';
 
@@ -77,23 +80,29 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
   const paginated = filtered.slice(page * pageSize, (page + 1) * pageSize);
   const totalPages = Math.ceil(filtered.length / pageSize) || 1;
 
+  // Extract unique tokens for filter dropdown
+  const uniqueTokens = Array.from(
+    new Set((transactions || []).map((t) => (t.token_symbol || 'ETH').toUpperCase()))
+  );
+
   return (
-    <div className="bg-forensic-surface border border-forensic-border rounded shadow-sm flex flex-col text-xs relative transition-colors">
+    <div className="bg-surface border border-border rounded-xl shadow-vercel flex flex-col text-xs relative transition-colors overflow-hidden">
       {/* Header & Controls Toolbar */}
-      <div className="p-3 border-b border-forensic-border bg-forensic-bg flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center space-x-2">
-          <List className="h-4 w-4 text-[#E6C766]" />
-          <h3 className="font-mono uppercase font-bold text-forensic-text text-xs tracking-wider">
+      <div className="p-3.5 border-b border-border bg-surface-raised/40 flex flex-wrap items-center justify-between gap-3">
+        <div className="inline-flex items-center gap-2">
+          <List className="h-4 w-4 text-accent shrink-0" />
+          <h3 className="font-mono uppercase font-semibold text-text text-xs tracking-wider">
             Forensic Transaction Ledger
           </h3>
-          <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-forensic-surfaceRaised border border-forensic-border text-forensic-textMuted font-semibold">
+          <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-surface-raised border border-border text-text-muted font-medium shrink-0">
             {filtered.length} Observed Transfers
           </span>
         </div>
 
-        <div className="flex items-center space-x-2">
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-forensic-textDim" />
+        <div className="inline-flex items-center gap-2">
+          {/* Search Box */}
+          <div className="relative inline-flex items-center">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-dim pointer-events-none shrink-0" />
             <input
               type="text"
               value={searchQuery}
@@ -101,40 +110,75 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
                 setSearchQuery(e.target.value);
                 setPage(0);
               }}
-              placeholder="Search tx hash or counterparty..."
-              className="pl-8 pr-3 py-1 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-[11px] focus:outline-none focus:border-[#E6C766] w-48 sm:w-64 transition-colors"
+              placeholder="Filter by hash, from, or to..."
+              className="pl-8 pr-3 py-1.5 bg-bg border border-border rounded-md text-text placeholder:text-text-dim font-mono text-[11px] focus:outline-none focus:border-accent w-44 sm:w-56 transition-colors"
             />
           </div>
 
+          {/* Token Filter */}
+          <select
+            value={selectedAsset}
+            onChange={(e) => {
+              setSelectedAsset(e.target.value);
+              setPage(0);
+            }}
+            className="bg-bg border border-border rounded-md text-text text-[11px] font-mono px-2 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
+          >
+            <option value="ALL">All Assets</option>
+            {uniqueTokens.map((tok) => (
+              <option key={tok} value={tok}>
+                {tok}
+              </option>
+            ))}
+          </select>
+
+          {/* Hop Filter */}
+          <select
+            value={selectedHop}
+            onChange={(e) => {
+              setSelectedHop(e.target.value);
+              setPage(0);
+            }}
+            className="bg-bg border border-border rounded-md text-text text-[11px] font-mono px-2 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
+          >
+            <option value="ALL">All Hops</option>
+            <option value="1">Hop 1</option>
+            <option value="2">Hop 2</option>
+            <option value="3">Hop 3</option>
+          </select>
+
+          {/* Export CSV Button */}
           <button
             onClick={handleExportCSV}
-            className="flex items-center space-x-1 px-2.5 py-1 rounded bg-forensic-surfaceRaised hover:bg-forensic-border border border-forensic-border text-forensic-text font-medium text-[11px] transition-colors"
+            disabled={!transactions || transactions.length === 0}
+            className="h-7 px-2.5 bg-surface-raised hover:bg-surface-hover text-text border border-border rounded-md transition-colors inline-flex items-center justify-center gap-1.5 font-mono text-[11px] disabled:opacity-50 shrink-0"
+            title="Download Full Ledger as CSV"
           >
-            <Download className="h-3 w-3 text-forensic-textMuted" />
-            <span>Export CSV</span>
+            <Download className="h-3 w-3 shrink-0" />
+            <span className="hidden sm:inline leading-none">CSV</span>
           </button>
         </div>
       </div>
 
-      {/* Forensic Data Table */}
+      {/* Ledger Table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs border-collapse">
+        <table className="w-full text-left text-[11px] border-collapse font-mono">
           <thead>
-            <tr className="border-b border-forensic-border bg-forensic-bg text-[10px] uppercase font-mono tracking-wider text-forensic-textDim">
+            <tr className="border-b border-border bg-surface-raised/20 text-[10px] uppercase text-text-dim tracking-wider font-semibold">
               <th className="py-2.5 px-3">Tx Hash</th>
               <th className="py-2.5 px-3">Timestamp (UTC)</th>
               <th className="py-2.5 px-3">From Address</th>
               <th className="py-2.5 px-3">To Address</th>
-              <th className="py-2.5 px-3 text-right">Volume</th>
+              <th className="py-2.5 px-3 text-right">Transfer Amount</th>
               <th className="py-2.5 px-3 text-center">Hop</th>
-              <th className="py-2.5 px-3 text-right">Inspect</th>
+              <th className="py-2.5 px-3 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-forensic-borderMuted font-mono text-[11px]">
+          <tbody className="divide-y divide-border/60">
             {paginated.length === 0 ? (
               <tr>
-                <td colSpan={7} className="py-8 text-center text-forensic-textDim">
-                  No forensic transactions recorded for this parameter set.
+                <td colSpan={7} className="py-8 text-center text-text-dim">
+                  No transactions match the specified filter criteria.
                 </td>
               </tr>
             ) : (
@@ -142,61 +186,51 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
                 <tr
                   key={idx}
                   onClick={() => setSelectedTx(tx)}
-                  className="hover:bg-forensic-surfaceRaised/60 cursor-pointer transition-colors"
+                  className="hover:bg-surface-raised/50 transition-colors cursor-pointer group"
                 >
-                  <td className="py-2 px-3">
-                    <div className="flex items-center space-x-1.5">
-                      <span className="text-forensic-text truncate max-w-[120px]">
-                        {tx.tx_hash}
-                      </span>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCopy(tx.tx_hash, tx.tx_hash);
-                        }}
-                        title="Copy Tx Hash"
-                        className="p-0.5 hover:text-forensic-text text-forensic-textDim"
-                      >
-                        {copiedHash === tx.tx_hash ? (
-                          <Check className="h-3 w-3 text-forensic-teal" />
-                        ) : (
-                          <Copy className="h-3 w-3" />
-                        )}
-                      </button>
-                    </div>
+                  <td className="py-2 px-3 text-text group-hover:text-accent font-semibold transition-colors">
+                    <span className="truncate block max-w-[110px]">
+                      {tx.tx_hash.slice(0, 10)}...{tx.tx_hash.slice(-6)}
+                    </span>
                   </td>
-
-                  <td className="py-2 px-3 text-forensic-textDim text-[10px]">
-                    {new Date(tx.timestamp).toISOString().replace('T', ' ').slice(0, 19)}
+                  <td className="py-2 px-3 text-text-muted whitespace-nowrap">
+                    {tx.timestamp ? new Date(tx.timestamp).toLocaleString('en-US', { timeZone: 'UTC' }) : 'N/A'}
                   </td>
-
-                  <td className="py-2 px-3 text-forensic-textMuted truncate max-w-[130px]">
-                    {tx.from_address}
+                  <td className="py-2 px-3 text-text-muted">
+                    <span className="truncate block max-w-[120px]">
+                      {tx.from_address.slice(0, 8)}...{tx.from_address.slice(-6)}
+                    </span>
                   </td>
-
-                  <td className="py-2 px-3 text-forensic-text truncate max-w-[130px]">
-                    {tx.to_address}
+                  <td className="py-2 px-3 text-text-muted">
+                    <span className="truncate block max-w-[120px]">
+                      {tx.to_address.slice(0, 8)}...{tx.to_address.slice(-6)}
+                    </span>
                   </td>
-
-                  <td className="py-2 px-3 text-right font-bold text-forensic-teal">
-                    {tx.amount.toFixed(4)} {tx.token_symbol || 'ETH'}
+                  <td className="py-2 px-3 text-right text-text font-semibold whitespace-nowrap">
+                    {tx.amount >= 1000 ? (tx.amount / 1000).toFixed(2) + 'k' : tx.amount.toFixed(4)}{' '}
+                    <span className="text-text-muted font-normal text-[10px]">
+                      {tx.token_symbol || 'ETH'}
+                    </span>
                   </td>
-
                   <td className="py-2 px-3 text-center">
-                    <span className="px-1.5 py-0.2 rounded bg-forensic-surfaceRaised border border-forensic-border text-forensic-textDim text-[10px]">
+                    <span className="px-1.5 py-0.2 rounded-full bg-surface-raised border border-border text-[9px] text-text-muted font-bold">
                       H{tx.hop || 1}
                     </span>
                   </td>
-
                   <td className="py-2 px-3 text-right">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedTx(tx);
+                        handleCopy(tx.tx_hash, tx.tx_hash);
                       }}
-                      className="text-[#E6C766] hover:underline text-[10px] uppercase font-semibold"
+                      className="h-6 w-6 rounded hover:text-text text-text-dim transition-colors inline-flex items-center justify-center shrink-0"
+                      title="Copy Tx Hash"
                     >
-                      Details →
+                      {copiedHash === tx.tx_hash ? (
+                        <Check className="h-3 w-3 text-verified shrink-0" />
+                      ) : (
+                        <Copy className="h-3 w-3 shrink-0" />
+                      )}
                     </button>
                   </td>
                 </tr>
@@ -206,106 +240,109 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
         </table>
       </div>
 
-      {/* Pagination Bar */}
-      <div className="p-2.5 border-t border-forensic-border bg-forensic-bg flex items-center justify-between text-[11px] text-forensic-textDim font-mono">
+      {/* Pagination Footer */}
+      <div className="p-3 border-t border-border bg-surface-raised/30 flex items-center justify-between font-mono text-[11px] text-text-muted">
         <div>
-          Showing {paginated.length} of {filtered.length} transfers
+          Showing {filtered.length > 0 ? page * pageSize + 1 : 0} to{' '}
+          {Math.min((page + 1) * pageSize, filtered.length)} of {filtered.length} records
         </div>
-        <div className="flex items-center space-x-2">
+
+        <div className="inline-flex items-center gap-1.5 shrink-0">
           <button
-            onClick={() => setPage((p) => Math.max(p - 1, 0))}
+            onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="px-2 py-0.5 rounded bg-forensic-surfaceRaised border border-forensic-border disabled:opacity-40 hover:bg-forensic-border text-forensic-text transition-colors"
+            className="h-6 w-6 rounded bg-bg hover:bg-surface-raised border border-border text-text disabled:opacity-40 disabled:cursor-not-allowed transition-colors inline-flex items-center justify-center shrink-0"
           >
-            Prev
+            <ChevronLeft className="h-3.5 w-3.5 shrink-0" />
           </button>
-          <span>
-            Page {page + 1} of {totalPages}
+          <span className="px-2 py-0.5 rounded bg-bg border border-border text-text text-[10px] leading-none shrink-0">
+            {page + 1} / {totalPages}
           </span>
           <button
-            onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
+            onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
             disabled={page >= totalPages - 1}
-            className="px-2 py-0.5 rounded bg-forensic-surfaceRaised border border-forensic-border disabled:opacity-40 hover:bg-forensic-border text-forensic-text transition-colors"
+            className="h-6 w-6 rounded bg-bg hover:bg-surface-raised border border-border text-text disabled:opacity-40 disabled:cursor-not-allowed transition-colors inline-flex items-center justify-center shrink-0"
           >
-            Next
+            <ChevronRight className="h-3.5 w-3.5 shrink-0" />
           </button>
         </div>
       </div>
 
-      {/* Right-Side Forensic Transaction Detail Drawer */}
+      {/* Transaction Detail Drawer Modal */}
       {selectedTx && (
-        <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-forensic-surface border-l border-forensic-border shadow-2xl flex flex-col font-mono text-xs">
-          <div className="p-4 border-b border-forensic-border bg-forensic-bg flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <ShieldCheck className="h-4 w-4 text-forensic-teal" />
-              <h3 className="font-bold text-forensic-text uppercase text-xs">
-                Transaction Forensic Details
-              </h3>
-            </div>
-            <button
-              onClick={() => setSelectedTx(null)}
-              className="p-1 rounded hover:bg-forensic-surfaceRaised text-forensic-textDim hover:text-forensic-text"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-
-          <div className="p-5 flex-1 overflow-y-auto space-y-4">
-            <div className="space-y-1">
-              <span className="text-[10px] uppercase text-forensic-textDim block">Transaction Hash</span>
-              <span className="text-forensic-text break-all select-all block bg-forensic-bg p-2 rounded border border-forensic-border">
-                {selectedTx.tx_hash}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 text-[11px]">
-              <div className="p-2.5 bg-forensic-surfaceRaised rounded border border-forensic-border">
-                <span className="text-[10px] uppercase text-forensic-textDim block">Transferred Volume</span>
-                <strong className="text-forensic-teal font-bold text-sm">
-                  {selectedTx.amount} {selectedTx.token_symbol || 'ETH'}
-                </strong>
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-30 flex items-center justify-center p-4">
+          <div className="bg-surface border border-border rounded-xl shadow-vercel-lg w-full max-w-lg p-5 space-y-4 text-xs font-mono animate-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <div className="inline-flex items-center gap-2">
+                <List className="h-4 w-4 text-accent shrink-0" />
+                <h4 className="font-bold text-text uppercase tracking-wider">
+                  Transaction Audit Inspector
+                </h4>
               </div>
-              <div className="p-2.5 bg-forensic-surfaceRaised rounded border border-forensic-border">
-                <span className="text-[10px] uppercase text-forensic-textDim block">Hop Position</span>
-                <strong className="text-forensic-text text-sm">Hop {selectedTx.hop || 1}</strong>
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] uppercase text-forensic-textDim block">Origin Address (From)</span>
-              <span className="text-forensic-text break-all select-all block bg-forensic-bg p-2 rounded border border-forensic-border">
-                {selectedTx.from_address}
-              </span>
-            </div>
-
-            <div className="space-y-1">
-              <span className="text-[10px] uppercase text-forensic-textDim block">Recipient Address (To)</span>
-              <span className="text-forensic-text break-all select-all block bg-forensic-bg p-2 rounded border border-forensic-border">
-                {selectedTx.to_address}
-              </span>
-            </div>
-
-            <div className="p-3 bg-forensic-surfaceRaised rounded border border-forensic-border text-[11px] space-y-1">
-              <span className="text-[10px] uppercase text-forensic-textDim block">Timestamp & Block Height</span>
-              <div className="text-forensic-text">UTC: {new Date(selectedTx.timestamp).toUTCString()}</div>
-              {selectedTx.block_number && (
-                <div className="text-forensic-textDim">Block Number: {selectedTx.block_number}</div>
-              )}
-            </div>
-
-            <div className="pt-2">
-              <a
-                href={
-                  selectedTx.tx_hash.startsWith('0x')
-                    ? `https://etherscan.io/tx/${selectedTx.tx_hash}`
-                    : `https://tronscan.org/#/transaction/${selectedTx.tx_hash}`
-                }
-                target="_blank"
-                rel="noreferrer"
-                className="w-full py-2 bg-[#E6C766] hover:bg-[#F1D98A] rounded text-center block text-[#101116] font-medium text-xs transition-colors"
+              <button
+                onClick={() => setSelectedTx(null)}
+                aria-label="Close inspector"
+                className="h-7 w-7 rounded-md hover:text-text text-text-dim transition-colors inline-flex items-center justify-center shrink-0 hover:bg-surface-hover"
               >
-                Inspect on Public Blockchain Explorer
-              </a>
+                <X className="h-4 w-4 shrink-0" />
+              </button>
+            </div>
+
+            <div className="space-y-2.5">
+              <div>
+                <span className="text-[10px] uppercase text-text-dim block mb-1">Transaction Hash:</span>
+                <div className="flex items-center space-x-2 p-2 bg-bg border border-border rounded-md break-all">
+                  <span className="text-text font-semibold select-all text-[11px]">{selectedTx.tx_hash}</span>
+                  <button
+                    onClick={() => handleCopy(selectedTx.tx_hash, 'drawer-hash')}
+                    className="h-6 w-6 rounded text-text-dim hover:text-text inline-flex items-center justify-center shrink-0"
+                  >
+                    {copiedHash === 'drawer-hash' ? <Check className="h-3.5 w-3.5 text-verified shrink-0" /> : <Copy className="h-3.5 w-3.5 shrink-0" />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-[11px]">
+                <div className="p-2 bg-bg border border-border rounded-md">
+                  <span className="text-[10px] text-text-dim block uppercase">Transfer Amount:</span>
+                  <span className="text-text font-bold">
+                    {selectedTx.amount} {selectedTx.token_symbol || 'ETH'}
+                  </span>
+                </div>
+                <div className="p-2 bg-bg border border-border rounded-md">
+                  <span className="text-[10px] text-text-dim block uppercase">Hop Distance:</span>
+                  <span className="text-text font-bold">Hop {selectedTx.hop || 1}</span>
+                </div>
+              </div>
+
+              <div>
+                <span className="text-[10px] uppercase text-text-dim block mb-1">Origin Address (From):</span>
+                <div className="p-2 bg-bg border border-border rounded-md break-all text-text text-[11px] select-all">
+                  {selectedTx.from_address}
+                </div>
+              </div>
+
+              <div>
+                <span className="text-[10px] uppercase text-text-dim block mb-1">Destination Address (To):</span>
+                <div className="p-2 bg-bg border border-border rounded-md break-all text-text text-[11px] select-all">
+                  {selectedTx.to_address}
+                </div>
+              </div>
+
+              <div className="pt-2 flex items-center justify-between text-[11px] border-t border-border">
+                <span className="text-text-muted">
+                  Timestamp: {selectedTx.timestamp ? new Date(selectedTx.timestamp).toUTCString() : 'N/A'}
+                </span>
+                <a
+                  href={`https://etherscan.io/tx/${selectedTx.tx_hash}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-accent hover:underline inline-flex items-center gap-1 font-semibold shrink-0"
+                >
+                  <span>Etherscan</span>
+                  <ExternalLink className="h-3 w-3 shrink-0" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
