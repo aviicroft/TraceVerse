@@ -32,17 +32,17 @@ export const LandingPageContent: React.FC = () => {
     <div className="min-h-screen bg-bg text-text font-sans antialiased selection:bg-accent selection:text-white transition-colors duration-150">
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 w-full border-b border-border bg-surface/80 backdrop-blur-md transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center space-x-6">
-            <Link href="/" className="inline-flex items-center gap-2.5 group">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 h-14 flex items-center justify-between gap-2 min-w-0">
+          <div className="flex items-center space-x-4 sm:space-x-6 min-w-0">
+            <Link href="/" className="inline-flex items-center gap-2 sm:gap-2.5 group shrink-0">
               <div className="w-7 h-7 rounded-lg bg-text text-bg inline-flex items-center justify-center font-bold shadow-sm transition-transform group-hover:scale-105 shrink-0">
                 <Shield className="h-4 w-4 shrink-0" />
               </div>
-              <div className="inline-flex items-center gap-2">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2">
                 <span className="font-bold text-sm tracking-tight text-text">
                   Trace<span className="text-text-muted font-normal">Verse</span>
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-surface-raised border border-border text-text-muted">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-surface-raised border border-border text-text-muted">
                   v1.2
                 </span>
               </div>
@@ -56,7 +56,7 @@ export const LandingPageContent: React.FC = () => {
             </nav>
           </div>
 
-          <div className="inline-flex items-center gap-3">
+          <div className="inline-flex items-center gap-2 sm:gap-3 shrink-0">
             <button
               onClick={toggleTheme}
               aria-label="Toggle Theme"
@@ -71,9 +71,10 @@ export const LandingPageContent: React.FC = () => {
 
             <Link
               href="/app"
-              className="px-3.5 py-1.5 rounded-lg bg-text text-bg hover:opacity-90 font-medium text-xs transition-opacity shadow-sm inline-flex items-center justify-center gap-1.5"
+              className="px-2.5 sm:px-3.5 py-1.5 rounded-lg bg-text text-bg hover:opacity-90 font-medium text-xs transition-opacity shadow-sm inline-flex items-center justify-center gap-1.5 shrink-0"
             >
-              <span>Launch Console</span>
+              <span className="hidden sm:inline whitespace-nowrap">Launch Console</span>
+              <span className="sm:hidden whitespace-nowrap">Launch</span>
               <ArrowRight className="h-3.5 w-3.5 shrink-0" />
             </Link>
           </div>

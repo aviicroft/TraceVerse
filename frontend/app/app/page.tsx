@@ -139,38 +139,38 @@ export default function InvestigationAppPage() {
       />
 
       {/* Top Breadcrumb & Status Bar */}
-      <div className="border-b border-border bg-surface-raised/50 px-4 sm:px-6 py-2 text-xs font-mono flex items-center justify-between text-text-muted">
-        <div className="inline-flex items-center gap-2">
+      <div className="border-b border-border bg-surface-raised/50 px-3 sm:px-6 py-2 text-xs font-mono flex flex-wrap items-center justify-between gap-2 text-text-muted min-w-0">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-text hover:text-accent font-medium transition-colors"
+            className="inline-flex items-center gap-1.5 text-text hover:text-accent font-medium transition-colors shrink-0"
           >
             <ArrowLeft className="h-3.5 w-3.5 shrink-0" />
             <span>Landing Page</span>
           </Link>
-          <span className="text-border">/</span>
+          <span className="text-border shrink-0">/</span>
           <Link
             href="/docs"
-            className="inline-flex items-center gap-1 text-text hover:text-accent font-medium transition-colors"
+            className="inline-flex items-center gap-1 text-text hover:text-accent font-medium transition-colors shrink-0"
           >
             <BookOpen className="h-3.5 w-3.5 text-warning shrink-0" />
             <span>Judge Docs</span>
           </Link>
-          <span className="text-border">/</span>
-          <span className="text-text font-semibold">Live Investigation Console</span>
+          <span className="text-border shrink-0">/</span>
+          <span className="text-text font-semibold truncate">Live Investigation Console</span>
         </div>
 
-        <div className="inline-flex items-center gap-1.5">
+        <div className="inline-flex items-center gap-1.5 shrink-0">
           <button
             onClick={() => setShowMLEvalModal(true)}
-            className="px-2.5 py-1 rounded-md bg-surface border border-border text-text hover:bg-surface-hover transition-colors inline-flex items-center gap-1.5 text-[11px]"
+            className="px-2.5 py-1 rounded-md bg-surface border border-border text-text hover:bg-surface-hover transition-colors inline-flex items-center gap-1.5 text-[11px] shrink-0"
           >
             <BrainCircuit className="h-3 w-3 text-verified shrink-0" />
             <span>ML Benchmarks</span>
           </button>
           <button
             onClick={() => setShowDatasetModal(true)}
-            className="px-2.5 py-1 rounded-md bg-surface border border-border text-text hover:bg-surface-hover transition-colors inline-flex items-center gap-1.5 text-[11px]"
+            className="px-2.5 py-1 rounded-md bg-surface border border-border text-text hover:bg-surface-hover transition-colors inline-flex items-center gap-1.5 text-[11px] shrink-0"
           >
             <Database className="h-3 w-3 text-accent shrink-0" />
             <span>100K Dataset</span>
