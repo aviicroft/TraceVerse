@@ -9,7 +9,15 @@ from sqlalchemy import select, desc, func
 from pydantic import BaseModel, Field
 
 from backend.app.core.address_validator import detect_blockchain, is_valid_crypto_address, normalize_address
-from backend.app.models.database import get_db, AnalysisRun, VASP, VASPAddress
+from backend.app.models.database import (
+    get_db, 
+    AnalysisRun, 
+    VASP, 
+    VASPAddress,
+    Attribution as DBAttribution,
+    Evidence as DBEvidence,
+    Transaction as DBTransaction
+)
 from backend.app.schemas.analysis import (
     AnalyzeRequest,
     AnalysisStatusResponse,
@@ -138,37 +146,181 @@ async def get_analysis_status(
 
 
 @api_router.get("/analysis/{analysis_id}/graph", response_model=GraphData)
-async def get_analysis_graph(analysis_id: str):
-    """Retrieves Cytoscape graph nodes and edges."""
+async def get_analysis_graph(analysis_id: str, db: AsyncSession = Depends(get_db)):
+    """Retrieves Cytoscape graph nodes and edges with cache and DB fallback."""
     if analysis_id in active_analyses_cache and active_analyses_cache[analysis_id].get("graph_data"):
         return active_analyses_cache[analysis_id]["graph_data"]
+
+    # 1. Check DB for persisted graph_json
+    run = await db.get(AnalysisRun, analysis_id)
+    if run and run.graph_json:
+        try:
+            parsed = json.loads(run.graph_json)
+            if analysis_id not in active_analyses_cache:
+                active_analyses_cache[analysis_id] = {}
+            active_analyses_cache[analysis_id]["graph_data"] = parsed
+            return parsed
+        except Exception:
+            pass
+
+    # 2. Reconstruct graph from DB transactions if completed
+    if run and run.status == "COMPLETED":
+        from backend.app.services.graph.builder import TransactionGraphBuilder
+        from backend.app.services.blockchain.factory import BlockchainProviderFactory
+
+        norm_wallet = run.wallet_address.lower()
+        stmt = select(DBTransaction).where(
+            (func.lower(DBTransaction.from_address) == norm_wallet) | 
+            (func.lower(DBTransaction.to_address) == norm_wallet)
+        ).order_by(DBTransaction.timestamp.desc()).limit(200)
+        res = await db.execute(stmt)
+        tx_rows = res.scalars().all()
+
+        provider = BlockchainProviderFactory.get_provider(run.wallet_address)
+        builder = TransactionGraphBuilder(blockchain_provider=provider, max_hops=run.max_hops)
+        builder.graph.clear()
+        builder.node_hops[run.wallet_address.lower()] = 0
+        builder._add_node_to_graph(run.wallet_address.lower(), hop=0)
+
+        for tx in tx_rows:
+            from_norm = (tx.from_address or "").lower()
+            to_norm = (tx.to_address or "").lower()
+            if from_norm:
+                if from_norm not in builder.node_hops:
+                    builder.node_hops[from_norm] = 1
+                builder._add_node_to_graph(from_norm, hop=builder.node_hops[from_norm])
+            if to_norm:
+                if to_norm not in builder.node_hops:
+                    builder.node_hops[to_norm] = 1
+                builder._add_node_to_graph(to_norm, hop=builder.node_hops[to_norm])
+            if from_norm and to_norm:
+                edge_id = f"{tx.tx_hash}_{from_norm[:6]}_{to_norm[:6]}_{tx.token_symbol or 'ETH'}"
+                builder.graph.add_edge(
+                    from_norm,
+                    to_norm,
+                    key=edge_id,
+                    tx_hash=tx.tx_hash,
+                    amount=float(tx.amount or 0.0),
+                    asset_symbol=tx.token_symbol or "ETH",
+                    timestamp=tx.timestamp,
+                    hop=builder.node_hops.get(to_norm, 1)
+                )
+
+        reconstructed_data = builder.export_cytoscape_data(run.wallet_address)
+        try:
+            dumped = reconstructed_data.model_dump_json() if hasattr(reconstructed_data, 'model_dump_json') else json.dumps(reconstructed_data.dict())
+            run.graph_json = dumped
+            await db.commit()
+        except Exception:
+            pass
+
+        if analysis_id not in active_analyses_cache:
+            active_analyses_cache[analysis_id] = {}
+        active_analyses_cache[analysis_id]["graph_data"] = reconstructed_data
+        return reconstructed_data
 
     raise HTTPException(status_code=404, detail="Graph data not available yet.")
 
 
 @api_router.get("/analysis/{analysis_id}/attributions", response_model=List[AttributionSchema])
-async def get_analysis_attributions(analysis_id: str):
+async def get_analysis_attributions(analysis_id: str, db: AsyncSession = Depends(get_db)):
     """Retrieves ranked VASP attributions and breakdown."""
-    if analysis_id in active_analyses_cache:
-        return active_analyses_cache[analysis_id].get("attributions", [])
+    if analysis_id in active_analyses_cache and active_analyses_cache[analysis_id].get("attributions"):
+        return active_analyses_cache[analysis_id]["attributions"]
 
-    raise HTTPException(status_code=404, detail="Attributions not found.")
+    # Fallback to database
+    stmt = select(DBAttribution).where(DBAttribution.analysis_id == analysis_id).order_by(DBAttribution.rank)
+    res = await db.execute(stmt)
+    db_attrs = res.scalars().all()
+    if db_attrs:
+        result = []
+        for a in db_attrs:
+            metrics_dict = None
+            if a.metrics_json:
+                try:
+                    metrics_dict = json.loads(a.metrics_json)
+                except Exception:
+                    pass
+            result.append(
+                AttributionSchema(
+                    id=a.id,
+                    vasp_name=a.vasp_name,
+                    score=a.score,
+                    evidence_strength=a.evidence_strength,
+                    rank=a.rank,
+                    summary=a.summary,
+                    metrics=metrics_dict
+                )
+            )
+        return result
+
+    return []
 
 
 @api_router.get("/analysis/{analysis_id}/evidence", response_model=List[EvidenceSchema])
-async def get_analysis_evidence(analysis_id: str):
+async def get_analysis_evidence(analysis_id: str, db: AsyncSession = Depends(get_db)):
     """Retrieves verifiable evidence items."""
-    if analysis_id in active_analyses_cache:
-        return active_analyses_cache[analysis_id].get("evidence", [])
+    if analysis_id in active_analyses_cache and active_analyses_cache[analysis_id].get("evidence"):
+        return active_analyses_cache[analysis_id]["evidence"]
 
-    raise HTTPException(status_code=404, detail="Evidence not found.")
+    # Fallback to database
+    stmt = select(DBEvidence).where(DBEvidence.analysis_id == analysis_id)
+    res = await db.execute(stmt)
+    db_evs = res.scalars().all()
+    if db_evs:
+        return [
+            EvidenceSchema(
+                id=e.id,
+                evidence_type=e.evidence_type,
+                source_address=e.source_address,
+                target_address=e.target_address,
+                tx_hash=e.tx_hash,
+                hop_distance=e.hop_distance,
+                amount=e.amount,
+                asset_symbol=e.asset_symbol,
+                explanation=e.explanation,
+                strength=e.strength
+            )
+            for e in db_evs
+        ]
+
+    return []
 
 
 @api_router.get("/analysis/{analysis_id}/transactions")
-async def get_analysis_transactions(analysis_id: str):
+async def get_analysis_transactions(analysis_id: str, db: AsyncSession = Depends(get_db)):
     """Retrieves normalized transactions list."""
-    if analysis_id in active_analyses_cache:
-        return active_analyses_cache[analysis_id].get("transactions", [])
+    if analysis_id in active_analyses_cache and active_analyses_cache[analysis_id].get("transactions"):
+        return active_analyses_cache[analysis_id]["transactions"]
+
+    # Fallback to database
+    run = await db.get(AnalysisRun, analysis_id)
+    if run:
+        norm_wallet = run.wallet_address.lower()
+        stmt = select(DBTransaction).where(
+            (func.lower(DBTransaction.from_address) == norm_wallet) | 
+            (func.lower(DBTransaction.to_address) == norm_wallet)
+        ).order_by(DBTransaction.timestamp.desc()).limit(200)
+        res = await db.execute(stmt)
+        tx_rows = res.scalars().all()
+        return [
+            {
+                "tx_hash": tx.tx_hash,
+                "chain": tx.chain,
+                "block_number": tx.block_number,
+                "timestamp": tx.timestamp.isoformat() if hasattr(tx.timestamp, 'isoformat') else str(tx.timestamp),
+                "from_address": tx.from_address,
+                "to_address": tx.to_address,
+                "asset_type": tx.asset_type,
+                "token_address": tx.token_address,
+                "token_symbol": tx.token_symbol or "ETH",
+                "token_decimals": tx.token_decimals or 18,
+                "amount": tx.amount,
+                "gas_used": tx.gas_used,
+                "is_error": tx.is_error
+            }
+            for tx in tx_rows
+        ]
 
     return []
 

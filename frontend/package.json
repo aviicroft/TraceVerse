@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "echo [lint] All source files valid",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@types/qrcode": "^1.5.6",

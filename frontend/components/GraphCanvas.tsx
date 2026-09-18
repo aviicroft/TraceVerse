@@ -30,6 +30,7 @@ import {
 import { GraphData, NormalizedTransaction } from '../lib/types';
 import { SankeyFlowView } from './SankeyFlowView';
 import { TimelineReplayBar } from './TimelineReplayBar';
+import { useTheme } from './ThemeProvider';
 
 // Register dagre layout plugin safely
 if (typeof window !== 'undefined') {
@@ -52,6 +53,7 @@ export interface GraphCanvasProps {
   recentAnalyses?: any[];
   isLoading?: boolean;
   onStartAnalysis?: (address: string, maxHops: number) => void;
+  onLoadCase?: (analysisId: string) => void;
 }
 
 // Helper to generate dynamic Cytoscape stylesheet for Dark/Light themes
@@ -61,17 +63,17 @@ function getCytoscapeStylesheet(isDarkMode: boolean): any[] {
       selector: 'node',
       style: {
         label: 'data(label)',
-        color: isDarkMode ? '#eeeeee' : '#0f172a',
-        'font-family': 'ui-monospace, SFMono-Regular, monospace',
+        color: isDarkMode ? '#f1f5f9' : '#0f172a',
+        'font-family': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
         'font-size': '9px',
         'text-wrap': 'wrap',
         'text-valign': 'center',
         'text-halign': 'center',
-        'background-color': isDarkMode ? '#0d0d0d' : '#ffffff',
-        'border-width': 1.5,
-        'border-color': isDarkMode ? '#242424' : '#cbd5e1',
-        width: 52,
-        height: 52,
+        'background-color': isDarkMode ? '#1e293b' : '#ffffff',
+        'border-width': 2,
+        'border-color': isDarkMode ? '#475569' : '#cbd5e1',
+        width: 56,
+        height: 56,
         shape: 'roundrectangle',
         'transition-property': 'background-color, border-color, width, height, opacity',
         'transition-duration': 0.15,
@@ -80,12 +82,12 @@ function getCytoscapeStylesheet(isDarkMode: boolean): any[] {
     {
       selector: 'node[?isRoot]',
       style: {
-        'background-color': isDarkMode ? '#230a0e' : '#fee2e2',
-        'border-color': '#b91c32',
-        'border-width': 2.5,
-        color: isDarkMode ? '#f87185' : '#991b1b',
-        width: 64,
-        height: 64,
+        'background-color': isDarkMode ? '#3b0d14' : '#fee2e2',
+        'border-color': isDarkMode ? '#ef4444' : '#dc2626',
+        'border-width': 3,
+        color: isDarkMode ? '#fca5a5' : '#991b1b',
+        width: 68,
+        height: 68,
         'font-weight': 'bold',
         'font-size': '10px',
       },
@@ -93,12 +95,12 @@ function getCytoscapeStylesheet(isDarkMode: boolean): any[] {
     {
       selector: 'node[?isVasp]',
       style: {
-        'background-color': isDarkMode ? 'rgba(111, 168, 137, 0.16)' : 'rgba(0,112,243,0.08)',
-        'border-color': isDarkMode ? '#6fa889' : '#0070f3',
-        'border-width': 2.5,
-        color: isDarkMode ? '#a7d7be' : '#005bb5',
-        width: 70,
-        height: 56,
+        'background-color': isDarkMode ? '#063522' : '#ecfdf5',
+        'border-color': isDarkMode ? '#10b981' : '#059669',
+        'border-width': 3,
+        color: isDarkMode ? '#6ee7b7' : '#047857',
+        width: 74,
+        height: 58,
         shape: 'roundrectangle',
         'font-weight': 'bold',
         'font-size': '10px',
@@ -107,45 +109,48 @@ function getCytoscapeStylesheet(isDarkMode: boolean): any[] {
     {
       selector: 'node[hop = 1]:not([?isRoot]):not([?isVasp])',
       style: {
-        'border-color': isDarkMode ? '#2e2e2e' : '#94a3b8',
-        'background-color': isDarkMode ? '#141414' : '#f8fafc',
-        color: isDarkMode ? '#eeeeee' : '#334155',
+        'border-color': isDarkMode ? '#64748b' : '#94a3b8',
+        'background-color': isDarkMode ? '#1e293b' : '#f8fafc',
+        color: isDarkMode ? '#f8fafc' : '#1e293b',
       },
     },
     {
       selector: 'node[hop = 2]:not([?isRoot]):not([?isVasp])',
       style: {
-        'border-color': isDarkMode ? '#242424' : '#94a3b8',
-        'background-color': isDarkMode ? '#0f0f0f' : '#f1f5f9',
-        color: isDarkMode ? '#a1a1a1' : '#475569',
+        'border-color': isDarkMode ? '#475569' : '#cbd5e1',
+        'background-color': isDarkMode ? '#182234' : '#f1f5f9',
+        color: isDarkMode ? '#e2e8f0' : '#334155',
       },
     },
     {
       selector: 'node[hop = 3]:not([?isRoot]):not([?isVasp])',
       style: {
-        'border-color': isDarkMode ? '#1a1a1a' : '#cbd5e1',
-        'background-color': isDarkMode ? '#0a0a0a' : '#f4f4f5',
-        color: isDarkMode ? '#707070' : '#64748b',
+        'border-color': isDarkMode ? '#334155' : '#e2e8f0',
+        'background-color': isDarkMode ? '#0f172a' : '#f4f4f5',
+        color: isDarkMode ? '#cbd5e1' : '#475569',
       },
     },
     {
       selector: 'edge',
       style: {
-        width: 1.6,
-        'line-color': isDarkMode ? '#242424' : '#cbd5e1',
-        'target-arrow-color': isDarkMode ? '#383838' : '#94a3b8',
+        width: 2,
+        'line-color': isDarkMode ? '#64748b' : '#94a3b8',
+        'target-arrow-color': isDarkMode ? '#94a3b8' : '#64748b',
         'target-arrow-shape': 'triangle',
-        'arrow-scale': 0.85,
+        'arrow-scale': 1.0,
         'curve-style': 'bezier',
         label: 'data(label)',
         'font-size': '8.5px',
         'font-family': 'ui-monospace, SFMono-Regular, monospace',
-        color: isDarkMode ? '#a1a1a1' : '#64748b',
+        color: isDarkMode ? '#cbd5e1' : '#334155',
         'text-rotation': 'autorotate',
-        'text-background-opacity': 0.9,
-        'text-background-color': isDarkMode ? '#050505' : '#ffffff',
-        'text-background-padding': '2px',
+        'text-background-opacity': 0.95,
+        'text-background-color': isDarkMode ? '#09090b' : '#ffffff',
+        'text-background-padding': '3px',
         'text-background-shape': 'roundrectangle',
+        'text-border-color': isDarkMode ? '#27272a' : '#e2e8f0',
+        'text-border-width': 1,
+        'text-border-opacity': 0.8,
         'transition-property': 'line-color, target-arrow-color, width, opacity',
         'transition-duration': 0.15,
       },
@@ -153,17 +158,17 @@ function getCytoscapeStylesheet(isDarkMode: boolean): any[] {
     {
       selector: '.path-focused',
       style: {
-        'line-color': '#b91c32',
-        'target-arrow-color': '#b91c32',
-        width: 3.5,
+        'line-color': '#ef4444',
+        'target-arrow-color': '#ef4444',
+        width: 4,
         'z-index': 999,
       },
     },
     {
       selector: 'node.path-focused',
       style: {
-        'border-color': '#b91c32',
-        'border-width': 3,
+        'border-color': '#ef4444',
+        'border-width': 3.5,
         'z-index': 999,
       },
     },
@@ -176,16 +181,16 @@ function getCytoscapeStylesheet(isDarkMode: boolean): any[] {
     {
       selector: '.replay-active-edge',
       style: {
-        'line-color': '#c49a61',
-        'target-arrow-color': '#c49a61',
-        width: 4,
+        'line-color': '#f59e0b',
+        'target-arrow-color': '#f59e0b',
+        width: 4.5,
         'z-index': 1000,
       },
     },
     {
       selector: 'node.replay-active-node',
       style: {
-        'border-color': '#c49a61',
+        'border-color': '#f59e0b',
         'border-width': 3.5,
         'z-index': 1000,
       },
@@ -193,10 +198,10 @@ function getCytoscapeStylesheet(isDarkMode: boolean): any[] {
     {
       selector: ':selected',
       style: {
-        'border-color': '#b91c32',
-        'border-width': 3,
-        'line-color': '#b91c32',
-        'target-arrow-color': '#b91c32',
+        'border-color': '#3b82f6',
+        'border-width': 3.5,
+        'line-color': '#3b82f6',
+        'target-arrow-color': '#3b82f6',
       },
     },
   ];
@@ -207,20 +212,22 @@ function getLayoutConfig(layoutMode: LayoutType, rootNodeId?: string) {
   if (layoutMode === 'force') {
     return {
       name: 'cose',
-      animate: false,
+      animate: true,
+      animationDuration: 400,
       randomize: false,
-      componentSpacing: 100,
+      componentSpacing: 80,
       nodeOverlap: 20,
-      idealEdgeLength: 100,
-      nodeRepulsion: 400000,
+      idealEdgeLength: 80,
+      nodeRepulsion: 15000,
     };
   } else if (layoutMode === 'hierarchical') {
     return {
       name: 'breadthfirst',
       directed: true,
-      roots: rootNodeId ? [`[id = "${rootNodeId}"]`] : undefined,
+      roots: rootNodeId ? `node[id = "${rootNodeId}"]` : undefined,
       spacingFactor: 1.4,
       animate: true,
+      animationDuration: 300,
     };
   } else if (layoutMode === 'radial') {
     return {
@@ -229,6 +236,7 @@ function getLayoutConfig(layoutMode: LayoutType, rootNodeId?: string) {
       levelWidth: () => 1,
       minNodeSpacing: 60,
       animate: true,
+      animationDuration: 300,
     };
   }
   return {
@@ -249,7 +257,10 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
   recentAnalyses,
   isLoading = false,
   onStartAnalysis,
+  onLoadCase,
 }) => {
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === 'dark';
   const containerRef = useRef<HTMLDivElement>(null);
   const cyRef = useRef<cytoscape.Core | null>(null);
 
@@ -516,9 +527,12 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
       container: containerRef.current,
       elements: elements,
       style: getCytoscapeStylesheet(isDarkMode),
-      layout: layoutConfig,
+      layout: { name: 'null' },
       boxSelectionEnabled: false,
       autounselectify: false,
+      wheelSensitivity: 0.25,
+      minZoom: 0.15,
+      maxZoom: 3.5,
     });
 
     // 4. Register Event Handlers
@@ -545,13 +559,40 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
 
     cyRef.current = cy;
 
+    // Run layout with stop callback to guarantee fit and visibility
+    const layoutInstance = cy.layout({
+      ...layoutConfig,
+      stop: () => {
+        cy.resize();
+        cy.fit(undefined, 40);
+      },
+    });
+    layoutInstance.run();
+
     // Trigger initial fit after layout finishes
     cy.ready(() => {
       cy.resize();
-      cy.fit(undefined, 35);
+      cy.fit(undefined, 40);
     });
 
+    // Handle geometry settling in browser flexbox
+    const rafId = requestAnimationFrame(() => {
+      if (cyRef.current) {
+        cyRef.current.resize();
+        cyRef.current.fit(undefined, 40);
+      }
+    });
+
+    const timer = setTimeout(() => {
+      if (cyRef.current) {
+        cyRef.current.resize();
+        cyRef.current.fit(undefined, 40);
+      }
+    }, 350);
+
     return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timer);
       cy.destroy();
       cyRef.current = null;
     };
@@ -564,35 +605,44 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
     minAmount,
     highlightPathToNode,
     rootNode,
+    isDarkMode,
   ]);
 
   // Dynamic Layout Switch (Without destroying Cytoscape instance)
   useEffect(() => {
     if (cyRef.current && graphData?.nodes && graphData.nodes.length > 0) {
       const config = getLayoutConfig(layoutMode, rootNode?.id);
-      cyRef.current.layout(config).run();
+      const l = cyRef.current.layout({
+        ...config,
+        stop: () => {
+          if (cyRef.current) {
+            cyRef.current.resize();
+            cyRef.current.fit(undefined, 40);
+          }
+        },
+      });
+      l.run();
     }
   }, [layoutMode, rootNode]);
 
   // Dynamic Theme Switch Listener (Updates Cytoscape style in-place)
   useEffect(() => {
-    const handleThemeEvent = () => {
-      if (!cyRef.current) return;
-      const isDarkMode =
-        typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+    if (cyRef.current) {
       cyRef.current.style(getCytoscapeStylesheet(isDarkMode)).update();
-    };
-
-    window.addEventListener('traceverse-theme-change', handleThemeEvent);
-    return () => window.removeEventListener('traceverse-theme-change', handleThemeEvent);
-  }, []);
+    }
+  }, [isDarkMode]);
 
   // ResizeObserver on Container to guarantee crisp Cytoscape dimensions
   useEffect(() => {
     if (!containerRef.current) return;
+    let didInitialFit = false;
     const ro = new ResizeObserver(() => {
       if (cyRef.current) {
         cyRef.current.resize();
+        if (!didInitialFit) {
+          cyRef.current.fit(undefined, 40);
+          didInitialFit = true;
+        }
       }
     });
     ro.observe(containerRef.current);
@@ -634,12 +684,25 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
   // Toolbar Handlers
   const handleZoomIn = () => cyRef.current?.zoom(cyRef.current.zoom() * 1.25);
   const handleZoomOut = () => cyRef.current?.zoom(cyRef.current.zoom() * 0.8);
-  const handleFit = () => cyRef.current?.fit(undefined, 35);
+  const handleFit = () => {
+    if (cyRef.current) {
+      cyRef.current.resize();
+      cyRef.current.fit(undefined, 40);
+    }
+  };
   const handleResetLayout = () => {
     if (cyRef.current) {
       const config = getLayoutConfig(layoutMode, rootNode?.id);
-      cyRef.current.layout(config).run();
-      cyRef.current.fit(undefined, 35);
+      const l = cyRef.current.layout({
+        ...config,
+        stop: () => {
+          if (cyRef.current) {
+            cyRef.current.resize();
+            cyRef.current.fit(undefined, 40);
+          }
+        },
+      });
+      l.run();
     }
   };
 
@@ -1136,7 +1199,13 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                     {recentAnalyses.slice(0, 3).map((r, i) => (
                       <button
                         key={i}
-                        onClick={() => onStartAnalysis(r.wallet_address, 3)}
+                        onClick={() => {
+                          if (onLoadCase && r.analysis_id && r.status === 'COMPLETED') {
+                            onLoadCase(r.analysis_id);
+                          } else if (onStartAnalysis) {
+                            onStartAnalysis(r.wallet_address, 3);
+                          }
+                        }}
                         className="w-full p-2 rounded-lg bg-surface-raised hover:bg-surface-hover border border-border/80 text-left flex items-center justify-between text-[11px] transition-colors"
                       >
                         <span className="font-bold text-text truncate max-w-[200px]">
@@ -1167,7 +1236,9 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
         ) : (
           <div className="flex-1 relative bg-bg-canvas h-full flex flex-col min-h-0">
             {/* CYTOSCAPE CONTAINER */}
-            <div ref={containerRef} className="w-full flex-1 min-h-0" />
+            <div className="relative flex-1 w-full h-full min-h-[420px] overflow-hidden">
+              <div ref={containerRef} className="absolute inset-0 w-full h-full" />
+            </div>
 
             {/* Timeline Replay Bar */}
             {transactions && transactions.length > 0 && (

@@ -63,10 +63,42 @@ export default function InvestigationAppPage() {
     loadRecentCases();
   }, []);
 
+  const loadCase = async (analysisId: string, switchTab = true) => {
+    setIsLoading(true);
+    try {
+      const [status, gData, attrs, evs, txs] = await Promise.all([
+        api.getAnalysisStatus(analysisId).catch(() => null),
+        api.getAnalysisGraph(analysisId).catch(() => null),
+        api.getAnalysisAttributions(analysisId).catch(() => []),
+        api.getAnalysisEvidence(analysisId).catch(() => []),
+        api.getAnalysisTransactions(analysisId).catch(() => []),
+      ]);
+      if (status) setAnalysisStatus(status);
+      if (gData) setGraphData(gData);
+      setAttributions(attrs);
+      setEvidence(evs);
+      setTransactions(txs);
+      if (switchTab && activeTab !== 'GRAPH_STUDIO') {
+        setActiveTab('WORKSPACE');
+      }
+    } catch (err) {
+      console.error('Failed to load case:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const loadRecentCases = async () => {
     try {
       const recent = await api.getRecentAnalyses();
       setRecentAnalyses(recent || []);
+      // If no active case loaded, auto-load the latest completed analysis so graph is instantly visible
+      if (recent && recent.length > 0) {
+        const latestCompleted = recent.find((r) => r.status === 'COMPLETED');
+        if (latestCompleted) {
+          loadCase(latestCompleted.analysis_id, false);
+        }
+      }
     } catch (e) {
       console.warn('Could not load recent analyses:', e);
     }
@@ -75,7 +107,7 @@ export default function InvestigationAppPage() {
   const handleStartAnalysis = async (walletAddress: string, maxHops: number) => {
     if (pollingTimerRef.current) clearInterval(pollingTimerRef.current);
 
-    setActiveTab('WORKSPACE');
+    setActiveTab((prev) => (prev === 'GRAPH_STUDIO' ? 'GRAPH_STUDIO' : 'WORKSPACE'));
     setIsLoading(true);
     setGraphData(null);
     setAttributions([]);
@@ -304,6 +336,7 @@ export default function InvestigationAppPage() {
                     graphData={graphData}
                     transactions={transactions}
                     onPivotTarget={(addr) => handleStartAnalysis(addr, 3)}
+                    onLoadCase={(id) => loadCase(id, false)}
                   />
                   <TransactionLedger transactions={transactions} />
                 </div>
@@ -327,7 +360,13 @@ export default function InvestigationAppPage() {
                   {recentAnalyses.map((run, idx) => (
                     <button
                       key={idx}
-                      onClick={() => handleStartAnalysis(run.wallet_address, 3)}
+                      onClick={() => {
+                        if (run.status === 'COMPLETED') {
+                          loadCase(run.analysis_id, true);
+                        } else {
+                          handleStartAnalysis(run.wallet_address, 3);
+                        }
+                      }}
                       className="p-3 bg-surface-raised/40 hover:bg-surface-raised border border-border/80 hover:border-border rounded-lg text-left transition-all group space-y-1.5 shadow-sm"
                     >
                       <div className="flex items-center justify-between text-[11px]">
@@ -376,6 +415,7 @@ export default function InvestigationAppPage() {
               recentAnalyses={recentAnalyses}
               isLoading={isLoading}
               onStartAnalysis={handleStartAnalysis}
+              onLoadCase={(id) => loadCase(id, false)}
             />
             {transactions && transactions.length > 0 && (
               <TransactionLedger transactions={transactions} />
