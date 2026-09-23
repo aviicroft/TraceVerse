@@ -141,6 +141,7 @@ class AnalysisRun(Base):
     num_transactions: Mapped[int] = mapped_column(Integer, default=0)
     num_nodes: Mapped[int] = mapped_column(Integer, default=0)
     num_edges: Mapped[int] = mapped_column(Integer, default=0)
+    graph_json: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     attributions: Mapped[list["Attribution"]] = relationship("Attribution", back_populates="analysis", cascade="all, delete-orphan")
     evidence: Mapped[list["Evidence"]] = relationship("Evidence", back_populates="analysis", cascade="all, delete-orphan")

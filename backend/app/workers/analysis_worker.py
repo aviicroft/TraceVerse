@@ -197,6 +197,17 @@ class AnalysisWorker:
 
                 # E. Update AnalysisRun to COMPLETED
                 completed_time = datetime.datetime.utcnow()
+                try:
+                    if hasattr(graph_data, 'model_dump_json'):
+                        graph_json_str = graph_data.model_dump_json()
+                    elif hasattr(graph_data, 'json'):
+                        graph_json_str = graph_data.json()
+                    else:
+                        graph_json_str = json.dumps(graph_data)
+                except Exception as g_err:
+                    logger.warning(f"Failed to serialize graph_data for {analysis_id}: {g_err}")
+                    graph_json_str = None
+
                 await session.execute(
                     update(AnalysisRun)
                     .where(AnalysisRun.id == analysis_id)
@@ -205,7 +216,8 @@ class AnalysisWorker:
                         completed_at=completed_time,
                         num_transactions=len(all_txs),
                         num_nodes=len(graph.nodes),
-                        num_edges=len(graph.edges)
+                        num_edges=len(graph.edges),
+                        graph_json=graph_json_str
                     )
                 )
                 await session.commit()

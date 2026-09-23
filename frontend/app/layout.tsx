@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ThemeProvider } from '../components/ThemeProvider';
 
 export const metadata: Metadata = {
-  title: 'SIH TRACEVERSE - Automated Wallet to VASP Attribution Engine',
-  description: 'Automated attribution of unknown cryptocurrency wallets to nearest Virtual Asset Service Providers (VASPs) through real blockchain intelligence APIs.',
+  title: 'TRACEVERSE — Real-Time Cryptocurrency Fraud Attribution & Blockchain Intelligence',
+  description:
+    'Production-grade multi-hop attribution engine mapping unknown cryptocurrency wallets to Virtual Asset Service Providers (VASPs) through on-chain graph traversal and heuristic intelligence.',
 };
 
 export default function RootLayout({
@@ -12,20 +14,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" async></script>
       </head>
-      <body className="bg-[#060A12] text-slate-100 antialiased min-h-screen">
-        {children}
+      <body className="bg-bg text-text antialiased min-h-screen selection:bg-accent selection:text-white transition-colors duration-150">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
 }
-

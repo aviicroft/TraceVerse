@@ -9,9 +9,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-<<<<<<< Updated upstream
-        // High-Visibility Institutional Theme Tokens
-=======
         bg: {
           DEFAULT: "var(--bg)",
           subtle: "var(--bg-subtle)",
@@ -82,7 +79,6 @@ module.exports = {
         },
 
         // Forensic Tokens (backward compatibility)
->>>>>>> Stashed changes
         forensic: {
           bg: "var(--forensic-bg)",
           surface: "var(--forensic-surface)",
@@ -94,6 +90,10 @@ module.exports = {
           textDim: "var(--forensic-text-dim)",
           accent: "var(--forensic-accent)",
           teal: "var(--forensic-teal)",
+          verified: "var(--forensic-verified)",
+          verifiedBright: "var(--forensic-verified-bright)",
+          verifiedSoft: "var(--forensic-verified-soft)",
+          verifiedBorder: "var(--forensic-verified-border)",
           amber: "var(--forensic-amber)",
           rose: "var(--forensic-rose)",
         },
@@ -103,9 +103,6 @@ module.exports = {
         mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       fontSize: {
-<<<<<<< Updated upstream
-        '2xs': '0.65rem',
-=======
         'display': ['2rem', { lineHeight: '2.5rem', fontWeight: '700' }],
         'page-title': ['1.75rem', { lineHeight: '2.25rem', fontWeight: '700' }],
         'section-title': ['1.125rem', { lineHeight: '1.75rem', fontWeight: '600' }],
@@ -126,7 +123,6 @@ module.exports = {
         'panel-elevated': '0 12px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border)',
         'vercel': '0 0 0 1px var(--border), 0 2px 4px rgba(0,0,0,0.04)',
         'vercel-lg': '0 0 0 1px var(--border), 0 8px 16px rgba(0,0,0,0.08)',
->>>>>>> Stashed changes
       },
     },
   },

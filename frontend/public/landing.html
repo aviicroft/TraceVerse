@@ -37,12 +37,12 @@
             --text-secondary: #94A3B8;
             --text-muted: #64748B;
             --text-dim: #475569;
-            --accent: #38BDF8;
-            --accent-bright: #7DD3FC;
-            --accent-dim: rgba(56, 189, 248, 0.12);
-            --green: #4ADE80;
-            --amber: #FBBF24;
-            --red: #F87171;
+            --accent: #E6C766;
+            --accent-bright: #F1D98A;
+            --accent-dim: rgba(230, 199, 102, 0.12);
+            --success: #E6C766;
+            --amber: #F1D98A;
+            --red: #D95C63;
         }
 
         * {
@@ -170,9 +170,9 @@
         }
 
         .tag-green {
-            border-color: rgba(74, 222, 128, 0.35);
-            color: var(--green);
-            background: rgba(74, 222, 128, 0.06);
+            border-color: rgba(217, 130, 130, 0.35);
+            color: var(--success);
+            background: rgba(217, 130, 130, 0.08);
         }
 
         .tag-amber {
@@ -498,11 +498,11 @@
                 <div class="relative">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                         <path d="M14 1L3 5.5V14C3 20.5 7.5 25.8 14 27C20.5 25.8 25 20.5 25 14V5.5L14 1Z"
-                            stroke="#38BDF8" stroke-width="1.2" fill="rgba(56,189,248,0.06)" />
-                        <path d="M14 7L9 9.2V14C9 17.5 11 20.6 14 21.5C17 20.6 19 17.5 19 14V9.2L14 7Z" stroke="#7DD3FC"
+                            stroke="#E6C766" stroke-width="1.2" fill="rgba(230,199,102,0.08)" />
+                        <path d="M14 7L9 9.2V14C9 17.5 11 20.6 14 21.5C17 20.6 19 17.5 19 14V9.2L14 7Z" stroke="#F1D98A"
                             stroke-width="1" fill="none" />
-                        <circle cx="14" cy="14" r="1.5" fill="#38BDF8" />
-                        <path d="M14 14L17 11M14 14L11 17M14 14L17 17M14 14L11 11" stroke="#38BDF8" stroke-width="0.6"
+                        <circle cx="14" cy="14" r="1.5" fill="#E6C766" />
+                        <path d="M14 14L17 11M14 14L11 17M14 14L17 17M14 14L11 11" stroke="#E6C766" stroke-width="0.6"
                             opacity="0.5" />
                     </svg>
                 </div>
@@ -543,13 +543,13 @@
                 <!-- Left: copy -->
                 <div class="lg:col-span-5">
                     <div class="flex items-center gap-3 mb-7">
-                        <span class="h-px w-8 bg-[#38BDF8]"></span>
+                        <span class="h-px w-8 bg-[#E6C766]"></span>
                         <span class="label-accent">Blockchain Investigation · VASP Attribution · Evidence</span>
                     </div>
                     <h1 class="text-[44px] md:text-[56px] leading-[1.04] font-bold tracking-tight text-white">
                         Trace the flow.<br>
                         Identify the endpoint.<br>
-                        <span class="text-[#7DD3FC]">Build the evidence.</span>
+                        <span class="text-[#F1D98A]">Build the evidence.</span>
                     </h1>
                     <p class="mt-7 text-[15px] text-slate-400 leading-relaxed max-w-[480px]">
                         TRACEVERSE analyzes blockchain transaction flows to identify probable Virtual Asset Service
@@ -599,7 +599,7 @@
                                 <div class="flex gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-[#475569]"></span>
                                     <span class="w-2 h-2 rounded-full bg-[#475569]"></span>
-                                    <span class="w-2 h-2 rounded-full bg-[#4ADE80]"></span>
+                                    <span class="w-2 h-2 rounded-full bg-[#E6C766]"></span>
                                 </div>
                                 <span class="label">Investigation Console</span>
                                 <span class="tag tag-amber">LEA EDITION</span>
@@ -653,7 +653,7 @@
                                         <span class="flex items-center gap-1.5"><span
                                                 class="w-2 h-2 rounded-full bg-[#FBBF24]"></span>INTERMEDIARY</span>
                                         <span class="flex items-center gap-1.5"><span
-                                                class="w-2 h-2 rounded-full bg-[#4ADE80]"></span>VASP</span>
+                                                class="w-2 h-2 rounded-full bg-[#D95C63]"></span>VASP</span>
                                     </div>
                                 </div>
                                 <div class="relative h-[280px] bg-[#060A12] bg-grid-fine">
@@ -662,7 +662,7 @@
                                         <defs>
                                             <marker id="arrow-cyan" viewBox="0 0 10 10" refX="9" refY="5"
                                                 markerWidth="5" markerHeight="5" orient="auto">
-                                                <path d="M0,0 L10,5 L0,10 z" fill="#38BDF8" opacity="0.7" />
+                                                <path d="M0,0 L10,5 L0,10 z" fill="#E6C766" opacity="0.7" />
                                             </marker>
                                             <marker id="arrow-slate" viewBox="0 0 10 10" refX="9" refY="5"
                                                 markerWidth="5" markerHeight="5" orient="auto">
@@ -685,20 +685,20 @@
                                         <path d="M 250 180 C 300 220, 320 220, 360 200" stroke="#475569"
                                             stroke-width="1" fill="none" opacity="0.4" />
                                         <!-- hop2 to vasp -->
-                                        <path d="M 390 110 C 430 110, 440 130, 470 140" stroke="#38BDF8"
+                                        <path d="M 390 110 C 430 110, 440 130, 470 140" stroke="#E6C766"
                                             stroke-width="1.4" fill="none" marker-end="url(#arrow-cyan)"
                                             class="flow-edge" />
-                                        <path d="M 390 130 C 430 130, 440 140, 470 140" stroke="#38BDF8"
+                                        <path d="M 390 130 C 430 130, 440 140, 470 140" stroke="#E6C766"
                                             stroke-width="1.4" fill="none" marker-end="url(#arrow-cyan)"
                                             class="flow-edge" />
-                                        <path d="M 390 200 C 430 200, 440 160, 470 150" stroke="#38BDF8"
+                                        <path d="M 390 200 C 430 200, 440 160, 470 150" stroke="#E6C766"
                                             stroke-width="1" fill="none" opacity="0.5" marker-end="url(#arrow-cyan)" />
 
                                         <!-- Input node -->
                                         <g>
-                                            <circle cx="50" cy="140" r="20" fill="rgba(56,189,248,0.08)"
-                                                stroke="#38BDF8" stroke-width="1.4" />
-                                            <circle cx="50" cy="140" r="4" fill="#38BDF8" />
+                                            <circle cx="50" cy="140" r="20" fill="rgba(230,199,102,0.08)"
+                                                stroke="#E6C766" stroke-width="1.4" />
+                                            <circle cx="50" cy="140" r="4" fill="#E6C766" />
                                             <text x="50" y="178" text-anchor="middle" font-family="IBM Plex Mono"
                                                 font-size="9" fill="#94A3B8">INPUT WALLET</text>
                                             <text x="50" y="190" text-anchor="middle" font-family="IBM Plex Mono"
@@ -739,13 +739,13 @@
                                         </g>
                                         <!-- VASP endpoint -->
                                         <g class="node-pulse">
-                                            <circle cx="490" cy="140" r="22" fill="rgba(74,222,128,0.08)"
-                                                stroke="#4ADE80" stroke-width="1.4" />
-                                            <circle cx="490" cy="140" r="13" fill="rgba(74,222,128,0.04)"
-                                                stroke="#4ADE80" stroke-width="0.6" />
-                                            <circle cx="490" cy="140" r="5" fill="#4ADE80" />
+                                            <circle cx="490" cy="140" r="22" fill="rgba(217,92,99,0.08)"
+                                                stroke="#D95C63" stroke-width="1.4" />
+                                            <circle cx="490" cy="140" r="13" fill="rgba(217,92,99,0.04)"
+                                                stroke="#D95C63" stroke-width="0.6" />
+                                            <circle cx="490" cy="140" r="5" fill="#D95C63" />
                                             <text x="490" y="178" text-anchor="middle" font-family="IBM Plex Mono"
-                                                font-size="9" fill="#4ADE80">VASP ENDPOINT</text>
+                                                font-size="9" fill="#D95C63">VASP ENDPOINT</text>
                                             <text x="490" y="190" text-anchor="middle" font-family="IBM Plex Mono"
                                                 font-size="8" fill="#475569">COINBASE · CLUSTER</text>
                                         </g>
@@ -773,7 +773,7 @@
                                 </div>
                                 <div class="p-3 space-y-2.5">
                                     <div class="panel-2 rounded-sm p-3 relative">
-                                        <div class="absolute top-0 left-0 w-1 h-full bg-[#4ADE80] rounded-l-sm"></div>
+                                        <div class="absolute top-0 left-0 w-1 h-full bg-[#D95C63] rounded-l-sm"></div>
                                         <div class="flex items-start justify-between mb-2">
                                             <div>
                                                 <div class="text-[11px] font-mono text-slate-500">01 · PRIMARY</div>
@@ -781,14 +781,14 @@
                                             </div>
                                             <div class="text-right">
                                                 <div
-                                                    class="font-mono text-[18px] text-[#4ADE80] font-medium leading-none">
+                                                    class="font-mono text-[18px] text-[#D95C63] font-medium leading-none">
                                                     67.5</div>
                                                 <div class="text-[9px] font-mono text-slate-500 mt-1">/ 100</div>
                                             </div>
                                         </div>
                                         <div class="bar-track">
                                             <div class="bar-fill"
-                                                style="--w:67.5%; background:linear-gradient(90deg,#4ADE80,#86EFAC);"
+                                                style="--w:67.5%; background:linear-gradient(90deg,#D95C63,#EA747A);"
                                                 data-w="67.5"></div>
                                         </div>
                                         <div class="text-[10px] font-mono text-slate-500 mt-1.5">MEDIUM STRENGTH ·
@@ -853,7 +853,7 @@
                                     </thead>
                                     <tbody>
                                         <tr class="ledger-row">
-                                            <td class="text-[#7DD3FC]">0x4a5b…f2a3</td>
+                                            <td class="text-[#F1D98A]">0x4a5b…f2a3</td>
                                             <td>T9xK…cWZ</td>
                                             <td>TX8m…k9Qp</td>
                                             <td class="text-slate-300">12,400 USDT</td>
@@ -861,7 +861,7 @@
                                             <td><span class="tag tag-green">VERIFIED</span></td>
                                         </tr>
                                         <tr class="ledger-row">
-                                            <td class="text-[#7DD3FC]">0x9d2e…7c81</td>
+                                            <td class="text-[#F1D98A]">0x9d2e…7c81</td>
                                             <td>TX8m…k9Qp</td>
                                             <td>TQ3r…m4Lz</td>
                                             <td class="text-slate-300">8,950 USDT</td>
@@ -869,9 +869,9 @@
                                             <td><span class="tag tag-green">VERIFIED</span></td>
                                         </tr>
                                         <tr class="ledger-row">
-                                            <td class="text-[#7DD3FC]">0x1f8c…3b22</td>
+                                            <td class="text-[#F1D98A]">0x1f8c…3b22</td>
                                             <td>TQ3r…m4Lz</td>
-                                            <td class="text-[#4ADE80]">TK7v…oP2x <span class="text-slate-600">·
+                                            <td class="text-[#D95C63]">TK7v…oP2x <span class="text-slate-600">·
                                                     COINBASE</span></td>
                                             <td class="text-slate-300">8,950 USDT</td>
                                             <td>48,221,071</td>
@@ -896,7 +896,7 @@
                 <div
                     class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#1A2436] border border-[#1A2436] rounded-sm overflow-hidden">
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <path d="M21 12a9 9 0 11-9-9c2.5 0 4.7 1 6.4 2.6" />
                             <path d="M21 3v6h-6" />
                         </svg>
@@ -906,7 +906,7 @@
                         </div>
                     </div>
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <circle cx="12" cy="12" r="9" />
                             <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" />
                         </svg>
@@ -916,7 +916,7 @@
                         </div>
                     </div>
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <path d="M9 11l3 3L22 4" />
                             <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                         </svg>
@@ -926,7 +926,7 @@
                         </div>
                     </div>
                     <div class="bg-[#0A1020] px-5 py-4 flex items-center gap-3">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <path
                                 d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                         </svg>
@@ -962,8 +962,8 @@
                 <!-- 01 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">01</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">01</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <ellipse cx="12" cy="5" rx="9" ry="3" />
                             <path d="M3 5v14a9 3 0 0018 0V5" />
                             <path d="M3 12a9 3 0 0018 0" />
@@ -981,8 +981,8 @@
                 <!-- 02 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">02</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">02</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <circle cx="6" cy="6" r="3" />
                             <circle cx="18" cy="6" r="3" />
                             <circle cx="6" cy="18" r="3" />
@@ -1002,8 +1002,8 @@
                 <!-- 03 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">03</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">03</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <circle cx="12" cy="12" r="9" />
                             <circle cx="12" cy="12" r="4" />
                             <path d="M12 3v2M12 19v2M3 12h2M19 12h2" />
@@ -1021,8 +1021,8 @@
                 <!-- 04 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">04</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">04</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <path d="M3 3v18h18" />
                             <path d="M7 14l3-3 3 3 5-7" />
                         </svg>
@@ -1039,8 +1039,8 @@
                 <!-- 05 -->
                 <div class="step-card p-6 relative">
                     <div class="flex items-center justify-between mb-5">
-                        <span class="font-mono text-[11px] text-[#38BDF8]">05</span>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                        <span class="font-mono text-[11px] text-[#E6C766]">05</span>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.4">
                             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                             <path d="M14 2v6h6M8 13h8M8 17h5" />
                         </svg>
@@ -1089,7 +1089,7 @@
                                 <defs>
                                     <marker id="arr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
                                         markerHeight="6" orient="auto">
-                                        <path d="M0,0 L10,5 L0,10 z" fill="#38BDF8" opacity="0.8" />
+                                        <path d="M0,0 L10,5 L0,10 z" fill="#E6C766" opacity="0.8" />
                                     </marker>
                                     <marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5"
                                         markerHeight="5" orient="auto">
@@ -1097,7 +1097,7 @@
                                     </marker>
                                     <marker id="arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
                                         markerHeight="6" orient="auto">
-                                        <path d="M0,0 L10,5 L0,10 z" fill="#4ADE80" opacity="0.8" />
+                                        <path d="M0,0 L10,5 L0,10 z" fill="#D95C63" opacity="0.8" />
                                     </marker>
                                 </defs>
 
@@ -1139,20 +1139,20 @@
                                     fill="none" opacity="0.4" stroke-dasharray="3 3" />
 
                                 <!-- hop2 -> vasp -->
-                                <path d="M 545 165 C 600 165, 640 200, 695 220" stroke="#4ADE80" stroke-width="1.6"
+                                <path d="M 545 165 C 600 165, 640 200, 695 220" stroke="#D95C63" stroke-width="1.6"
                                     fill="none" marker-end="url(#arr-g)" class="flow-edge" />
-                                <path d="M 545 245 C 600 245, 640 235, 695 235" stroke="#4ADE80" stroke-width="1.6"
+                                <path d="M 545 245 C 600 245, 640 235, 695 235" stroke="#D95C63" stroke-width="1.6"
                                     fill="none" marker-end="url(#arr-g)" class="flow-edge" />
-                                <path d="M 545 330 C 600 320, 640 280, 695 260" stroke="#4ADE80" stroke-width="1.2"
+                                <path d="M 545 330 C 600 320, 640 280, 695 260" stroke="#D95C63" stroke-width="1.2"
                                     fill="none" marker-end="url(#arr-g)" class="flow-edge" opacity="0.6" />
 
                                 <!-- Input node -->
                                 <g>
-                                    <circle cx="100" cy="240" r="28" fill="rgba(56,189,248,0.08)" stroke="#38BDF8"
+                                    <circle cx="100" cy="240" r="28" fill="rgba(230,199,102,0.08)" stroke="#E6C766"
                                         stroke-width="1.5" />
-                                    <circle cx="100" cy="240" r="20" fill="none" stroke="#38BDF8" stroke-width="0.5"
+                                    <circle cx="100" cy="240" r="20" fill="none" stroke="#E6C766" stroke-width="0.5"
                                         opacity="0.5" />
-                                    <circle cx="100" cy="240" r="6" fill="#38BDF8" />
+                                    <circle cx="100" cy="240" r="6" fill="#E6C766" />
                                     <text x="100" y="285" text-anchor="middle" font-family="IBM Plex Mono"
                                         font-size="10" fill="#94A3B8">T9xK2aF4...</text>
                                     <text x="100" y="298" text-anchor="middle" font-family="IBM Plex Mono" font-size="8"
@@ -1205,13 +1205,13 @@
 
                                 <!-- VASP endpoint -->
                                 <g class="node-pulse">
-                                    <circle cx="720" cy="235" r="32" fill="rgba(74,222,128,0.08)" stroke="#4ADE80"
+                                    <circle cx="720" cy="235" r="32" fill="rgba(217,92,99,0.08)" stroke="#D95C63"
                                         stroke-width="1.6" />
-                                    <circle cx="720" cy="235" r="22" fill="rgba(74,222,128,0.04)" stroke="#4ADE80"
+                                    <circle cx="720" cy="235" r="22" fill="rgba(217,92,99,0.04)" stroke="#D95C63"
                                         stroke-width="0.6" />
-                                    <circle cx="720" cy="235" r="8" fill="#4ADE80" />
+                                    <circle cx="720" cy="235" r="8" fill="#D95C63" />
                                     <text x="720" y="280" text-anchor="middle" font-family="IBM Plex Mono"
-                                        font-size="11" fill="#4ADE80" font-weight="500">TK7v2oP2x</text>
+                                        font-size="11" fill="#D95C63" font-weight="500">TK7v2oP2x</text>
                                     <text x="720" y="293" text-anchor="middle" font-family="IBM Plex Mono" font-size="9"
                                         fill="#475569">COINBASE · CLUSTER</text>
                                 </g>
@@ -1222,9 +1222,9 @@
                                         stroke="#1A2436" />
                                     <text x="550" y="70" font-family="IBM Plex Mono" font-size="9" fill="#94A3B8">MATCH
                                         · COINBASE</text>
-                                    <text x="550" y="82" font-family="IBM Plex Mono" font-size="9" fill="#4ADE80">CONF ·
+                                    <text x="550" y="82" font-family="IBM Plex Mono" font-size="9" fill="#D95C63">CONF ·
                                         67.5 / 100</text>
-                                    <line x1="640" y1="89" x2="700" y2="215" stroke="#4ADE80" stroke-width="0.5"
+                                    <line x1="640" y1="89" x2="700" y2="215" stroke="#D95C63" stroke-width="0.5"
                                         stroke-dasharray="2 3" />
                                 </g>
                             </svg>
@@ -1249,7 +1249,7 @@
                         <div class="mt-4 space-y-3 text-[13px]">
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Bounded graph traversal</span>
-                                <span class="font-mono text-[#4ADE80] text-[12px]">ENABLED</span>
+                                <span class="font-mono text-[#D95C63] text-[12px]">ENABLED</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Maximum depth</span>
@@ -1257,11 +1257,11 @@
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Cycle suppression</span>
-                                <span class="font-mono text-[#4ADE80] text-[12px]">ON</span>
+                                <span class="font-mono text-[#D95C63] text-[12px]">ON</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">VASP terminal pruning</span>
-                                <span class="font-mono text-[#4ADE80] text-[12px]">ON</span>
+                                <span class="font-mono text-[#D95C63] text-[12px]">ON</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-slate-400">Observable paths</span>
@@ -1281,7 +1281,7 @@
                             <div class="label mt-1">Transfers</div>
                         </div>
                         <div class="bg-[#0E1626] p-4">
-                            <div class="font-mono text-2xl text-[#4ADE80] font-medium">2</div>
+                            <div class="font-mono text-2xl text-[#D95C63] font-medium">2</div>
                             <div class="label mt-1">VASP Ends</div>
                         </div>
                     </div>
@@ -1325,7 +1325,7 @@
                 <div class="lg:col-span-5">
                     <div class="panel-2 rounded-sm relative overflow-hidden">
                         <div
-                            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4ADE80] to-transparent">
+                            class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D95C63] to-transparent">
                         </div>
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-1">
@@ -1341,13 +1341,13 @@
                                 </div>
                             </div>
                             <div class="mt-8 flex items-baseline gap-3">
-                                <span class="font-mono text-[64px] text-[#4ADE80] font-medium leading-none">67.5</span>
+                                <span class="font-mono text-[64px] text-[#D95C63] font-medium leading-none">67.5</span>
                                 <span class="font-mono text-slate-500">/ 100</span>
                                 <span class="ml-auto tag tag-amber">MEDIUM STRENGTH</span>
                             </div>
                             <div class="mt-3 bar-track" style="height:6px;">
                                 <div class="bar-fill" data-w="67.5"
-                                    style="background:linear-gradient(90deg,#4ADE80,#86EFAC);"></div>
+                                    style="background:linear-gradient(90deg,#D95C63,#EA747A);"></div>
                             </div>
                             <div class="mt-6 grid grid-cols-2 gap-3 text-[11px] font-mono">
                                 <div>
@@ -1376,7 +1376,7 @@
                     <div class="panel rounded-sm">
                         <div class="flex items-center justify-between px-5 py-3 border-b border-[#1A2436]">
                             <span class="label">Score Decomposition · Explainable Signals</span>
-                            <button class="text-[11px] font-mono text-slate-500 hover:text-[#38BDF8] transition">EXPAND
+                            <button class="text-[11px] font-mono text-slate-500 hover:text-[#E6C766] transition">EXPAND
                                 ALL</button>
                         </div>
                         <div class="p-5 space-y-4">
@@ -1500,7 +1500,7 @@
                         <div class="text-center">
                             <div
                                 class="w-14 h-14 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020]">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8"
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766"
                                     stroke-width="1.5">
                                     <circle cx="12" cy="12" r="9" />
                                     <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" />
@@ -1508,13 +1508,13 @@
                             </div>
                             <div class="label mt-2">VASP</div>
                         </div>
-                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#38BDF8" stroke-width="1.2">
+                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#E6C766" stroke-width="1.2">
                             <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="3 2" />
                         </svg>
                         <div class="text-center">
                             <div
                                 class="w-14 h-14 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020]">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8"
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766"
                                     stroke-width="1.5">
                                     <rect x="3" y="6" width="18" height="12" rx="1" />
                                     <path d="M3 10h18M7 15h4" />
@@ -1522,13 +1522,13 @@
                             </div>
                             <div class="label mt-2">Address</div>
                         </div>
-                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#38BDF8" stroke-width="1.2">
+                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#E6C766" stroke-width="1.2">
                             <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="3 2" />
                         </svg>
                         <div class="text-center">
                             <div
                                 class="w-14 h-14 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020]">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8"
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766"
                                     stroke-width="1.5">
                                     <path d="M4 4l16 16M4 20L20 4" opacity="0.3" />
                                     <path d="M4 12h6M14 12h6" />
@@ -1536,13 +1536,13 @@
                             </div>
                             <div class="label mt-2">Tx Hash</div>
                         </div>
-                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#38BDF8" stroke-width="1.2">
+                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#E6C766" stroke-width="1.2">
                             <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="3 2" />
                         </svg>
                         <div class="text-center">
                             <div
                                 class="w-14 h-14 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020]">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8"
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766"
                                     stroke-width="1.5">
                                     <circle cx="12" cy="12" r="9" />
                                     <path d="M12 7v5l3 2" />
@@ -1550,13 +1550,13 @@
                             </div>
                             <div class="label mt-2">Block</div>
                         </div>
-                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#38BDF8" stroke-width="1.2">
+                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#E6C766" stroke-width="1.2">
                             <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="3 2" />
                         </svg>
                         <div class="text-center">
                             <div
                                 class="w-14 h-14 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020]">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8"
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766"
                                     stroke-width="1.5">
                                     <circle cx="6" cy="6" r="3" />
                                     <circle cx="18" cy="18" r="3" />
@@ -1566,19 +1566,19 @@
                             </div>
                             <div class="label mt-2">Path</div>
                         </div>
-                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#38BDF8" stroke-width="1.2">
+                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#E6C766" stroke-width="1.2">
                             <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="3 2" />
                         </svg>
                         <div class="text-center">
                             <div
-                                class="w-14 h-14 border border-[#4ADE80] bg-[rgba(74,222,128,0.06)] rounded-sm flex items-center justify-center">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                                class="w-14 h-14 border border-[#D95C63] bg-[rgba(74,222,128,0.06)] rounded-sm flex items-center justify-center">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="1.5">
                                     <path d="M9 11l3 3L22 4" />
                                     <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                                 </svg>
                             </div>
-                            <div class="label mt-2 text-[#4ADE80]">Source</div>
+                            <div class="label mt-2 text-[#D95C63]">Source</div>
                         </div>
                     </div>
                     <div class="text-[11px] font-mono text-slate-500">CHAIN OF CUSTODY · 6 LINKS</div>
@@ -1603,7 +1603,7 @@
                             </div>
                             <div>
                                 <div class="text-slate-600">ENTITY</div>
-                                <div class="text-[#4ADE80] mt-0.5">COINBASE · CLUSTER 04</div>
+                                <div class="text-[#D95C63] mt-0.5">COINBASE · CLUSTER 04</div>
                             </div>
                             <div>
                                 <div class="text-slate-600">PROVENANCE</div>
@@ -1611,7 +1611,7 @@
                             </div>
                         </div>
                         <a href="#"
-                            class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-mono text-[#38BDF8] hover:text-[#7DD3FC]">
+                            class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-mono text-[#E6C766] hover:text-[#F1D98A]">
                             <span>VIEW SOURCE</span>
                             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1640,11 +1640,11 @@
                             </div>
                             <div>
                                 <div class="text-slate-600">TX HASH</div>
-                                <div class="text-[#7DD3FC] mt-0.5">0x1f8c3a2b9d4e7c5f8a1b2c3d4e5f6a7b</div>
+                                <div class="text-[#F1D98A] mt-0.5">0x1f8c3a2b9d4e7c5f8a1b2c3d4e5f6a7b</div>
                             </div>
                         </div>
                         <a href="#"
-                            class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-mono text-[#38BDF8] hover:text-[#7DD3FC]">
+                            class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-mono text-[#E6C766] hover:text-[#F1D98A]">
                             <span>VIEW ON CHAIN</span>
                             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1669,7 +1669,7 @@
                             </div>
                             <div>
                                 <div class="text-slate-600">TO</div>
-                                <div class="text-[#4ADE80] mt-0.5">TK7v2oP2x9mQ4fR8...</div>
+                                <div class="text-[#D95C63] mt-0.5">TK7v2oP2x9mQ4fR8...</div>
                             </div>
                             <div>
                                 <div class="text-slate-600">VALUE · BLOCK</div>
@@ -1677,7 +1677,7 @@
                             </div>
                         </div>
                         <a href="#"
-                            class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-mono text-[#38BDF8] hover:text-[#7DD3FC]">
+                            class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-mono text-[#E6C766] hover:text-[#F1D98A]">
                             <span>VIEW ON TRONSCAN</span>
                             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1759,52 +1759,52 @@
                         <tbody>
                             <tr>
                                 <td class="text-white font-medium">Binance</td>
-                                <td class="text-[#7DD3FC]">TK5pH3nQ9vR2mK8sL4...</td>
+                                <td class="text-[#F1D98A]">TK5pH3nQ9vR2mK8sL4...</td>
                                 <td>TRON</td>
                                 <td>Hot Wallet</td>
                                 <td>Public PoR · 2024-Q4</td>
-                                <td><span class="text-[#4ADE80]">HIGH · 92</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 92</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
                                 <td class="text-white font-medium">Coinbase</td>
-                                <td class="text-[#7DD3FC]">TK7v2oP2x9mQ4fR8yL...</td>
+                                <td class="text-[#F1D98A]">TK7v2oP2x9mQ4fR8yL...</td>
                                 <td>TRON</td>
                                 <td>Consolidation</td>
                                 <td>Public PoR · 2024-Q3</td>
-                                <td><span class="text-[#4ADE80]">HIGH · 89</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 89</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
                                 <td class="text-white font-medium">Binance</td>
-                                <td class="text-[#7DD3FC]">0x28C6c06298d514Db...</td>
+                                <td class="text-[#F1D98A]">0x28C6c06298d514Db...</td>
                                 <td>ETH</td>
                                 <td>Hot Wallet</td>
                                 <td>Institutional Tag</td>
-                                <td><span class="text-[#4ADE80]">HIGH · 94</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 94</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
                                 <td class="text-white font-medium">Kraken</td>
-                                <td class="text-[#7DD3FC]">0x267be1C1D684F78c...</td>
+                                <td class="text-[#F1D98A]">0x267be1C1D684F78c...</td>
                                 <td>ETH</td>
                                 <td>Cold Storage</td>
                                 <td>Public Entity Label</td>
-                                <td><span class="text-[#4ADE80]">HIGH · 87</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 87</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
                                 <td class="text-white font-medium">OKX</td>
-                                <td class="text-[#7DD3FC]">0x6cC5F688a315f06d...</td>
+                                <td class="text-[#F1D98A]">0x6cC5F688a315f06d...</td>
                                 <td>ETH</td>
                                 <td>Hot Wallet</td>
                                 <td>Public PoR · 2024-Q4</td>
-                                <td><span class="text-[#4ADE80]">HIGH · 88</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 88</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
                                 <td class="text-white font-medium">Bitfinex</td>
-                                <td class="text-[#7DD3FC]">0x1151314c622CaE28...</td>
+                                <td class="text-[#F1D98A]">0x1151314c622CaE28...</td>
                                 <td>ETH</td>
                                 <td>Exchange Wallet</td>
                                 <td>Institutional Tag</td>
@@ -1813,20 +1813,20 @@
                             </tr>
                             <tr>
                                 <td class="text-white font-medium">Gemini</td>
-                                <td class="text-[#7DD3FC]">0x07364464db186FdEa...</td>
+                                <td class="text-[#F1D98A]">0x07364464db186FdEa...</td>
                                 <td>ETH</td>
                                 <td>Cold Storage</td>
                                 <td>Public Entity Label</td>
-                                <td><span class="text-[#4ADE80]">HIGH · 85</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 85</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                             <tr>
                                 <td class="text-white font-medium">Bybit</td>
-                                <td class="text-[#7DD3FC]">0xf89d7b9c864f589b...</td>
+                                <td class="text-[#F1D98A]">0xf89d7b9c864f589b...</td>
                                 <td>ETH</td>
                                 <td>Hot Wallet</td>
                                 <td>Public PoR · 2024-Q4</td>
-                                <td><span class="text-[#4ADE80]">HIGH · 90</span></td>
+                                <td><span class="text-[#D95C63]">HIGH · 90</span></td>
                                 <td><span class="tag tag-green">VERIFIED</span></td>
                             </tr>
                         </tbody>
@@ -1862,8 +1862,8 @@
                 class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#1A2436] border border-[#1A2436] rounded-sm overflow-hidden">
                 <div class="feature-card p-6 group">
                     <div
-                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#38BDF8] transition mb-5">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#E6C766] transition mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <circle cx="11" cy="11" r="7" />
                             <path d="m21 21-4.3-4.3" />
                             <circle cx="11" cy="11" r="2" />
@@ -1877,8 +1877,8 @@
                 </div>
                 <div class="feature-card p-6 group">
                     <div
-                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#38BDF8] transition mb-5">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#E6C766] transition mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <rect x="3" y="3" width="7" height="7" />
                             <rect x="14" y="3" width="7" height="7" />
                             <rect x="3" y="14" width="7" height="7" />
@@ -1893,8 +1893,8 @@
                 </div>
                 <div class="feature-card p-6 group">
                     <div
-                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#38BDF8] transition mb-5">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#E6C766] transition mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <ellipse cx="12" cy="5" rx="9" ry="3" />
                             <path d="M3 5v14a9 3 0 0018 0V5" />
                             <path d="M3 12a9 3 0 0018 0" />
@@ -1908,8 +1908,8 @@
                 </div>
                 <div class="feature-card p-6 group">
                     <div
-                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#38BDF8] transition mb-5">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                        class="w-11 h-11 border border-[#1A2436] rounded-sm flex items-center justify-center bg-[#0A1020] group-hover:border-[#E6C766] transition mb-5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C766" stroke-width="1.5">
                             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                             <path d="M14 2v6h6M9 13h6M9 17h4" />
                         </svg>
@@ -1984,7 +1984,7 @@
                 <!-- TRACEVERSE -->
                 <div class="panel-2 rounded-sm p-8 relative">
                     <div
-                        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent">
+                        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#E6C766] to-transparent">
                     </div>
                     <div class="flex items-center justify-between mb-6">
                         <span class="label-accent">TRACEVERSE</span>
@@ -1993,56 +1993,56 @@
                     <div class="bg-[#060A12] border border-[#243350] rounded-sm p-5">
                         <div class="space-y-2.5 font-mono text-[12px]">
                             <div class="flex items-center gap-2"><span class="text-slate-400">Wallet</span><svg
-                                    width="14" height="10" viewBox="0 0 20 14" fill="none" stroke="#38BDF8"
+                                    width="14" height="10" viewBox="0 0 20 14" fill="none" stroke="#E6C766"
                                     stroke-width="1.4">
                                     <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div class="flex items-center gap-2 pl-4"><span
                                     class="text-slate-400">Transaction</span><svg width="14" height="10"
-                                    viewBox="0 0 20 14" fill="none" stroke="#38BDF8" stroke-width="1.4">
+                                    viewBox="0 0 20 14" fill="none" stroke="#E6C766" stroke-width="1.4">
                                     <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div class="flex items-center gap-2 pl-8"><span class="text-slate-400">Graph Path</span><svg
-                                    width="14" height="10" viewBox="0 0 20 14" fill="none" stroke="#38BDF8"
+                                    width="14" height="10" viewBox="0 0 20 14" fill="none" stroke="#E6C766"
                                     stroke-width="1.4">
                                     <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div class="flex items-center gap-2 pl-12"><span class="text-slate-400">VASP
                                     Address</span><svg width="14" height="10" viewBox="0 0 20 14" fill="none"
-                                    stroke="#38BDF8" stroke-width="1.4">
+                                    stroke="#E6C766" stroke-width="1.4">
                                     <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div class="flex items-center gap-2 pl-16"><span class="text-slate-400">Source</span><svg
-                                    width="14" height="10" viewBox="0 0 20 14" fill="none" stroke="#38BDF8"
+                                    width="14" height="10" viewBox="0 0 20 14" fill="none" stroke="#E6C766"
                                     stroke-width="1.4">
                                     <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div class="flex items-center gap-2 pl-20"><span class="text-slate-400">Score
                                     Contribution</span><svg width="14" height="10" viewBox="0 0 20 14" fill="none"
-                                    stroke="#38BDF8" stroke-width="1.4">
+                                    stroke="#E6C766" stroke-width="1.4">
                                     <path d="M1 7h17M13 1l6 6-6 6" stroke-dasharray="2 2" />
                                 </svg></div>
-                            <div class="flex items-center gap-2 pl-24"><span class="text-[#4ADE80]">Evidence</span><span
+                            <div class="flex items-center gap-2 pl-24"><span class="text-[#D95C63]">Evidence</span><span
                                     class="tag tag-green ml-2">VERIFIABLE</span></div>
                         </div>
                     </div>
                     <div class="mt-6 space-y-2 text-[12px] text-slate-400">
                         <div class="flex items-center gap-2">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                 stroke-width="2.5">
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
                             <span>Every link independently auditable</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                 stroke-width="2.5">
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
                             <span>Facts separated from inference</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                 stroke-width="2.5">
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
@@ -2052,7 +2052,7 @@
                 </div>
             </div>
 
-            <div class="panel rounded-sm p-8 border-l-2 border-l-[#38BDF8]">
+            <div class="panel rounded-sm p-8 border-l-2 border-l-[#E6C766]">
                 <h3 class="text-2xl font-semibold text-white mb-3">An investigator should be able to ask: Why?</h3>
                 <p class="text-slate-400 text-[15px] leading-relaxed max-w-3xl">
                     TRACEVERSE separates observable blockchain facts from analytical inference, allowing investigators
@@ -2079,13 +2079,13 @@
                 <!-- Chain cards -->
                 <div class="lg:col-span-5 space-y-4">
                     <div class="panel-2 rounded-sm p-6 relative">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-[#38BDF8] rounded-l-sm"></div>
+                        <div class="absolute top-0 left-0 w-1 h-full bg-[#E6C766] rounded-l-sm"></div>
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center gap-3">
                                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                    <path d="M14 2L4 7v7c0 6 4 11 10 12 6-1 10-6 10-12V7L14 2z" stroke="#38BDF8"
-                                        stroke-width="1.2" fill="rgba(56,189,248,0.08)" />
-                                    <path d="M14 9L9 11.5v4c0 2.5 2 4.5 5 5 3-0.5 5-2.5 5-5v-4L14 9z" stroke="#7DD3FC"
+                                    <path d="M14 2L4 7v7c0 6 4 11 10 12 6-1 10-6 10-12V7L14 2z" stroke="#E6C766"
+                                        stroke-width="1.2" fill="rgba(230,199,102,0.08)" />
+                                    <path d="M14 9L9 11.5v4c0 2.5 2 4.5 5 5 3-0.5 5-2.5 5-5v-4L14 9z" stroke="#F1D98A"
                                         stroke-width="0.8" />
                                 </svg>
                                 <div>
@@ -2102,7 +2102,7 @@
                             </div>
                             <div>
                                 <div class="text-slate-500">STATUS</div>
-                                <div class="text-[#4ADE80] mt-1">ACTIVE</div>
+                                <div class="text-[#D95C63] mt-1">ACTIVE</div>
                             </div>
                             <div>
                                 <div class="text-slate-500">API</div>
@@ -2159,7 +2159,7 @@
                                 <span class="text-[11px] font-mono text-slate-500">TRONGRID · ETHERSCAN</span>
                             </div>
                             <div class="flex justify-center"><svg width="14" height="20" viewBox="0 0 14 20" fill="none"
-                                    stroke="#38BDF8" stroke-width="1.2">
+                                    stroke="#E6C766" stroke-width="1.2">
                                     <path d="M7 0v18M1 12l6 6 6-6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div
@@ -2171,7 +2171,7 @@
                                 <span class="text-[11px] font-mono text-slate-500">CHAIN-AGNOSTIC</span>
                             </div>
                             <div class="flex justify-center"><svg width="14" height="20" viewBox="0 0 14 20" fill="none"
-                                    stroke="#38BDF8" stroke-width="1.2">
+                                    stroke="#E6C766" stroke-width="1.2">
                                     <path d="M7 0v18M1 12l6 6 6-6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div
@@ -2183,7 +2183,7 @@
                                 <span class="text-[11px] font-mono text-slate-500">BOUNDED · 3-HOP</span>
                             </div>
                             <div class="flex justify-center"><svg width="14" height="20" viewBox="0 0 14 20" fill="none"
-                                    stroke="#38BDF8" stroke-width="1.2">
+                                    stroke="#E6C766" stroke-width="1.2">
                                     <path d="M7 0v18M1 12l6 6 6-6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div
@@ -2195,16 +2195,16 @@
                                 <span class="text-[11px] font-mono text-slate-500">5 SIGNALS · WEIGHTED</span>
                             </div>
                             <div class="flex justify-center"><svg width="14" height="20" viewBox="0 0 14 20" fill="none"
-                                    stroke="#38BDF8" stroke-width="1.2">
+                                    stroke="#E6C766" stroke-width="1.2">
                                     <path d="M7 0v18M1 12l6 6 6-6" stroke-dasharray="2 2" />
                                 </svg></div>
                             <div
                                 class="border border-[#243350] bg-[rgba(56,189,248,0.04)] rounded-sm p-4 flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <span class="font-mono text-[10px] text-[#38BDF8] w-6">05</span>
+                                    <span class="font-mono text-[10px] text-[#E6C766] w-6">05</span>
                                     <span class="text-[13px] text-white font-medium">Evidence Layer</span>
                                 </div>
-                                <span class="text-[11px] font-mono text-[#4ADE80]">SIGNED · EXPORTABLE</span>
+                                <span class="text-[11px] font-mono text-[#D95C63]">SIGNED · EXPORTABLE</span>
                             </div>
                         </div>
                     </div>
@@ -2256,8 +2256,8 @@
                     <div class="lg:col-span-4 bg-[#0E1626] p-8">
                         <div class="flex items-center gap-3 mb-6">
                             <div
-                                class="w-10 h-10 border border-[#38BDF8] bg-[rgba(56,189,248,0.08)] rounded-sm flex items-center justify-center">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38BDF8"
+                                class="w-10 h-10 border border-[#E6C766] bg-[rgba(230,199,102,0.08)] rounded-sm flex items-center justify-center">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E6C766"
                                     stroke-width="1.6">
                                     <path d="M9 11l3 3L22 4" />
                                     <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
@@ -2267,28 +2267,28 @@
                         </div>
                         <ul class="space-y-3 text-[13px] text-slate-400">
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 <span>Observable transaction relationships</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 <span>Probabilistic VASP attribution</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 <span>Verifiable on-chain evidence</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ADE80"
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D95C63"
                                     stroke-width="2.5" class="mt-0.5 flex-shrink-0">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
@@ -2335,13 +2335,13 @@
         <div class="absolute inset-0 glow-top"></div>
         <div class="relative max-w-[1480px] mx-auto px-6 text-center">
             <div class="flex items-center justify-center gap-3 mb-6">
-                <span class="h-px w-8 bg-[#38BDF8]"></span>
+                <span class="h-px w-8 bg-[#E6C766]"></span>
                 <span class="label-accent">Begin Investigation</span>
-                <span class="h-px w-8 bg-[#38BDF8]"></span>
+                <span class="h-px w-8 bg-[#E6C766]"></span>
             </div>
             <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white max-w-2xl mx-auto leading-tight">
                 Start with an address.<br>
-                <span class="text-[#7DD3FC]">Follow the evidence.</span>
+                <span class="text-[#F1D98A]">Follow the evidence.</span>
             </h2>
             <p class="mt-6 text-slate-400 max-w-xl mx-auto text-[15px] leading-relaxed">
                 Investigate observable transaction relationships and identify probable VASP endpoints through a
@@ -2370,10 +2370,10 @@
                     <div class="flex items-center gap-3 mb-4">
                         <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
                             <path d="M14 1L3 5.5V14C3 20.5 7.5 25.8 14 27C20.5 25.8 25 20.5 25 14V5.5L14 1Z"
-                                stroke="#38BDF8" stroke-width="1.2" fill="rgba(56,189,248,0.06)" />
+                                stroke="#E6C766" stroke-width="1.2" fill="rgba(56,189,248,0.06)" />
                             <path d="M14 7L9 9.2V14C9 17.5 11 20.6 14 21.5C17 20.6 19 17.5 19 14V9.2L14 7Z"
-                                stroke="#7DD3FC" stroke-width="1" fill="none" />
-                            <circle cx="14" cy="14" r="1.5" fill="#38BDF8" />
+                                stroke="#F1D98A" stroke-width="1" fill="none" />
+                            <circle cx="14" cy="14" r="1.5" fill="#E6C766" />
                         </svg>
                         <div>
                             <div class="font-semibold tracking-wider text-[14px]">TRACEVERSE</div>
@@ -2389,22 +2389,22 @@
                     <div>
                         <div class="label mb-3">Platform</div>
                         <ul class="space-y-2 text-[13px]">
-                            <li><a href="#platform" class="text-slate-400 hover:text-[#7DD3FC] transition">Overview</a>
+                            <li><a href="#platform" class="text-slate-400 hover:text-[#F1D98A] transition">Overview</a>
                             </li>
-                            <li><a href="#workflow" class="text-slate-400 hover:text-[#7DD3FC] transition">Workflow</a>
+                            <li><a href="#workflow" class="text-slate-400 hover:text-[#F1D98A] transition">Workflow</a>
                             </li>
                             <li><a href="#capabilities"
-                                    class="text-slate-400 hover:text-[#7DD3FC] transition">Capabilities</a></li>
+                                    class="text-slate-400 hover:text-[#F1D98A] transition">Capabilities</a></li>
                         </ul>
                     </div>
                     <div>
                         <div class="label mb-3">Resources</div>
                         <ul class="space-y-2 text-[13px]">
                             <li><a href="#methodology"
-                                    class="text-slate-400 hover:text-[#7DD3FC] transition">Methodology</a></li>
-                            <li><a href="#registry" class="text-slate-400 hover:text-[#7DD3FC] transition">VASP
+                                    class="text-slate-400 hover:text-[#F1D98A] transition">Methodology</a></li>
+                            <li><a href="#registry" class="text-slate-400 hover:text-[#F1D98A] transition">VASP
                                     Registry</a></li>
-                            <li><a href="#evidence" class="text-slate-400 hover:text-[#7DD3FC] transition">Evidence</a>
+                            <li><a href="#evidence" class="text-slate-400 hover:text-[#F1D98A] transition">Evidence</a>
                             </li>
                         </ul>
                     </div>
@@ -2412,11 +2412,11 @@
                         <div class="label mb-3">Console</div>
                         <ul class="space-y-2 text-[13px]">
                             <li><button onclick="openConsole()"
-                                    class="text-slate-400 hover:text-[#7DD3FC] transition text-left">Open
+                                    class="text-slate-400 hover:text-[#F1D98A] transition text-left">Open
                                     Console</button></li>
                             <li><a href="#boundaries"
-                                    class="text-slate-400 hover:text-[#7DD3FC] transition">Boundaries</a></li>
-                            <li><a href="#chain" class="text-slate-400 hover:text-[#7DD3FC] transition">Architecture</a>
+                                    class="text-slate-400 hover:text-[#F1D98A] transition">Boundaries</a></li>
+                            <li><a href="#chain" class="text-slate-400 hover:text-[#F1D98A] transition">Architecture</a>
                             </li>
                         </ul>
                     </div>
@@ -2477,7 +2477,7 @@
                         <div class="flex items-center gap-2 flex-wrap">
                             <div
                                 class="flex-1 min-w-[240px] flex items-center gap-2 bg-[#060A12] border border-[#243350] px-3 py-2 rounded-sm font-mono text-[12px]">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38BDF8"
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E6C766"
                                     stroke-width="2">
                                     <circle cx="11" cy="11" r="7" />
                                     <path d="m21 21-4.3-4.3" />
@@ -2496,12 +2496,12 @@
                     <!-- Status / progress -->
                     <div
                         class="px-4 py-3 border-b border-[#1A2436] bg-[#0A1020] flex items-center gap-4 flex-wrap text-[11px] font-mono">
-                        <span class="text-[#4ADE80] flex items-center gap-1.5"><span
+                        <span class="text-[#D95C63] flex items-center gap-1.5"><span
                                 class="status-dot live"></span>GRAPH CONSTRUCTED · 153 NODES</span>
                         <span class="text-slate-600">·</span>
-                        <span class="text-[#4ADE80]">VASP MATCH · 2 ENDPOINTS</span>
+                        <span class="text-[#D95C63]">VASP MATCH · 2 ENDPOINTS</span>
                         <span class="text-slate-600">·</span>
-                        <span class="text-[#4ADE80]">ATTRIBUTION COMPLETE</span>
+                        <span class="text-[#D95C63]">ATTRIBUTION COMPLETE</span>
                         <span class="ml-auto text-slate-500">CASE 4821-A · 18:42:09 UTC</span>
                     </div>
 
@@ -2517,7 +2517,7 @@
                                     <span class="flex items-center gap-1.5"><span
                                             class="w-2 h-2 rounded-full bg-[#FBBF24]"></span>INTERMEDIARY</span>
                                     <span class="flex items-center gap-1.5"><span
-                                            class="w-2 h-2 rounded-full bg-[#4ADE80]"></span>VASP</span>
+                                            class="w-2 h-2 rounded-full bg-[#D95C63]"></span>VASP</span>
                                 </div>
                             </div>
                             <div class="relative h-[360px] bg-[#060A12] bg-grid-fine">
@@ -2525,7 +2525,7 @@
                                     <defs>
                                         <marker id="arr-c2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5"
                                             markerHeight="5" orient="auto">
-                                            <path d="M0,0 L10,5 L0,10 z" fill="#38BDF8" opacity="0.8" />
+                                            <path d="M0,0 L10,5 L0,10 z" fill="#E6C766" opacity="0.8" />
                                         </marker>
                                         <marker id="arr-s2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5"
                                             markerHeight="5" orient="auto">
@@ -2533,7 +2533,7 @@
                                         </marker>
                                         <marker id="arr-g2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5"
                                             markerHeight="5" orient="auto">
-                                            <path d="M0,0 L10,5 L0,10 z" fill="#4ADE80" opacity="0.8" />
+                                            <path d="M0,0 L10,5 L0,10 z" fill="#D95C63" opacity="0.8" />
                                         </marker>
                                     </defs>
                                     <text x="60" y="30" font-family="IBM Plex Mono" font-size="9" fill="#475569"
@@ -2553,15 +2553,15 @@
                                         fill="none" marker-end="url(#arr-s2)" class="flow-edge" />
                                     <path d="M 290 220 C 360 200, 400 170, 440 170" stroke="#64748B" stroke-width="1.2"
                                         fill="none" marker-end="url(#arr-s2)" class="flow-edge" />
-                                    <path d="M 480 130 C 540 130, 580 160, 620 175" stroke="#4ADE80" stroke-width="1.5"
+                                    <path d="M 480 130 C 540 130, 580 160, 620 175" stroke="#D95C63" stroke-width="1.5"
                                         fill="none" marker-end="url(#arr-g2)" class="flow-edge" />
-                                    <path d="M 480 170 C 540 170, 580 180, 620 185" stroke="#4ADE80" stroke-width="1.5"
+                                    <path d="M 480 170 C 540 170, 580 180, 620 185" stroke="#D95C63" stroke-width="1.5"
                                         fill="none" marker-end="url(#arr-g2)" class="flow-edge" />
 
                                     <g>
-                                        <circle cx="65" cy="180" r="22" fill="rgba(56,189,248,0.08)" stroke="#38BDF8"
+                                        <circle cx="65" cy="180" r="22" fill="rgba(230,199,102,0.08)" stroke="#E6C766"
                                             stroke-width="1.4" />
-                                        <circle cx="65" cy="180" r="5" fill="#38BDF8" />
+                                        <circle cx="65" cy="180" r="5" fill="#E6C766" />
                                         <text x="65" y="220" text-anchor="middle" font-family="IBM Plex Mono"
                                             font-size="10" fill="#94A3B8">T9xK...cWZ</text>
                                     </g>
@@ -2590,13 +2590,13 @@
                                         <circle cx="460" cy="170" r="3" fill="#FBBF24" />
                                     </g>
                                     <g class="node-pulse">
-                                        <circle cx="640" cy="180" r="26" fill="rgba(74,222,128,0.08)" stroke="#4ADE80"
+                                        <circle cx="640" cy="180" r="26" fill="rgba(217,92,99,0.08)" stroke="#D95C63"
                                             stroke-width="1.5" />
-                                        <circle cx="640" cy="180" r="16" fill="rgba(74,222,128,0.04)" stroke="#4ADE80"
+                                        <circle cx="640" cy="180" r="16" fill="rgba(217,92,99,0.04)" stroke="#D95C63"
                                             stroke-width="0.5" />
-                                        <circle cx="640" cy="180" r="6" fill="#4ADE80" />
+                                        <circle cx="640" cy="180" r="6" fill="#D95C63" />
                                         <text x="640" y="225" text-anchor="middle" font-family="IBM Plex Mono"
-                                            font-size="10" fill="#4ADE80" font-weight="500">COINBASE</text>
+                                            font-size="10" fill="#D95C63" font-weight="500">COINBASE</text>
                                         <text x="640" y="237" text-anchor="middle" font-family="IBM Plex Mono"
                                             font-size="8" fill="#475569">CLUSTER 04</text>
                                     </g>
@@ -2612,21 +2612,21 @@
                             </div>
                             <div class="p-3 space-y-2.5">
                                 <div class="panel-2 rounded-sm p-3 relative">
-                                    <div class="absolute top-0 left-0 w-1 h-full bg-[#4ADE80] rounded-l-sm"></div>
+                                    <div class="absolute top-0 left-0 w-1 h-full bg-[#D95C63] rounded-l-sm"></div>
                                     <div class="flex items-start justify-between mb-2">
                                         <div>
                                             <div class="text-[11px] font-mono text-slate-500">01 · PRIMARY</div>
                                             <div class="text-[15px] font-semibold text-white mt-0.5">Coinbase</div>
                                         </div>
                                         <div class="text-right">
-                                            <div class="font-mono text-[18px] text-[#4ADE80] font-medium leading-none">
+                                            <div class="font-mono text-[18px] text-[#D95C63] font-medium leading-none">
                                                 67.5</div>
                                             <div class="text-[9px] font-mono text-slate-500 mt-1">/ 100</div>
                                         </div>
                                     </div>
                                     <div class="bar-track">
                                         <div class="bar-fill" data-w="67.5"
-                                            style="background:linear-gradient(90deg,#4ADE80,#86EFAC);"></div>
+                                            style="background:linear-gradient(90deg,#D95C63,#EA747A);"></div>
                                     </div>
                                     <div class="text-[10px] font-mono text-slate-500 mt-1.5">MEDIUM · INVESTIGATIVE LEAD
                                     </div>
@@ -2686,7 +2686,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="ledger-row">
-                                        <td class="text-[#7DD3FC]">0x4a5b6c7d…f2a3b1c2</td>
+                                        <td class="text-[#F1D98A]">0x4a5b6c7d…f2a3b1c2</td>
                                         <td>T9xK…cWZ</td>
                                         <td>TX8m…k9Qp</td>
                                         <td class="text-slate-300">12,400.00 USDT</td>
@@ -2695,7 +2695,7 @@
                                         <td><span class="tag tag-green">VERIFIED</span></td>
                                     </tr>
                                     <tr class="ledger-row">
-                                        <td class="text-[#7DD3FC]">0x9d2e8f1a…7c8123b4</td>
+                                        <td class="text-[#F1D98A]">0x9d2e8f1a…7c8123b4</td>
                                         <td>TX8m…k9Qp</td>
                                         <td>TQ3r…m4Lz</td>
                                         <td class="text-slate-300">8,950.00 USDT</td>
@@ -2704,9 +2704,9 @@
                                         <td><span class="tag tag-green">VERIFIED</span></td>
                                     </tr>
                                     <tr class="ledger-row">
-                                        <td class="text-[#7DD3FC]">0x1f8c3a2b…3b2299d4</td>
+                                        <td class="text-[#F1D98A]">0x1f8c3a2b…3b2299d4</td>
                                         <td>TQ3r…m4Lz</td>
-                                        <td class="text-[#4ADE80]">TK7v…oP2x <span class="text-slate-600">·
+                                        <td class="text-[#D95C63]">TK7v…oP2x <span class="text-slate-600">·
                                                 COINBASE</span></td>
                                         <td class="text-slate-300">8,950.00 USDT</td>
                                         <td>48,221,071</td>
@@ -2714,7 +2714,7 @@
                                         <td><span class="tag tag-green">VERIFIED</span></td>
                                     </tr>
                                     <tr class="ledger-row">
-                                        <td class="text-[#7DD3FC]">0x6e7d2c5b…8a91f0e2</td>
+                                        <td class="text-[#F1D98A]">0x6e7d2c5b…8a91f0e2</td>
                                         <td>TY2h…R5nL</td>
                                         <td>TW9f…N3bQ</td>
                                         <td class="text-slate-300">3,450.00 USDT</td>
@@ -2723,9 +2723,9 @@
                                         <td><span class="tag tag-green">VERIFIED</span></td>
                                     </tr>
                                     <tr class="ledger-row">
-                                        <td class="text-[#7DD3FC]">0xa1b2c3d4…e5f60718</td>
+                                        <td class="text-[#F1D98A]">0xa1b2c3d4…e5f60718</td>
                                         <td>TW9f…N3bQ</td>
-                                        <td class="text-[#4ADE80]">TK7v…oP2x <span class="text-slate-600">·
+                                        <td class="text-[#D95C63]">TK7v…oP2x <span class="text-slate-600">·
                                                 COINBASE</span></td>
                                         <td class="text-slate-300">3,450.00 USDT</td>
                                         <td>48,221,052</td>
