@@ -2,7 +2,8 @@
 
 import React, { useMemo, useState } from 'react';
 import { GraphData, Attribution } from '../lib/types';
-import { Layers, Building2, TrendingUp, ShieldCheck, Wallet } from 'lucide-react';
+import { Layers, Building2, TrendingUp, ShieldCheck, Wallet, ArrowRight } from 'lucide-react';
+import { Badge } from './ui/Badge';
 
 interface SankeyFlowViewProps {
   graphData?: GraphData | null;
@@ -93,62 +94,62 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
     });
 
     const cols = [
-      { title: 'ROOT SUSPECT', nodes: hop0Nodes, color: 'text-danger border-danger' },
-      { title: 'HOP 1 DIRECT', nodes: hop1Nodes.slice(0, 6), color: 'text-accent border-accent' },
-      { title: 'HOP 2 LAYERING', nodes: hop2Nodes.slice(0, 6), color: 'text-warning border-warning' },
-      { title: 'DESTINATION VASPS', nodes: vaspNodes, color: 'text-verified border-verified' },
+      { title: 'ROOT SUSPECT', nodes: hop0Nodes, badgeVariant: 'danger' },
+      { title: 'HOP 1 DIRECT', nodes: hop1Nodes.slice(0, 6), badgeVariant: 'accent' },
+      { title: 'HOP 2 LAYERING', nodes: hop2Nodes.slice(0, 6), badgeVariant: 'warning' },
+      { title: 'DESTINATION VASPS', nodes: vaspNodes, badgeVariant: 'success' },
     ].filter((c) => c.nodes.length > 0);
 
     return { columns: cols, totalRootVolume: rootOutflow };
   }, [graphData, rootAddress]);
 
   return (
-    <div className="flex flex-col h-full bg-bg p-5 overflow-y-auto space-y-5 font-sans">
+    <div className="flex flex-col h-full bg-bg p-5 sm:p-6 overflow-y-auto space-y-5 font-sans">
       {/* Top Intelligence Metrics Banner */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="p-3.5 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-vercel">
-          <div className="w-8 h-8 rounded-lg bg-danger/10 text-danger border border-danger/20 inline-flex items-center justify-center shrink-0">
+        <div className="p-4 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-panel">
+          <div className="w-9 h-9 rounded-lg bg-danger-subtle text-danger border border-danger-border inline-flex items-center justify-center shrink-0">
             <Wallet className="h-4 w-4 shrink-0" />
           </div>
           <div className="min-w-0">
-            <span className="text-[10px] text-text-dim uppercase font-mono font-medium block">Root Origin</span>
-            <span className="text-xs font-bold font-mono text-text truncate block max-w-[130px]">
+            <span className="text-xs text-text-muted font-medium block">Root Origin</span>
+            <span className="text-xs font-bold font-mono text-text truncate block max-w-[140px]">
               {rootAddress.slice(0, 10)}...
             </span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-vercel">
-          <div className="w-8 h-8 rounded-lg bg-accent/10 text-accent border border-accent/20 inline-flex items-center justify-center shrink-0">
+        <div className="p-4 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-panel">
+          <div className="w-9 h-9 rounded-lg bg-accent-subtle text-accent border border-accent-border inline-flex items-center justify-center shrink-0">
             <TrendingUp className="h-4 w-4 shrink-0" />
           </div>
           <div className="min-w-0">
-            <span className="text-[10px] text-text-dim uppercase font-mono font-medium block">Observed Flow</span>
+            <span className="text-xs text-text-muted font-medium block">Observed Flow</span>
             <span className="text-xs font-bold font-mono text-accent">
               ${totalRootVolume > 1000 ? totalRootVolume.toLocaleString('en-US', { maximumFractionDigits: 0 }) : totalRootVolume.toFixed(2)}
             </span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-vercel">
-          <div className="w-8 h-8 rounded-lg bg-warning/10 text-warning border border-warning/20 inline-flex items-center justify-center shrink-0">
+        <div className="p-4 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-panel">
+          <div className="w-9 h-9 rounded-lg bg-warning-subtle text-warning border border-warning-border inline-flex items-center justify-center shrink-0">
             <Layers className="h-4 w-4 shrink-0" />
           </div>
           <div className="min-w-0">
-            <span className="text-[10px] text-text-dim uppercase font-mono font-medium block">Layering Depth</span>
+            <span className="text-xs text-text-muted font-medium block">Layering Depth</span>
             <span className="text-xs font-bold font-mono text-warning">
               {columns.length} Topological Stages
             </span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-vercel">
-          <div className="w-8 h-8 rounded-lg bg-verified/10 text-verified border border-verified/20 inline-flex items-center justify-center shrink-0">
+        <div className="p-4 rounded-xl bg-surface border border-border flex items-center gap-3 shadow-panel">
+          <div className="w-9 h-9 rounded-lg bg-verified-subtle text-verified border border-verified-border inline-flex items-center justify-center shrink-0">
             <Building2 className="h-4 w-4 shrink-0" />
           </div>
           <div className="min-w-0">
-            <span className="text-[10px] text-text-dim uppercase font-mono font-medium block">Top Attributed VASP</span>
-            <span className="text-xs font-bold font-mono text-verified truncate block max-w-[130px]">
+            <span className="text-xs text-text-muted font-medium block">Top Attributed VASP</span>
+            <span className="text-xs font-bold text-verified truncate block max-w-[140px]">
               {attributions && attributions[0]
                 ? `${attributions[0].vasp_name} (${attributions[0].score.toFixed(0)}%)`
                 : 'Scanning...'}
@@ -158,15 +159,15 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
       </div>
 
       {/* Multi-Column Sankey Flow Canvas */}
-      <div className="p-5 rounded-xl bg-surface border border-border flex-1 flex flex-col justify-between shadow-vercel">
-        <div className="flex items-center justify-between border-b border-border pb-3 mb-6">
+      <div className="p-6 rounded-xl bg-surface border border-border flex-1 flex flex-col justify-between shadow-panel">
+        <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
           <div className="inline-flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-accent shrink-0" />
-            <h3 className="text-xs font-semibold text-text uppercase tracking-wider font-mono">
+            <h3 className="text-sm font-semibold text-text tracking-wide">
               Volumetric Fund Flow & Entity Distribution Waterfall
             </h3>
           </div>
-          <span className="text-[10px] font-mono text-text-dim">
+          <span className="text-xs text-text-muted">
             Left-to-Right Topological Fund Transit
           </span>
         </div>
@@ -175,8 +176,13 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5 relative">
           {columns.map((col, colIdx) => (
             <div key={colIdx} className="flex flex-col space-y-3">
-              <div className={`text-[10px] font-bold font-mono uppercase tracking-wider pb-1.5 border-b ${col.color}`}>
-                {col.title} ({col.nodes.length})
+              <div className="flex items-center justify-between pb-2 border-b border-border">
+                <span className="text-xs font-semibold text-text uppercase tracking-wider">
+                  {col.title}
+                </span>
+                <Badge variant={col.badgeVariant as any} size="sm">
+                  {col.nodes.length}
+                </Badge>
               </div>
 
               <div className="flex flex-col space-y-2.5">
@@ -191,50 +197,52 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
                       onMouseEnter={() => setHoveredNode(node.id)}
                       onMouseLeave={() => setHoveredNode(null)}
                       onClick={() => onSelectAddress?.(node.id)}
-                      className={`p-3 rounded-lg border transition-all cursor-pointer relative overflow-hidden ${
+                      className={`p-3.5 rounded-xl border transition-all cursor-pointer relative overflow-hidden ${
                         isHovered
-                          ? 'border-accent bg-accent/10 shadow-vercel scale-[1.02]'
+                          ? 'border-accent bg-accent/10 shadow-panel scale-[1.02]'
                           : isVasp
-                          ? 'border-accent/30 bg-accent/5 hover:border-accent'
+                          ? 'border-verified/30 bg-verified-subtle hover:border-verified'
                           : isRoot
-                          ? 'border-danger/30 bg-danger/5 hover:border-danger'
+                          ? 'border-danger/30 bg-danger-subtle hover:border-danger'
                           : 'border-border bg-surface-raised hover:border-border-hover'
                       }`}
                     >
                       {/* Flow percentage bar background */}
                       <div
                         className={`absolute left-0 bottom-0 top-0 opacity-15 transition-all ${
-                          isVasp ? 'bg-accent' : isRoot ? 'bg-danger' : 'bg-accent'
+                          isVasp ? 'bg-verified' : isRoot ? 'bg-danger' : 'bg-accent'
                         }`}
                         style={{ width: `${Math.max(8, node.percentage)}%` }}
                       />
 
                       <div className="relative z-10 flex flex-col space-y-1.5">
                         <div className="flex items-center justify-between">
-                          <span className="font-semibold text-xs font-mono text-text truncate max-w-[140px]">
+                          <span className="font-semibold text-xs text-text truncate max-w-[140px]">
                             {node.vaspName ? (
                               <span className="text-accent font-bold flex items-center space-x-1">
-                                <Building2 className="h-3 w-3 inline" />
+                                <Building2 className="h-3.5 w-3.5 inline" />
                                 <span>{node.vaspName}</span>
                               </span>
                             ) : (
-                              `${node.id.slice(0, 6)}...${node.id.slice(-4)}`
+                              <span className="font-mono text-technical">
+                                {node.id.slice(0, 6)}...{node.id.slice(-4)}
+                              </span>
                             )}
                           </span>
 
-                          <span className="text-[10px] font-mono font-bold text-text-dim">
+                          <span className="text-xs font-mono font-bold text-text-muted">
                             {node.percentage > 0 ? `${node.percentage.toFixed(0)}%` : ''}
                           </span>
                         </div>
 
-                        <div className="flex items-center justify-between text-[10px] font-mono text-text-dim">
+                        <div className="flex items-center justify-between text-xs text-text-muted">
                           <span>
                             Vol: $
                             {node.totalVolume > 1000
                               ? node.totalVolume.toLocaleString('en-US', { maximumFractionDigits: 0 })
                               : node.totalVolume.toFixed(2)}
                           </span>
-                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-bg border border-border font-medium">
+                          <span className="px-2 py-0.5 rounded-full bg-surface border border-border text-xs font-medium font-mono">
                             Hop {node.hop}
                           </span>
                         </div>
@@ -248,7 +256,7 @@ export const SankeyFlowView: React.FC<SankeyFlowViewProps> = ({
         </div>
 
         {/* Bottom Flow Insights */}
-        <div className="mt-8 pt-4 border-t border-border flex flex-wrap items-center justify-between text-[11px] font-mono text-text-dim gap-3">
+        <div className="mt-8 pt-4 border-t border-border flex flex-wrap items-center justify-between text-xs text-text-muted gap-3">
           <div className="flex items-center space-x-4">
             <span className="flex items-center space-x-1.5">
               <span className="h-2 w-2 rounded-full bg-danger" />

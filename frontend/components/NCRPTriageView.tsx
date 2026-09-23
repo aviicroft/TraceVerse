@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ShieldAlert, Filter, ArrowRight, RefreshCw } from 'lucide-react';
+import { ShieldAlert, Filter, ArrowRight, RefreshCw, AlertCircle } from 'lucide-react';
 import { api } from '../lib/api';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
 
 interface NCRPTriageViewProps {
   onSelectCase: (walletAddress: string, maxHops: number) => void;
@@ -35,30 +37,30 @@ export const NCRPTriageView: React.FC<NCRPTriageViewProps> = ({ onSelectCase }) 
   );
 
   return (
-    <div className="bg-surface border border-border rounded-xl shadow-vercel text-xs font-mono transition-colors overflow-hidden">
+    <div className="bg-surface border border-border rounded-xl shadow-panel text-xs font-sans transition-colors overflow-hidden">
       {/* Header */}
-      <div className="p-4 sm:p-5 border-b border-border bg-surface-raised/40 flex flex-wrap items-center justify-between gap-3">
+      <div className="p-5 border-b border-border bg-surface-raised/40 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2">
+          <div className="inline-flex items-center gap-2.5">
             <ShieldAlert className="h-4 w-4 text-warning shrink-0" />
-            <h2 className="font-semibold text-text uppercase text-xs tracking-wider">
-              NCRP Cyber Financial Crime Incident Triage Queue
+            <h2 className="font-bold text-text text-sm tracking-wide">
+              NCRP Incident Triage Queue
             </h2>
-            <span className="px-2 py-0.5 rounded-full text-[10px] bg-surface-raised text-text-muted border border-border font-medium">
+            <Badge variant="warning" dot={true}>
               {filtered.length} Active Incidents
-            </span>
+            </Badge>
           </div>
-          <p className="text-[11px] text-text-dim font-sans mt-1">
-            National Cybercrime Reporting Portal automated asset recovery prioritization & fast-freeze dispatch
+          <p className="text-xs text-text-muted mt-1">
+            National Cybercrime Reporting Portal automated recovery triage & priority fast-freeze dispatch
           </p>
         </div>
 
-        <div className="inline-flex items-center gap-1.5">
-          <Filter className="h-3.5 w-3.5 text-text-dim shrink-0" />
+        <div className="inline-flex items-center gap-2">
+          <Filter className="h-3.5 w-3.5 text-text-muted shrink-0" />
           <select
             value={filterTypology}
             onChange={(e) => setFilterTypology(e.target.value)}
-            className="bg-bg border border-border text-text text-[11px] rounded-lg px-2.5 py-1.5 font-mono focus:outline-none focus:border-accent cursor-pointer"
+            className="bg-surface border border-border text-text text-xs rounded-xl px-3 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
           >
             <option value="ALL">All Fraud Typologies</option>
             <option value="Task">Part-Time Task Scam</option>
@@ -73,9 +75,9 @@ export const NCRPTriageView: React.FC<NCRPTriageViewProps> = ({ onSelectCase }) 
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
-            <tr className="border-b border-border bg-surface-raised/20 text-[10px] uppercase font-mono tracking-wider text-text-dim font-semibold">
+            <tr className="border-b border-border bg-surface-raised/30 text-xs text-text-muted font-medium">
               <th className="py-3 px-4">Complaint Ref</th>
-              <th className="py-3 px-4">Law Enforcement Unit</th>
+              <th className="py-3 px-4">Police Jurisdiction</th>
               <th className="py-3 px-4">Scam Typology</th>
               <th className="py-3 px-4 text-right">Victim Loss (INR)</th>
               <th className="py-3 px-4">Suspect Target Wallet</th>
@@ -84,10 +86,10 @@ export const NCRPTriageView: React.FC<NCRPTriageViewProps> = ({ onSelectCase }) 
               <th className="py-3 px-4 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-border/60 font-mono text-[11px]">
+          <tbody className="divide-y divide-border/60">
             {loading ? (
               <tr>
-                <td colSpan={8} className="py-12 text-center text-text-dim font-sans">
+                <td colSpan={8} className="py-14 text-center text-text-muted">
                   <div className="inline-flex items-center justify-center gap-2">
                     <RefreshCw className="h-4 w-4 animate-spin text-accent shrink-0" />
                     <span>Loading incident dispatch queue...</span>
@@ -96,56 +98,56 @@ export const NCRPTriageView: React.FC<NCRPTriageViewProps> = ({ onSelectCase }) 
               </tr>
             ) : filtered.length === 0 ? (
               <tr>
-                <td colSpan={8} className="py-12 text-center text-text-dim font-sans">
+                <td colSpan={8} className="py-14 text-center text-text-muted">
                   No complaints matching selected filter.
                 </td>
               </tr>
             ) : (
               filtered.map((c, idx) => (
-                <tr key={idx} className="hover:bg-surface-raised/40 transition-colors">
-                  <td className="py-3 px-4 font-bold text-text">
+                <tr key={idx} className="hover:bg-surface-raised/40 transition-colors h-14">
+                  <td className="py-3 px-4 font-mono font-bold text-text text-technical">
                     {c.complaint_id}
                   </td>
 
-                  <td className="py-3 px-4 text-text-muted text-[10px]">
+                  <td className="py-3 px-4 text-text-secondary text-xs">
                     {c.district}
                   </td>
 
-                  <td className="py-3 px-4 text-text font-sans text-xs">
+                  <td className="py-3 px-4 text-text font-medium text-xs">
                     {c.scam_typology}
                   </td>
 
-                  <td className="py-3 px-4 text-right font-bold text-text">
-                    ₹ {c.victim_loss_inr.toLocaleString('en-IN')}
+                  <td className="py-3 px-4 text-right font-mono font-bold text-text">
+                    ₹{c.victim_loss_inr.toLocaleString('en-IN')}
                   </td>
 
-                  <td className="py-3 px-4 text-text-muted truncate max-w-[140px] select-all">
-                    {c.suspect_wallet}
+                  <td className="py-3 px-4 font-mono text-technical text-text-secondary truncate max-w-[140px] select-all">
+                    {c.suspect_wallet.slice(0, 8)}...{c.suspect_wallet.slice(-6)}
                   </td>
 
-                  <td className="py-3 px-4 text-accent font-semibold">
+                  <td className="py-3 px-4 text-accent font-semibold text-xs">
                     {c.suggested_vasp}
                   </td>
 
                   <td className="py-3 px-4">
-                    <span
-                      className={`px-2 py-0.5 rounded-full text-[9px] font-bold border ${
-                        c.urgency_level === 'CRITICAL'
-                          ? 'bg-danger-subtle text-danger border-danger-border'
-                          : 'bg-warning-subtle text-warning border-warning-border'
-                      }`}
+                    <Badge
+                      variant={c.urgency_level === 'CRITICAL' ? 'danger' : 'warning'}
+                      size="sm"
                     >
                       {c.urgency_level}
-                    </span>
+                    </Badge>
                   </td>
 
                   <td className="py-3 px-4 text-right">
-                    <button
+                    <Button
+                      variant="secondary"
+                      size="sm"
                       onClick={() => onSelectCase(c.suspect_wallet, 3)}
-                      className="px-3 py-1 bg-text text-bg hover:opacity-90 font-medium rounded-md text-[11px] transition-opacity font-sans"
+                      icon={<ArrowRight className="h-3.5 w-3.5" />}
+                      iconPosition="right"
                     >
-                      Trace Target →
-                    </button>
+                      Trace
+                    </Button>
                   </td>
                 </tr>
               ))

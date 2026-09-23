@@ -9,7 +9,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Vercel Semantic Tokens
         bg: {
           DEFAULT: "var(--bg)",
           subtle: "var(--bg-subtle)",
@@ -18,6 +17,7 @@ module.exports = {
         surface: {
           DEFAULT: "var(--surface)",
           raised: "var(--surface-raised)",
+          elevated: "var(--surface-elevated)",
           hover: "var(--surface-hover)",
           overlay: "var(--surface-overlay)",
         },
@@ -29,6 +29,7 @@ module.exports = {
         },
         text: {
           DEFAULT: "var(--text)",
+          secondary: "var(--text-secondary)",
           muted: "var(--text-muted)",
           dim: "var(--text-dim)",
           inverse: "var(--text-inverse)",
@@ -55,6 +56,11 @@ module.exports = {
           hover: "var(--danger-hover)",
           subtle: "var(--danger-subtle)",
           border: "var(--danger-border)",
+        },
+        info: {
+          DEFAULT: "var(--info)",
+          subtle: "var(--info-subtle)",
+          border: "var(--info-border)",
         },
         input: {
           DEFAULT: "var(--input)",
@@ -94,13 +100,27 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       fontSize: {
-        '2xs': '0.65rem',
-        '3xs': '0.55rem',
+        'display': ['2rem', { lineHeight: '2.5rem', fontWeight: '700' }],
+        'page-title': ['1.75rem', { lineHeight: '2.25rem', fontWeight: '700' }],
+        'section-title': ['1.125rem', { lineHeight: '1.75rem', fontWeight: '600' }],
+        'card-title': ['1rem', { lineHeight: '1.5rem', fontWeight: '600' }],
+        'body': ['0.875rem', { lineHeight: '1.25rem' }],
+        'caption': ['0.75rem', { lineHeight: '1rem' }],
+        'technical': ['0.8125rem', { lineHeight: '1.125rem' }],
+        '2xs': '0.6875rem',
+      },
+      borderRadius: {
+        'btn': '8px',
+        'card': '12px',
+        'container': '16px',
       },
       boxShadow: {
+        'panel': '0 1px 3px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--border)',
+        'panel-raised': '0 4px 12px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border)',
+        'panel-elevated': '0 12px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border)',
         'vercel': '0 0 0 1px var(--border), 0 2px 4px rgba(0,0,0,0.04)',
         'vercel-lg': '0 0 0 1px var(--border), 0 8px 16px rgba(0,0,0,0.08)',
       },

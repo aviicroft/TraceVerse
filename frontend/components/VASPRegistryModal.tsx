@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Database, Search, ExternalLink, Copy, Check, X, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
+import { Database, Search, ExternalLink, Copy, Check, X, ChevronLeft, ChevronRight, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { api } from '../lib/api';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
 
 interface VASPRegistryModalProps {
   onClose?: () => void;
@@ -24,7 +26,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
   const [selectedVasp, setSelectedVasp] = useState<string>('ALL');
   const [selectedType, setSelectedType] = useState<string>('ALL');
   const [page, setPage] = useState<number>(0);
-  const pageSize = 25;
+  const pageSize = 20;
 
   const [copiedAddr, setCopiedAddr] = useState<string | null>(null);
 
@@ -75,26 +77,26 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
 
   const content = (
     <div
-      className={`bg-surface border border-border rounded-xl w-full flex flex-col font-mono text-xs overflow-hidden transition-colors ${
-        isFullPageView ? 'shadow-vercel' : 'max-w-6xl max-h-[92vh] shadow-vercel-lg'
+      className={`bg-surface border border-border rounded-xl w-full flex flex-col font-sans text-xs overflow-hidden transition-colors ${
+        isFullPageView ? 'shadow-panel' : 'max-w-6xl max-h-[92vh] shadow-panel-elevated'
       }`}
     >
       {/* Header */}
-      <div className="p-4 sm:p-5 border-b border-border flex flex-wrap items-center justify-between bg-surface-raised/40 gap-3">
+      <div className="p-5 border-b border-border flex flex-wrap items-center justify-between bg-surface-raised/40 gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 text-accent inline-flex items-center justify-center shrink-0">
-            <Database className="h-4 w-4 shrink-0" />
+          <div className="w-9 h-9 rounded-xl bg-accent-subtle border border-accent-border text-accent inline-flex items-center justify-center shrink-0">
+            <Database className="h-5 w-5 shrink-0" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-xs font-semibold text-text uppercase tracking-wider">
-                VASPs & Entity Intelligence Registry
+            <div className="flex items-center gap-2.5">
+              <h2 className="text-sm font-bold text-text">
+                VASP & Entity Intelligence Registry
               </h2>
-              <span className="px-2 py-0.5 rounded-full bg-verified-subtle text-verified border border-verified-border text-[10px] font-bold">
-                {stats ? `${stats.total_addresses.toLocaleString()} VERIFIED ADDRESSES` : 'LOADING...'}
-              </span>
+              <Badge variant="success" dot={true}>
+                {stats ? `${stats.total_addresses.toLocaleString()} Verified Addresses` : 'Loading...'}
+              </Badge>
             </div>
-            <p className="text-[10px] text-text-dim font-sans mt-0.5">
+            <p className="text-xs text-text-muted mt-0.5">
               Curated public Proof-of-Reserves, Etherscan verified labels, Tronscan tags & FIU-IND registrations
             </p>
           </div>
@@ -103,7 +105,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
         {onClose && !isFullPageView && (
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg text-text-dim hover:text-text hover:bg-surface-hover transition-colors inline-flex items-center justify-center shrink-0"
+            className="p-1.5 rounded-lg text-text-muted hover:text-text hover:bg-surface-raised transition-colors inline-flex items-center justify-center shrink-0"
             aria-label="Close modal"
           >
             <X className="h-4 w-4 shrink-0" />
@@ -112,11 +114,11 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
       </div>
 
       {/* Filter Toolbar */}
-      <div className="p-3 bg-bg border-b border-border flex flex-wrap items-center justify-between gap-2.5 text-[11px]">
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="p-3.5 bg-surface-raised/30 border-b border-border flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex flex-wrap items-center gap-2.5">
           {/* Search Box */}
           <div className="relative">
-            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-dim pointer-events-none shrink-0" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted pointer-events-none shrink-0" />
             <input
               type="text"
               value={searchQuery}
@@ -125,7 +127,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
                 setPage(0);
               }}
               placeholder="Search address, label, or entity..."
-              className="pl-8 pr-3 py-1.5 bg-surface border border-border rounded-lg text-text placeholder:text-text-dim text-[11px] focus:outline-none focus:border-accent w-48 sm:w-64 transition-colors"
+              className="pl-9 pr-3 py-1.5 bg-surface border border-border rounded-xl text-text placeholder:text-text-muted text-xs focus:outline-none focus:border-accent w-52 sm:w-64 transition-colors font-mono"
             />
           </div>
 
@@ -136,7 +138,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
               setSelectedChain(e.target.value);
               setPage(0);
             }}
-            className="bg-surface border border-border rounded-lg text-text px-2 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
+            className="bg-surface border border-border rounded-xl text-text px-3 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
           >
             <option value="ALL">All Chains</option>
             <option value="ethereum">Ethereum</option>
@@ -150,7 +152,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
               setSelectedVasp(e.target.value);
               setPage(0);
             }}
-            className="bg-surface border border-border rounded-lg text-text px-2 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
+            className="bg-surface border border-border rounded-xl text-text px-3 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
           >
             <option value="ALL">All Entities</option>
             {stats?.supported_vasps?.map((v: string) => (
@@ -161,28 +163,28 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
           </select>
         </div>
 
-        <div className="text-text-dim text-[11px]">
+        <div className="text-text-muted text-xs font-medium">
           Showing {totalMatches.toLocaleString()} matching records
         </div>
       </div>
 
       {/* Addresses Table */}
       <div className="overflow-y-auto flex-1">
-        <table className="w-full text-left border-collapse text-[11px]">
+        <table className="w-full text-left border-collapse text-xs">
           <thead>
-            <tr className="border-b border-border bg-surface-raised/20 text-[10px] uppercase text-text-dim tracking-wider font-semibold sticky top-0">
-              <th className="py-2.5 px-4">Entity / VASP</th>
-              <th className="py-2.5 px-4">Chain</th>
-              <th className="py-2.5 px-4">Address Type</th>
-              <th className="py-2.5 px-4">Verified Cluster Address</th>
-              <th className="py-2.5 px-4 text-center">Confidence</th>
-              <th className="py-2.5 px-4 text-right">Actions</th>
+            <tr className="border-b border-border bg-surface-raised/40 text-xs text-text-muted font-medium sticky top-0">
+              <th className="py-3 px-4">Entity / VASP</th>
+              <th className="py-3 px-4">Chain</th>
+              <th className="py-3 px-4">Address Type</th>
+              <th className="py-3 px-4">Verified Cluster Address</th>
+              <th className="py-3 px-4 text-center">Status</th>
+              <th className="py-3 px-4 text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/60">
             {loading ? (
               <tr>
-                <td colSpan={6} className="py-12 text-center text-text-dim font-sans">
+                <td colSpan={6} className="py-14 text-center text-text-muted">
                   <div className="inline-flex items-center justify-center gap-2">
                     <RefreshCw className="h-4 w-4 animate-spin text-accent shrink-0" />
                     <span>Loading registry records...</span>
@@ -191,37 +193,39 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
               </tr>
             ) : addresses.length === 0 ? (
               <tr>
-                <td colSpan={6} className="py-12 text-center text-text-dim font-sans">
+                <td colSpan={6} className="py-14 text-center text-text-muted">
                   No addresses found matching filter criteria.
                 </td>
               </tr>
             ) : (
               addresses.map((item, idx) => (
-                <tr key={idx} className="hover:bg-surface-raised/40 transition-colors">
-                  <td className="py-2.5 px-4 font-bold text-text">
-                    <span className="text-accent">{item.vasp_name}</span>
+                <tr key={idx} className="hover:bg-surface-raised/40 transition-colors h-13">
+                  <td className="py-3 px-4 font-bold text-text">
+                    <span className="text-accent text-xs font-semibold">{item.vasp_name}</span>
                   </td>
-                  <td className="py-2.5 px-4 uppercase text-[10px] text-text-muted">
-                    {item.chain}
+                  <td className="py-3 px-4">
+                    <span className="uppercase text-xs px-2 py-0.5 rounded-full bg-surface-raised border border-border text-text-muted font-mono font-medium">
+                      {item.chain}
+                    </span>
                   </td>
-                  <td className="py-2.5 px-4">
-                    <span className="px-1.5 py-0.2 rounded bg-surface-raised border border-border text-text-muted text-[10px]">
+                  <td className="py-3 px-4">
+                    <span className="px-2 py-0.5 rounded-full bg-surface-raised border border-border text-text-secondary text-xs">
                       {item.address_type}
                     </span>
                   </td>
-                  <td className="py-2.5 px-4 font-semibold text-text select-all break-all">
+                  <td className="py-3 px-4 font-mono text-technical text-text font-semibold select-all break-all">
                     {item.address}
                   </td>
-                  <td className="py-2.5 px-4 text-center">
-                    <span className="text-verified font-semibold text-[10px]">
-                      {item.confidence || 'HIGH'}
-                    </span>
+                  <td className="py-3 px-4 text-center">
+                    <Badge variant="success" size="sm" dot={true}>
+                      VERIFIED
+                    </Badge>
                   </td>
-                  <td className="py-2.5 px-4 text-right">
-                    <div className="inline-flex items-center justify-end gap-1.5">
+                  <td className="py-3 px-4 text-right">
+                    <div className="inline-flex items-center justify-end gap-1">
                       <button
                         onClick={() => handleCopy(item.address)}
-                        className="w-6 h-6 inline-flex items-center justify-center rounded hover:bg-surface-raised/80 text-text-dim hover:text-text transition-colors shrink-0"
+                        className="p-1.5 rounded-lg hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0"
                         title="Copy Address"
                       >
                         {copiedAddr === item.address ? (
@@ -238,7 +242,7 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
                         }
                         target="_blank"
                         rel="noreferrer"
-                        className="w-6 h-6 inline-flex items-center justify-center rounded hover:bg-surface-raised/80 text-text-dim hover:text-text transition-colors shrink-0"
+                        className="p-1.5 rounded-lg hover:bg-surface-raised text-text-muted hover:text-accent transition-colors shrink-0"
                         title="View on Explorer"
                       >
                         <ExternalLink className="h-3.5 w-3.5 shrink-0" />
@@ -253,30 +257,33 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
       </div>
 
       {/* Pagination Footer */}
-      <div className="p-3 border-t border-border bg-surface-raised/30 flex items-center justify-between text-text-muted text-[11px]">
+      <div className="p-3.5 border-t border-border bg-surface-raised/30 flex items-center justify-between text-text-muted text-xs">
         <div>
           Page {page + 1} of {totalPages}
         </div>
         <div className="inline-flex items-center gap-1.5">
-          <button
-            onClick={() => setPage((p) => Math.max(0, p - 1))}
+          <Button
+            variant="secondary"
+            size="sm"
             disabled={page === 0}
-            className="w-6 h-6 rounded bg-surface hover:bg-surface-raised border border-border text-text disabled:opacity-40 transition-colors inline-flex items-center justify-center shrink-0"
-            aria-label="Previous page"
+            onClick={() => setPage((p) => Math.max(0, p - 1))}
+            icon={<ChevronLeft className="h-3.5 w-3.5" />}
           >
-            <ChevronLeft className="h-3.5 w-3.5 shrink-0" />
-          </button>
-          <span className="px-2 py-0.5 rounded bg-surface border border-border text-text text-[10px]">
+            Previous
+          </Button>
+          <span className="px-2.5 py-1 rounded-md bg-surface border border-border text-text font-mono text-xs font-semibold">
             {page + 1}
           </span>
-          <button
-            onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+          <Button
+            variant="secondary"
+            size="sm"
             disabled={page >= totalPages - 1}
-            className="w-6 h-6 rounded bg-surface hover:bg-surface-raised border border-border text-text disabled:opacity-40 transition-colors inline-flex items-center justify-center shrink-0"
-            aria-label="Next page"
+            onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+            icon={<ChevronRight className="h-3.5 w-3.5" />}
+            iconPosition="right"
           >
-            <ChevronRight className="h-3.5 w-3.5 shrink-0" />
-          </button>
+            Next
+          </Button>
         </div>
       </div>
     </div>

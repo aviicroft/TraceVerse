@@ -18,8 +18,12 @@ import {
   Menu,
   X,
   ChevronDown,
+  Activity,
+  Layers,
+  FileCheck2,
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
+import { Badge } from './ui/Badge';
 
 export type ActiveTabType =
   | 'WORKSPACE'
@@ -49,125 +53,109 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const { resolvedTheme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [moreMenuOpen, setMoreMenuOpen] = useState(false);
-  const moreMenuRef = useRef<HTMLDivElement>(null);
+  const [intelligenceOpen, setIntelligenceOpen] = useState(false);
+  const [reportsOpen, setReportsOpen] = useState(false);
 
-  // Close "More" dropdown when clicking outside
+  const intelligenceRef = useRef<HTMLDivElement>(null);
+  const reportsRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (moreMenuRef.current && !moreMenuRef.current.contains(event.target as Node)) {
-        setMoreMenuOpen(false);
+      if (
+        intelligenceRef.current &&
+        !intelligenceRef.current.contains(event.target as Node)
+      ) {
+        setIntelligenceOpen(false);
+      }
+      if (
+        reportsRef.current &&
+        !reportsRef.current.contains(event.target as Node)
+      ) {
+        setReportsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close "More" dropdown on Escape key
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMoreMenuOpen(false);
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Primary navigation tabs (always shown in desktop bar)
+  // Primary 4 tabs
   const primaryTabs: { id: ActiveTabType; label: string; icon: React.ReactNode; badge?: string }[] = [
     {
       id: 'WORKSPACE',
       label: 'Target Workspace',
-      icon: <Search className="h-3.5 w-3.5 shrink-0" />,
-    },
-    {
-      id: 'CANDIDATE_DISCOVERY',
-      label: 'Candidate Radar',
-      icon: <Radar className="h-3.5 w-3.5 text-accent shrink-0" />,
+      icon: <Search className="h-4 w-4 shrink-0" />,
     },
     {
       id: 'GRAPH_STUDIO',
       label: 'Graph Studio',
-      icon: <Network className="h-3.5 w-3.5 shrink-0" />,
+      icon: <Network className="h-4 w-4 shrink-0" />,
       badge: hasActiveTarget ? 'Active' : undefined,
+    },
+    {
+      id: 'CANDIDATE_DISCOVERY',
+      label: 'Candidate Radar',
+      icon: <Radar className="h-4 w-4 shrink-0" />,
     },
     {
       id: 'NCRP_TRIAGE',
       label: 'NCRP Queue',
-      icon: <ListFilter className="h-3.5 w-3.5 shrink-0" />,
+      icon: <ListFilter className="h-4 w-4 shrink-0" />,
       badge: `${caseCount}`,
     },
   ];
 
-  // Secondary navigation tabs (collapsible into More dropdown on lg/xl, direct on 2xl)
-  const secondaryTabs: { id: ActiveTabType; label: string; icon: React.ReactNode; badge?: string }[] = [
-    {
-      id: 'VASP_REGISTRY',
-      label: 'VASP Registry',
-      icon: <Database className="h-3.5 w-3.5 shrink-0" />,
-    },
-    {
-      id: 'LEGAL_STUDIO',
-      label: 'Sec 91 Freeze Order',
-      icon: <Scale className="h-3.5 w-3.5 text-danger shrink-0" />,
-    },
-    {
-      id: 'METHODOLOGY',
-      label: 'Methodology',
-      icon: <FileText className="h-3.5 w-3.5 shrink-0" />,
-    },
-  ];
-
-  const allTabs = [...primaryTabs, ...secondaryTabs];
-  const activeSecondaryTab = secondaryTabs.find((t) => t.id === activeTab);
-  const isSecondaryActive = !!activeSecondaryTab;
+  const isIntelligenceActive = activeTab === 'VASP_REGISTRY';
+  const isReportsActive = activeTab === 'LEGAL_STUDIO' || activeTab === 'METHODOLOGY';
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border bg-surface/90 backdrop-blur-md text-xs select-none transition-colors">
-      <div className="w-full max-w-[1700px] mx-auto px-3 sm:px-4 lg:px-6 flex items-center justify-between h-14 gap-2 sm:gap-4 min-w-0">
+    <header className="sticky top-0 z-40 w-full border-b border-border bg-surface/90 backdrop-blur-md select-none transition-colors">
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
         {/* Left: Brand Identity & Desktop Navigation */}
-        <div className="flex items-center gap-3 xl:gap-5 min-w-0">
-          <Link href="/" className="inline-flex items-center gap-2 sm:gap-2.5 group shrink-0">
-            <div className="w-7 h-7 rounded-lg bg-text text-bg inline-flex items-center justify-center font-bold shadow-sm transition-transform group-hover:scale-105 shrink-0">
+        <div className="flex items-center gap-6 min-w-0">
+          <Link href="/" className="inline-flex items-center gap-2.5 group shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-accent text-white inline-flex items-center justify-center font-bold shadow-sm transition-transform group-hover:scale-105 shrink-0">
               <Shield className="h-4 w-4 shrink-0" />
             </div>
-            <div className="inline-flex items-center gap-1.5 sm:gap-2">
-              <span className="font-semibold text-text text-sm tracking-tight">
-                Trace<span className="text-text-muted font-normal">Verse</span>
-              </span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-surface-raised border border-border text-text-muted font-mono font-medium">
-                v1.2
-              </span>
+            <div className="flex flex-col">
+              <div className="inline-flex items-center gap-2">
+                <span className="font-bold text-text text-sm tracking-tight font-sans">
+                  Trace<span className="text-text-muted font-normal">Verse</span>
+                </span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-surface-raised border border-border text-text-muted font-mono font-medium">
+                  v2.0
+                </span>
+              </div>
             </div>
           </Link>
 
-          {/* Desktop Navigation Tabs (Visible on lg+) */}
-          <nav className="hidden lg:inline-flex items-center gap-1 p-0.5 rounded-lg bg-surface-raised/60 border border-border/60 shrink-0">
-            {/* Primary 4 Tabs */}
+          {/* Desktop Navigation Bar (Visible on lg+) */}
+          <nav className="hidden lg:inline-flex items-center gap-1 p-1 rounded-xl bg-surface-raised/70 border border-border/80 shrink-0">
             {primaryTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => onSelectTab(tab.id)}
-                  className={`relative px-2 sm:px-2.5 py-1 rounded-md text-xs font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
+                  className={`relative px-3 py-1.5 rounded-lg text-xs font-medium transition-all inline-flex items-center gap-2 shrink-0 ${
                     isActive
-                      ? 'bg-surface text-text border border-border/80 shadow-sm font-semibold'
-                      : 'text-text-muted hover:text-text hover:bg-surface-hover/50'
+                      ? 'bg-accent-subtle text-text border border-accent/30 font-semibold shadow-sm'
+                      : 'text-text-muted hover:text-text hover:bg-surface-hover/60 border border-transparent'
                   }`}
                 >
                   {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block shrink-0" />
                   )}
-                  <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : 'opacity-70'}`}>
+                  <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : 'opacity-75'}`}>
                     {tab.icon}
                   </span>
                   <span className="leading-none whitespace-nowrap">{tab.label}</span>
                   {tab.badge && (
                     <span
-                      className={`text-[9px] px-1.5 py-0.5 rounded-full font-mono font-medium shrink-0 ${
+                      className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-medium shrink-0 ${
                         tab.id === 'GRAPH_STUDIO'
-                          ? 'bg-accent/15 text-accent border border-accent/30 animate-pulse'
-                          : 'bg-surface-raised text-text-muted border border-border'
+                          ? 'bg-accent/15 text-accent border border-accent/30'
+                          : 'bg-surface border border-border text-text-muted'
                       }`}
                     >
                       {tab.badge}
@@ -177,147 +165,191 @@ export const Navbar: React.FC<NavbarProps> = ({
               );
             })}
 
-            {/* Direct Secondary Tabs on Ultra-Wide (2xl: >= 1536px) */}
-            <div className="hidden 2xl:inline-flex items-center gap-1">
-              {secondaryTabs.map((tab) => {
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => onSelectTab(tab.id)}
-                    className={`relative px-2.5 py-1 rounded-md text-xs font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
-                      isActive
-                        ? 'bg-surface text-text border border-border/80 shadow-sm font-semibold'
-                        : 'text-text-muted hover:text-text hover:bg-surface-hover/50'
-                    }`}
-                  >
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse shrink-0" />
-                    )}
-                    <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : 'opacity-70'}`}>
-                      {tab.icon}
-                    </span>
-                    <span className="leading-none whitespace-nowrap">{tab.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Responsive "More" Dropdown Menu on lg and xl screens (1024px to 1535px) */}
-            <div className="relative inline-flex 2xl:hidden" ref={moreMenuRef}>
+            {/* Intelligence Dropdown Menu */}
+            <div className="relative inline-flex" ref={intelligenceRef}>
               <button
-                onClick={() => setMoreMenuOpen(!moreMenuOpen)}
-                className={`relative px-2.5 py-1 rounded-md text-xs font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
-                  isSecondaryActive
-                    ? 'bg-surface text-text border border-border/80 shadow-sm font-semibold'
-                    : moreMenuOpen
-                    ? 'bg-surface-hover text-text'
-                    : 'text-text-muted hover:text-text hover:bg-surface-hover/50'
+                onClick={() => {
+                  setIntelligenceOpen(!intelligenceOpen);
+                  setReportsOpen(false);
+                }}
+                className={`relative px-3 py-1.5 rounded-lg text-xs font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
+                  isIntelligenceActive
+                    ? 'bg-accent-subtle text-text border border-accent/30 font-semibold shadow-sm'
+                    : intelligenceOpen
+                    ? 'bg-surface-hover text-text border border-border'
+                    : 'text-text-muted hover:text-text hover:bg-surface-hover/60 border border-transparent'
                 }`}
-                title="Additional navigation tabs"
-                aria-expanded={moreMenuOpen}
+                aria-expanded={intelligenceOpen}
               >
-                {isSecondaryActive ? (
-                  <>
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse shrink-0" />
-                    <span className="inline-flex items-center justify-center shrink-0 text-accent">
-                      {activeSecondaryTab.icon}
-                    </span>
-                    <span className="leading-none whitespace-nowrap">{activeSecondaryTab.label}</span>
-                  </>
-                ) : (
-                  <span className="leading-none whitespace-nowrap">More</span>
+                {isIntelligenceActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block shrink-0" />
                 )}
+                <BrainCircuit className="h-4 w-4 opacity-75 shrink-0" />
+                <span className="leading-none whitespace-nowrap">Intelligence</span>
                 <ChevronDown
                   className={`h-3 w-3 shrink-0 opacity-70 transition-transform duration-150 ${
-                    moreMenuOpen ? 'rotate-180' : ''
+                    intelligenceOpen ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
-              {/* Popover Menu */}
-              {moreMenuOpen && (
-                <div className="absolute left-0 top-full mt-1.5 w-52 p-1 rounded-xl bg-surface border border-border shadow-vercel-lg z-50 animate-in fade-in-50 zoom-in-95 duration-100 flex flex-col gap-0.5">
-                  <div className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-text-dim border-b border-border/50 mb-0.5">
-                    More Investigation Views
+              {intelligenceOpen && (
+                <div className="absolute left-0 top-full mt-2 w-56 p-1.5 rounded-xl bg-surface border border-border shadow-panel-elevated z-50 animate-in fade-in-50 zoom-in-95 duration-100 flex flex-col gap-1">
+                  <div className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-text-muted border-b border-border/60 mb-0.5">
+                    Intelligence Directories
                   </div>
-                  {secondaryTabs.map((tab) => {
-                    const isActive = activeTab === tab.id;
-                    return (
-                      <button
-                        key={tab.id}
-                        onClick={() => {
-                          onSelectTab(tab.id);
-                          setMoreMenuOpen(false);
-                        }}
-                        className={`w-full px-3 py-2 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2 ${
-                          isActive
-                            ? 'bg-surface-raised text-text font-semibold border border-border/70'
-                            : 'text-text-muted hover:text-text hover:bg-surface-hover/60'
-                        }`}
-                      >
-                        {isActive ? (
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block shrink-0" />
-                        ) : (
-                          <span className="w-1.5 h-1.5 shrink-0" />
-                        )}
-                        <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : 'opacity-80'}`}>
-                          {tab.icon}
-                        </span>
-                        <span className="leading-none whitespace-nowrap">{tab.label}</span>
-                      </button>
-                    );
-                  })}
+
+                  <button
+                    onClick={() => {
+                      onSelectTab('VASP_REGISTRY');
+                      setIntelligenceOpen(false);
+                    }}
+                    className={`w-full px-3 py-2 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 ${
+                      activeTab === 'VASP_REGISTRY'
+                        ? 'bg-surface-raised text-text font-semibold border border-border'
+                        : 'text-text-secondary hover:text-text hover:bg-surface-hover'
+                    }`}
+                  >
+                    <Database className="h-4 w-4 text-accent shrink-0" />
+                    <div>
+                      <div className="leading-tight">VASP Registry</div>
+                      <div className="text-[11px] text-text-muted font-normal">Curated exchange clusters</div>
+                    </div>
+                  </button>
+
+                  {onOpenMLEval && (
+                    <button
+                      onClick={() => {
+                        onOpenMLEval();
+                        setIntelligenceOpen(false);
+                      }}
+                      className="w-full px-3 py-2 rounded-lg text-left text-xs font-medium text-text-secondary hover:text-text hover:bg-surface-hover transition-all inline-flex items-center gap-2.5"
+                    >
+                      <BrainCircuit className="h-4 w-4 text-verified shrink-0" />
+                      <div>
+                        <div className="leading-tight">ML Benchmarks</div>
+                        <div className="text-[11px] text-text-muted font-normal">Hybrid ensemble metrics</div>
+                      </div>
+                    </button>
+                  )}
+
+                  {onOpenDatasetStatus && (
+                    <button
+                      onClick={() => {
+                        onOpenDatasetStatus();
+                        setIntelligenceOpen(false);
+                      }}
+                      className="w-full px-3 py-2 rounded-lg text-left text-xs font-medium text-text-secondary hover:text-text hover:bg-surface-hover transition-all inline-flex items-center gap-2.5"
+                    >
+                      <Layers className="h-4 w-4 text-info shrink-0" />
+                      <div>
+                        <div className="leading-tight">100K Dataset</div>
+                        <div className="text-[11px] text-text-muted font-normal">Ingestion pipeline status</div>
+                      </div>
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Reports & Legal Dropdown Menu */}
+            <div className="relative inline-flex" ref={reportsRef}>
+              <button
+                onClick={() => {
+                  setReportsOpen(!reportsOpen);
+                  setIntelligenceOpen(false);
+                }}
+                className={`relative px-3 py-1.5 rounded-lg text-xs font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
+                  isReportsActive
+                    ? 'bg-accent-subtle text-text border border-accent/30 font-semibold shadow-sm'
+                    : reportsOpen
+                    ? 'bg-surface-hover text-text border border-border'
+                    : 'text-text-muted hover:text-text hover:bg-surface-hover/60 border border-transparent'
+                }`}
+                aria-expanded={reportsOpen}
+              >
+                {isReportsActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block shrink-0" />
+                )}
+                <FileText className="h-4 w-4 opacity-75 shrink-0" />
+                <span className="leading-none whitespace-nowrap">Reports</span>
+                <ChevronDown
+                  className={`h-3 w-3 shrink-0 opacity-70 transition-transform duration-150 ${
+                    reportsOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {reportsOpen && (
+                <div className="absolute left-0 top-full mt-2 w-56 p-1.5 rounded-xl bg-surface border border-border shadow-panel-elevated z-50 animate-in fade-in-50 zoom-in-95 duration-100 flex flex-col gap-1">
+                  <div className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-text-muted border-b border-border/60 mb-0.5">
+                    Reporting & Statutory
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      onSelectTab('LEGAL_STUDIO');
+                      setReportsOpen(false);
+                    }}
+                    className={`w-full px-3 py-2 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 ${
+                      activeTab === 'LEGAL_STUDIO'
+                        ? 'bg-surface-raised text-text font-semibold border border-border'
+                        : 'text-text-secondary hover:text-text hover:bg-surface-hover'
+                    }`}
+                  >
+                    <Scale className="h-4 w-4 text-danger shrink-0" />
+                    <div>
+                      <div className="leading-tight">Sec 91 Freeze Order</div>
+                      <div className="text-[11px] text-text-muted font-normal">CrPC requisition generator</div>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      onSelectTab('METHODOLOGY');
+                      setReportsOpen(false);
+                    }}
+                    className={`w-full px-3 py-2 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 ${
+                      activeTab === 'METHODOLOGY'
+                        ? 'bg-surface-raised text-text font-semibold border border-border'
+                        : 'text-text-secondary hover:text-text hover:bg-surface-hover'
+                    }`}
+                  >
+                    <FileCheck2 className="h-4 w-4 text-verified shrink-0" />
+                    <div>
+                      <div className="leading-tight">Audit Methodology</div>
+                      <div className="text-[11px] text-text-muted font-normal">Heuristics & provenance</div>
+                    </div>
+                  </button>
                 </div>
               )}
             </div>
           </nav>
         </div>
 
-        {/* Right: Actions, Modals & Theme Switcher */}
-        <div className="inline-flex items-center gap-1.5 sm:gap-2 shrink-0">
-          {onOpenDatasetStatus && (
-            <button
-              onClick={onOpenDatasetStatus}
-              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-raised hover:bg-surface-hover text-text border border-border transition-colors font-mono text-[11px] shrink-0"
-              title="100K+ Blockchain Dataset Ingestion Status"
-            >
-              <Database className="h-3.5 w-3.5 text-accent shrink-0" />
-              <span className="whitespace-nowrap">100K Dataset</span>
-            </button>
-          )}
-
-          {onOpenMLEval && (
-            <button
-              onClick={onOpenMLEval}
-              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-raised hover:bg-surface-hover text-text border border-border transition-colors font-mono text-[11px] shrink-0"
-              title="ML Benchmark Diagnostics"
-            >
-              <BrainCircuit className="h-3.5 w-3.5 text-verified shrink-0" />
-              <span className="whitespace-nowrap">ML Benchmarks</span>
-            </button>
-          )}
+        {/* Right: Actions, Utilities & Theme Switcher */}
+        <div className="inline-flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Active Network Indicator */}
+          <div className="hidden xl:inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-surface-raised border border-border text-xs text-text-secondary font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-verified animate-pulse shrink-0" />
+            <span className="whitespace-nowrap">EVM + TRON MAINNET</span>
+          </div>
 
           <a
             href="/docs"
-            className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-raised hover:bg-surface-hover text-text border border-border transition-colors font-mono text-[11px] shrink-0"
+            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-raised hover:bg-surface-hover text-text border border-border transition-colors text-xs font-medium"
             title="Judge Technical Documentation"
           >
             <BookOpen className="h-3.5 w-3.5 text-warning shrink-0" />
-            <span className="whitespace-nowrap">Docs</span>
+            <span>Judge Docs</span>
           </a>
 
-          <div className="hidden 2xl:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-raised border border-border text-[11px] text-text-muted font-mono shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-verified animate-pulse shrink-0" />
-            <span className="whitespace-nowrap">EVM + TRON</span>
-          </div>
-
-          {/* Theme Toggle Button */}
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
             title={resolvedTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            className="w-8 h-8 rounded-md bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
+            className="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
           >
             {resolvedTheme === 'dark' ? (
               <Sun className="h-4 w-4 text-warning shrink-0" />
@@ -326,55 +358,70 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </button>
 
-          {/* Mobile menu trigger (Visible below lg: < 1024px) */}
+          {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
-            className="lg:hidden w-8 h-8 rounded-md bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
+            className="lg:hidden w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
           >
             {mobileMenuOpen ? <X className="h-4 w-4 shrink-0" /> : <Menu className="h-4 w-4 shrink-0" />}
           </button>
         </div>
       </div>
 
-      {/* Sub-navigation bar for tablet screens (md to lg: 768px - 1023px) */}
-      <div className="hidden md:flex lg:hidden border-t border-border bg-surface-raised/40">
-        <div className="w-full max-w-[1700px] mx-auto px-3 sm:px-4 py-1.5 overflow-x-auto gap-1 scrollbar-none flex items-center">
-        {allTabs.map((tab) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => onSelectTab(tab.id)}
-              className={`px-2.5 py-1 rounded-md text-xs whitespace-nowrap font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
-                isActive
-                  ? 'bg-surface text-text border border-border shadow-sm font-semibold'
-                  : 'text-text-muted hover:text-text hover:bg-surface-hover/50'
-              }`}
-            >
-              {isActive && (
-                <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse shrink-0" />
-              )}
-              <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : 'opacity-70'}`}>
-                {tab.icon}
-              </span>
-              <span className="leading-none">{tab.label}</span>
-              {tab.badge && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-surface-raised text-text-muted border border-border font-mono shrink-0">
-                  {tab.badge}
+      {/* Tablet Sub-Navigation Bar (768px - 1023px) */}
+      <div className="hidden md:flex lg:hidden border-t border-border bg-surface-raised/50">
+        <div className="w-full max-w-[1700px] mx-auto px-4 py-1.5 overflow-x-auto gap-1.5 scrollbar-none flex items-center">
+          {primaryTabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => onSelectTab(tab.id)}
+                className={`px-3 py-1 rounded-lg text-xs whitespace-nowrap font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
+                  isActive
+                    ? 'bg-accent-subtle text-text border border-accent/30 font-semibold shadow-sm'
+                    : 'text-text-muted hover:text-text hover:bg-surface-hover'
+                }`}
+              >
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block shrink-0" />}
+                <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : ''}`}>
+                  {tab.icon}
                 </span>
-              )}
-            </button>
-          );
-        })}
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+          <button
+            onClick={() => onSelectTab('VASP_REGISTRY')}
+            className={`px-3 py-1 rounded-lg text-xs whitespace-nowrap font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
+              activeTab === 'VASP_REGISTRY'
+                ? 'bg-accent-subtle text-text border border-accent/30 font-semibold shadow-sm'
+                : 'text-text-muted hover:text-text hover:bg-surface-hover'
+            }`}
+          >
+            <Database className="h-3.5 w-3.5 shrink-0" />
+            <span>VASP Registry</span>
+          </button>
+          <button
+            onClick={() => onSelectTab('LEGAL_STUDIO')}
+            className={`px-3 py-1 rounded-lg text-xs whitespace-nowrap font-medium transition-all inline-flex items-center gap-1.5 shrink-0 ${
+              activeTab === 'LEGAL_STUDIO'
+                ? 'bg-accent-subtle text-text border border-accent/30 font-semibold shadow-sm'
+                : 'text-text-muted hover:text-text hover:bg-surface-hover'
+            }`}
+          >
+            <Scale className="h-3.5 w-3.5 text-danger shrink-0" />
+            <span>Sec 91 Freeze</span>
+          </button>
         </div>
       </div>
 
       {/* Mobile Drawer (Visible below lg when toggled) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-surface p-3 sm:p-4 space-y-3 animate-in slide-in-from-top-2 duration-150">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-            {allTabs.map((tab) => {
+        <div className="lg:hidden border-t border-border bg-surface p-4 space-y-3 animate-in slide-in-from-top-2 duration-150">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {primaryTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
@@ -383,40 +430,61 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onSelectTab(tab.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`p-2.5 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2 border shrink-0 ${
+                  className={`p-2.5 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 border ${
                     isActive
-                      ? 'bg-surface-raised text-text border-accent/40 font-semibold shadow-sm'
-                      : 'bg-bg text-text-muted border-border/50 hover:border-border'
+                      ? 'bg-accent-subtle text-text border-accent/40 font-semibold'
+                      : 'bg-surface-raised text-text-secondary border-border hover:border-border-hover'
                   }`}
                 >
-                  {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block shrink-0" />
-                  )}
+                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />}
                   <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : ''}`}>
                     {tab.icon}
                   </span>
-                  <span className="truncate leading-none">{tab.label}</span>
-                  {tab.badge && (
-                    <span className="ml-auto text-[9px] px-1.5 py-0.5 rounded-full bg-surface-raised text-text-muted border border-border font-mono shrink-0">
-                      {tab.badge}
-                    </span>
-                  )}
+                  <span className="truncate">{tab.label}</span>
                 </button>
               );
             })}
+            <button
+              onClick={() => {
+                onSelectTab('VASP_REGISTRY');
+                setMobileMenuOpen(false);
+              }}
+              className={`p-2.5 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 border ${
+                activeTab === 'VASP_REGISTRY'
+                  ? 'bg-accent-subtle text-text border-accent/40 font-semibold'
+                  : 'bg-surface-raised text-text-secondary border-border hover:border-border-hover'
+              }`}
+            >
+              <Database className="h-4 w-4 text-accent shrink-0" />
+              <span>VASP Registry</span>
+            </button>
+            <button
+              onClick={() => {
+                onSelectTab('LEGAL_STUDIO');
+                setMobileMenuOpen(false);
+              }}
+              className={`p-2.5 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 border ${
+                activeTab === 'LEGAL_STUDIO'
+                  ? 'bg-accent-subtle text-text border-accent/40 font-semibold'
+                  : 'bg-surface-raised text-text-secondary border-border hover:border-border-hover'
+              }`}
+            >
+              <Scale className="h-4 w-4 text-danger shrink-0" />
+              <span>Sec 91 Freeze Order</span>
+            </button>
           </div>
 
-          <div className="pt-2 border-t border-border flex items-center justify-between gap-2 text-xs font-mono">
+          <div className="pt-2 border-t border-border flex items-center gap-2 text-xs">
             {onOpenDatasetStatus && (
               <button
                 onClick={() => {
                   onOpenDatasetStatus();
                   setMobileMenuOpen(false);
                 }}
-                className="flex-1 p-2 rounded-md bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5 shrink-0"
+                className="flex-1 p-2 rounded-lg bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
               >
-                <Database className="h-3.5 w-3.5 text-accent shrink-0" />
-                <span className="whitespace-nowrap">100K Dataset</span>
+                <Layers className="h-3.5 w-3.5 text-info shrink-0" />
+                <span>100K Dataset</span>
               </button>
             )}
             {onOpenMLEval && (
@@ -425,18 +493,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onOpenMLEval();
                   setMobileMenuOpen(false);
                 }}
-                className="flex-1 p-2 rounded-md bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5 shrink-0"
+                className="flex-1 p-2 rounded-lg bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
               >
                 <BrainCircuit className="h-3.5 w-3.5 text-verified shrink-0" />
-                <span className="whitespace-nowrap">ML Eval</span>
+                <span>ML Eval</span>
               </button>
             )}
             <a
               href="/docs"
-              className="flex-1 p-2 rounded-md bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5 shrink-0"
+              className="flex-1 p-2 rounded-lg bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
             >
               <BookOpen className="h-3.5 w-3.5 text-warning shrink-0" />
-              <span className="whitespace-nowrap">Docs</span>
+              <span>Docs</span>
             </a>
           </div>
         </div>
@@ -444,4 +512,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
-

@@ -8,8 +8,11 @@ import {
   RefreshCw,
   X,
   ShieldAlert,
+  CheckCircle2,
 } from 'lucide-react';
 import { api } from '../lib/api';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
 
 interface MLEvalData {
   evaluation_timestamp: string;
@@ -89,21 +92,21 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md font-sans">
-      <div className="bg-surface border border-border rounded-xl shadow-vercel-lg w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden text-text transition-colors">
+      <div className="bg-surface border border-border rounded-xl shadow-panel-elevated w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden text-text transition-colors">
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-border flex items-center justify-between bg-surface-raised/50">
+        <div className="p-5 border-b border-border flex items-center justify-between bg-surface-raised/40">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-verified/10 border border-verified/20 text-verified inline-flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-verified-subtle border border-verified-border text-verified inline-flex items-center justify-center shrink-0">
               <BrainCircuit className="h-5 w-5 shrink-0" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-sm font-semibold tracking-wide uppercase font-mono">
+              <div className="flex items-center gap-2.5">
+                <h2 className="text-sm font-bold tracking-tight text-text">
                   Offline Machine Learning Evaluation & Benchmarks
                 </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono uppercase bg-warning-subtle text-warning border border-warning-border font-medium">
+                <Badge variant="warning" size="sm">
                   Model Audit
-                </span>
+                </Badge>
               </div>
               <p className="text-xs text-text-muted mt-0.5">
                 Comparative validation of Rule-based heuristic vs ML Pointwise Ranker vs Hybrid Ensemble
@@ -112,7 +115,7 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg hover:bg-surface-hover text-text-muted hover:text-text transition-colors inline-flex items-center justify-center shrink-0"
+            className="p-1.5 rounded-lg hover:bg-surface-raised text-text-muted hover:text-text transition-colors inline-flex items-center justify-center shrink-0"
             aria-label="Close modal"
           >
             <X className="h-4 w-4 shrink-0" />
@@ -120,14 +123,14 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
         </div>
 
         {/* Body */}
-        <div className="p-6 overflow-y-auto space-y-6 text-xs font-mono">
+        <div className="p-6 overflow-y-auto space-y-6 text-xs">
           {loading ? (
             <div className="py-20 text-center text-text-muted flex flex-col items-center justify-center space-y-3 font-sans">
               <RefreshCw className="h-6 w-6 animate-spin text-accent shrink-0" />
               <span>Running benchmark diagnostics over held-out test partitions...</span>
             </div>
           ) : error ? (
-            <div className="p-4 rounded-lg bg-danger-subtle border border-danger-border text-danger inline-flex items-center gap-2">
+            <div className="p-4 rounded-xl bg-danger-subtle border border-danger-border text-danger inline-flex items-center gap-2 font-medium">
               <AlertTriangle className="h-4 w-4 shrink-0" />
               <span>{error}</span>
             </div>
@@ -136,170 +139,157 @@ export const MLEvaluationModal: React.FC<MLEvaluationModalProps> = ({ isOpen, on
               {/* Top Deployment Gate Notice */}
               <div className="p-4 rounded-xl bg-danger-subtle border border-danger-border flex items-start gap-3">
                 <ShieldAlert className="h-5 w-5 text-danger shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-semibold text-danger">
+                <div className="space-y-1">
+                  <div className="font-bold text-danger text-sm">
                     Evaluation Gate Status: {data.deployment_status}
                   </div>
-                  <div className="text-text-muted text-[11px] mt-1 font-sans leading-relaxed">
+                  <div className="text-text-secondary text-xs leading-relaxed">
                     {data.deployment_status_explanation} Primary attribution in the investigation console remains 100% deterministic and explainable.
                   </div>
                 </div>
               </div>
 
               {/* Benchmark Cards */}
-              <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-text mb-3 inline-flex items-center gap-2">
+              <div className="space-y-3">
+                <div className="text-xs font-bold uppercase tracking-wider text-text-muted inline-flex items-center gap-2">
                   <BarChart3 className="h-4 w-4 text-accent shrink-0" />
                   <span>Held-Out Test Set Performance (N = {data.dataset_summary.usable_test_wallets} Unique Wallets)</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Card 1: Rule-Based Baseline */}
-                  <div className="p-4 rounded-xl bg-surface-raised/50 border border-border space-y-3">
+                  <div className="p-4 rounded-xl bg-surface-raised/40 border border-border space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-text">1. Rule-Based Baseline</span>
-                      <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-accent/10 text-accent border border-accent/20">
+                      <span className="font-bold text-text text-sm">1. Rule-Based Baseline</span>
+                      <Badge variant="accent" size="sm">
                         Deterministic
-                      </span>
+                      </Badge>
                     </div>
-                    <div className="space-y-1.5 text-[11px]">
+                    <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Top-1 Accuracy:</span>
-                        <span className="font-bold text-accent">{data.comparative_benchmarks.rule_based_baseline.top_1_accuracy}%</span>
+                        <span className="text-text-muted">Top-1 Accuracy:</span>
+                        <span className="font-bold font-mono text-accent">{data.comparative_benchmarks.rule_based_baseline.top_1_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Top-3 Accuracy:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks.rule_based_baseline.top_3_accuracy}%</span>
+                        <span className="text-text-muted">Top-3 Accuracy:</span>
+                        <span className="font-semibold font-mono text-text">{data.comparative_benchmarks.rule_based_baseline.top_3_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Macro Precision:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks.rule_based_baseline.precision_macro}%</span>
+                        <span className="text-text-muted">Macro Precision:</span>
+                        <span className="font-semibold font-mono text-text">{data.comparative_benchmarks.rule_based_baseline.precision_macro}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Macro F1 Score:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks.rule_based_baseline.f1_macro}%</span>
+                        <span className="text-text-muted">Macro F1 Score:</span>
+                        <span className="font-semibold font-mono text-text">{data.comparative_benchmarks.rule_based_baseline.f1_macro}%</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Card 2: ML Model Alone */}
-                  <div className="p-4 rounded-xl bg-surface-raised/50 border border-border space-y-3">
+                  <div className="p-4 rounded-xl bg-surface-raised/40 border border-border space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-text">2. ML Pointwise Model</span>
-                      <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-warning-subtle text-warning border border-warning-border">
+                      <span className="font-bold text-text text-sm">2. ML Pointwise Model</span>
+                      <Badge variant="warning" size="sm">
                         GradientBoosting
-                      </span>
+                      </Badge>
                     </div>
-                    <div className="space-y-1.5 text-[11px]">
+                    <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Top-1 Accuracy:</span>
-                        <span className="font-bold text-warning">{data.comparative_benchmarks.ml_model_alone.top_1_accuracy}%</span>
+                        <span className="text-text-muted">Top-1 Accuracy:</span>
+                        <span className="font-bold font-mono text-warning">{data.comparative_benchmarks.ml_model_alone.top_1_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Top-3 Accuracy:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks.ml_model_alone.top_3_accuracy}%</span>
+                        <span className="text-text-muted">Top-3 Accuracy:</span>
+                        <span className="font-semibold font-mono text-text">{data.comparative_benchmarks.ml_model_alone.top_3_accuracy}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Macro Precision:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks.ml_model_alone.precision_macro}%</span>
+                        <span className="text-text-muted">Macro Precision:</span>
+                        <span className="font-semibold font-mono text-text">{data.comparative_benchmarks.ml_model_alone.precision_macro}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Macro F1 Score:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks.ml_model_alone.f1_macro}%</span>
+                        <span className="text-text-muted">Macro F1 Score:</span>
+                        <span className="font-semibold font-mono text-text">{data.comparative_benchmarks.ml_model_alone.f1_macro}%</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Card 3: Hybrid Ensemble */}
-                  <div className="p-4 rounded-xl bg-surface-raised/50 border border-border space-y-3">
+                  <div className="p-4 rounded-xl bg-surface-raised/40 border border-border space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-text">3. Hybrid Ensemble (70/30)</span>
-                      <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-verified-subtle text-verified border border-verified-border">
-                        Ensemble
-                      </span>
+                      <span className="font-bold text-text text-sm">3. Hybrid Ensemble</span>
+                      <Badge variant="success" size="sm">
+                        70/30 Blend
+                      </Badge>
                     </div>
-                    <div className="space-y-1.5 text-[11px]">
+                    <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Top-1 Accuracy:</span>
-                        <span className="font-bold text-verified">{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_1_accuracy}%</span>
+                        <span className="text-text-muted">Top-1 Accuracy:</span>
+                        <span className="font-bold font-mono text-verified">
+                          {data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_1_accuracy}%
+                        </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Top-3 Accuracy:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_3_accuracy}%</span>
+                        <span className="text-text-muted">Top-3 Accuracy:</span>
+                        <span className="font-semibold font-mono text-text">
+                          {data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].top_3_accuracy}%
+                        </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Lift vs Baseline:</span>
-                        <span className="text-verified font-bold">+{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].lift_over_rule_baseline}%</span>
+                        <span className="text-text-muted">Lift Over Baseline:</span>
+                        <span className="font-bold font-mono text-verified">
+                          +{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].lift_over_rule_baseline}%
+                        </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-text-dim">Macro F1 Score:</span>
-                        <span className="text-text font-semibold">{data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].f1_macro}%</span>
+                        <span className="text-text-muted">Macro F1 Score:</span>
+                        <span className="font-semibold font-mono text-text">
+                          {data.comparative_benchmarks['hybrid_ensemble_0.70_rule_0.30_ml'].f1_macro}%
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Confusion Matrix */}
-              <div className="p-4 bg-surface-raised/40 rounded-xl border border-border space-y-3">
-                <div className="text-xs font-bold uppercase tracking-wider text-text">
-                  Confusion Matrix ({data.confusion_matrix.classes.length} VASP Classes)
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-center border-collapse text-[10px]">
-                    <thead>
-                      <tr className="border-b border-border">
-                        <th className="p-1.5 text-left text-text-dim">Actual \ Predicted</th>
-                        {data.confusion_matrix.classes.map((c) => (
-                          <th key={c} className="p-1.5 text-text font-bold uppercase truncate max-w-[70px]">
-                            {c}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border/60">
-                      {data.confusion_matrix.classes.map((rowName, rIdx) => (
-                        <tr key={rowName}>
-                          <td className="p-1.5 text-left font-bold text-text truncate max-w-[90px]">
-                            {rowName}
-                          </td>
-                          {data.confusion_matrix.matrix[rIdx]?.map((val, cIdx) => (
-                            <td
-                              key={cIdx}
-                              className={`p-1.5 ${
-                                rIdx === cIdx
-                                  ? 'bg-accent/15 text-accent font-bold'
-                                  : val > 0
-                                  ? 'text-danger font-semibold'
-                                  : 'text-text-dim'
-                              }`}
-                            >
-                              {val}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
               {/* Per-VASP Breakdown */}
-              <div className="space-y-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-text">
-                  Per-VASP Accuracy Performance Breakdown
+              <div className="space-y-3">
+                <div className="text-xs font-bold uppercase tracking-wider text-text-muted">
+                  Per-Entity Attribution Accuracy (Top-1 Recall)
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                   {Object.entries(data.per_vasp_performance).map(([vasp, perf]) => (
-                    <div key={vasp} className="p-2.5 bg-bg rounded-lg border border-border space-y-0.5">
-                      <span className="text-[10px] text-text-dim uppercase font-semibold truncate block">{vasp}</span>
-                      <div className="text-sm font-bold text-text">{perf.top_1_accuracy}%</div>
-                      <span className="text-[9px] text-text-dim">{perf.test_instances} Test Wallets</span>
+                    <div key={vasp} className="p-3 bg-surface-raised/40 rounded-xl border border-border space-y-1">
+                      <span className="font-bold text-text text-xs block truncate">{vasp}</span>
+                      <div className="flex items-center justify-between text-xs text-text-muted">
+                        <span>{perf.test_instances} instances</span>
+                        <strong className="text-verified font-mono">{perf.top_1_accuracy}%</strong>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
+
+              {/* Disclaimers */}
+              <div className="p-4 bg-surface-raised/30 rounded-xl border border-border space-y-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-text-muted block">
+                  Methodology Boundaries & Statistical Disclaimers
+                </span>
+                <ul className="space-y-1 text-xs text-text-secondary list-disc pl-4">
+                  {data.limitations_and_disclaimer.map((item, idx) => (
+                    <li key={idx} className="leading-relaxed">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </>
           ) : null}
+        </div>
+
+        {/* Footer */}
+        <div className="p-4 border-t border-border bg-surface-raised/40 flex justify-end">
+          <Button variant="secondary" size="md" onClick={onClose}>
+            Close Diagnostic Dossier
+          </Button>
         </div>
       </div>
     </div>
