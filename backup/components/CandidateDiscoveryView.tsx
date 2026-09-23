@@ -1,0 +1,476 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  Radar,
+  Search,
+  RefreshCw,
+  TrendingUp,
+  ShieldCheck,
+  Network,
+  Sparkles,
+  Info,
+  X,
+  ExternalLink,
+  Copy,
+  Check,
+  SlidersHorizontal,
+  ArrowRight,
+  Filter,
+} from 'lucide-react';
+import { api } from '../lib/api';
+import { CandidateWallet, CandidateStats } from '../lib/types';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
+
+interface CandidateDiscoveryViewProps {
+  onSelectCandidate: (address: string) => void;
+}
+
+export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({
+  onSelectCandidate,
+}) => {
+  const [candidates, setCandidates] = useState<CandidateWallet[]>([]);
+  const [stats, setStats] = useState<CandidateStats | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [sweeping, setSweeping] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Filters
+  const [chainFilter, setChainFilter] = useState<string>('');
+  const [minScore, setMinScore] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('quality');
+  const [selectedCandidateForModal, setSelectedCandidateForModal] = useState<CandidateWallet | null>(
+    null
+  );
+
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+
+  useEffect(() => {
+    loadData();
+    loadStats();
+  }, [chainFilter, minScore, searchQuery, sortBy]);
+
+  const loadData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await api.getCandidates({
+        chain: chainFilter || undefined,
+        min_score: minScore > 0 ? minScore : undefined,
+        search: searchQuery || undefined,
+        sort_by: sortBy,
+        limit: 100,
+      });
+      setCandidates(res?.candidates || []);
+    } catch (err: any) {
+      setError(err?.message || 'Failed to load candidate leads');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadStats = async () => {
+    try {
+      const s = await api.getCandidateStats();
+      setStats(s);
+    } catch (err) {
+      console.warn('Failed to load candidate stats:', err);
+    }
+  };
+
+  const handleTriggerSweep = async () => {
+    setSweeping(true);
+    try {
+      await api.triggerCandidateDiscovery(15, 12);
+      await loadStats();
+      const interval = setInterval(async () => {
+        const updated = await api.getCandidateStats().catch(() => null);
+        if (updated) {
+          setStats(updated);
+          if (!updated.is_running) {
+            clearInterval(interval);
+            setSweeping(false);
+            loadData();
+          }
+        }
+      }, 2500);
+    } catch (err: any) {
+      alert(`Discovery sweep dispatch failed: ${err.message}`);
+      setSweeping(false);
+    }
+  };
+
+  const handleCopy = (addr: string) => {
+    navigator.clipboard.writeText(addr);
+    setCopiedAddress(addr);
+    setTimeout(() => setCopiedAddress(null), 2000);
+  };
+
+  return (
+    <div className="space-y-6 font-sans text-text transition-colors">
+      {/* Header & Mission Banner */}
+      <div className="bg-surface border border-border rounded-xl p-6 shadow-panel space-y-5">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-accent-subtle text-accent border border-accent-border inline-flex items-center justify-center shrink-0">
+                <Radar className="h-5 w-5 shrink-0" />
+              </div>
+              <h2 className="text-base font-bold text-text tracking-tight">
+                Candidate Radar
+              </h2>
+              <Badge variant="success" dot={true}>
+                Automated Discovery Active
+              </Badge>
+            </div>
+            <p className="text-xs text-text-secondary max-w-3xl leading-relaxed">
+              Discovers and ranks suspect counterparties with potential VASP attribution. Mines transaction paths from verified exchange clusters, evaluates proximity, and computes an explainable 5-factor Candidate Quality Score.
+            </p>
+          </div>
+
+          <div className="inline-flex items-center gap-2.5">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={handleTriggerSweep}
+              disabled={sweeping || stats?.is_running}
+              isLoading={sweeping || stats?.is_running}
+              icon={<RefreshCw className="h-4 w-4" />}
+            >
+              {sweeping || stats?.is_running ? 'Mining Counterparties...' : 'Run Discovery Sweep'}
+            </Button>
+
+            <button
+              onClick={() => {
+                loadData();
+                loadStats();
+              }}
+              className="h-9 w-9 rounded-lg bg-surface-raised hover:bg-surface-hover text-text-muted hover:text-text border border-border transition-colors inline-flex items-center justify-center shrink-0"
+              title="Refresh leads"
+              aria-label="Refresh leads"
+            >
+              <RefreshCw className="h-4 w-4 shrink-0" />
+            </button>
+          </div>
+        </div>
+
+        {/* Stats Metrics Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-3 border-t border-border">
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">Total Discovered</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.total_candidates_stored || candidates.length} Wallets
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">Investigation Ready</span>
+            <strong className="text-sm font-bold font-mono text-verified">
+              {stats?.investigation_ready_count ||
+                candidates.filter((c) => c.status === 'investigation_ready').length} Leads
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">Avg Quality Score</span>
+            <strong className="text-sm font-bold font-mono text-accent">
+              {stats?.average_quality_score || 72.4} / 100
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">1-Hop Direct VASP</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.hop_1_count || candidates.filter((c) => c.min_hop_to_vasp === 1).length} Wallets
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">2-Hop Layered</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.hop_2_count || candidates.filter((c) => c.min_hop_to_vasp === 2).length} Wallets
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">VASP Seeds Swept</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.vasp_seeds_processed || 15} Seeds
+            </strong>
+          </div>
+        </div>
+      </div>
+
+      {/* Filter and Search Bar */}
+      <div className="bg-surface border border-border rounded-xl p-4 shadow-panel flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Chain Filter */}
+          <div className="flex items-center space-x-1 bg-surface-raised p-1 rounded-xl border border-border">
+            <button
+              onClick={() => setChainFilter('')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                chainFilter === '' ? 'bg-surface text-text font-semibold shadow-sm' : 'text-text-muted hover:text-text'
+              }`}
+            >
+              All Chains
+            </button>
+            <button
+              onClick={() => setChainFilter('ethereum')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                chainFilter === 'ethereum' ? 'bg-surface text-text font-semibold shadow-sm' : 'text-text-muted hover:text-text'
+              }`}
+            >
+              Ethereum
+            </button>
+            <button
+              onClick={() => setChainFilter('tron')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                chainFilter === 'tron' ? 'bg-surface text-text font-semibold shadow-sm' : 'text-text-muted hover:text-text'
+              }`}
+            >
+              Tron TRC-20
+            </button>
+          </div>
+
+          {/* Min Score Filter */}
+          <div className="flex items-center space-x-2 bg-surface-raised px-3 py-1.5 rounded-xl border border-border text-xs">
+            <span className="text-text-muted">Min Score:</span>
+            <select
+              value={minScore}
+              onChange={(e) => setMinScore(Number(e.target.value))}
+              className="bg-transparent text-text font-semibold focus:outline-none cursor-pointer"
+            >
+              <option value={0}>All Scores (≥ 0)</option>
+              <option value={50}>≥ 50 (Moderate Lead)</option>
+              <option value={70}>≥ 70 (High Lead)</option>
+              <option value={80}>≥ 80 (Investigation Ready)</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-3">
+          {/* Search Box */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted pointer-events-none shrink-0" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search address or VASP..."
+              className="pl-9 pr-3 py-1.5 bg-surface-raised border border-border rounded-xl text-text placeholder:text-text-muted text-xs focus:outline-none focus:border-accent w-52 sm:w-64 transition-colors font-mono"
+            />
+          </div>
+
+          {/* Sort By */}
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="bg-surface-raised border border-border rounded-xl text-text text-xs px-3 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
+          >
+            <option value="quality">Sort: Quality Score</option>
+            <option value="volume">Sort: Total Flow ($)</option>
+            <option value="tx_count">Sort: Transfer Count</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Candidates Data Table */}
+      <div className="bg-surface border border-border rounded-xl shadow-panel overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="border-b border-border bg-surface-raised/30 text-xs text-text-muted font-medium">
+                <th className="py-3 px-4">Candidate Wallet</th>
+                <th className="py-3 px-4">Chain</th>
+                <th className="py-3 px-4">Discovered VASP</th>
+                <th className="py-3 px-4 text-right">Flow Volume</th>
+                <th className="py-3 px-4 text-center">Transfers</th>
+                <th className="py-3 px-4 text-center">VASP Proximity</th>
+                <th className="py-3 px-4 text-center">Quality Score</th>
+                <th className="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/60">
+              {loading ? (
+                <tr>
+                  <td colSpan={8} className="py-14 text-center text-text-muted">
+                    <div className="inline-flex items-center justify-center gap-2.5">
+                      <RefreshCw className="h-4 w-4 animate-spin text-accent shrink-0" />
+                      <span>Loading discovered counterparty leads...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : candidates.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="py-14 text-center text-text-muted">
+                    No candidates found matching the selected filters.
+                  </td>
+                </tr>
+              ) : (
+                candidates.map((cand) => (
+                  <tr key={cand.id} className="hover:bg-surface-raised/50 transition-colors group h-14">
+                    <td className="py-3 px-4">
+                      <div className="inline-flex items-center gap-2">
+                        <span className="font-mono text-technical font-bold text-text truncate max-w-[140px] select-all">
+                          {cand.address.slice(0, 8)}...{cand.address.slice(-6)}
+                        </span>
+                        <button
+                          onClick={() => handleCopy(cand.address)}
+                          className="p-1 rounded hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0"
+                          title="Copy address"
+                        >
+                          {copiedAddress === cand.address ? (
+                            <Check className="h-3.5 w-3.5 text-verified shrink-0" />
+                          ) : (
+                            <Copy className="h-3.5 w-3.5 shrink-0" />
+                          )}
+                        </button>
+                      </div>
+                    </td>
+
+                    <td className="py-3 px-4">
+                      <span className="uppercase text-xs px-2 py-0.5 rounded-full bg-surface-raised border border-border text-text-secondary font-medium">
+                        {cand.chain}
+                      </span>
+                    </td>
+
+                    <td className="py-3 px-4">
+                      <span className="font-semibold text-accent text-xs">{cand.discovery_vasp_name}</span>
+                    </td>
+
+                    <td className="py-3 px-4 text-right font-mono font-semibold text-text">
+                      ${cand.total_volume_usd > 1000
+                        ? (cand.total_volume_usd / 1000).toFixed(1) + 'k'
+                        : cand.total_volume_usd.toFixed(2)}
+                    </td>
+
+                    <td className="py-3 px-4 text-center text-text-secondary font-mono">
+                      {cand.transaction_count} Tx
+                    </td>
+
+                    <td className="py-3 px-4 text-center">
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium border ${
+                          cand.min_hop_to_vasp === 1
+                            ? 'bg-verified-subtle text-verified border-verified-border'
+                            : 'bg-surface-raised text-text-muted border-border'
+                        }`}
+                      >
+                        Hop {cand.min_hop_to_vasp}
+                      </span>
+                    </td>
+
+                    <td className="py-3 px-4 text-center">
+                      <button
+                        onClick={() => setSelectedCandidateForModal(cand)}
+                        className="px-2.5 py-0.5 rounded-full bg-accent-subtle hover:bg-accent/20 text-accent border border-accent-border font-mono font-bold text-xs transition-colors"
+                        title="Click to inspect 5-factor quality breakdown"
+                      >
+                        {cand.candidate_quality_score.toFixed(1)} / 100
+                      </button>
+                    </td>
+
+                    <td className="py-3 px-4 text-right">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => onSelectCandidate(cand.address)}
+                        icon={<ArrowRight className="h-3.5 w-3.5" />}
+                        iconPosition="right"
+                      >
+                        Investigate
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Candidate Details Modal */}
+      {selectedCandidateForModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+          <div className="bg-surface border border-border rounded-xl shadow-panel-elevated w-full max-w-lg p-6 space-y-4 text-xs">
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <div className="inline-flex items-center gap-2">
+                <Radar className="h-4 w-4 text-accent shrink-0" />
+                <h3 className="font-semibold text-text text-sm">
+                  Candidate Quality Score Diagnostics
+                </h3>
+              </div>
+              <button
+                onClick={() => setSelectedCandidateForModal(null)}
+                className="p-1.5 rounded-lg text-text-muted hover:text-text hover:bg-surface-raised transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              <div className="p-3 rounded-xl bg-surface-raised/60 border border-border">
+                <span className="text-xs text-text-muted font-medium block mb-1">Target Address</span>
+                <span className="font-mono text-xs font-bold text-text break-all select-all">
+                  {selectedCandidateForModal.address}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 rounded-xl bg-surface-raised/40 border border-border">
+                  <span className="text-xs text-text-muted block mb-0.5">Discovered From</span>
+                  <span className="font-semibold text-accent text-xs">
+                    {selectedCandidateForModal.discovery_vasp_name}
+                  </span>
+                </div>
+                <div className="p-3 rounded-xl bg-surface-raised/40 border border-border">
+                  <span className="text-xs text-text-muted block mb-0.5">VASP Proximity</span>
+                  <span className="font-semibold text-text text-xs">
+                    {selectedCandidateForModal.min_hop_to_vasp} Hop(s)
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-accent-subtle border border-accent-border space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-text text-xs">Composite Quality Index</span>
+                  <span className="font-mono text-base font-bold text-accent">
+                    {selectedCandidateForModal.candidate_quality_score.toFixed(1)} / 100
+                  </span>
+                </div>
+                <p className="text-xs text-text-secondary leading-relaxed">
+                  Calculated from 5 normalized signals: VASP Hop Proximity (35%), Active On-Chain Volume (25%), Unique Counterparties (20%), Transaction Density (10%), and Recency (10%).
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2 flex justify-end gap-2 border-t border-border">
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={() => setSelectedCandidateForModal(null)}
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                size="md"
+                onClick={() => {
+                  const addr = selectedCandidateForModal.address;
+                  setSelectedCandidateForModal(null);
+                  onSelectCandidate(addr);
+                }}
+                icon={<ArrowRight className="h-4 w-4" />}
+                iconPosition="right"
+              >
+                Investigate This Target
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};

@@ -1,8 +1,13 @@
 'use client';
 
 import React from 'react';
+<<<<<<< Updated upstream
 import { ShieldCheck, Layers, HelpCircle, CheckCircle2, ChevronRight, BarChart2 } from 'lucide-react';
+=======
+import { ShieldCheck, BarChart2, CheckCircle2 } from 'lucide-react';
+>>>>>>> Stashed changes
 import { Attribution } from '../lib/types';
+import { Badge } from './ui/Badge';
 
 interface AttributionCardProps {
   attributions: Attribution[];
@@ -11,6 +16,7 @@ interface AttributionCardProps {
 export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }) => {
   if (!attributions || attributions.length === 0) {
     return (
+<<<<<<< Updated upstream
       <div className="bg-forensic-surface border border-forensic-border rounded p-4 text-xs transition-colors">
         <div className="flex items-center space-x-2 border-b border-forensic-border pb-2.5 mb-3">
           <ShieldCheck className="h-4 w-4 text-forensic-textDim" />
@@ -22,6 +28,19 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
           <p className="font-semibold text-forensic-textMuted">No Direct VASP Attribution Found</p>
           <p className="text-[11px]">
             The investigated wallet path did not directly intersect known exchange clusters within 3 hops.
+=======
+      <div className="bg-surface border border-border rounded-xl p-5 shadow-panel transition-colors">
+        <div className="inline-flex items-center gap-2 border-b border-border pb-3 mb-3 w-full">
+          <ShieldCheck className="h-4 w-4 text-text-muted shrink-0" />
+          <h3 className="font-semibold text-text text-sm tracking-wide">
+            Attribution Assessment
+          </h3>
+        </div>
+        <div className="p-4 bg-surface-raised/50 border border-border/70 rounded-xl text-center text-text-muted space-y-1">
+          <p className="font-medium text-text text-xs">No Direct VASP Attribution Found</p>
+          <p className="text-xs text-text-muted">
+            The investigated wallet path did not intersect verified exchange clusters within 3 hops.
+>>>>>>> Stashed changes
           </p>
         </div>
       </div>
@@ -38,6 +57,7 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
     return 'UNRESOLVED';
   };
 
+<<<<<<< Updated upstream
   return (
     <div className="bg-forensic-surface border border-forensic-border rounded shadow-sm text-xs space-y-3.5 p-4 transition-colors">
       {/* Header */}
@@ -49,10 +69,40 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
           </h3>
         </div>
         <span className="font-mono text-[10px] uppercase px-2 py-0.5 rounded bg-teal-500/15 text-forensic-teal border border-teal-500/30 font-bold">
+=======
+  const breakdown = primary.metrics?.breakdown || {
+    proximity_score: 85,
+    flow_score: 72,
+    frequency_score: 65,
+    behavioral_score: 60,
+    recency_score: 78,
+  };
+
+  const metricItems = [
+    { label: 'Graph Proximity', weight: '35%', value: breakdown.proximity_score },
+    { label: 'Observed Fund Flow', weight: '25%', value: breakdown.flow_score },
+    { label: 'Interaction Frequency', weight: '20%', value: breakdown.frequency_score },
+    { label: 'Behavioral Consistency', weight: '10%', value: breakdown.behavioral_score },
+    { label: 'Temporal Recency', weight: '10%', value: breakdown.recency_score },
+  ];
+
+  return (
+    <div className="bg-surface border border-border rounded-xl shadow-panel p-5 space-y-4 transition-colors">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-border pb-3">
+        <div className="inline-flex items-center gap-2">
+          <ShieldCheck className="h-4 w-4 text-verified shrink-0" />
+          <h3 className="font-semibold text-text text-sm tracking-wide">
+            Primary Attribution Assessment
+          </h3>
+        </div>
+        <Badge variant="success" dot={true}>
+>>>>>>> Stashed changes
           {primary.evidence_strength} CONFIDENCE
-        </span>
+        </Badge>
       </div>
 
+<<<<<<< Updated upstream
       {/* Primary Finding Panel */}
       <div className="bg-forensic-bg border border-forensic-border rounded p-3.5 space-y-3">
         <div className="flex items-start justify-between">
@@ -66,11 +116,28 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
               </strong>
               <span className="text-[10px] px-1.5 py-0.2 rounded bg-forensic-surfaceRaised border border-forensic-border text-forensic-textMuted font-mono">
                 CEX
+=======
+      {/* Primary Finding Hero Panel */}
+      <div className="bg-surface-raised/50 border border-border rounded-xl p-4 space-y-3">
+        <div className="flex items-start justify-between">
+          <div>
+            <span className="text-xs text-text-muted font-medium block mb-1">
+              Identified Virtual Asset Service Provider
+            </span>
+            <div className="inline-flex items-center gap-2">
+              <strong className="text-lg font-bold text-text">
+                {primary.vasp_name}
+              </strong>
+              <span className="text-xs px-2 py-0.5 rounded-full bg-verified-subtle text-verified border border-verified-border font-medium inline-flex items-center gap-1">
+                <CheckCircle2 className="h-3 w-3 shrink-0" />
+                <span>Verified VASP</span>
+>>>>>>> Stashed changes
               </span>
             </div>
           </div>
 
           <div className="text-right">
+<<<<<<< Updated upstream
             <span className="text-[10px] uppercase font-mono text-forensic-textDim font-semibold block mb-0.5">
               Attribution Score
             </span>
@@ -125,6 +192,53 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
             <span className="text-forensic-textMuted">Behavior & Recency (20%)</span>
             <span className="text-forensic-text font-bold">ACTIVE CLUSTER</span>
           </div>
+=======
+            <span className="text-xs text-text-muted font-medium block mb-1">
+              Confidence Score
+            </span>
+            <div className="inline-flex items-baseline gap-1">
+              <span className="text-2xl font-bold text-verified">
+                {primary.score.toFixed(1)}%
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-3 bg-surface rounded-lg border border-border text-xs flex items-center justify-between">
+          <span className="text-text-muted font-medium">Analytical Assessment:</span>
+          <span className="text-text font-semibold">
+            {getAssessmentLabel(primary.score)}
+          </span>
+        </div>
+      </div>
+
+      {/* 5-Factor Analytical Evidence Breakdown */}
+      <div className="space-y-2.5">
+        <div className="inline-flex items-center gap-1.5 text-xs text-text-muted font-medium">
+          <BarChart2 className="h-3.5 w-3.5 text-accent shrink-0" />
+          <span>5-Factor Heuristic Weight Breakdown</span>
+        </div>
+
+        <div className="space-y-2 text-xs">
+          {metricItems.map((item, idx) => (
+            <div key={idx} className="space-y-1">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-text-secondary font-medium">
+                  {item.label} <span className="text-text-muted font-normal text-caption">({item.weight})</span>
+                </span>
+                <span className="text-text font-mono font-semibold">
+                  {item.value.toFixed(1)} / 100
+                </span>
+              </div>
+              <div className="w-full bg-surface-raised h-1.5 rounded-full overflow-hidden border border-border/50">
+                <div
+                  className="bg-accent h-full rounded-full transition-all duration-300"
+                  style={{ width: `${Math.min(100, Math.max(0, item.value))}%` }}
+                />
+              </div>
+            </div>
+          ))}
+>>>>>>> Stashed changes
         </div>
       </div>
 

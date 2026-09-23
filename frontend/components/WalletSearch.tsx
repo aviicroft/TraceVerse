@@ -1,9 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+<<<<<<< Updated upstream
 import { Search, AlertCircle, ArrowRight, Radar } from 'lucide-react';
+=======
+import { Search, AlertCircle, ArrowRight, Radar, Sparkles, ChevronDown, Check } from 'lucide-react';
+>>>>>>> Stashed changes
 import { api } from '../lib/api';
 import { CandidateWallet } from '../lib/types';
+import { Button } from './ui/Button';
 
 interface WalletSearchProps {
   onAnalyze: (address: string, maxHops: number) => void;
@@ -33,7 +38,10 @@ const DEFAULT_REAL_CANDIDATES: CandidateWallet[] = [
     outgoing_volume: 46201400.0,
     reachable_vasps: [
       { name: 'Binance', min_hop: 1, direct_tx_count: 7, flow_volume_usd: 92402800.0, paths_count: 7 },
+<<<<<<< Updated upstream
       { name: 'OKX', min_hop: 1, direct_tx_count: 1, flow_volume_usd: 420000.0, paths_count: 1 }
+=======
+>>>>>>> Stashed changes
     ],
     min_hop_to_vasp: 1,
     reachable_vasp_count: 2,
@@ -62,8 +70,12 @@ const DEFAULT_REAL_CANDIDATES: CandidateWallet[] = [
     incoming_volume: 550000.0,
     outgoing_volume: 568141.0,
     reachable_vasps: [
+<<<<<<< Updated upstream
       { name: 'Gate.io', min_hop: 1, direct_tx_count: 6, flow_volume_usd: 722510.0, paths_count: 6 },
       { name: 'Binance', min_hop: 1, direct_tx_count: 5, flow_volume_usd: 395631.0, paths_count: 5 }
+=======
+      { name: 'Binance', min_hop: 1, direct_tx_count: 5, flow_volume_usd: 395631.0, paths_count: 5 },
+>>>>>>> Stashed changes
     ],
     min_hop_to_vasp: 1,
     reachable_vasp_count: 2,
@@ -73,6 +85,7 @@ const DEFAULT_REAL_CANDIDATES: CandidateWallet[] = [
   },
   {
     id: 3,
+<<<<<<< Updated upstream
     address: '0x35465d7b8ec8f28b06c90ab562c85a012337f687',
     chain: 'ethereum',
     discovery_source: 'vasp_counterparty_mining',
@@ -102,6 +115,8 @@ const DEFAULT_REAL_CANDIDATES: CandidateWallet[] = [
   },
   {
     id: 4,
+=======
+>>>>>>> Stashed changes
     address: '0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec',
     chain: 'ethereum',
     discovery_source: 'vasp_counterparty_mining',
@@ -121,14 +136,19 @@ const DEFAULT_REAL_CANDIDATES: CandidateWallet[] = [
     incoming_volume: 20000000.0,
     outgoing_volume: 20049597.0,
     reachable_vasps: [
+<<<<<<< Updated upstream
       { name: 'Binance', min_hop: 1, direct_tx_count: 1, flow_volume_usd: 40049597.0, paths_count: 1 }
+=======
+      { name: 'Binance', min_hop: 1, direct_tx_count: 4, flow_volume_usd: 40049597.0, paths_count: 4 },
+>>>>>>> Stashed changes
     ],
     min_hop_to_vasp: 1,
     reachable_vasp_count: 1,
-    total_paths_to_vasps: 1,
+    total_paths_to_vasps: 4,
     candidate_quality_score: 74.8,
     status: 'investigation_ready'
   },
+<<<<<<< Updated upstream
   {
     id: 5,
     address: '0x0084dfd7202e5f5c0c8be83503a492837ca3e95e',
@@ -187,6 +207,8 @@ const DEFAULT_REAL_CANDIDATES: CandidateWallet[] = [
     candidate_quality_score: 74.0,
     status: 'investigation_ready'
   }
+=======
+>>>>>>> Stashed changes
 ];
 
 export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading }) => {
@@ -210,9 +232,10 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
     fetchTopCandidates();
   }, []);
 
-  const detectedChain = address.startsWith('0x')
+  const clean = address.trim();
+  const detectedChain = clean.startsWith('0x')
     ? 'Ethereum Mainnet'
-    : address.startsWith('T')
+    : clean.startsWith('T')
     ? 'Tron Network (TRC-20)'
     : null;
 
@@ -220,7 +243,6 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
     e.preventDefault();
     setError(null);
 
-    const clean = address.trim();
     if (!clean) {
       setError('Please input a valid target Ethereum (0x...) or Tron (T...) wallet address.');
       return;
@@ -230,7 +252,13 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
     const isTron = /^T[1-9A-HJ-NP-za-km-z]{33}$/.test(clean);
 
     if (!isEth && !isTron) {
+<<<<<<< Updated upstream
       setError('Invalid format: Target must be a 40-character Ethereum hex address (0x...) or 34-character Tron Base58 address (T...).');
+=======
+      setError(
+        'Invalid address format: Must be a 40-character Ethereum address (0x...) or 34-character Tron address (T...).'
+      );
+>>>>>>> Stashed changes
       return;
     }
 
@@ -243,6 +271,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
   };
 
   return (
+<<<<<<< Updated upstream
     <div className="bg-forensic-surface border border-forensic-border rounded shadow-sm text-xs transition-colors">
       <div className="px-4 py-2 border-b border-forensic-border bg-forensic-bg flex items-center justify-between">
         <span className="font-mono text-[11px] uppercase tracking-wider text-forensic-textDim font-semibold">
@@ -251,15 +280,40 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
         {detectedChain && (
           <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-blue-300 border border-blue-500/30">
             Detected: {detectedChain}
+=======
+    <div className="bg-surface border border-border rounded-xl shadow-panel overflow-hidden transition-colors">
+      {/* Header bar */}
+      <div className="px-5 py-3 border-b border-border bg-surface-raised/40 flex items-center justify-between">
+        <div className="inline-flex items-center gap-2">
+          <Search className="h-4 w-4 text-accent shrink-0" />
+          <h2 className="text-xs font-semibold text-text uppercase tracking-wider font-sans">
+            Target Investigation & Depth Parameters
+          </h2>
+        </div>
+
+        {detectedChain && (
+          <span className="font-mono text-xs px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20 font-medium inline-flex items-center gap-1.5 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0" />
+            <span>{detectedChain}</span>
+>>>>>>> Stashed changes
           </span>
         )}
       </div>
 
+<<<<<<< Updated upstream
       <form onSubmit={handleSubmit} className="p-4 space-y-3">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
           <div className="relative flex-1">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-forensic-textDim">
               <Search className="h-4 w-4" />
+=======
+      <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4">
+        {/* Prominent Search Bar Input */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="relative flex-1 group">
+            <div className="absolute inset-y-0 left-0 pl-4 inline-flex items-center pointer-events-none text-text-muted group-focus-within:text-accent transition-colors">
+              <Search className="h-5 w-5 shrink-0" />
+>>>>>>> Stashed changes
             </div>
             <input
               type="text"
@@ -268,6 +322,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                 setAddress(e.target.value);
                 if (error) setError(null);
               }}
+<<<<<<< Updated upstream
               placeholder="Enter suspect target wallet address (0x... for ETH or T... for Tron TRC-20 USDT)"
               className="w-full pl-9 pr-3 py-2 bg-forensic-bg border border-forensic-border rounded text-forensic-text placeholder-forensic-textDim font-mono text-xs focus:outline-none focus:border-blue-500 transition-colors"
             />
@@ -304,16 +359,64 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                 </>
               )}
             </button>
+=======
+              placeholder="Enter suspect target wallet address, transaction, or case ID..."
+              className="w-full pl-11 pr-14 py-3 bg-surface-raised/60 hover:bg-surface-raised border border-border focus:border-accent rounded-xl text-text placeholder:text-text-muted font-mono text-sm focus:outline-none focus:ring-2 focus:ring-accent/15 transition-all shadow-inner"
+            />
+            <div className="absolute inset-y-0 right-0 pr-3.5 inline-flex items-center pointer-events-none">
+              <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-surface border border-border text-text-muted">
+                ↵
+              </span>
+            </div>
+          </div>
+
+          <div className="inline-flex items-center gap-2.5 shrink-0">
+            {/* Depth Selector */}
+            <div className="relative inline-flex items-center">
+              <select
+                value={maxHops}
+                onChange={(e) => setMaxHops(Number(e.target.value))}
+                className="appearance-none pl-3.5 pr-9 py-3 bg-surface-raised border border-border hover:border-border-hover rounded-xl text-text font-sans text-xs font-medium focus:outline-none focus:border-accent cursor-pointer shadow-sm transition-colors"
+                title="Investigation Hop Depth"
+              >
+                <option value={1}>1 Hop (Direct Transfers)</option>
+                <option value={2}>2 Hops (Layered Intermediaries)</option>
+                <option value={3}>3 Hops (Full Audit Traversal)</option>
+              </select>
+              <div className="absolute right-3 pointer-events-none text-text-muted">
+                <ChevronDown className="h-4 w-4" />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              isLoading={isLoading}
+              icon={<ArrowRight className="h-4 w-4" />}
+              iconPosition="right"
+              className="px-6 rounded-xl font-semibold shadow-md"
+            >
+              Trace Target
+            </Button>
+>>>>>>> Stashed changes
           </div>
         </div>
 
+        {/* Validation Error Message */}
         {error && (
+<<<<<<< Updated upstream
           <div className="flex items-center space-x-2 text-red-600 dark:text-red-400 font-mono text-xs p-2 bg-red-500/10 border border-red-500/20 rounded">
+=======
+          <div className="p-3 bg-danger-subtle border border-danger-border rounded-lg text-danger flex items-center gap-2 text-xs font-medium animate-in fade-in duration-150">
+>>>>>>> Stashed changes
             <AlertCircle className="h-4 w-4 shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
+<<<<<<< Updated upstream
         {/* Dynamic Real On-Chain Candidate Leads */}
         <div className="pt-2 border-t border-forensic-border space-y-1.5">
           <div className="flex items-center justify-between text-[10px] text-forensic-textDim uppercase font-mono">
@@ -355,6 +458,36 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                 Discovery pipeline populating candidates from VASP transaction history...
               </div>
             )}
+=======
+        {/* Verified Target Presets Bar */}
+        <div className="pt-2 border-t border-border flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="inline-flex items-center gap-2 text-text-muted">
+            <Radar className="h-3.5 w-3.5 text-accent shrink-0" />
+            <span className="font-medium">Recent High-Confidence Candidate Leads:</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-1.5">
+            {dynamicCandidates.slice(0, 3).map((cand) => (
+              <button
+                key={cand.id}
+                type="button"
+                onClick={() => handleSelectPreset(cand.address)}
+                className={`px-2.5 py-1 rounded-lg border text-xs transition-all inline-flex items-center gap-1.5 ${
+                  clean.toLowerCase() === cand.address.toLowerCase()
+                    ? 'bg-accent/15 border-accent text-accent font-semibold'
+                    : 'bg-surface-raised hover:bg-surface-hover border-border text-text-secondary hover:text-text'
+                }`}
+                title={`VASP: ${cand.discovery_vasp_name} | Quality: ${cand.candidate_quality_score}`}
+              >
+                <span className="font-mono text-xs font-medium">
+                  {cand.address.slice(0, 6)}...{cand.address.slice(-4)}
+                </span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-surface border border-border text-text-muted">
+                  {cand.discovery_vasp_name}
+                </span>
+              </button>
+            ))}
+>>>>>>> Stashed changes
           </div>
         </div>
       </form>

@@ -18,12 +18,23 @@ import {
   Sparkles,
   Info,
   X,
+<<<<<<< Updated upstream
   Play,
   CheckCircle2,
   AlertCircle
+=======
+  ExternalLink,
+  Copy,
+  Check,
+  SlidersHorizontal,
+  ArrowRight,
+  Filter,
+>>>>>>> Stashed changes
 } from 'lucide-react';
 import { api } from '../lib/api';
 import { CandidateWallet, CandidateStats } from '../lib/types';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
 
 interface CandidateDiscoveryViewProps {
   onSelectCandidate: (address: string) => void;
@@ -108,6 +119,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
   };
 
   return (
+<<<<<<< Updated upstream
     <div className="space-y-4 font-sans text-forensic-text">
       {/* Header & Mission Banner */}
       <div className="bg-forensic-surface border border-forensic-border rounded p-4 shadow-sm">
@@ -148,6 +160,49 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
               onClick={() => { loadData(); loadStats(); }}
               className="p-2 rounded bg-forensic-surfaceRaised hover:bg-forensic-border text-forensic-textDim hover:text-forensic-text border border-forensic-border transition-colors"
               title="Refresh table"
+=======
+    <div className="space-y-6 font-sans text-text transition-colors">
+      {/* Header & Mission Banner */}
+      <div className="bg-surface border border-border rounded-xl p-6 shadow-panel space-y-5">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-accent-subtle text-accent border border-accent-border inline-flex items-center justify-center shrink-0">
+                <Radar className="h-5 w-5 shrink-0" />
+              </div>
+              <h2 className="text-base font-bold text-text tracking-tight">
+                Candidate Radar
+              </h2>
+              <Badge variant="success" dot={true}>
+                Automated Discovery Active
+              </Badge>
+            </div>
+            <p className="text-xs text-text-secondary max-w-3xl leading-relaxed">
+              Discovers and ranks suspect counterparties with potential VASP attribution. Mines transaction paths from verified exchange clusters, evaluates proximity, and computes an explainable 5-factor Candidate Quality Score.
+            </p>
+          </div>
+
+          <div className="inline-flex items-center gap-2.5">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={handleTriggerSweep}
+              disabled={sweeping || stats?.is_running}
+              isLoading={sweeping || stats?.is_running}
+              icon={<RefreshCw className="h-4 w-4" />}
+            >
+              {sweeping || stats?.is_running ? 'Mining Counterparties...' : 'Run Discovery Sweep'}
+            </Button>
+
+            <button
+              onClick={() => {
+                loadData();
+                loadStats();
+              }}
+              className="h-9 w-9 rounded-lg bg-surface-raised hover:bg-surface-hover text-text-muted hover:text-text border border-border transition-colors inline-flex items-center justify-center shrink-0"
+              title="Refresh leads"
+              aria-label="Refresh leads"
+>>>>>>> Stashed changes
             >
               <RefreshCw className="h-4 w-4" />
             </button>
@@ -155,6 +210,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
         </div>
 
         {/* Stats Metrics Grid */}
+<<<<<<< Updated upstream
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-4 pt-4 border-t border-forensic-border font-mono text-xs">
           <div className="p-2.5 bg-forensic-surfaceRaised/40 border border-forensic-border rounded">
             <span className="text-[10px] text-forensic-textDim uppercase block">Total Discovered</span>
@@ -184,11 +240,56 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
           <div className="p-2.5 bg-forensic-surfaceRaised/40 border border-forensic-border rounded">
             <span className="text-[10px] text-forensic-textDim uppercase block">VASP Seeds Swept</span>
             <strong className="text-sm font-bold text-purple-400">{stats?.vasp_seeds_processed || 15} Seeds</strong>
+=======
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-3 border-t border-border">
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">Total Discovered</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.total_candidates_stored || candidates.length} Wallets
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">Investigation Ready</span>
+            <strong className="text-sm font-bold font-mono text-verified">
+              {stats?.investigation_ready_count ||
+                candidates.filter((c) => c.status === 'investigation_ready').length} Leads
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">Avg Quality Score</span>
+            <strong className="text-sm font-bold font-mono text-accent">
+              {stats?.average_quality_score || 72.4} / 100
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">1-Hop Direct VASP</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.hop_1_count || candidates.filter((c) => c.min_hop_to_vasp === 1).length} Wallets
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">2-Hop Layered</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.hop_2_count || candidates.filter((c) => c.min_hop_to_vasp === 2).length} Wallets
+            </strong>
+          </div>
+
+          <div className="p-3.5 bg-surface-raised/40 border border-border rounded-xl">
+            <span className="text-xs text-text-muted font-medium block mb-1">VASP Seeds Swept</span>
+            <strong className="text-sm font-bold font-mono text-text">
+              {stats?.vasp_seeds_processed || 15} Seeds
+            </strong>
+>>>>>>> Stashed changes
           </div>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
+<<<<<<< Updated upstream
       <div className="bg-forensic-surface border border-forensic-border rounded p-3 shadow-sm flex flex-wrap items-center justify-between gap-3 text-xs">
         <div className="flex flex-wrap items-center gap-3">
           {/* Chain selector */}
@@ -197,28 +298,49 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
               onClick={() => setChainFilter('')}
               className={`px-2.5 py-1 rounded font-mono text-[11px] transition-colors ${
                 chainFilter === '' ? 'bg-forensic-surfaceRaised text-forensic-text font-bold' : 'text-forensic-textDim hover:text-forensic-text'
+=======
+      <div className="bg-surface border border-border rounded-xl p-4 shadow-panel flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Chain Filter */}
+          <div className="flex items-center space-x-1 bg-surface-raised p-1 rounded-xl border border-border">
+            <button
+              onClick={() => setChainFilter('')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                chainFilter === '' ? 'bg-surface text-text font-semibold shadow-sm' : 'text-text-muted hover:text-text'
+>>>>>>> Stashed changes
               }`}
             >
               All Chains
             </button>
             <button
               onClick={() => setChainFilter('ethereum')}
+<<<<<<< Updated upstream
               className={`px-2.5 py-1 rounded font-mono text-[11px] transition-colors ${
                 chainFilter === 'ethereum' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-forensic-textDim hover:text-forensic-text'
+=======
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                chainFilter === 'ethereum' ? 'bg-surface text-text font-semibold shadow-sm' : 'text-text-muted hover:text-text'
+>>>>>>> Stashed changes
               }`}
             >
               Ethereum
             </button>
             <button
               onClick={() => setChainFilter('tron')}
+<<<<<<< Updated upstream
               className={`px-2.5 py-1 rounded font-mono text-[11px] transition-colors ${
                 chainFilter === 'tron' ? 'bg-red-500/20 text-red-400 font-bold border border-red-500/30' : 'text-forensic-textDim hover:text-forensic-text'
+=======
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                chainFilter === 'tron' ? 'bg-surface text-text font-semibold shadow-sm' : 'text-text-muted hover:text-text'
+>>>>>>> Stashed changes
               }`}
             >
               Tron (TRC-20)
             </button>
           </div>
 
+<<<<<<< Updated upstream
           {/* Min Quality Score Filter */}
           <div className="flex items-center space-x-1.5 font-mono text-[11px]">
             <span className="text-forensic-textDim">Min Quality:</span>
@@ -240,19 +362,32 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
           {/* Sort By */}
           <div className="flex items-center space-x-1.5 font-mono text-[11px]">
             <span className="text-forensic-textDim">Sort:</span>
+=======
+          {/* Min Score Filter */}
+          <div className="flex items-center space-x-2 bg-surface-raised px-3 py-1.5 rounded-xl border border-border text-xs">
+            <span className="text-text-muted">Min Score:</span>
+>>>>>>> Stashed changes
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="bg-forensic-bg border border-forensic-border rounded px-2 py-1 text-forensic-text font-mono focus:outline-none focus:border-blue-500"
             >
+<<<<<<< Updated upstream
               <option value="quality">Quality Score (High to Low)</option>
               <option value="txs">Tx Count (High to Low)</option>
               <option value="volume">Observed Volume</option>
               <option value="recency">Recently Analyzed</option>
+=======
+              <option value={0}>All Scores (≥ 0)</option>
+              <option value={50}>≥ 50 (Moderate Lead)</option>
+              <option value={70}>≥ 70 (High Lead)</option>
+              <option value={80}>≥ 80 (Investigation Ready)</option>
+>>>>>>> Stashed changes
             </select>
           </div>
         </div>
 
+<<<<<<< Updated upstream
         {/* Address Search */}
         <div className="relative min-w-[240px]">
           <Search className="h-3.5 w-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-forensic-textDim" />
@@ -384,6 +519,83 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                           ))}
                           {cand.reachable_vasps.length > 3 && (
                             <span className="text-[10px] text-forensic-textDim">+{cand.reachable_vasps.length - 3} more</span>
+=======
+        <div className="flex items-center space-x-3">
+          {/* Search Box */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted pointer-events-none shrink-0" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search address or VASP..."
+              className="pl-9 pr-3 py-1.5 bg-surface-raised border border-border rounded-xl text-text placeholder:text-text-muted text-xs focus:outline-none focus:border-accent w-52 sm:w-64 transition-colors font-mono"
+            />
+          </div>
+
+          {/* Sort By */}
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="bg-surface-raised border border-border rounded-xl text-text text-xs px-3 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
+          >
+            <option value="quality">Sort: Quality Score</option>
+            <option value="volume">Sort: Total Flow ($)</option>
+            <option value="tx_count">Sort: Transfer Count</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Candidates Data Table */}
+      <div className="bg-surface border border-border rounded-xl shadow-panel overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="border-b border-border bg-surface-raised/30 text-xs text-text-muted font-medium">
+                <th className="py-3 px-4">Candidate Wallet</th>
+                <th className="py-3 px-4">Chain</th>
+                <th className="py-3 px-4">Discovered VASP</th>
+                <th className="py-3 px-4 text-right">Flow Volume</th>
+                <th className="py-3 px-4 text-center">Transfers</th>
+                <th className="py-3 px-4 text-center">VASP Proximity</th>
+                <th className="py-3 px-4 text-center">Quality Score</th>
+                <th className="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/60">
+              {loading ? (
+                <tr>
+                  <td colSpan={8} className="py-14 text-center text-text-muted">
+                    <div className="inline-flex items-center justify-center gap-2.5">
+                      <RefreshCw className="h-4 w-4 animate-spin text-accent shrink-0" />
+                      <span>Loading discovered counterparty leads...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : candidates.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="py-14 text-center text-text-muted">
+                    No candidates found matching the selected filters.
+                  </td>
+                </tr>
+              ) : (
+                candidates.map((cand) => (
+                  <tr key={cand.id} className="hover:bg-surface-raised/50 transition-colors group h-14">
+                    <td className="py-3 px-4">
+                      <div className="inline-flex items-center gap-2">
+                        <span className="font-mono text-technical font-bold text-text truncate max-w-[140px] select-all">
+                          {cand.address.slice(0, 8)}...{cand.address.slice(-6)}
+                        </span>
+                        <button
+                          onClick={() => handleCopy(cand.address)}
+                          className="p-1 rounded hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0"
+                          title="Copy address"
+                        >
+                          {copiedAddress === cand.address ? (
+                            <Check className="h-3.5 w-3.5 text-verified shrink-0" />
+                          ) : (
+                            <Copy className="h-3.5 w-3.5 shrink-0" />
+>>>>>>> Stashed changes
                           )}
                         </div>
                       </td>
@@ -439,6 +651,7 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                           <span>Investigate</span>
                           <ArrowRight className="h-3 w-3" />
                         </button>
+<<<<<<< Updated upstream
                       </td>
                     </tr>
                   );
@@ -447,10 +660,75 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
             </table>
           </div>
         )}
+=======
+                      </div>
+                    </td>
+
+                    <td className="py-3 px-4">
+                      <span className="uppercase text-xs px-2 py-0.5 rounded-full bg-surface-raised border border-border text-text-secondary font-medium">
+                        {cand.chain}
+                      </span>
+                    </td>
+
+                    <td className="py-3 px-4">
+                      <span className="font-semibold text-accent text-xs">{cand.discovery_vasp_name}</span>
+                    </td>
+
+                    <td className="py-3 px-4 text-right font-mono font-semibold text-text">
+                      ${cand.total_volume_usd > 1000
+                        ? (cand.total_volume_usd / 1000).toFixed(1) + 'k'
+                        : cand.total_volume_usd.toFixed(2)}
+                    </td>
+
+                    <td className="py-3 px-4 text-center text-text-secondary font-mono">
+                      {cand.transaction_count} Tx
+                    </td>
+
+                    <td className="py-3 px-4 text-center">
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-xs font-mono font-medium border ${
+                          cand.min_hop_to_vasp === 1
+                            ? 'bg-verified-subtle text-verified border-verified-border'
+                            : 'bg-surface-raised text-text-muted border-border'
+                        }`}
+                      >
+                        Hop {cand.min_hop_to_vasp}
+                      </span>
+                    </td>
+
+                    <td className="py-3 px-4 text-center">
+                      <button
+                        onClick={() => setSelectedCandidateForModal(cand)}
+                        className="px-2.5 py-0.5 rounded-full bg-accent-subtle hover:bg-accent/20 text-accent border border-accent-border font-mono font-bold text-xs transition-colors"
+                        title="Click to inspect 5-factor quality breakdown"
+                      >
+                        {cand.candidate_quality_score.toFixed(1)} / 100
+                      </button>
+                    </td>
+
+                    <td className="py-3 px-4 text-right">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => onSelectCandidate(cand.address)}
+                        icon={<ArrowRight className="h-3.5 w-3.5" />}
+                        iconPosition="right"
+                      >
+                        Investigate
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+>>>>>>> Stashed changes
       </div>
 
       {/* Quality Score Breakdown Modal */}
       {selectedCandidateForModal && (
+<<<<<<< Updated upstream
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in font-sans">
           <div className="bg-forensic-surface border border-forensic-border rounded-xl shadow-2xl w-full max-w-lg overflow-hidden text-forensic-text">
             <div className="p-4 border-b border-forensic-border flex items-center justify-between bg-forensic-surfaceRaised/50">
@@ -458,16 +736,30 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
                 <Radar className="h-4 w-4 text-blue-400" />
                 <h3 className="font-bold text-xs uppercase tracking-wider">
                   Candidate Quality Score Breakdown
+=======
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+          <div className="bg-surface border border-border rounded-xl shadow-panel-elevated w-full max-w-lg p-6 space-y-4 text-xs">
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <div className="inline-flex items-center gap-2">
+                <Radar className="h-4 w-4 text-accent shrink-0" />
+                <h3 className="font-semibold text-text text-sm">
+                  Candidate Quality Score Diagnostics
+>>>>>>> Stashed changes
                 </h3>
               </div>
               <button
                 onClick={() => setSelectedCandidateForModal(null)}
+<<<<<<< Updated upstream
                 className="p-1 rounded text-forensic-textDim hover:text-forensic-text"
+=======
+                className="p-1.5 rounded-lg text-text-muted hover:text-text hover:bg-surface-raised transition-colors"
+>>>>>>> Stashed changes
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
+<<<<<<< Updated upstream
             <div className="p-5 space-y-4 text-xs font-mono">
               <div className="p-3 rounded bg-forensic-surfaceRaised/50 border border-forensic-border">
                 <div className="text-[10px] text-forensic-textDim uppercase">Candidate Wallet</div>
@@ -536,7 +828,65 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({ 
 
               <div className="p-3 bg-forensic-surfaceRaised/30 rounded border border-forensic-border text-[11px] text-forensic-textDim">
                 💡 <strong>Methodology Note</strong>: Candidate Quality evaluates data completeness and topological depth for demonstration. It is distinct from the 5-pillar VASP Attribution Score.
+=======
+            <div className="space-y-3">
+              <div className="p-3 rounded-xl bg-surface-raised/60 border border-border">
+                <span className="text-xs text-text-muted font-medium block mb-1">Target Address</span>
+                <span className="font-mono text-xs font-bold text-text break-all select-all">
+                  {selectedCandidateForModal.address}
+                </span>
               </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 rounded-xl bg-surface-raised/40 border border-border">
+                  <span className="text-xs text-text-muted block mb-0.5">Discovered From</span>
+                  <span className="font-semibold text-accent text-xs">
+                    {selectedCandidateForModal.discovery_vasp_name}
+                  </span>
+                </div>
+                <div className="p-3 rounded-xl bg-surface-raised/40 border border-border">
+                  <span className="text-xs text-text-muted block mb-0.5">VASP Proximity</span>
+                  <span className="font-semibold text-text text-xs">
+                    {selectedCandidateForModal.min_hop_to_vasp} Hop(s)
+                  </span>
+                </div>
+>>>>>>> Stashed changes
+              </div>
+
+              <div className="p-4 rounded-xl bg-accent-subtle border border-accent-border space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-text text-xs">Composite Quality Index</span>
+                  <span className="font-mono text-base font-bold text-accent">
+                    {selectedCandidateForModal.candidate_quality_score.toFixed(1)} / 100
+                  </span>
+                </div>
+                <p className="text-xs text-text-secondary leading-relaxed">
+                  Calculated from 5 normalized signals: VASP Hop Proximity (35%), Active On-Chain Volume (25%), Unique Counterparties (20%), Transaction Density (10%), and Recency (10%).
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2 flex justify-end gap-2 border-t border-border">
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={() => setSelectedCandidateForModal(null)}
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                size="md"
+                onClick={() => {
+                  const addr = selectedCandidateForModal.address;
+                  setSelectedCandidateForModal(null);
+                  onSelectCandidate(addr);
+                }}
+                icon={<ArrowRight className="h-4 w-4" />}
+                iconPosition="right"
+              >
+                Investigate This Target
+              </Button>
             </div>
 
             <div className="p-3.5 border-t border-forensic-border bg-forensic-surfaceRaised/40 flex items-center justify-between text-xs">

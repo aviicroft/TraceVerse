@@ -1,5 +1,5 @@
 {
-  "name": "TraceVerse-CryptoAttributionPlatform",
+  "name": "traceverse-cryptoattributionplatform",
   "version": "1.0.0",
   "description": "Automated Attribution of Unknown Cryptocurrency Wallets to Nearest Virtual Asset Service Providers (VASPs)",
   "scripts": {
@@ -8,7 +8,33 @@
     "start": "npm --prefix frontend run start",
     "test": "pytest tests/ -v"
   },
-  "keywords": ["sih", "blockchain", "ethereum", "vasp", "attribution", "cytoscape"],
+  "keywords": [
+    "sih",
+    "blockchain",
+    "ethereum",
+    "vasp",
+    "attribution",
+    "cytoscape"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aviicroft/TraceVerse.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aviicroft/TraceVerse/issues"
+  },
+  "homepage": "https://github.com/aviicroft/TraceVerse#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "next": "^16.3.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
 }
