@@ -18,8 +18,6 @@ import { CandidateDiscoveryView } from '../../components/CandidateDiscoveryView'
 import { ProvenanceSection } from '../../components/ProvenanceSection';
 import { MLEvaluationModal } from '../../components/MLEvaluationModal';
 import { DatasetStatusModal } from '../../components/DatasetStatusModal';
-import { Badge } from '../../components/ui/Badge';
-import { Button } from '../../components/ui/Button';
 import { api } from '../../lib/api';
 import {
   AnalysisStatus,
@@ -40,10 +38,6 @@ import {
   BrainCircuit,
   Database,
   BookOpen,
-  ArrowRight,
-  TrendingUp,
-  ShieldCheck,
-  Activity,
 } from 'lucide-react';
 
 export default function InvestigationAppPage() {
@@ -98,12 +92,15 @@ export default function InvestigationAppPage() {
     try {
       const recent = await api.getRecentAnalyses();
       setRecentAnalyses(recent || []);
+<<<<<<< Updated upstream
       if (recent && recent.length > 0) {
         const latestCompleted = recent.find((r) => r.status === 'COMPLETED');
         if (latestCompleted) {
           loadCase(latestCompleted.analysis_id, false);
         }
       }
+=======
+>>>>>>> Stashed changes
     } catch (e) {
       console.warn('Could not load recent analyses:', e);
     }
@@ -175,6 +172,7 @@ export default function InvestigationAppPage() {
         hasActiveTarget={!!analysisStatus}
       />
 
+<<<<<<< Updated upstream
       {/* Top Breadcrumb & Status Bar */}
       <div className="border-b border-border bg-surface-raised/40 px-4 sm:px-6 py-2.5 text-xs flex flex-wrap items-center justify-between gap-3 text-text-muted">
         <div className="flex flex-wrap items-center gap-2">
@@ -203,19 +201,60 @@ export default function InvestigationAppPage() {
             className="px-2.5 py-1 rounded-lg bg-surface border border-border text-text-secondary hover:text-text hover:bg-surface-hover transition-colors inline-flex items-center gap-1.5 text-xs"
           >
             <BrainCircuit className="h-3.5 w-3.5 text-verified" />
+=======
+      {/* Top Banner with link back to landing page */}
+      <div className="bg-forensic-surfaceRaised border-b border-forensic-border px-4 py-1.5 text-xs font-mono flex items-center justify-between text-forensic-textDim">
+        <div className="flex items-center space-x-3">
+          <Link
+            href="/"
+            className="flex items-center space-x-1 text-blue-500 hover:underline font-semibold"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            <span>Landing Page</span>
+          </Link>
+          <span>•</span>
+          <Link
+            href="/docs"
+            className="flex items-center space-x-1 text-amber-400 hover:underline font-semibold"
+          >
+            <BookOpen className="h-3.5 w-3.5" />
+            <span>Judge Docs (/docs)</span>
+          </Link>
+          <span>•</span>
+          <span>Live Investigation Console</span>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => setShowMLEvalModal(true)}
+            className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 hover:bg-purple-500/20 transition-colors flex items-center space-x-1"
+          >
+            <BrainCircuit className="h-3 w-3" />
+>>>>>>> Stashed changes
             <span>ML Benchmarks</span>
           </button>
           <button
             onClick={() => setShowDatasetModal(true)}
+<<<<<<< Updated upstream
             className="px-2.5 py-1 rounded-lg bg-surface border border-border text-text-secondary hover:text-text hover:bg-surface-hover transition-colors inline-flex items-center gap-1.5 text-xs"
           >
             <Database className="h-3.5 w-3.5 text-accent" />
             <span>100K Dataset</span>
+=======
+            className="px-2 py-0.5 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20 hover:bg-teal-500/20 transition-colors flex items-center space-x-1"
+          >
+            <Database className="h-3 w-3" />
+            <span>Data Ingestion</span>
+>>>>>>> Stashed changes
           </button>
         </div>
       </div>
 
+<<<<<<< Updated upstream
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+=======
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-4 space-y-4">
+>>>>>>> Stashed changes
         {/* TAB 1: TARGET CASE WORKSPACE */}
         {activeTab === 'WORKSPACE' && (
           <>
@@ -223,8 +262,8 @@ export default function InvestigationAppPage() {
 
             {analysisStatus && <LiveProgress status={analysisStatus} />}
 
-            {/* Case Header & Key Findings Summary */}
             {analysisStatus && (
+<<<<<<< Updated upstream
               <div className="bg-surface border border-border rounded-xl p-5 sm:p-6 shadow-panel space-y-5 transition-colors">
                 <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
                   <div className="space-y-2">
@@ -245,14 +284,36 @@ export default function InvestigationAppPage() {
 
                     <div className="inline-flex items-center gap-3 pt-1">
                       <span className="text-base sm:text-lg font-bold text-text font-mono break-all select-all">
+=======
+              <div className="bg-forensic-surface border border-forensic-border rounded p-3.5 shadow-sm text-xs font-mono transition-colors">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-forensic-border pb-3">
+                  <div className="space-y-1">
+                    <div className="flex items-center space-x-3 text-[10px] text-forensic-textDim uppercase">
+                      <span>CASE ID: <strong className="text-forensic-text">CR-2026-{analysisStatus.analysis_id.slice(0, 8).toUpperCase()}</strong></span>
+                      <span>•</span>
+                      <span>STATUS: <strong className="text-forensic-teal">ACTIVE INVESTIGATION</strong></span>
+                      <span>•</span>
+                      <span>CHAIN: <strong className="text-blue-500">{analysisStatus.wallet_address.startsWith('0x') ? 'ETHEREUM MAINNET' : 'TRON NETWORK'}</strong></span>
+                    </div>
+
+                    <div className="flex items-center space-x-2 pt-0.5">
+                      <span className="text-sm font-bold text-forensic-text break-all select-all">
+>>>>>>> Stashed changes
                         {analysisStatus.wallet_address}
                       </span>
                       <button
                         onClick={() => handleCopyAddress(analysisStatus.wallet_address)}
+<<<<<<< Updated upstream
                         title="Copy target address"
                         className="p-1.5 rounded-lg hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0"
                       >
                         {copied ? <Check className="h-4 w-4 text-verified" /> : <Copy className="h-4 w-4" />}
+=======
+                        title="Copy address"
+                        className="p-1 hover:text-forensic-text text-forensic-textDim"
+                      >
+                        {copied ? <Check className="h-3.5 w-3.5 text-forensic-teal" /> : <Copy className="h-3.5 w-3.5" />}
+>>>>>>> Stashed changes
                       </button>
                       <a
                         href={
@@ -262,15 +323,23 @@ export default function InvestigationAppPage() {
                         }
                         target="_blank"
                         rel="noreferrer"
+<<<<<<< Updated upstream
                         className="p-1.5 rounded-lg hover:bg-surface-raised text-text-muted hover:text-accent transition-colors shrink-0"
                         title="Inspect on Public Explorer"
                       >
                         <ExternalLink className="h-4 w-4" />
+=======
+                        className="p-1 text-blue-500 hover:underline"
+                        title="Inspect on Public Explorer"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+>>>>>>> Stashed changes
                       </a>
                     </div>
                   </div>
 
                   {analysisStatus.status === 'COMPLETED' && (
+<<<<<<< Updated upstream
                     <div className="flex flex-wrap items-center gap-2">
                       <Button
                         variant="secondary"
@@ -280,28 +349,51 @@ export default function InvestigationAppPage() {
                       >
                         Graph Studio
                       </Button>
+=======
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => setActiveTab('GRAPH_STUDIO')}
+                        className="flex items-center space-x-1.5 px-3 py-1.5 bg-forensic-surfaceRaised hover:bg-forensic-border text-forensic-text border border-forensic-border font-medium text-[11px] rounded transition-colors shadow-sm"
+                      >
+                        <Network className="h-3.5 w-3.5 text-forensic-teal" />
+                        <span>Full-Screen Graph</span>
+                      </button>
+>>>>>>> Stashed changes
 
-                      <Button
-                        variant="danger"
-                        size="md"
+                      <button
                         onClick={() => setShowFreezeModal(true)}
+<<<<<<< Updated upstream
                         icon={<Scale className="h-4 w-4" />}
                       >
                         Issue Freeze Notice
                       </Button>
+=======
+                        className="flex items-center space-x-1.5 px-3 py-1.5 bg-red-700 hover:bg-red-600 text-white font-medium text-[11px] rounded transition-colors shadow-sm"
+                      >
+                        <Scale className="h-3.5 w-3.5" />
+                        <span>Issue Freeze Notice</span>
+                      </button>
+>>>>>>> Stashed changes
 
-                      <Button
-                        variant="primary"
-                        size="md"
+                      <button
                         onClick={() => setShowReportModal(true)}
+<<<<<<< Updated upstream
                         icon={<FileText className="h-4 w-4" />}
                       >
                         Export Dossier
                       </Button>
+=======
+                        className="flex items-center space-x-1.5 px-3 py-1.5 bg-blue-700 hover:bg-blue-600 text-white font-medium text-[11px] rounded transition-colors shadow-sm"
+                      >
+                        <FileText className="h-3.5 w-3.5" />
+                        <span>Export Dossier</span>
+                      </button>
+>>>>>>> Stashed changes
                     </div>
                   )}
                 </div>
 
+<<<<<<< Updated upstream
                 {/* Key Findings Metrics Bar */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
                   <div className="p-3.5 rounded-xl bg-surface-raised/50 border border-border">
@@ -339,6 +431,39 @@ export default function InvestigationAppPage() {
                     <strong className="text-text font-mono text-base font-bold">
                       {evidence.length} Records
                     </strong>
+=======
+                {/* Evidence Metrics Summary Bar */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 pt-2.5 text-[10px] text-forensic-textDim">
+                  <div>
+                    <span className="block uppercase text-forensic-textDim">Observed Transfers</span>
+                    <strong className="text-forensic-text text-xs">{analysisStatus.num_transactions || 0} Tx</strong>
+                  </div>
+                  <div>
+                    <span className="block uppercase text-forensic-textDim">Network Graph Nodes</span>
+                    <strong className="text-forensic-text text-xs">{analysisStatus.num_nodes || 1} Nodes</strong>
+                  </div>
+                  <div>
+                    <span className="block uppercase text-forensic-textDim">Attributed VASP</span>
+                    <strong className="text-blue-500 text-xs">
+                      {attributions[0]?.vasp_name || 'Evaluating...'}
+                    </strong>
+                  </div>
+                  <div>
+                    <span className="block uppercase text-forensic-textDim">Attribution Confidence</span>
+                    <strong className="text-forensic-teal text-xs">
+                      {attributions[0] ? `${attributions[0].score.toFixed(1)}% (${attributions[0].evidence_strength})` : 'N/A'}
+                    </strong>
+                  </div>
+                  <div>
+                    <span className="block uppercase text-forensic-textDim">Structural Risk</span>
+                    <strong className="text-forensic-amber text-xs">
+                      {analysisStatus.risk_assessment?.risk_level || 'ELEVATED'}
+                    </strong>
+                  </div>
+                  <div>
+                    <span className="block uppercase text-forensic-textDim">Evidence Findings</span>
+                    <strong className="text-forensic-text text-xs">{evidence.length} Records</strong>
+>>>>>>> Stashed changes
                   </div>
                 </div>
               </div>
@@ -346,14 +471,23 @@ export default function InvestigationAppPage() {
 
             {/* Split Workspace View */}
             {analysisStatus && analysisStatus.status === 'COMPLETED' && (
+<<<<<<< Updated upstream
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <div className="lg:col-span-5 space-y-6">
+=======
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div className="lg:col-span-5 space-y-4">
+>>>>>>> Stashed changes
                   <AttributionCard attributions={attributions} />
                   <RiskCard riskAssessment={analysisStatus.risk_assessment} />
                   <EvidenceFeed evidence={evidence} />
                 </div>
 
+<<<<<<< Updated upstream
                 <div className="lg:col-span-7 space-y-6">
+=======
+                <div className="lg:col-span-7 space-y-4">
+>>>>>>> Stashed changes
                   <GraphCanvas
                     graphData={graphData}
                     transactions={transactions}
@@ -367,6 +501,7 @@ export default function InvestigationAppPage() {
 
             {/* Recent Cases Forensic Register */}
             {recentAnalyses.length > 0 && !isLoading && (
+<<<<<<< Updated upstream
               <div className="bg-surface border border-border rounded-xl p-5 sm:p-6 shadow-panel space-y-4 transition-colors">
                 <div className="flex items-center justify-between border-b border-border pb-3">
                   <div className="inline-flex items-center gap-2 text-text">
@@ -376,12 +511,24 @@ export default function InvestigationAppPage() {
                     </h3>
                   </div>
                   <span className="text-xs text-text-muted">Audit Register</span>
+=======
+              <div className="bg-forensic-surface border border-forensic-border rounded p-3.5 shadow-sm text-xs font-mono space-y-2.5 transition-colors">
+                <div className="flex items-center justify-between border-b border-forensic-border pb-2">
+                  <div className="flex items-center space-x-2 text-forensic-text">
+                    <FolderOpen className="h-4 w-4 text-forensic-textDim" />
+                    <h3 className="uppercase font-bold text-xs tracking-wider">
+                      Recent Investigation Cases ({recentAnalyses.length})
+                    </h3>
+                  </div>
+                  <span className="text-[10px] text-forensic-textDim uppercase">Audit Register</span>
+>>>>>>> Stashed changes
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {recentAnalyses.map((run, idx) => (
                     <button
                       key={idx}
+<<<<<<< Updated upstream
                       onClick={() => {
                         if (run.status === 'COMPLETED') {
                           loadCase(run.analysis_id, true);
@@ -399,9 +546,22 @@ export default function InvestigationAppPage() {
                           variant={run.status === 'COMPLETED' ? 'success' : 'neutral'}
                           size="sm"
                         >
+=======
+                      onClick={() => handleStartAnalysis(run.wallet_address, 3)}
+                      className="p-2.5 bg-forensic-bg hover:bg-forensic-surfaceRaised border border-forensic-border rounded text-left transition-colors group space-y-1"
+                    >
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="text-forensic-text font-bold truncate max-w-[170px]">
+                          {run.wallet_address.slice(0, 8)}...{run.wallet_address.slice(-6)}
+                        </span>
+                        <span className={`text-[9px] px-1.5 py-0.2 rounded font-bold uppercase ${
+                          run.status === 'COMPLETED' ? 'bg-teal-500/15 text-forensic-teal border border-teal-500/30' : 'bg-forensic-surfaceRaised text-forensic-textMuted border border-forensic-border'
+                        }`}>
+>>>>>>> Stashed changes
                           {run.status}
-                        </Badge>
+                        </span>
                       </div>
+<<<<<<< Updated upstream
                       <div className="flex items-center justify-between text-xs text-text-muted pt-1 border-t border-border/40">
                         <span>
                           {run.num_transactions} Transfers • {run.num_nodes} Nodes
@@ -410,6 +570,11 @@ export default function InvestigationAppPage() {
                           <span>Load</span>
                           <ArrowRight className="h-3 w-3" />
                         </span>
+=======
+                      <div className="flex items-center justify-between text-[10px] text-forensic-textDim pt-0.5">
+                        <span>{run.num_transactions} Transfers • {run.num_nodes} Nodes</span>
+                        <span className="text-blue-500 group-hover:underline font-semibold">Load Case →</span>
+>>>>>>> Stashed changes
                       </div>
                     </button>
                   ))}
@@ -426,7 +591,11 @@ export default function InvestigationAppPage() {
 
         {/* TAB 2: FULL-SCREEN GRAPH STUDIO */}
         {activeTab === 'GRAPH_STUDIO' && (
+<<<<<<< Updated upstream
           <div className="space-y-6">
+=======
+          <div className="space-y-4">
+>>>>>>> Stashed changes
             <GraphCanvas
               graphData={graphData}
               isFullScreenView={true}

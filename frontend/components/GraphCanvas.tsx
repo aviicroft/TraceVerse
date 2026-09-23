@@ -50,6 +50,7 @@ export interface GraphCanvasProps {
   isFullScreenView?: boolean;
   transactions?: NormalizedTransaction[];
   onPivotTarget?: (address: string) => void;
+<<<<<<< Updated upstream
   recentAnalyses?: any[];
   isLoading?: boolean;
   onStartAnalysis?: (address: string, maxHops: number) => void;
@@ -249,6 +250,8 @@ function getLayoutConfig(layoutMode: LayoutType, rootNodeId?: string) {
     animate: true,
     animationDuration: 300,
   };
+=======
+>>>>>>> Stashed changes
 }
 
 export const GraphCanvas: React.FC<GraphCanvasProps> = ({
@@ -818,6 +821,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           : 'h-[640px] relative'
       }`}
     >
+<<<<<<< Updated upstream
       {/* 1. TOP CONTROL TOOLBAR */}
       <div className="p-3 border-b border-border bg-surface-raised/60 flex flex-wrap items-center justify-between gap-3 text-xs">
         {/* Left: View Mode Tabs */}
@@ -976,9 +980,64 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                   <span className="text-xs text-text-muted font-mono">JSON</span>
                 </button>
               </div>
+=======
+      {/* ========================================================================= */}
+      {/* 1. INVESTIGATION SUMMARY HEADER BAR */}
+      {/* ========================================================================= */}
+      <div className="p-3 border-b border-forensic-border bg-forensic-surfaceRaised/80 backdrop-blur-md flex flex-wrap items-center justify-between gap-3 text-xs">
+        {/* Left: Target & Core Stats */}
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center space-x-2 pr-3 border-r border-forensic-border">
+            <div className="p-1.5 rounded bg-blue-600/15 border border-blue-500/30 text-blue-400">
+              <Network className="h-4 w-4" />
+            </div>
+            <div>
+              <div className="flex items-center space-x-1.5 font-mono text-[11px] font-bold text-forensic-text uppercase">
+                <span>GRAPH STUDIO</span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-normal">
+                  PRO
+                </span>
+              </div>
+              <div className="flex items-center space-x-1 text-[11px] font-mono text-forensic-textDim">
+                <span>Target:</span>
+                <span className="text-forensic-text font-medium">{rootAddress ? `${rootAddress.slice(0, 8)}...${rootAddress.slice(-4)}` : 'N/A'}</span>
+                <button
+                  onClick={() => handleCopy(rootAddress)}
+                  className="hover:text-forensic-text transition-colors p-0.5"
+                  title="Copy Target Wallet"
+                >
+                  {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Genuine Response Metrics Badges */}
+          <div className="hidden sm:flex items-center space-x-2 font-mono text-[11px]">
+            <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
+              <strong className="text-blue-400">{graphMetrics.totalNodes}</strong> Nodes
+            </span>
+            <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
+              <strong className="text-teal-400">{graphMetrics.totalTransfers}</strong> Transfers
+            </span>
+            <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-forensic-text font-medium">
+              <strong className="text-purple-400">{graphMetrics.maxHops}</strong> Hops
+            </span>
+            <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-emerald-400 font-medium">
+              <strong className="text-emerald-400">{graphMetrics.vaspEndpoints}</strong> VASP Endpoints
+            </span>
+            {graphMetrics.totalObservedVolume > 0 && (
+              <span className="px-2.5 py-1 rounded bg-forensic-surface border border-forensic-border text-amber-400 font-medium">
+                {graphMetrics.totalObservedVolume >= 1000
+                  ? (graphMetrics.totalObservedVolume / 1000).toFixed(1) + 'k'
+                  : graphMetrics.totalObservedVolume.toFixed(2)}{' '}
+                {graphMetrics.primaryToken} Observed
+              </span>
+>>>>>>> Stashed changes
             )}
           </div>
 
+<<<<<<< Updated upstream
           <button
             onClick={() => setIsFullScreen(!isFullScreen)}
             className={`h-8 w-8 rounded-lg border transition-colors inline-flex items-center justify-center shrink-0 ${
@@ -990,6 +1049,90 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           >
             {isFullScreen ? <Minimize2 className="h-4 w-4 shrink-0" /> : <Maximize2 className="h-4 w-4 shrink-0" />}
           </button>
+=======
+        {/* Right: View Modes & Canvas Actions */}
+        <div className="flex items-center space-x-2">
+          {/* View Switcher: [Network] [Fund Flow] [Timeline] [Evidence] */}
+          <div className="flex items-center bg-forensic-surface border border-forensic-border rounded p-0.5 font-mono text-[10px]">
+            {(['NETWORK', 'FUND_FLOW', 'TIMELINE', 'EVIDENCE'] as ViewMode[]).map((mode) => (
+              <button
+                key={mode}
+                onClick={() => setViewMode(mode)}
+                className={`px-2 py-1 rounded font-medium transition-colors ${
+                  viewMode === mode
+                    ? 'bg-blue-600 text-white font-bold'
+                    : 'text-forensic-textMuted hover:text-forensic-text hover:bg-forensic-surfaceRaised'
+                }`}
+              >
+                {mode === 'FUND_FLOW' ? 'Fund Flow' : mode.charAt(0) + mode.slice(1).toLowerCase()}
+              </button>
+            ))}
+          </div>
+
+          {/* Quick Hop Filters */}
+          <div className="hidden xl:flex items-center bg-forensic-surface border border-forensic-border rounded p-0.5 font-mono text-[10px]">
+            <button
+              onClick={() => setSelectedHops(new Set([1, 2, 3]))}
+              className={`px-2 py-1 rounded transition-colors ${
+                selectedHops.size === 3 ? 'bg-forensic-surfaceRaised text-forensic-text font-bold' : 'text-forensic-textMuted'
+              }`}
+            >
+              All Hops
+            </button>
+            {[1, 2, 3].map((hop) => (
+              <button
+                key={hop}
+                onClick={() => toggleHopFilter(hop)}
+                className={`px-2 py-1 rounded transition-colors ${
+                  selectedHops.has(hop) && selectedHops.size < 3
+                    ? 'bg-blue-600 text-white font-bold'
+                    : 'text-forensic-textMuted hover:text-forensic-text'
+                }`}
+              >
+                Hop {hop}
+              </button>
+            ))}
+          </div>
+
+          {/* Canvas Actions */}
+          <div className="flex items-center space-x-1 border-l border-forensic-border pl-2">
+            <button
+              onClick={handleReset}
+              className="p-1.5 rounded hover:bg-forensic-surfaceRaised text-forensic-textMuted hover:text-forensic-text border border-transparent hover:border-forensic-border transition-colors"
+              title="Reset View & Clear Path Focus"
+            >
+              <RotateCcw className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={handleFit}
+              className="p-1.5 rounded hover:bg-forensic-surfaceRaised text-forensic-textMuted hover:text-forensic-text border border-transparent hover:border-forensic-border transition-colors"
+              title="Fit Graph"
+            >
+              <Eye className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={handleZoomIn}
+              className="p-1.5 rounded hover:bg-forensic-surfaceRaised text-forensic-textMuted hover:text-forensic-text border border-transparent hover:border-forensic-border transition-colors"
+              title="Zoom In"
+            >
+              <ZoomIn className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={handleZoomOut}
+              className="p-1.5 rounded hover:bg-forensic-surfaceRaised text-forensic-textMuted hover:text-forensic-text border border-transparent hover:border-forensic-border transition-colors"
+              title="Zoom Out"
+            >
+              <ZoomOut className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={() => setIsFullScreen(!isFullScreen)}
+              className="p-1.5 rounded hover:bg-forensic-surfaceRaised text-forensic-textMuted hover:text-forensic-text border border-transparent hover:border-forensic-border transition-colors"
+              title={isFullScreen ? 'Exit Fullscreen' : 'Fullscreen'}
+            >
+              {isFullScreen ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
+            </button>
+          </div>
+>>>>>>> Stashed changes
         </div>
       </div>
 
@@ -1325,6 +1468,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
 
         {/* 4. RIGHT FORENSIC INSPECTOR DRAWER (Responsive drawer on mobile/tablet) */}
         {selectedElement && (
+<<<<<<< Updated upstream
           <>
             {/* Backdrop on small screens */}
             <div
@@ -1489,6 +1633,22 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
                     </div>
                   </div>
                 )}
+=======
+          <div className="w-80 border-l border-forensic-border bg-forensic-surfaceRaised/95 backdrop-blur-md p-4 overflow-y-auto z-20 flex flex-col justify-between animate-slide-left text-xs font-sans">
+            <div className="space-y-4">
+              {/* Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-forensic-border">
+                <div className="flex items-center space-x-2 font-mono font-bold text-forensic-text uppercase text-[11px]">
+                  <ShieldCheck className="h-4 w-4 text-teal-400" />
+                  <span>{selectedElement.type === 'NODE' ? 'Node Forensics' : 'Transfer Details'}</span>
+                </div>
+                <button
+                  onClick={() => setSelectedElement(null)}
+                  className="text-forensic-textDim hover:text-forensic-text p-1"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+>>>>>>> Stashed changes
               </div>
             </div>
           </>
