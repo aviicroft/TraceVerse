@@ -71,38 +71,48 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
   const refNumber = `TRACEVERSE/LEA/${new Date().getFullYear()}/${analysisId.slice(0, 8).toUpperCase()}`;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-surface border border-border rounded-2xl w-full max-w-5xl max-h-[92vh] flex flex-col shadow-panel overflow-hidden font-sans text-text transition-colors">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+      <div className="bg-surface border border-border rounded-2xl w-[calc(100%-16px)] sm:w-full max-w-5xl max-h-[92vh] flex flex-col shadow-panel overflow-hidden font-sans text-text transition-colors">
         {/* Header Bar */}
-        <div className="no-print p-5 border-b border-border flex flex-wrap items-center justify-between bg-surface-raised/60 gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-accent-subtle border border-accent/20 text-accent inline-flex items-center justify-center shrink-0">
-              <ShieldCheck className="h-5 w-5 shrink-0" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2.5">
-                <h2 className="text-base font-semibold text-text tracking-tight">
-                  Forensic Investigation Dossier & Audit Report
-                </h2>
-                <Badge variant="accent">
-                  {refNumber}
-                </Badge>
+        <div className="no-print p-4 sm:p-5 border-b border-border bg-surface-raised/60 space-y-3">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-start sm:items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-xl bg-accent-subtle border border-accent/20 text-accent inline-flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
+                <ShieldCheck className="h-5 w-5 shrink-0" />
               </div>
-              <p className="text-xs text-text-muted mt-0.5">
-                Standardized multi-chain intelligence summary for judicial proceedings & VASP freeze requisitions
-              </p>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h2 className="text-sm sm:text-base font-semibold text-text tracking-tight">
+                    Forensic Investigation Dossier & Audit Report
+                  </h2>
+                  <Badge variant="accent">
+                    {refNumber}
+                  </Badge>
+                </div>
+                <p className="text-xs text-text-muted mt-0.5 line-clamp-1 sm:line-clamp-none">
+                  Standardized multi-chain intelligence summary for judicial proceedings & VASP freeze requisitions
+                </p>
+              </div>
             </div>
+
+            <button
+              onClick={onClose}
+              className="min-h-[44px] min-w-[44px] rounded-lg text-text-muted hover:text-text hover:bg-surface-raised transition-colors inline-flex items-center justify-center shrink-0 border border-transparent hover:border-border"
+              aria-label="Close modal"
+            >
+              <X className="h-5 w-5 shrink-0" />
+            </button>
           </div>
 
           {/* Action Toolbar */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-2 border-t border-border/40">
             {/* View Switcher Tabs */}
-            <div className="inline-flex items-center bg-bg p-1 rounded-lg border border-border mr-1 text-xs">
+            <div className="flex items-center bg-bg p-1 rounded-lg border border-border text-xs w-full sm:w-auto">
               <button
                 onClick={() => setActiveTab('visual')}
-                className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md transition-all font-medium ${
+                className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md transition-all font-medium min-h-[36px] sm:min-h-0 ${
                   activeTab === 'visual'
-                    ? 'bg-surface text-text shadow-sm border border-border'
+                    ? 'bg-surface text-text shadow-sm border border-border font-semibold'
                     : 'text-text-muted hover:text-text'
                 }`}
               >
@@ -112,9 +122,9 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
 
               <button
                 onClick={() => setActiveTab('markdown')}
-                className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md transition-all font-medium ${
+                className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md transition-all font-medium min-h-[36px] sm:min-h-0 ${
                   activeTab === 'markdown'
-                    ? 'bg-surface text-text shadow-sm border border-border'
+                    ? 'bg-surface text-text shadow-sm border border-border font-semibold'
                     : 'text-text-muted hover:text-text'
                 }`}
               >
@@ -124,9 +134,9 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
 
               <button
                 onClick={() => setActiveTab('json')}
-                className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md transition-all font-medium ${
+                className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md transition-all font-medium min-h-[36px] sm:min-h-0 ${
                   activeTab === 'json'
-                    ? 'bg-surface text-text shadow-sm border border-border'
+                    ? 'bg-surface text-text shadow-sm border border-border font-semibold'
                     : 'text-text-muted hover:text-text'
                 }`}
               >
@@ -134,40 +144,38 @@ export const ReportModal: React.FC<ReportModalProps> = ({ analysisId, onClose })
               </button>
             </div>
 
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={handleCopy}
-              leftIcon={copied ? <Check className="h-3.5 w-3.5 text-verified" /> : <Copy className="h-3.5 w-3.5" />}
-            >
-              {copied ? 'Copied' : 'Copy'}
-            </Button>
+            {/* Action Buttons */}
+            <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto scrollbar-none">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={handleCopy}
+                leftIcon={copied ? <Check className="h-3.5 w-3.5 text-verified" /> : <Copy className="h-3.5 w-3.5" />}
+                className="flex-1 sm:flex-none min-h-[44px] sm:min-h-0"
+              >
+                {copied ? 'Copied' : 'Copy'}
+              </Button>
 
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => handleDownload(activeTab === 'json' ? 'json' : 'md')}
-              leftIcon={<Download className="h-3.5 w-3.5" />}
-            >
-              {activeTab === 'json' ? 'Download JSON' : 'Download MD'}
-            </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => handleDownload(activeTab === 'json' ? 'json' : 'md')}
+                leftIcon={<Download className="h-3.5 w-3.5" />}
+                className="flex-1 sm:flex-none min-h-[44px] sm:min-h-0"
+              >
+                {activeTab === 'json' ? 'Download JSON' : 'Download MD'}
+              </Button>
 
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={handlePrint}
-              leftIcon={<Printer className="h-3.5 w-3.5" />}
-            >
-              Print / PDF
-            </Button>
-
-            <button
-              onClick={onClose}
-              className="w-9 h-9 rounded-lg text-text-muted hover:text-text hover:bg-surface-raised transition-colors inline-flex items-center justify-center shrink-0 border border-transparent hover:border-border"
-              aria-label="Close modal"
-            >
-              <X className="h-4 w-4 shrink-0" />
-            </button>
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={handlePrint}
+                leftIcon={<Printer className="h-3.5 w-3.5" />}
+                className="flex-1 sm:flex-none min-h-[44px] sm:min-h-0"
+              >
+                Print / PDF
+              </Button>
+            </div>
           </div>
         </div>
 

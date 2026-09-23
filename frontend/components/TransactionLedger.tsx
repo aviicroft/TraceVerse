@@ -164,8 +164,8 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
         </div>
       </div>
 
-      {/* Table Section */}
-      <div className="overflow-x-auto">
+      {/* Desktop Table Section (md+) */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
             <tr className="border-b border-border bg-surface-raised/30 text-xs text-text-muted font-medium">
@@ -271,6 +271,118 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
             )}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile Transaction Cards Section (< md) */}
+      <div className="md:hidden divide-y divide-border/60">
+        {paginated.length === 0 ? (
+          <div className="py-12 text-center text-text-muted text-xs">
+            No transactions found matching the filter criteria.
+          </div>
+        ) : (
+          paginated.map((tx, idx) => (
+            <div
+              key={tx.tx_hash + idx}
+              onClick={() => setSelectedTx(tx)}
+              className="p-4 hover:bg-surface-raised/40 active:bg-surface-raised/60 transition-colors cursor-pointer space-y-3"
+            >
+              {/* Top row: Hash, Hop badge, Time */}
+              <div className="flex items-center justify-between text-xs">
+                <div className="inline-flex items-center gap-2">
+                  <span className="font-mono text-text font-bold text-xs">
+                    {tx.tx_hash.slice(0, 8)}...{tx.tx_hash.slice(-6)}
+                  </span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCopy(tx.tx_hash, tx.tx_hash);
+                    }}
+                    className="h-8 w-8 rounded-lg hover:bg-surface-raised text-text-muted hover:text-text transition-colors inline-flex items-center justify-center"
+                    title="Copy Tx Hash"
+                  >
+                    {copiedHash === tx.tx_hash ? (
+                      <Check className="h-3.5 w-3.5 text-verified" />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
+                  </button>
+                </div>
+
+                <div className="inline-flex items-center gap-2">
+                  <span
+                    className={`px-2 py-0.5 rounded-full text-[11px] font-mono font-medium border ${
+                      tx.hop === 1
+                        ? 'bg-accent/10 text-accent border-accent/25'
+                        : 'bg-surface-raised text-text-muted border-border'
+                    }`}
+                  >
+                    Hop {tx.hop || 1}
+                  </span>
+                </div>
+              </div>
+
+              {/* Value & Timestamp */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-[11px] text-text-muted block">Transfer Value</span>
+                  <strong className="font-mono text-base font-bold text-text">
+                    {tx.amount.toFixed(4)}{' '}
+                    <span className="text-text-muted font-normal text-xs">
+                      {tx.token_symbol || 'ETH'}
+                    </span>
+                  </strong>
+                </div>
+                <div className="text-right">
+                  <span className="text-[11px] text-text-muted block">Timestamp</span>
+                  <span className="text-xs text-text-secondary font-mono">
+                    {new Date(tx.timestamp).toLocaleString(undefined, {
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </span>
+                </div>
+              </div>
+
+              {/* Routing Addresses */}
+              <div className="p-2.5 bg-surface-raised/60 rounded-lg border border-border/70 text-[11px] font-mono space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-text-muted">From:</span>
+                  <span className="text-text-secondary font-medium">
+                    {tx.from_address.slice(0, 8)}...{tx.from_address.slice(-6)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-text-muted">To:</span>
+                  <span className="text-text-secondary font-medium">
+                    {tx.to_address.slice(0, 8)}...{tx.to_address.slice(-6)}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between pt-1">
+                <span className="text-[11px] text-accent font-medium">
+                  Tap to view forensic record →
+                </span>
+                <a
+                  href={
+                    tx.tx_hash.startsWith('0x')
+                      ? `https://etherscan.io/tx/${tx.tx_hash}`
+                      : `https://tronscan.org/#/transaction/${tx.tx_hash}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="h-8 px-2 rounded-md hover:bg-surface-raised text-text-muted hover:text-accent transition-colors inline-flex items-center gap-1 text-[11px]"
+                >
+                  <span>Explorer</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Pagination Footer */}

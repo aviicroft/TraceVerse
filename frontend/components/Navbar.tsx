@@ -349,7 +349,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={toggleTheme}
             aria-label="Toggle theme"
             title={resolvedTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            className="w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
           >
             {resolvedTheme === 'dark' ? (
               <Sun className="h-4 w-4 text-warning shrink-0" />
@@ -362,7 +362,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
-            className="lg:hidden w-8 h-8 rounded-lg bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
+            className="lg:hidden w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-surface-raised hover:bg-surface-hover border border-border text-text inline-flex items-center justify-center transition-colors shrink-0"
           >
             {mobileMenuOpen ? <X className="h-4 w-4 shrink-0" /> : <Menu className="h-4 w-4 shrink-0" />}
           </button>
@@ -417,9 +417,31 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
+      {/* Mobile Drawer Backdrop */}
+      {mobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 animate-in fade-in duration-150"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile Drawer (Visible below lg when toggled) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-surface p-4 space-y-3 animate-in slide-in-from-top-2 duration-150">
+        <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface p-4 pb-safe space-y-3 rounded-t-2xl shadow-2xl max-h-[85vh] overflow-y-auto animate-in slide-in-from-bottom duration-200">
+          <div className="flex items-center justify-between pb-2 border-b border-border">
+            <div className="inline-flex items-center gap-2">
+              <Shield className="h-4 w-4 text-accent" />
+              <span className="font-bold text-text text-sm">Navigation Menu</span>
+            </div>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-surface-raised transition-colors min-h-[44px] min-w-[44px] inline-flex items-center justify-center"
+              aria-label="Close menu"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {primaryTabs.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -430,9 +452,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onSelectTab(tab.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`p-2.5 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 border ${
+                  className={`p-3 rounded-xl text-left text-xs font-medium transition-all inline-flex items-center gap-3 border min-h-[48px] ${
                     isActive
-                      ? 'bg-accent-subtle text-text border-accent/40 font-semibold'
+                      ? 'bg-accent-subtle text-text border-accent/40 font-semibold shadow-sm'
                       : 'bg-surface-raised text-text-secondary border-border hover:border-border-hover'
                   }`}
                 >
@@ -440,7 +462,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <span className={`inline-flex items-center justify-center shrink-0 ${isActive ? 'text-accent' : ''}`}>
                     {tab.icon}
                   </span>
-                  <span className="truncate">{tab.label}</span>
+                  <span className="truncate flex-1">{tab.label}</span>
+                  {tab.badge && (
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-surface border border-border font-mono text-accent">
+                      {tab.badge}
+                    </span>
+                  )}
                 </button>
               );
             })}
@@ -449,42 +476,65 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onSelectTab('VASP_REGISTRY');
                 setMobileMenuOpen(false);
               }}
-              className={`p-2.5 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 border ${
+              className={`p-3 rounded-xl text-left text-xs font-medium transition-all inline-flex items-center gap-3 border min-h-[48px] ${
                 activeTab === 'VASP_REGISTRY'
-                  ? 'bg-accent-subtle text-text border-accent/40 font-semibold'
+                  ? 'bg-accent-subtle text-text border-accent/40 font-semibold shadow-sm'
                   : 'bg-surface-raised text-text-secondary border-border hover:border-border-hover'
               }`}
             >
               <Database className="h-4 w-4 text-accent shrink-0" />
-              <span>VASP Registry</span>
+              <div className="flex-1 min-w-0">
+                <div className="truncate font-semibold">VASP Registry</div>
+                <div className="text-[11px] text-text-muted truncate">Verified exchange clusters</div>
+              </div>
             </button>
             <button
               onClick={() => {
                 onSelectTab('LEGAL_STUDIO');
                 setMobileMenuOpen(false);
               }}
-              className={`p-2.5 rounded-lg text-left text-xs font-medium transition-all inline-flex items-center gap-2.5 border ${
+              className={`p-3 rounded-xl text-left text-xs font-medium transition-all inline-flex items-center gap-3 border min-h-[48px] ${
                 activeTab === 'LEGAL_STUDIO'
-                  ? 'bg-accent-subtle text-text border-accent/40 font-semibold'
+                  ? 'bg-accent-subtle text-text border-accent/40 font-semibold shadow-sm'
                   : 'bg-surface-raised text-text-secondary border-border hover:border-border-hover'
               }`}
             >
               <Scale className="h-4 w-4 text-danger shrink-0" />
-              <span>Sec 91 Freeze Order</span>
+              <div className="flex-1 min-w-0">
+                <div className="truncate font-semibold">Sec 91 Freeze Order</div>
+                <div className="text-[11px] text-text-muted truncate">CrPC requisition generator</div>
+              </div>
+            </button>
+            <button
+              onClick={() => {
+                onSelectTab('METHODOLOGY');
+                setMobileMenuOpen(false);
+              }}
+              className={`p-3 rounded-xl text-left text-xs font-medium transition-all inline-flex items-center gap-3 border min-h-[48px] ${
+                activeTab === 'METHODOLOGY'
+                  ? 'bg-accent-subtle text-text border-accent/40 font-semibold shadow-sm'
+                  : 'bg-surface-raised text-text-secondary border-border hover:border-border-hover'
+              }`}
+            >
+              <FileCheck2 className="h-4 w-4 text-verified shrink-0" />
+              <div className="flex-1 min-w-0">
+                <div className="truncate font-semibold">Audit Methodology</div>
+                <div className="text-[11px] text-text-muted truncate">Heuristics & data provenance</div>
+              </div>
             </button>
           </div>
 
-          <div className="pt-2 border-t border-border flex items-center gap-2 text-xs">
+          <div className="pt-2 border-t border-border grid grid-cols-3 gap-2 text-xs">
             {onOpenDatasetStatus && (
               <button
                 onClick={() => {
                   onOpenDatasetStatus();
                   setMobileMenuOpen(false);
                 }}
-                className="flex-1 p-2 rounded-lg bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
+                className="min-h-[44px] p-2.5 rounded-xl bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
               >
-                <Layers className="h-3.5 w-3.5 text-info shrink-0" />
-                <span>100K Dataset</span>
+                <Layers className="h-4 w-4 text-info shrink-0" />
+                <span className="truncate">100K Data</span>
               </button>
             )}
             {onOpenMLEval && (
@@ -493,22 +543,85 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onOpenMLEval();
                   setMobileMenuOpen(false);
                 }}
-                className="flex-1 p-2 rounded-lg bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
+                className="min-h-[44px] p-2.5 rounded-xl bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
               >
-                <BrainCircuit className="h-3.5 w-3.5 text-verified shrink-0" />
-                <span>ML Eval</span>
+                <BrainCircuit className="h-4 w-4 text-verified shrink-0" />
+                <span className="truncate">ML Eval</span>
               </button>
             )}
             <a
               href="/docs"
-              className="flex-1 p-2 rounded-lg bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
+              className="min-h-[44px] p-2.5 rounded-xl bg-surface-raised border border-border text-center text-text inline-flex items-center justify-center gap-1.5"
             >
-              <BookOpen className="h-3.5 w-3.5 text-warning shrink-0" />
-              <span>Docs</span>
+              <BookOpen className="h-4 w-4 text-warning shrink-0" />
+              <span className="truncate">Docs</span>
             </a>
           </div>
         </div>
       )}
+
+      {/* Mobile Sticky Bottom Navigation Bar (< 768px) */}
+      <nav aria-label="Mobile Navigation" className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-surface/95 border-t border-border backdrop-blur-lg pb-safe shadow-2xl">
+        <div className="grid grid-cols-5 h-14 items-center">
+          <button
+            onClick={() => onSelectTab('WORKSPACE')}
+            className={`flex flex-col items-center justify-center h-full gap-1 transition-colors ${
+              activeTab === 'WORKSPACE' ? 'text-accent font-semibold' : 'text-text-muted hover:text-text'
+            }`}
+          >
+            <Search className="h-4 w-4" />
+            <span className="text-[10px] leading-none">Target</span>
+          </button>
+
+          <button
+            onClick={() => onSelectTab('GRAPH_STUDIO')}
+            className={`flex flex-col items-center justify-center h-full gap-1 relative transition-colors ${
+              activeTab === 'GRAPH_STUDIO' ? 'text-accent font-semibold' : 'text-text-muted hover:text-text'
+            }`}
+          >
+            <Network className="h-4 w-4" />
+            <span className="text-[10px] leading-none">Graph</span>
+            {hasActiveTarget && (
+              <span className="w-1.5 h-1.5 rounded-full bg-accent absolute top-2 right-4" />
+            )}
+          </button>
+
+          <button
+            onClick={() => onSelectTab('CANDIDATE_DISCOVERY')}
+            className={`flex flex-col items-center justify-center h-full gap-1 transition-colors ${
+              activeTab === 'CANDIDATE_DISCOVERY' ? 'text-accent font-semibold' : 'text-text-muted hover:text-text'
+            }`}
+          >
+            <Radar className="h-4 w-4" />
+            <span className="text-[10px] leading-none">Radar</span>
+          </button>
+
+          <button
+            onClick={() => onSelectTab('NCRP_TRIAGE')}
+            className={`flex flex-col items-center justify-center h-full gap-1 relative transition-colors ${
+              activeTab === 'NCRP_TRIAGE' ? 'text-accent font-semibold' : 'text-text-muted hover:text-text'
+            }`}
+          >
+            <ListFilter className="h-4 w-4" />
+            <span className="text-[10px] leading-none">NCRP</span>
+            {caseCount > 0 && (
+              <span className="text-[9px] px-1 bg-warning/20 text-warning border border-warning/30 rounded-full absolute top-1.5 right-3 font-mono">
+                {caseCount}
+              </span>
+            )}
+          </button>
+
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className={`flex flex-col items-center justify-center h-full gap-1 transition-colors ${
+              mobileMenuOpen || isIntelligenceActive || isReportsActive ? 'text-accent font-semibold' : 'text-text-muted hover:text-text'
+            }`}
+          >
+            <Menu className="h-4 w-4" />
+            <span className="text-[10px] leading-none">More</span>
+          </button>
+        </div>
+      </nav>
     </header>
   );
 };

@@ -189,22 +189,22 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                 if (error) setError(null);
               }}
               placeholder="Enter suspect target wallet address, transaction, or case ID..."
-              className="w-full pl-11 pr-14 py-3 bg-surface-raised/60 hover:bg-surface-raised border border-border focus:border-accent rounded-xl text-text placeholder:text-text-muted font-mono text-sm focus:outline-none focus:ring-2 focus:ring-accent/15 transition-all shadow-inner"
+              className="w-full min-h-[48px] pl-11 pr-14 py-3 bg-surface-raised/60 hover:bg-surface-raised border border-border focus:border-accent rounded-xl text-text placeholder:text-text-muted font-mono text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-accent/15 transition-all shadow-inner"
             />
             <div className="absolute inset-y-0 right-0 pr-3.5 inline-flex items-center pointer-events-none">
-              <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-surface border border-border text-text-muted">
+              <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-surface border border-border text-text-muted hidden sm:inline">
                 ↵
               </span>
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2.5 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0 w-full sm:w-auto">
             {/* Depth Selector */}
-            <div className="relative inline-flex items-center">
+            <div className="relative inline-flex items-center w-full sm:w-auto">
               <select
                 value={maxHops}
                 onChange={(e) => setMaxHops(Number(e.target.value))}
-                className="appearance-none pl-3.5 pr-9 py-3 bg-surface-raised border border-border hover:border-border-hover rounded-xl text-text font-sans text-xs font-medium focus:outline-none focus:border-accent cursor-pointer shadow-sm transition-colors"
+                className="w-full sm:w-auto min-h-[48px] appearance-none pl-3.5 pr-9 py-3 bg-surface-raised border border-border hover:border-border-hover rounded-xl text-text font-sans text-xs font-medium focus:outline-none focus:border-accent cursor-pointer shadow-sm transition-colors"
                 title="Investigation Hop Depth"
               >
                 <option value={1}>1 Hop (Direct Transfers)</option>
@@ -224,7 +224,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
               isLoading={isLoading}
               icon={<ArrowRight className="h-4 w-4" />}
               iconPosition="right"
-              className="px-6 rounded-xl font-semibold shadow-md"
+              className="w-full sm:w-auto min-h-[48px] px-6 rounded-xl font-semibold shadow-md"
             >
               Trace Target
             </Button>
@@ -240,19 +240,19 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
         )}
 
         {/* Verified Target Presets Bar */}
-        <div className="pt-2 border-t border-border flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="inline-flex items-center gap-2 text-text-muted">
+        <div className="pt-2 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
+          <div className="inline-flex items-center gap-2 text-text-muted shrink-0">
             <Radar className="h-3.5 w-3.5 text-accent shrink-0" />
             <span className="font-medium">Recent High-Confidence Candidate Leads:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5">
+          <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none">
             {dynamicCandidates.slice(0, 3).map((cand) => (
               <button
                 key={cand.id}
                 type="button"
                 onClick={() => handleSelectPreset(cand.address)}
-                className={`px-2.5 py-1 rounded-lg border text-xs transition-all inline-flex items-center gap-1.5 ${
+                className={`px-2.5 py-1.5 rounded-lg border text-xs transition-all inline-flex items-center gap-1.5 shrink-0 min-h-[36px] ${
                   clean.toLowerCase() === cand.address.toLowerCase()
                     ? 'bg-accent/15 border-accent text-accent font-semibold'
                     : 'bg-surface-raised hover:bg-surface-hover border-border text-text-secondary hover:text-text'

@@ -240,25 +240,25 @@ ${policeStation}`;
         background: 'linear-gradient(135deg, #0B1736 0%, #0E1E43 55%, #0B1736 100%)',
       }}
       className={`print-document-container text-[#F8FAFC] w-full flex flex-col font-sans transition-colors duration-150 ${
-        isFullPageView ? 'min-h-[calc(100vh-140px)]' : 'max-w-7xl max-h-[92vh] rounded-2xl border border-[#29436B] shadow-2xl overflow-hidden'
+        isFullPageView ? 'min-h-[calc(100vh-140px)]' : 'w-[calc(100%-16px)] sm:w-full max-w-7xl max-h-[92vh] rounded-2xl border border-[#29436B] shadow-2xl overflow-hidden'
       }`}
     >
       {/* 1. APPLICATION WORKSPACE HEADER */}
-      <div className="no-print p-5 sm:p-6 border-b border-[#29436B] bg-[#102347] flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-xl bg-[rgba(230,57,70,0.10)] border border-[rgba(230,57,70,0.25)] text-[#F04B56] inline-flex items-center justify-center shrink-0 shadow-sm">
-            <Scale className="h-6 w-6 shrink-0 text-[#F04B56]" />
+      <div className="no-print p-4 sm:p-6 border-b border-[#29436B] bg-[#102347] flex items-start justify-between gap-3 sm:gap-4">
+        <div className="flex items-start sm:items-center gap-3 sm:gap-3.5 min-w-0">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[rgba(230,57,70,0.10)] border border-[rgba(230,57,70,0.25)] text-[#F04B56] inline-flex items-center justify-center shrink-0 shadow-sm mt-0.5 sm:mt-0">
+            <Scale className="h-5 w-5 sm:h-6 sm:w-6 shrink-0 text-[#F04B56]" />
           </div>
-          <div>
-            <div className="flex items-center gap-2.5 flex-wrap">
-              <h1 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] tracking-tight">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+              <h1 className="text-base sm:text-2xl font-bold text-[#F8FAFC] tracking-tight">
                 Section 91 CrPC / Section 94 BNSS Statutory Freeze Requisition
               </h1>
-              <div className="px-2.5 py-1 rounded-md bg-[#162D55] border border-[#29436B] text-xs font-mono text-[#FCA5A5] font-semibold">
+              <div className="px-2 py-0.5 sm:py-1 rounded-md bg-[#162D55] border border-[#29436B] text-[11px] sm:text-xs font-mono text-[#FCA5A5] font-semibold">
                 {refNumber}
               </div>
             </div>
-            <p className="text-xs sm:text-sm text-[#CBD5E1] mt-0.5">
+            <p className="text-xs sm:text-sm text-[#CBD5E1] mt-0.5 line-clamp-1 sm:line-clamp-none">
               Official legal requisition for immediate asset freezing, KYC disclosure, and transaction preservation.
             </p>
           </div>
@@ -267,7 +267,7 @@ ${policeStation}`;
         {onClose && (
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#162D55] transition-colors inline-flex items-center justify-center shrink-0 border border-transparent hover:border-[#29436B]"
+            className="min-h-[44px] min-w-[44px] rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#162D55] transition-colors inline-flex items-center justify-center shrink-0 border border-transparent hover:border-[#29436B]"
             aria-label="Close modal"
           >
             <X className="h-5 w-5 shrink-0" />
@@ -276,12 +276,12 @@ ${policeStation}`;
       </div>
 
       {/* 2. ACTION BAR */}
-      <div className="no-print px-5 sm:px-6 py-3 border-b border-[#29436B] bg-[#102347]/95 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="no-print px-4 sm:px-6 py-3 border-b border-[#29436B] bg-[#102347]/95 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
         {/* Left: View Tabs */}
-        <div className="inline-flex items-center bg-[#0E2042] p-1 rounded-lg border border-[#29436B]">
+        <div className="flex items-center bg-[#0E2042] p-1 rounded-lg border border-[#29436B] w-full md:w-auto overflow-x-auto scrollbar-none">
           <button
             onClick={() => setActiveTab('form')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all font-medium ${
+            className={`flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md transition-all font-medium min-h-[40px] sm:min-h-0 ${
               activeTab === 'form'
                 ? 'bg-[#162D55] text-[#F8FAFC] shadow-sm border border-[#29436B] font-semibold'
                 : 'text-[#94A3B8] hover:text-[#F8FAFC]'
@@ -293,7 +293,7 @@ ${policeStation}`;
 
           <button
             onClick={() => setActiveTab('preview')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all font-medium ${
+            className={`flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md transition-all font-medium min-h-[40px] sm:min-h-0 ${
               activeTab === 'preview'
                 ? 'bg-[#162D55] text-[#F8FAFC] shadow-sm border border-[#29436B] font-semibold'
                 : 'text-[#94A3B8] hover:text-[#F8FAFC]'
@@ -305,7 +305,7 @@ ${policeStation}`;
 
           <button
             onClick={() => setActiveTab('markdown')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all font-medium ${
+            className={`flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md transition-all font-medium min-h-[40px] sm:min-h-0 ${
               activeTab === 'markdown'
                 ? 'bg-[#162D55] text-[#F8FAFC] shadow-sm border border-[#29436B] font-semibold'
                 : 'text-[#94A3B8] hover:text-[#F8FAFC]'
@@ -317,7 +317,7 @@ ${policeStation}`;
         </div>
 
         {/* Center: Status Indicator */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0E2042] border border-[#29436B] text-xs">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0E2042] border border-[#29436B] text-xs self-start md:self-auto">
           {isFormValid ? (
             <>
               <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse shrink-0" />
@@ -334,10 +334,10 @@ ${policeStation}`;
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
           <button
             onClick={handleCopy}
-            className="h-9 px-3.5 rounded-lg bg-[#102347] hover:bg-[#162D55] border border-[#29436B] hover:border-[#3C5C89] text-[#CBD5E1] hover:text-[#F8FAFC] font-medium transition-colors inline-flex items-center gap-1.5 text-xs shadow-sm"
+            className="flex-1 sm:flex-none min-h-[44px] px-3.5 rounded-lg bg-[#102347] hover:bg-[#162D55] border border-[#29436B] hover:border-[#3C5C89] text-[#CBD5E1] hover:text-[#F8FAFC] font-medium transition-colors inline-flex items-center justify-center gap-1.5 text-xs shadow-sm"
           >
             {copied ? <Check className="h-4 w-4 text-[#22C55E]" /> : <Copy className="h-4 w-4 text-[#94A3B8]" />}
             <span>{copied ? 'Copied' : 'Copy Notice'}</span>
@@ -345,7 +345,7 @@ ${policeStation}`;
 
           <button
             onClick={handleDownloadMd}
-            className="h-9 px-3.5 rounded-lg bg-[#102347] hover:bg-[#162D55] border border-[#29436B] hover:border-[#3C5C89] text-[#CBD5E1] hover:text-[#F8FAFC] font-medium transition-colors inline-flex items-center gap-1.5 text-xs shadow-sm"
+            className="flex-1 sm:flex-none min-h-[44px] px-3.5 rounded-lg bg-[#102347] hover:bg-[#162D55] border border-[#29436B] hover:border-[#3C5C89] text-[#CBD5E1] hover:text-[#F8FAFC] font-medium transition-colors inline-flex items-center justify-center gap-1.5 text-xs shadow-sm"
           >
             <Download className="h-4 w-4 text-[#94A3B8]" />
             <span>Download MD</span>
@@ -353,7 +353,7 @@ ${policeStation}`;
 
           <button
             onClick={handlePrint}
-            className="h-9 px-4 rounded-lg bg-[#E63946] hover:bg-[#F04B56] active:bg-[#B91C2B] text-white font-semibold transition-all inline-flex items-center gap-2 text-xs shadow-md active:translate-y-[1px]"
+            className="w-full sm:w-auto min-h-[44px] px-4 rounded-lg bg-[#E63946] hover:bg-[#F04B56] active:bg-[#B91C2B] text-white font-semibold transition-all inline-flex items-center justify-center gap-2 text-xs shadow-md active:translate-y-[1px]"
           >
             <Printer className="h-4 w-4" />
             <span>Print Official Notice</span>
@@ -458,9 +458,35 @@ ${policeStation}`;
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 min-w-0 max-w-7xl mx-auto">
             {/* LEFT COLUMN: WORKFLOW STEPPER & FORM (30% on Desktop) */}
             {activeTab === 'form' && (
-              <div className="no-print lg:col-span-4 space-y-6 min-w-0">
-                {/* Workflow Stepper Panel */}
-                <div className="bg-[#102347] border border-[#29436B] rounded-xl p-4 sm:p-5 shadow-md space-y-3">
+              <div className="no-print lg:col-span-4 space-y-4 sm:space-y-6 min-w-0">
+                {/* Mobile Workflow Stepper (Horizontal Scroll) */}
+                <div className="lg:hidden flex items-center gap-2 overflow-x-auto scrollbar-none pb-1">
+                  {workflowSteps.map((step) => {
+                    const isActive = activeStep === step.number;
+                    const isCompleted = activeStep > step.number;
+                    return (
+                      <button
+                        key={step.number}
+                        onClick={() => setActiveStep(step.number)}
+                        className={`min-h-[44px] px-3.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 shrink-0 border ${
+                          isActive
+                            ? 'bg-[#E63946] text-white border-[#E63946] shadow-sm'
+                            : isCompleted
+                            ? 'bg-[#162D55] text-[#22C55E] border-[#29436B]'
+                            : 'bg-[#102347] text-[#94A3B8] border-[#29436B]'
+                        }`}
+                      >
+                        <span className="w-5 h-5 rounded-full bg-black/20 inline-flex items-center justify-center font-bold text-[10px]">
+                          {isCompleted ? <Check className="h-3 w-3" /> : step.number}
+                        </span>
+                        <span>{step.title}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Desktop Workflow Stepper Panel */}
+                <div className="hidden lg:block bg-[#102347] border border-[#29436B] rounded-xl p-4 sm:p-5 shadow-md space-y-3">
                   <div className="text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-2">
                     Workflow Progress
                   </div>
@@ -502,7 +528,7 @@ ${policeStation}`;
                 </div>
 
                 {/* Form Step Panel */}
-                <div className="bg-[#102347] border border-[#29436B] rounded-xl p-5 sm:p-6 shadow-md space-y-5">
+                <div className="bg-[#102347] border border-[#29436B] rounded-xl p-4 sm:p-6 shadow-md space-y-5">
                   {/* Step 1: Case Information */}
                   {activeStep === 1 && (
                     <div className="space-y-4">
@@ -744,53 +770,57 @@ ${policeStation}`;
                 {/* Zoom controls */}
                 <div className="inline-flex items-center gap-1 bg-[#0E2042] p-1 rounded-lg border border-[#29436B]">
                   <button
-                    onClick={() => setZoomLevel((z) => Math.max(0.8, Number((z - 0.1).toFixed(1))))}
-                    className="p-1 rounded hover:bg-[#102347] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+                    onClick={() => setZoomLevel((z) => Math.max(0.7, Number((z - 0.1).toFixed(1))))}
+                    className="min-h-[38px] min-w-[38px] rounded-md hover:bg-[#102347] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors inline-flex items-center justify-center"
                     title="Zoom Out"
+                    aria-label="Zoom Out"
                   >
-                    <ZoomOut className="h-3.5 w-3.5" />
+                    <ZoomOut className="h-4 w-4" />
                   </button>
-                  <span className="px-2 font-mono text-[11px] text-[#F8FAFC] font-medium">
+                  <span className="px-2 font-mono text-xs text-[#F8FAFC] font-semibold">
                     {Math.round(zoomLevel * 100)}%
                   </span>
                   <button
                     onClick={() => setZoomLevel((z) => Math.min(1.25, Number((z + 0.1).toFixed(1))))}
-                    className="p-1 rounded hover:bg-[#102347] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+                    className="min-h-[38px] min-w-[38px] rounded-md hover:bg-[#102347] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors inline-flex items-center justify-center"
                     title="Zoom In"
+                    aria-label="Zoom In"
                   >
-                    <ZoomIn className="h-3.5 w-3.5" />
+                    <ZoomIn className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => setZoomLevel(1.0)}
-                    className="p-1 rounded hover:bg-[#102347] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors ml-1"
+                    className="min-h-[38px] px-2 rounded-md hover:bg-[#102347] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors ml-1 inline-flex items-center gap-1 font-mono text-[11px]"
                     title="Reset Zoom"
                   >
-                    <RotateCcw className="h-3 w-3" />
+                    <RotateCcw className="h-3.5 w-3.5" />
+                    <span className="hidden sm:inline">Reset</span>
                   </button>
                 </div>
 
                 {/* Page indicator & Print Action */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
                   <span className="text-[#94A3B8] text-xs font-mono">‹ 1 / 1 ›</span>
                   <button
                     onClick={handlePrint}
-                    className="h-8 px-3.5 rounded-lg bg-[#E63946] hover:bg-[#F04B56] text-white font-medium inline-flex items-center gap-1.5 text-xs transition-colors shadow-sm"
+                    className="min-h-[44px] px-3.5 rounded-lg bg-[#E63946] hover:bg-[#F04B56] text-white font-semibold inline-flex items-center justify-center gap-1.5 text-xs transition-colors shadow-sm flex-1 sm:flex-none"
                   >
-                    <Printer className="h-3.5 w-3.5" />
+                    <Printer className="h-4 w-4" />
                     <span>Generate & Download PDF</span>
                   </button>
                 </div>
               </div>
 
               {/* SOFT WHITE LEGAL DOCUMENT CANVAS */}
-              <div
-                style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top center' }}
-                className="transition-transform duration-150 ease-out p-3 sm:p-5 rounded-2xl bg-[#162D55] border border-[#29436B]"
-              >
+              <div className="overflow-x-auto max-w-full pb-2">
                 <div
-                  className="print-content bg-[#FFFFFF] border border-[#CBD5E1] rounded-xl p-7 sm:p-11 shadow-[0_12px_40px_rgba(0,0,0,0.25)] space-y-6 text-[#172033] relative overflow-hidden"
-                  style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                  style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top center' }}
+                  className="transition-transform duration-150 ease-out p-3 sm:p-5 rounded-2xl bg-[#162D55] border border-[#29436B] min-w-[320px]"
                 >
+                  <div
+                    className="print-content bg-[#FFFFFF] border border-[#CBD5E1] rounded-xl p-4 sm:p-11 shadow-[0_12px_40px_rgba(0,0,0,0.25)] space-y-6 text-[#172033] relative overflow-hidden"
+                    style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                  >
                   {/* Subtle emblem watermark */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.025] select-none">
                     <Scale className="w-96 h-96 text-[#172033]" />
@@ -975,6 +1005,7 @@ ${policeStation}`;
               </div>
             </div>
           </div>
+        </div>
         )}
       </div>
     </div>

@@ -819,12 +819,12 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
       }`}
     >
       {/* 1. TOP CONTROL TOOLBAR */}
-      <div className="p-3 border-b border-border bg-surface-raised/60 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="p-2.5 sm:p-3 border-b border-border bg-surface-raised/60 flex items-center justify-between gap-2 sm:gap-3 text-xs overflow-hidden">
         {/* Left: View Mode Tabs */}
-        <div className="flex items-center space-x-1 p-1 rounded-xl bg-surface border border-border">
+        <div className="flex items-center space-x-1 p-1 rounded-xl bg-surface border border-border overflow-x-auto scrollbar-none flex-nowrap shrink-0 max-w-[240px] sm:max-w-none">
           <button
             onClick={() => setViewMode('NETWORK')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
               viewMode === 'NETWORK'
                 ? 'bg-surface-raised text-text shadow-sm border border-border font-semibold'
                 : 'text-text-muted hover:text-text hover:bg-surface-raised/50'
@@ -834,7 +834,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           </button>
           <button
             onClick={() => setViewMode('FUND_FLOW')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
               viewMode === 'FUND_FLOW'
                 ? 'bg-surface-raised text-text shadow-sm border border-border font-semibold'
                 : 'text-text-muted hover:text-text hover:bg-surface-raised/50'
@@ -844,7 +844,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           </button>
           <button
             onClick={() => setViewMode('EVIDENCE')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
               viewMode === 'EVIDENCE'
                 ? 'bg-surface-raised text-text shadow-sm border border-border font-semibold'
                 : 'text-text-muted hover:text-text hover:bg-surface-raised/50'
@@ -856,8 +856,8 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
 
         {/* Center: Layout Switcher & In-Canvas Node Search */}
         {hasData && viewMode === 'NETWORK' && (
-          <div className="flex items-center space-x-2.5">
-            <div className="hidden lg:flex items-center space-x-1 bg-surface p-1 rounded-xl border border-border text-xs">
+          <div className="hidden lg:flex items-center space-x-2.5">
+            <div className="flex items-center space-x-1 bg-surface p-1 rounded-xl border border-border text-xs">
               <span className="text-text-muted px-2 font-medium">Layout:</span>
               {(['flow', 'force', 'hierarchical', 'radial'] as LayoutType[]).map((mode) => (
                 <button
@@ -875,7 +875,7 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
             </div>
 
             {/* In-Canvas Search */}
-            <div className="relative hidden sm:inline-flex items-center">
+            <div className="relative inline-flex items-center">
               <Search className="h-3.5 w-3.5 absolute left-3 text-text-muted pointer-events-none shrink-0" />
               <input
                 type="text"
@@ -910,43 +910,46 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
             title="Toggle Filter Sidebar"
           >
             <SlidersHorizontal className="h-3.5 w-3.5 shrink-0" />
-            <span className="hidden md:inline">Filters</span>
+            <span className="hidden sm:inline">Filters</span>
           </button>
 
-          <div className="h-4 w-px bg-border mx-1" />
+          {/* Desktop Zoom & Reset Controls */}
+          <div className="hidden md:inline-flex items-center gap-1.5">
+            <div className="h-4 w-px bg-border mx-0.5" />
 
-          <button
-            onClick={handleZoomIn}
-            disabled={!hasData}
-            className="h-8 w-8 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors disabled:opacity-40 inline-flex items-center justify-center shrink-0"
-            title="Zoom In"
-          >
-            <ZoomIn className="h-4 w-4 shrink-0" />
-          </button>
-          <button
-            onClick={handleZoomOut}
-            disabled={!hasData}
-            className="h-8 w-8 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors disabled:opacity-40 inline-flex items-center justify-center shrink-0"
-            title="Zoom Out"
-          >
-            <ZoomOut className="h-4 w-4 shrink-0" />
-          </button>
-          <button
-            onClick={handleFit}
-            disabled={!hasData}
-            className="h-8 px-2.5 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors text-xs font-medium disabled:opacity-40 inline-flex items-center justify-center shrink-0"
-            title="Fit to Center"
-          >
-            Fit
-          </button>
-          <button
-            onClick={handleResetLayout}
-            disabled={!hasData}
-            className="h-8 w-8 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors disabled:opacity-40 inline-flex items-center justify-center shrink-0"
-            title="Reset Layout"
-          >
-            <RotateCcw className="h-4 w-4 shrink-0" />
-          </button>
+            <button
+              onClick={handleZoomIn}
+              disabled={!hasData}
+              className="h-8 w-8 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors disabled:opacity-40 inline-flex items-center justify-center shrink-0"
+              title="Zoom In"
+            >
+              <ZoomIn className="h-4 w-4 shrink-0" />
+            </button>
+            <button
+              onClick={handleZoomOut}
+              disabled={!hasData}
+              className="h-8 w-8 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors disabled:opacity-40 inline-flex items-center justify-center shrink-0"
+              title="Zoom Out"
+            >
+              <ZoomOut className="h-4 w-4 shrink-0" />
+            </button>
+            <button
+              onClick={handleFit}
+              disabled={!hasData}
+              className="h-8 px-2.5 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors text-xs font-medium disabled:opacity-40 inline-flex items-center justify-center shrink-0"
+              title="Fit to Center"
+            >
+              Fit
+            </button>
+            <button
+              onClick={handleResetLayout}
+              disabled={!hasData}
+              className="h-8 w-8 rounded-lg bg-surface hover:bg-surface-raised border border-border text-text-muted hover:text-text transition-colors disabled:opacity-40 inline-flex items-center justify-center shrink-0"
+              title="Reset Layout"
+            >
+              <RotateCcw className="h-4 w-4 shrink-0" />
+            </button>
+          </div>
 
           {/* Export Menu */}
           <div className="relative inline-flex items-center">
@@ -995,19 +998,17 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
 
       {/* 2. MAIN GRAPH WORKSPACE */}
       <div className="flex-1 flex overflow-hidden relative min-h-0">
-        {/* LEFT FILTER SIDEBAR (Responsive drawer on mobile, flex child on md+) */}
+        {/* LEFT FILTER SIDEBAR (Responsive bottom sheet on mobile, flex child on md+) */}
         {hasData && isSidebarOpen && (
           <>
             {/* Backdrop on mobile */}
             <div
-              className="md:hidden fixed inset-0 bg-black/40 z-20"
+              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30"
               onClick={() => setIsSidebarOpen(false)}
             />
 
             <div
-              className={`border-r border-border bg-surface transition-all duration-200 flex flex-col z-20 overflow-y-auto font-mono text-xs ${
-                'w-64 p-4 shrink-0 absolute md:relative inset-y-0 left-0 shadow-2xl md:shadow-none'
-              }`}
+              className="fixed md:relative inset-x-0 bottom-0 md:inset-y-0 md:left-0 md:w-64 max-h-[80vh] md:max-h-none rounded-t-2xl md:rounded-none border-t md:border-t-0 md:border-r border-border bg-surface p-5 md:p-4 shadow-2xl md:shadow-none pb-safe z-40 md:z-20 overflow-y-auto font-mono text-xs transition-all duration-200 flex flex-col shrink-0 animate-in slide-in-from-bottom md:slide-in-from-left"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b border-border pb-2.5">
@@ -1240,6 +1241,41 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
             {/* CYTOSCAPE CONTAINER */}
             <div className="relative flex-1 w-full h-full min-h-[420px] overflow-hidden">
               <div ref={containerRef} className="absolute inset-0 w-full h-full" />
+
+              {/* Mobile Compact Floating Graph Controls */}
+              <div className="md:hidden absolute bottom-3 right-3 z-20 flex items-center gap-1.5 p-1 rounded-2xl bg-surface/90 border border-border backdrop-blur-md shadow-2xl">
+                <button
+                  onClick={handleZoomIn}
+                  className="w-9 h-9 rounded-xl bg-surface-raised border border-border text-text inline-flex items-center justify-center active:scale-95 transition-transform"
+                  title="Zoom In"
+                  aria-label="Zoom In"
+                >
+                  <ZoomIn className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={handleZoomOut}
+                  className="w-9 h-9 rounded-xl bg-surface-raised border border-border text-text inline-flex items-center justify-center active:scale-95 transition-transform"
+                  title="Zoom Out"
+                  aria-label="Zoom Out"
+                >
+                  <ZoomOut className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={handleFit}
+                  className="h-9 px-3 rounded-xl bg-surface-raised border border-border text-text font-medium text-xs inline-flex items-center justify-center active:scale-95 transition-transform"
+                  title="Fit to Center"
+                >
+                  Fit
+                </button>
+                <button
+                  onClick={handleResetLayout}
+                  className="w-9 h-9 rounded-xl bg-surface-raised border border-border text-text inline-flex items-center justify-center active:scale-95 transition-transform"
+                  title="Reset Layout"
+                  aria-label="Reset Layout"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
             {/* Timeline Replay Bar */}
@@ -1323,16 +1359,16 @@ export const GraphCanvas: React.FC<GraphCanvasProps> = ({
           </div>
         )}
 
-        {/* 4. RIGHT FORENSIC INSPECTOR DRAWER (Responsive drawer on mobile/tablet) */}
+        {/* 4. RIGHT FORENSIC INSPECTOR DRAWER (Responsive bottom sheet on mobile/tablet) */}
         {selectedElement && (
           <>
             {/* Backdrop on small screens */}
             <div
-              className="lg:hidden fixed inset-0 bg-black/40 z-20"
+              className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 animate-in fade-in duration-150"
               onClick={() => setSelectedElement(null)}
             />
 
-            <div className="w-84 border-l border-border bg-surface p-5 overflow-y-auto z-30 flex flex-col justify-between text-xs font-sans shadow-panel-elevated absolute lg:relative inset-y-0 right-0 animate-in slide-in-from-right duration-150 shrink-0">
+            <div className="fixed lg:relative inset-x-0 bottom-0 lg:inset-y-0 lg:right-0 lg:w-84 max-h-[80vh] lg:max-h-none rounded-t-2xl lg:rounded-none border-t lg:border-t-0 lg:border-l border-border bg-surface p-5 pb-safe overflow-y-auto z-50 lg:z-30 flex flex-col justify-between text-xs font-sans shadow-2xl lg:shadow-panel-elevated animate-in slide-in-from-bottom lg:slide-in-from-right duration-200 shrink-0">
               <div className="space-y-4">
                 {/* Header */}
                 <div className="flex items-center justify-between pb-3 border-b border-border">

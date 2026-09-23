@@ -215,7 +215,7 @@ export default function InvestigationAppPage() {
         </div>
       </div>
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3.5 sm:px-6 py-4 sm:py-6 space-y-6 pb-24 md:pb-8">
         {/* TAB 1: TARGET CASE WORKSPACE */}
         {activeTab === 'WORKSPACE' && (
           <>
@@ -225,9 +225,9 @@ export default function InvestigationAppPage() {
 
             {/* Case Header & Key Findings Summary */}
             {analysisStatus && (
-              <div className="bg-surface border border-border rounded-xl p-5 sm:p-6 shadow-panel space-y-5 transition-colors">
-                <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
-                  <div className="space-y-2">
+              <div className="bg-surface border border-border rounded-xl p-4 sm:p-6 shadow-panel space-y-4 sm:space-y-5 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-border pb-4 sm:pb-5">
+                  <div className="space-y-2 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 text-xs">
                       <span className="text-text-muted">Case ID:</span>
                       <strong className="text-text font-mono">
@@ -243,40 +243,43 @@ export default function InvestigationAppPage() {
                       </span>
                     </div>
 
-                    <div className="inline-flex items-center gap-3 pt-1">
-                      <span className="text-base sm:text-lg font-bold text-text font-mono break-all select-all">
+                    <div className="flex items-center gap-2 pt-1 max-w-full">
+                      <span className="text-sm sm:text-lg font-bold text-text font-mono break-all select-all min-w-0">
                         {analysisStatus.wallet_address}
                       </span>
-                      <button
-                        onClick={() => handleCopyAddress(analysisStatus.wallet_address)}
-                        title="Copy target address"
-                        className="p-1.5 rounded-lg hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0"
-                      >
-                        {copied ? <Check className="h-4 w-4 text-verified" /> : <Copy className="h-4 w-4" />}
-                      </button>
-                      <a
-                        href={
-                          analysisStatus.wallet_address.startsWith('0x')
-                            ? `https://etherscan.io/address/${analysisStatus.wallet_address}`
-                            : `https://tronscan.org/#/address/${analysisStatus.wallet_address}`
-                        }
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-1.5 rounded-lg hover:bg-surface-raised text-text-muted hover:text-accent transition-colors shrink-0"
-                        title="Inspect on Public Explorer"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
+                      <div className="inline-flex items-center gap-1 shrink-0">
+                        <button
+                          onClick={() => handleCopyAddress(analysisStatus.wallet_address)}
+                          title="Copy target address"
+                          className="h-9 w-9 sm:h-8 sm:w-8 rounded-lg hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0 inline-flex items-center justify-center"
+                        >
+                          {copied ? <Check className="h-4 w-4 text-verified" /> : <Copy className="h-4 w-4" />}
+                        </button>
+                        <a
+                          href={
+                            analysisStatus.wallet_address.startsWith('0x')
+                              ? `https://etherscan.io/address/${analysisStatus.wallet_address}`
+                              : `https://tronscan.org/#/address/${analysisStatus.wallet_address}`
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                          className="h-9 w-9 sm:h-8 sm:w-8 rounded-lg hover:bg-surface-raised text-text-muted hover:text-accent transition-colors shrink-0 inline-flex items-center justify-center"
+                          title="Inspect on Public Explorer"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </div>
                     </div>
                   </div>
 
                   {analysisStatus.status === 'COMPLETED' && (
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0">
                       <Button
                         variant="secondary"
                         size="md"
                         onClick={() => setActiveTab('GRAPH_STUDIO')}
                         icon={<Network className="h-4 w-4 text-accent" />}
+                        className="w-full sm:w-auto min-h-[44px] sm:min-h-0"
                       >
                         Graph Studio
                       </Button>
@@ -286,6 +289,7 @@ export default function InvestigationAppPage() {
                         size="md"
                         onClick={() => setShowFreezeModal(true)}
                         icon={<Scale className="h-4 w-4" />}
+                        className="w-full sm:w-auto min-h-[44px] sm:min-h-0"
                       >
                         Issue Freeze Notice
                       </Button>
@@ -295,6 +299,7 @@ export default function InvestigationAppPage() {
                         size="md"
                         onClick={() => setShowReportModal(true)}
                         icon={<FileText className="h-4 w-4" />}
+                        className="w-full sm:w-auto min-h-[44px] sm:min-h-0"
                       >
                         Export Dossier
                       </Button>
@@ -303,40 +308,40 @@ export default function InvestigationAppPage() {
                 </div>
 
                 {/* Key Findings Metrics Bar */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
-                  <div className="p-3.5 rounded-xl bg-surface-raised/50 border border-border">
-                    <span className="block text-xs text-text-muted font-medium mb-1">Transfers</span>
-                    <strong className="text-text font-mono text-base font-bold">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 pt-1">
+                  <div className="p-3 sm:p-3.5 rounded-xl bg-surface-raised/50 border border-border">
+                    <span className="block text-[11px] sm:text-xs text-text-muted font-medium mb-1 truncate">Transfers</span>
+                    <strong className="text-text font-mono text-sm sm:text-base font-bold">
                       {analysisStatus.num_transactions || 0} Tx
                     </strong>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface-raised/50 border border-border">
-                    <span className="block text-xs text-text-muted font-medium mb-1">Network Nodes</span>
-                    <strong className="text-text font-mono text-base font-bold">
+                  <div className="p-3 sm:p-3.5 rounded-xl bg-surface-raised/50 border border-border">
+                    <span className="block text-[11px] sm:text-xs text-text-muted font-medium mb-1 truncate">Network Nodes</span>
+                    <strong className="text-text font-mono text-sm sm:text-base font-bold">
                       {analysisStatus.num_nodes || 1} Nodes
                     </strong>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface-raised/50 border border-border">
-                    <span className="block text-xs text-text-muted font-medium mb-1">Attributed VASP</span>
-                    <strong className="text-accent text-sm font-bold truncate block">
+                  <div className="p-3 sm:p-3.5 rounded-xl bg-surface-raised/50 border border-border">
+                    <span className="block text-[11px] sm:text-xs text-text-muted font-medium mb-1 truncate">Attributed VASP</span>
+                    <strong className="text-accent text-xs sm:text-sm font-bold truncate block">
                       {attributions[0]?.vasp_name || 'Evaluating...'}
                     </strong>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface-raised/50 border border-border">
-                    <span className="block text-xs text-text-muted font-medium mb-1">Confidence</span>
-                    <strong className="text-verified font-mono text-sm font-bold">
+                  <div className="p-3 sm:p-3.5 rounded-xl bg-surface-raised/50 border border-border">
+                    <span className="block text-[11px] sm:text-xs text-text-muted font-medium mb-1 truncate">Confidence</span>
+                    <strong className="text-verified font-mono text-xs sm:text-sm font-bold">
                       {attributions[0] ? `${attributions[0].score.toFixed(1)}%` : 'N/A'}
                     </strong>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface-raised/50 border border-border">
-                    <span className="block text-xs text-text-muted font-medium mb-1">Structural Risk</span>
-                    <strong className="text-warning text-sm font-bold">
+                  <div className="p-3 sm:p-3.5 rounded-xl bg-surface-raised/50 border border-border">
+                    <span className="block text-[11px] sm:text-xs text-text-muted font-medium mb-1 truncate">Structural Risk</span>
+                    <strong className="text-warning text-xs sm:text-sm font-bold">
                       {analysisStatus.risk_assessment?.risk_level || 'ELEVATED'}
                     </strong>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface-raised/50 border border-border">
-                    <span className="block text-xs text-text-muted font-medium mb-1">Evidence Records</span>
-                    <strong className="text-text font-mono text-base font-bold">
+                  <div className="p-3 sm:p-3.5 rounded-xl bg-surface-raised/50 border border-border">
+                    <span className="block text-[11px] sm:text-xs text-text-muted font-medium mb-1 truncate">Evidence Records</span>
+                    <strong className="text-text font-mono text-sm sm:text-base font-bold">
                       {evidence.length} Records
                     </strong>
                   </div>

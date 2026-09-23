@@ -49,7 +49,7 @@ export const TechnicalValue: React.FC<TechnicalValueProps> = ({
           onClick={handleCopy}
           aria-label="Copy to clipboard"
           title="Copy to clipboard"
-          className="p-1 rounded hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0"
+          className="h-8 w-8 sm:h-6 sm:w-6 rounded-lg hover:bg-surface-raised text-text-muted hover:text-text transition-colors shrink-0 inline-flex items-center justify-center"
         >
           {copied ? (
             <Check className="h-3.5 w-3.5 text-verified" />
@@ -65,7 +65,7 @@ export const TechnicalValue: React.FC<TechnicalValueProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           title="View on block explorer"
-          className="p-1 rounded hover:bg-surface-raised text-text-muted hover:text-accent transition-colors shrink-0"
+          className="h-8 w-8 sm:h-6 sm:w-6 rounded-lg hover:bg-surface-raised text-text-muted hover:text-accent transition-colors shrink-0 inline-flex items-center justify-center"
         >
           <ExternalLink className="h-3.5 w-3.5" />
         </a>

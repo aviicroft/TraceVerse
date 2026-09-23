@@ -103,14 +103,14 @@ export const EvidenceFeed: React.FC<EvidenceFeedProps> = ({ evidence }) => {
                 {item.tx_hash && (
                   <button
                     onClick={() => handleCopy(item.tx_hash!, evidenceId)}
-                    className="inline-flex items-center gap-1 text-xs text-text-muted hover:text-accent font-mono transition-colors"
+                    className="min-h-[36px] px-2.5 py-1 rounded-lg bg-surface hover:bg-surface-raised border border-border/40 inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-accent font-mono transition-colors"
                     title="Copy Transaction Hash"
                   >
                     <span>{item.tx_hash.slice(0, 8)}...{item.tx_hash.slice(-6)}</span>
                     {copiedId === evidenceId ? (
-                      <Check className="h-3 w-3 text-verified" />
+                      <Check className="h-3.5 w-3.5 text-verified" />
                     ) : (
-                      <Copy className="h-3 w-3" />
+                      <Copy className="h-3.5 w-3.5" />
                     )}
                   </button>
                 )}

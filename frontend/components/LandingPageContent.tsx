@@ -179,22 +179,22 @@ export const LandingPageContent: React.FC = () => {
           {/* Interactive Workspace Container */}
           <div className="bg-surface border border-border rounded-2xl shadow-panel overflow-hidden">
             {/* Top Workspace Bar */}
-            <div className="p-4 border-b border-border bg-surface-raised/70 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center space-x-3">
-                <div className="flex space-x-1.5">
+            <div className="p-3 sm:p-4 border-b border-border bg-surface-raised/70 flex flex-col md:flex-row md:items-center justify-between gap-3">
+              <div className="flex items-center space-x-3 min-w-0">
+                <div className="flex space-x-1.5 shrink-0">
                   <div className="w-2.5 h-2.5 rounded-full bg-border" />
                   <div className="w-2.5 h-2.5 rounded-full bg-border" />
                   <div className="w-2.5 h-2.5 rounded-full bg-border" />
                 </div>
-                <span className="text-xs text-text-muted font-mono">
+                <span className="text-xs text-text-muted font-mono truncate">
                   case://ETH-MAINNET/0x3f8702cfb1...e3 [STATUS: ACTIVE]
                 </span>
               </div>
 
-              <div className="flex items-center space-x-1 bg-bg p-1 rounded-lg border border-border text-xs font-medium">
+              <div className="flex items-center space-x-1 bg-bg p-1 rounded-lg border border-border text-xs font-medium overflow-x-auto scrollbar-none w-full md:w-auto">
                 <button
                   onClick={() => setActiveSimulationTab('graph')}
-                  className={`px-3 py-1.5 rounded-md transition-all ${
+                  className={`flex-1 md:flex-none px-3 py-1.5 rounded-md transition-all text-center whitespace-nowrap ${
                     activeSimulationTab === 'graph' ? 'bg-surface text-text shadow-sm border border-border' : 'text-text-muted hover:text-text'
                   }`}
                 >
@@ -202,7 +202,7 @@ export const LandingPageContent: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setActiveSimulationTab('attribution')}
-                  className={`px-3 py-1.5 rounded-md transition-all ${
+                  className={`flex-1 md:flex-none px-3 py-1.5 rounded-md transition-all text-center whitespace-nowrap ${
                     activeSimulationTab === 'attribution' ? 'bg-surface text-text shadow-sm border border-border' : 'text-text-muted hover:text-text'
                   }`}
                 >
@@ -210,7 +210,7 @@ export const LandingPageContent: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setActiveSimulationTab('legal')}
-                  className={`px-3 py-1.5 rounded-md transition-all ${
+                  className={`flex-1 md:flex-none px-3 py-1.5 rounded-md transition-all text-center whitespace-nowrap ${
                     activeSimulationTab === 'legal' ? 'bg-surface text-text shadow-sm border border-border' : 'text-text-muted hover:text-text'
                   }`}
                 >
@@ -220,15 +220,15 @@ export const LandingPageContent: React.FC = () => {
             </div>
 
             {/* Showcase Viewport */}
-            <div className="p-6 sm:p-8 bg-bg min-h-[360px] flex items-center justify-center">
+            <div className="p-4 sm:p-8 bg-bg min-h-[360px] flex items-center justify-center">
               {activeSimulationTab === 'graph' && (
                 <div className="w-full max-w-3xl space-y-5">
-                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-surface border border-border">
-                    <div className="flex items-center space-x-2.5">
-                      <Search className="h-4 w-4 text-accent" />
-                      <span className="text-xs font-mono text-text">0x3f8702cfb1662195fcc98593789682da91dfaae3</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 rounded-xl bg-surface border border-border gap-2">
+                    <div className="flex items-center space-x-2.5 min-w-0">
+                      <Search className="h-4 w-4 text-accent shrink-0" />
+                      <span className="text-xs font-mono text-text truncate">0x3f8702cfb1662195fcc98593789682da91dfaae3</span>
                     </div>
-                    <Badge variant="success">Hop Depth: 3 Hops Traversed</Badge>
+                    <Badge variant="success" className="self-start sm:self-auto shrink-0">Hop Depth: 3 Hops Traversed</Badge>
                   </div>
 
                   {/* Flow Simulation Blocks */}

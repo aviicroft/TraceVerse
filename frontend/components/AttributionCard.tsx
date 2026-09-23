@@ -55,8 +55,10 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
     { label: 'Temporal Recency', weight: '10%', value: breakdown.recency_score },
   ];
 
+  const [showMobileBreakdown, setShowMobileBreakdown] = React.useState(false);
+
   return (
-    <div className="bg-surface border border-border rounded-xl shadow-panel p-5 space-y-4 transition-colors">
+    <div className="bg-surface border border-border rounded-xl shadow-panel p-4 sm:p-5 space-y-4 transition-colors">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border pb-3">
         <div className="inline-flex items-center gap-2">
@@ -71,14 +73,14 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
       </div>
 
       {/* Primary Finding Hero Panel */}
-      <div className="bg-surface-raised/50 border border-border rounded-xl p-4 space-y-3">
-        <div className="flex items-start justify-between">
+      <div className="bg-surface-raised/50 border border-border rounded-xl p-3.5 sm:p-4 space-y-3">
+        <div className="flex items-start justify-between gap-3">
           <div>
             <span className="text-xs text-text-muted font-medium block mb-1">
               Identified Virtual Asset Service Provider
             </span>
-            <div className="inline-flex items-center gap-2">
-              <strong className="text-lg font-bold text-text">
+            <div className="flex items-center gap-2 flex-wrap">
+              <strong className="text-base sm:text-lg font-bold text-text">
                 {primary.vasp_name}
               </strong>
               <span className="text-xs px-2 py-0.5 rounded-full bg-verified-subtle text-verified border border-verified-border font-medium inline-flex items-center gap-1">
@@ -88,19 +90,19 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
             </div>
           </div>
 
-          <div className="text-right">
+          <div className="text-right shrink-0">
             <span className="text-xs text-text-muted font-medium block mb-1">
               Confidence Score
             </span>
             <div className="inline-flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-verified">
+              <span className="text-xl sm:text-2xl font-bold text-verified">
                 {primary.score.toFixed(1)}%
               </span>
             </div>
           </div>
         </div>
 
-        <div className="p-3 bg-surface rounded-lg border border-border text-xs flex items-center justify-between">
+        <div className="p-2.5 sm:p-3 bg-surface rounded-lg border border-border text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-1">
           <span className="text-text-muted font-medium">Analytical Assessment:</span>
           <span className="text-text font-semibold">
             {getAssessmentLabel(primary.score)}
@@ -108,9 +110,25 @@ export const AttributionCard: React.FC<AttributionCardProps> = ({ attributions }
         </div>
       </div>
 
-      {/* 5-Factor Analytical Evidence Breakdown */}
-      <div className="space-y-2.5">
-        <div className="inline-flex items-center gap-1.5 text-xs text-text-muted font-medium">
+      {/* Mobile Toggle Button */}
+      <div className="md:hidden">
+        <button
+          onClick={() => setShowMobileBreakdown(!showMobileBreakdown)}
+          className="w-full min-h-[44px] px-3.5 rounded-xl bg-surface-raised hover:bg-surface-hover text-text font-semibold text-xs border border-border inline-flex items-center justify-between transition-colors"
+        >
+          <span className="inline-flex items-center gap-2">
+            <BarChart2 className="h-4 w-4 text-accent" />
+            <span>5-Factor Analytical Breakdown</span>
+          </span>
+          <span className="text-accent font-bold">
+            {showMobileBreakdown ? 'Hide ▲' : 'View ▼'}
+          </span>
+        </button>
+      </div>
+
+      {/* 5-Factor Analytical Evidence Breakdown (Always on Desktop, Collapsible on Mobile) */}
+      <div className={`space-y-2.5 ${showMobileBreakdown ? 'block' : 'hidden md:block'}`}>
+        <div className="hidden md:inline-flex items-center gap-1.5 text-xs text-text-muted font-medium">
           <BarChart2 className="h-3.5 w-3.5 text-accent shrink-0" />
           <span>5-Factor Heuristic Weight Breakdown</span>
         </div>
