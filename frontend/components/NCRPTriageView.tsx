@@ -5,6 +5,7 @@ import { ShieldAlert, Filter, ArrowRight, RefreshCw, AlertCircle } from 'lucide-
 import { api } from '../lib/api';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
+import { CustomSelect } from './ui/Select';
 
 interface NCRPTriageViewProps {
   onSelectCase: (walletAddress: string, maxHops: number) => void;
@@ -55,19 +56,22 @@ export const NCRPTriageView: React.FC<NCRPTriageViewProps> = ({ onSelectCase }) 
           </p>
         </div>
 
-        <div className="inline-flex items-center gap-2 w-full sm:w-auto">
-          <Filter className="h-3.5 w-3.5 text-text-muted shrink-0" />
-          <select
+        <div className="w-full sm:w-auto">
+          <CustomSelect
             value={filterTypology}
-            onChange={(e) => setFilterTypology(e.target.value)}
-            className="bg-surface border border-border text-text text-xs rounded-xl px-3 py-2 sm:py-1.5 focus:outline-none focus:border-accent cursor-pointer flex-1 sm:flex-none min-h-[44px] sm:min-h-0"
-          >
-            <option value="ALL">All Fraud Typologies</option>
-            <option value="Task">Part-Time Task Scam</option>
-            <option value="Investment">Investment & Forex App</option>
-            <option value="Impersonation">Digital Arrest Scam</option>
-            <option value="Courier">FedEx Parcel Extortion</option>
-          </select>
+            onChange={(val) => setFilterTypology(String(val))}
+            options={[
+              { value: 'ALL', label: 'All Fraud Typologies' },
+              { value: 'Task', label: 'Part-Time Task Scam' },
+              { value: 'Investment', label: 'Investment & Forex App' },
+              { value: 'Impersonation', label: 'Digital Arrest Scam' },
+              { value: 'Courier', label: 'FedEx Parcel Extortion' },
+            ]}
+            prefix={<Filter className="h-3.5 w-3.5 text-[#94A3B8]" />}
+            align="right"
+            className="w-full sm:min-w-[220px]"
+            size="md"
+          />
         </div>
       </div>
 

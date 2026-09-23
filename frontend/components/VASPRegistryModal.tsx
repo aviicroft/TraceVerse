@@ -5,6 +5,7 @@ import { Database, Search, ExternalLink, Copy, Check, X, ChevronLeft, ChevronRig
 import { api } from '../lib/api';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
+import { CustomSelect } from './ui/Select';
 
 interface VASPRegistryModalProps {
   onClose?: () => void;
@@ -117,8 +118,8 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
       <div className="p-3 sm:p-3.5 bg-surface-raised/30 border-b border-border flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2.5 w-full md:w-auto">
           {/* Search Box */}
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted pointer-events-none shrink-0" />
+          <div className="relative w-full sm:w-64 group">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8] group-focus-within:text-[#E63946] pointer-events-none shrink-0 transition-colors" />
             <input
               type="text"
               value={searchQuery}
@@ -127,41 +128,45 @@ export const VASPRegistryModal: React.FC<VASPRegistryModalProps> = ({
                 setPage(0);
               }}
               placeholder="Search address, label, or entity..."
-              className="pl-9 pr-3 py-2 sm:py-1.5 bg-surface border border-border rounded-xl text-text placeholder:text-text-muted text-xs focus:outline-none focus:border-accent w-full transition-colors font-mono min-h-[44px] sm:min-h-0"
+              className="pl-10 pr-3 py-2 sm:py-1.5 bg-[#102347] border border-[#29436B] hover:border-[#3C5C89] rounded-xl text-[#F8FAFC] placeholder:text-[#94A3B8] placeholder:opacity-100 text-xs focus:outline-none focus:border-[#E63946] focus:ring-2 focus:ring-[#E63946]/20 w-full transition-all font-mono min-h-[44px] sm:min-h-[38px] shadow-sm"
             />
           </div>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
             {/* Chain Select */}
-            <select
-              value={selectedChain}
-              onChange={(e) => {
-                setSelectedChain(e.target.value);
-                setPage(0);
-              }}
-              className="bg-surface border border-border rounded-xl text-text px-3 py-2 sm:py-1.5 focus:outline-none focus:border-accent cursor-pointer flex-1 sm:flex-none min-h-[44px] sm:min-h-0"
-            >
-              <option value="ALL">All Chains</option>
-              <option value="ethereum">Ethereum</option>
-              <option value="tron">Tron TRC-20</option>
-            </select>
+            <div className="w-full sm:w-auto">
+              <CustomSelect
+                value={selectedChain}
+                onChange={(val) => {
+                  setSelectedChain(String(val));
+                  setPage(0);
+                }}
+                options={[
+                  { value: 'ALL', label: 'All Chains' },
+                  { value: 'ethereum', label: 'Ethereum' },
+                  { value: 'tron', label: 'Tron TRC-20' },
+                ]}
+                className="w-full sm:min-w-[130px]"
+                size="md"
+              />
+            </div>
 
             {/* VASP Select */}
-            <select
-              value={selectedVasp}
-              onChange={(e) => {
-                setSelectedVasp(e.target.value);
-                setPage(0);
-              }}
-              className="bg-surface border border-border rounded-xl text-text px-3 py-2 sm:py-1.5 focus:outline-none focus:border-accent cursor-pointer flex-1 sm:flex-none min-h-[44px] sm:min-h-0"
-            >
-              <option value="ALL">All Entities</option>
-              {stats?.supported_vasps?.map((v: string) => (
-                <option key={v} value={v}>
-                  {v}
-                </option>
-              ))}
-            </select>
+            <div className="w-full sm:w-auto">
+              <CustomSelect
+                value={selectedVasp}
+                onChange={(val) => {
+                  setSelectedVasp(String(val));
+                  setPage(0);
+                }}
+                options={[
+                  { value: 'ALL', label: 'All Entities' },
+                  ...(stats?.supported_vasps?.map((v: string) => ({ value: v, label: v })) || []),
+                ]}
+                className="w-full sm:min-w-[140px]"
+                size="md"
+              />
+            </div>
           </div>
         </div>
 

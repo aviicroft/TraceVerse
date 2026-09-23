@@ -17,6 +17,7 @@ import { NormalizedTransaction } from '../lib/types';
 import { TechnicalValue } from './ui/TechnicalValue';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
+import { CustomSelect } from './ui/Select';
 
 interface TransactionLedgerProps {
   transactions: NormalizedTransaction[];
@@ -103,8 +104,8 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
 
         <div className="flex flex-wrap items-center gap-2">
           {/* Quick Search */}
-          <div className="relative">
-            <Search className="h-3.5 w-3.5 text-text-muted absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
+          <div className="relative flex-1 sm:flex-none w-full sm:w-auto group">
+            <Search className="h-4 w-4 text-[#94A3B8] group-focus-within:text-[#E63946] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none shrink-0 transition-colors" />
             <input
               type="text"
               placeholder="Search hash or address..."
@@ -113,43 +114,47 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
                 setSearchQuery(e.target.value);
                 setPage(0);
               }}
-              className="pl-8 pr-3 py-1.5 bg-surface border border-border rounded-lg text-text placeholder:text-text-muted text-xs focus:outline-none focus:border-accent w-44 sm:w-56 transition-colors font-mono"
+              className="pl-9 pr-3 py-2 sm:py-1.5 bg-[#102347] border border-[#29436B] hover:border-[#3C5C89] rounded-xl text-[#F8FAFC] placeholder:text-[#94A3B8] placeholder:opacity-100 text-xs focus:outline-none focus:border-[#E63946] focus:ring-2 focus:ring-[#E63946]/20 w-full sm:w-56 transition-all font-mono min-h-[44px] sm:min-h-[36px]"
             />
           </div>
 
           {/* Asset Filter */}
           {uniqueTokens.length > 1 && (
-            <select
-              value={selectedAsset}
-              onChange={(e) => {
-                setSelectedAsset(e.target.value);
-                setPage(0);
-              }}
-              className="bg-surface border border-border rounded-lg text-text text-xs px-2.5 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
-            >
-              <option value="ALL">All Assets</option>
-              {uniqueTokens.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
+            <div className="w-full sm:w-auto">
+              <CustomSelect
+                value={selectedAsset}
+                onChange={(val) => {
+                  setSelectedAsset(String(val));
+                  setPage(0);
+                }}
+                options={[
+                  { value: 'ALL', label: 'All Assets' },
+                  ...uniqueTokens.map((t) => ({ value: t, label: t })),
+                ]}
+                className="w-full sm:min-w-[120px]"
+                size="md"
+              />
+            </div>
           )}
 
           {/* Hop Filter */}
-          <select
-            value={selectedHop}
-            onChange={(e) => {
-              setSelectedHop(e.target.value);
-              setPage(0);
-            }}
-            className="bg-surface border border-border rounded-lg text-text text-xs px-2.5 py-1.5 focus:outline-none focus:border-accent cursor-pointer"
-          >
-            <option value="ALL">All Hops</option>
-            <option value="1">Hop 1 (Direct)</option>
-            <option value="2">Hop 2</option>
-            <option value="3">Hop 3</option>
-          </select>
+          <div className="w-full sm:w-auto">
+            <CustomSelect
+              value={selectedHop}
+              onChange={(val) => {
+                setSelectedHop(String(val));
+                setPage(0);
+              }}
+              options={[
+                { value: 'ALL', label: 'All Hops' },
+                { value: '1', label: 'Hop 1 (Direct)' },
+                { value: '2', label: 'Hop 2' },
+                { value: '3', label: 'Hop 3' },
+              ]}
+              className="w-full sm:min-w-[130px]"
+              size="md"
+            />
+          </div>
 
           {/* CSV Export */}
           <Button
@@ -158,6 +163,7 @@ export const TransactionLedger: React.FC<TransactionLedgerProps> = ({ transactio
             onClick={handleExportCSV}
             icon={<Download className="h-3.5 w-3.5" />}
             title="Export CSV"
+            className="min-h-[44px] sm:min-h-[36px] w-full sm:w-auto"
           >
             Export
           </Button>

@@ -22,6 +22,7 @@ import { api } from '../lib/api';
 import { CandidateWallet, CandidateStats } from '../lib/types';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
+import { CustomSelect } from './ui/Select';
 
 interface CandidateDiscoveryViewProps {
   onSelectCandidate: (address: string) => void;
@@ -235,44 +236,51 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({
           </div>
 
           {/* Min Score Filter */}
-          <div className="flex items-center space-x-2 bg-surface-raised px-3 py-2 sm:py-1.5 rounded-xl border border-border text-xs w-full sm:w-auto min-h-[44px] sm:min-h-0">
-            <span className="text-text-muted shrink-0">Min Score:</span>
-            <select
+          <div className="w-full sm:w-auto">
+            <CustomSelect
+              label="Min Score:"
               value={minScore}
-              onChange={(e) => setMinScore(Number(e.target.value))}
-              className="bg-transparent text-text font-semibold focus:outline-none cursor-pointer flex-1"
-            >
-              <option value={0}>All Scores (≥ 0)</option>
-              <option value={50}>≥ 50 (Moderate Lead)</option>
-              <option value={70}>≥ 70 (High Lead)</option>
-              <option value={80}>≥ 80 (Investigation Ready)</option>
-            </select>
+              onChange={(val) => setMinScore(Number(val))}
+              options={[
+                { value: 0, label: 'All Scores (≥ 0)' },
+                { value: 50, label: '≥ 50 (Moderate Lead)' },
+                { value: 70, label: '≥ 70 (High Lead)' },
+                { value: 80, label: '≥ 80 (Investigation Ready)' },
+              ]}
+              className="w-full sm:w-auto"
+              size="md"
+            />
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:space-x-3">
           {/* Search Box */}
-          <div className="relative flex-1 sm:flex-none">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted pointer-events-none shrink-0" />
+          <div className="relative flex-1 sm:flex-none group">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8] group-focus-within:text-[#E63946] pointer-events-none shrink-0 transition-colors" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search address or VASP..."
-              className="pl-9 pr-3 py-2.5 sm:py-1.5 bg-surface-raised border border-border rounded-xl text-text placeholder:text-text-muted text-xs focus:outline-none focus:border-accent w-full sm:w-64 transition-colors font-mono min-h-[44px] sm:min-h-0"
+              className="pl-10 pr-3 py-2 sm:py-1.5 bg-[#102347] border border-[#29436B] hover:border-[#3C5C89] rounded-xl text-[#F8FAFC] placeholder:text-[#94A3B8] placeholder:opacity-100 text-xs focus:outline-none focus:border-[#E63946] focus:ring-2 focus:ring-[#E63946]/20 w-full sm:w-64 transition-all font-mono min-h-[44px] sm:min-h-[38px] shadow-sm"
             />
           </div>
 
           {/* Sort By */}
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="bg-surface-raised border border-border rounded-xl text-text text-xs px-3 py-2.5 sm:py-1.5 focus:outline-none focus:border-accent cursor-pointer min-h-[44px] sm:min-h-0"
-          >
-            <option value="quality">Sort: Quality Score</option>
-            <option value="volume">Sort: Total Flow ($)</option>
-            <option value="tx_count">Sort: Transfer Count</option>
-          </select>
+          <div className="w-full sm:w-auto">
+            <CustomSelect
+              value={sortBy}
+              onChange={(val) => setSortBy(String(val))}
+              options={[
+                { value: 'quality', label: 'Sort: Quality Score' },
+                { value: 'volume', label: 'Sort: Total Flow ($)' },
+                { value: 'tx_count', label: 'Sort: Transfer Count' },
+              ]}
+              align="right"
+              className="w-full sm:w-auto"
+              size="md"
+            />
+          </div>
         </div>
       </div>
 

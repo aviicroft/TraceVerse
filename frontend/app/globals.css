@@ -197,6 +197,7 @@
 
 html {
   background-color: #0B1736;
+  color-scheme: dark;
 }
 
 body {
@@ -207,11 +208,48 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  color-scheme: dark;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .dark html, .dark body {
   background-color: #0B1736;
+  color-scheme: dark;
+}
+
+/* Ensure all native inputs and placeholders adhere to high-contrast Navy palette */
+input::placeholder,
+textarea::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: #CBD5E1 !important;
+}
+
+select {
+  color-scheme: dark;
+  background-color: #102347;
+  color: #F8FAFC;
+}
+
+select option {
+  background-color: #102347;
+  color: #F8FAFC;
+  padding: 8px 12px;
+}
+
+select option:checked {
+  background-color: #E63946;
+  color: #FFFFFF;
+}
+
+select option:hover,
+select option:focus {
+  background-color: #1C3763;
+  color: #F8FAFC;
 }
 
 /* Subtle, calm ambient lighting without loud movement or glare */

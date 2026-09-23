@@ -5,6 +5,7 @@ import { Search, AlertCircle, ArrowRight, Radar, Sparkles, ChevronDown, Check } 
 import { api } from '../lib/api';
 import { CandidateWallet } from '../lib/types';
 import { Button } from './ui/Button';
+import { CustomSelect } from './ui/Select';
 
 interface WalletSearchProps {
   onAnalyze: (address: string, maxHops: number) => void;
@@ -176,9 +177,9 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
 
       <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4">
         {/* Prominent Search Bar Input */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-          <div className="relative flex-1 group">
-            <div className="absolute inset-y-0 left-0 pl-4 inline-flex items-center pointer-events-none text-text-muted group-focus-within:text-accent transition-colors">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3">
+          <div className="relative flex-1 group w-full min-w-0">
+            <div className="absolute inset-y-0 left-0 pl-4 inline-flex items-center pointer-events-none text-[#94A3B8] group-focus-within:text-[#E63946] transition-colors">
               <Search className="h-5 w-5 shrink-0" />
             </div>
             <input
@@ -188,32 +189,30 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
                 setAddress(e.target.value);
                 if (error) setError(null);
               }}
-              placeholder="Enter suspect target wallet address, transaction, or case ID..."
-              className="w-full min-h-[48px] pl-11 pr-14 py-3 bg-surface-raised/60 hover:bg-surface-raised border border-border focus:border-accent rounded-xl text-text placeholder:text-text-muted font-mono text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-accent/15 transition-all shadow-inner"
+              placeholder="Enter suspect target wallet (e.g. 0x8051... or 0x3f87...)"
+              className="w-full min-h-[48px] pl-12 pr-14 py-3 bg-[#0E2042] hover:bg-[#102347] border border-[#29436B] focus:border-[#E63946] rounded-xl text-[#F8FAFC] placeholder:text-[#94A3B8] placeholder:opacity-100 font-mono text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#E63946]/20 transition-all shadow-inner"
             />
             <div className="absolute inset-y-0 right-0 pr-3.5 inline-flex items-center pointer-events-none">
-              <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-surface border border-border text-text-muted hidden sm:inline">
+              <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-[#162D55] border border-[#29436B] text-[#94A3B8] hidden sm:inline">
                 ↵
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0 w-full sm:w-auto">
-            {/* Depth Selector */}
-            <div className="relative inline-flex items-center w-full sm:w-auto">
-              <select
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto shrink-0">
+            {/* Depth Selector using CustomSelect */}
+            <div className="w-full sm:w-auto">
+              <CustomSelect
                 value={maxHops}
-                onChange={(e) => setMaxHops(Number(e.target.value))}
-                className="w-full sm:w-auto min-h-[48px] appearance-none pl-3.5 pr-9 py-3 bg-surface-raised border border-border hover:border-border-hover rounded-xl text-text font-sans text-xs font-medium focus:outline-none focus:border-accent cursor-pointer shadow-sm transition-colors"
-                title="Investigation Hop Depth"
-              >
-                <option value={1}>1 Hop (Direct Transfers)</option>
-                <option value={2}>2 Hops (Layered Intermediaries)</option>
-                <option value={3}>3 Hops (Full Audit Traversal)</option>
-              </select>
-              <div className="absolute right-3 pointer-events-none text-text-muted">
-                <ChevronDown className="h-4 w-4" />
-              </div>
+                onChange={(val) => setMaxHops(Number(val))}
+                options={[
+                  { value: 1, label: '1 Hop (Direct Transfers)' },
+                  { value: 2, label: '2 Hops (Layered Intermediaries)' },
+                  { value: 3, label: '3 Hops (Full Audit Traversal)' },
+                ]}
+                className="w-full sm:min-w-[240px]"
+                size="lg"
+              />
             </div>
 
             {/* Submit Button */}
@@ -224,7 +223,7 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
               isLoading={isLoading}
               icon={<ArrowRight className="h-4 w-4" />}
               iconPosition="right"
-              className="w-full sm:w-auto min-h-[48px] px-6 rounded-xl font-semibold shadow-md"
+              className="w-full sm:w-auto min-h-[48px] px-6 rounded-xl font-semibold shadow-md whitespace-nowrap"
             >
               Trace Target
             </Button>
@@ -240,29 +239,29 @@ export const WalletSearch: React.FC<WalletSearchProps> = ({ onAnalyze, isLoading
         )}
 
         {/* Verified Target Presets Bar */}
-        <div className="pt-2 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
-          <div className="inline-flex items-center gap-2 text-text-muted shrink-0">
-            <Radar className="h-3.5 w-3.5 text-accent shrink-0" />
-            <span className="font-medium">Recent High-Confidence Candidate Leads:</span>
+        <div className="pt-3 border-t border-[#29436B] flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs w-full min-w-0">
+          <div className="inline-flex items-center gap-2 text-[#94A3B8] shrink-0">
+            <Radar className="h-4 w-4 text-[#E63946] shrink-0" />
+            <span className="font-medium text-[#CBD5E1]">Recent High-Confidence Candidate Leads:</span>
           </div>
 
-          <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none">
+          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1.5 md:pb-0 scrollbar-none min-w-0 touch-scroll">
             {dynamicCandidates.slice(0, 3).map((cand) => (
               <button
                 key={cand.id}
                 type="button"
                 onClick={() => handleSelectPreset(cand.address)}
-                className={`px-2.5 py-1.5 rounded-lg border text-xs transition-all inline-flex items-center gap-1.5 shrink-0 min-h-[36px] ${
+                className={`px-3 py-2 rounded-xl border text-xs transition-all inline-flex items-center gap-2 shrink-0 min-h-[44px] md:min-h-[38px] ${
                   clean.toLowerCase() === cand.address.toLowerCase()
-                    ? 'bg-accent/15 border-accent text-accent font-semibold'
-                    : 'bg-surface-raised hover:bg-surface-hover border-border text-text-secondary hover:text-text'
+                    ? 'bg-[#E63946]/15 border-[#E63946] text-white font-semibold shadow-sm'
+                    : 'bg-[#102347] hover:bg-[#162D55] border-[#29436B] hover:border-[#3C5C89] text-[#CBD5E1] hover:text-[#F8FAFC]'
                 }`}
                 title={`VASP: ${cand.discovery_vasp_name} | Quality: ${cand.candidate_quality_score}`}
               >
-                <span className="font-mono text-xs font-medium">
+                <span className="font-mono text-xs font-semibold text-[#F8FAFC]">
                   {cand.address.slice(0, 6)}...{cand.address.slice(-4)}
                 </span>
-                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-surface border border-border text-text-muted">
+                <span className="text-[11px] px-2 py-0.5 rounded-full bg-[#162D55] border border-[#29436B] text-[#94A3B8] font-medium">
                   {cand.discovery_vasp_name}
                 </span>
               </button>
