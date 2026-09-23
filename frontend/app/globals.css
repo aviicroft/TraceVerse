@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< Updated upstream
 /* ==============================================================================
    TRACEVERSE 2.0 GLOBAL DESIGN SYSTEM
    Deep Navy + Controlled Red Professional Forensic Intelligence Theme
@@ -203,49 +202,11 @@ html {
 body {
   color: var(--text);
   background-color: #0B1736;
-=======
-/* Light Theme Variables (Clean Paper / Institutional Off-White) */
-:root {
-  --forensic-bg: #f8fafc;
-  --forensic-surface: #ffffff;
-  --forensic-surface-raised: #f1f5f9;
-  --forensic-border: #cbd5e1;
-  --forensic-border-muted: #e2e8f0;
-  --forensic-text: #0f172a;
-  --forensic-text-muted: #334155;
-  --forensic-text-dim: #64748b;
-  --forensic-accent: #1d4ed8;
-  --forensic-teal: #0f766e;
-  --forensic-amber: #b45309;
-  --forensic-rose: #b91c1c;
-}
-
-/* Dark Theme Variables (Deep Navy Slate / Obsidian) */
-.dark {
-  --forensic-bg: #080c14;
-  --forensic-surface: #0e1524;
-  --forensic-surface-raised: #141e33;
-  --forensic-border: #20304c;
-  --forensic-border-muted: #172338;
-  --forensic-text: #f1f5f9;
-  --forensic-text-muted: #94a3b8;
-  --forensic-text-dim: #64748b;
-  --forensic-accent: #3b82f6;
-  --forensic-teal: #14b8a6;
-  --forensic-amber: #f59e0b;
-  --forensic-rose: #ef4444;
-}
-
-body {
-  color: var(--forensic-text);
-  background-color: var(--forensic-bg);
->>>>>>> Stashed changes
   min-height: 100vh;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-<<<<<<< Updated upstream
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -287,19 +248,12 @@ body > *, .dark body > * {
 }
 
 /* Precision scrollbar matching Deep Navy Theme */
-=======
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-/* Compact forensic scrollbar */
->>>>>>> Stashed changes
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-<<<<<<< Updated upstream
   background: #0B1736;
 }
 
@@ -378,39 +332,23 @@ body > *, .dark body > * {
 /* Statutory Print Format — Professional Soft-White Legal Document */
 @media print {
   header, nav, footer, .no-print, button, input, select, textarea, .backdrop-blur-sm, .backdrop-blur-md, .backdrop-blur-lg {
-=======
-  background: var(--forensic-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--forensic-border);
-  border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--forensic-text-dim);
-}
-
-/* Law Enforcement Print & Statutory Order Formatting */
-@media print {
-  /* Hide all non-printable application chrome, navbars, buttons */
-  header, nav, footer, .no-print, button, input, select, textarea, .backdrop-blur-sm {
->>>>>>> Stashed changes
     display: none !important;
   }
 
   body {
     background-color: #ffffff !important;
-    color: #000000 !important;
-    font-family: "Times New Roman", Times, Georgia, serif !important;
+    color: #172033 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
     font-size: 11pt !important;
     margin: 0 !important;
     padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .fixed.inset-0 {
     position: static !important;
-    background: transparent !important;
+    background: #ffffff !important;
     padding: 0 !important;
     display: block !important;
   }
@@ -423,12 +361,14 @@ body > *, .dark body > * {
     height: auto !important;
     max-height: none !important;
     overflow: visible !important;
-    background: #ffffff !important;
-    color: #000000 !important;
+    background-color: #ffffff !important;
+    color: #172033 !important;
     box-shadow: none !important;
     border: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .print-content {
@@ -436,21 +376,21 @@ body > *, .dark body > * {
     overflow: visible !important;
     max-height: none !important;
     height: auto !important;
-    color: #000000 !important;
-    background: #ffffff !important;
-    font-family: "Times New Roman", Times, Georgia, serif !important;
-    line-height: 1.5 !important;
+    color: #172033 !important;
+    background-color: #ffffff !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    line-height: 1.6 !important;
     font-size: 11pt !important;
-    padding: 10mm 15mm !important;
-    white-space: pre-wrap !important;
+    padding: 8mm 12mm !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   @page {
     size: A4 portrait;
-<<<<<<< Updated upstream
     margin: 10mm;
-=======
-    margin: 15mm 15mm 15mm 15mm;
->>>>>>> Stashed changes
   }
 }

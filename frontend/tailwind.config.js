@@ -9,7 +9,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-<<<<<<< Updated upstream
         bg: {
           DEFAULT: "var(--bg)",
           subtle: "var(--bg-subtle)",
@@ -80,9 +79,6 @@ module.exports = {
         },
 
         // Forensic Tokens (backward compatibility)
-=======
-        // High-Visibility Institutional Theme Tokens
->>>>>>> Stashed changes
         forensic: {
           bg: "var(--forensic-bg)",
           surface: "var(--forensic-surface)",
@@ -104,10 +100,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       fontSize: {
-<<<<<<< Updated upstream
         'display': ['2rem', { lineHeight: '2.5rem', fontWeight: '700' }],
         'page-title': ['1.75rem', { lineHeight: '2.25rem', fontWeight: '700' }],
         'section-title': ['1.125rem', { lineHeight: '1.75rem', fontWeight: '600' }],
@@ -128,9 +123,6 @@ module.exports = {
         'panel-elevated': '0 12px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border)',
         'vercel': '0 0 0 1px var(--border), 0 2px 4px rgba(0,0,0,0.04)',
         'vercel-lg': '0 0 0 1px var(--border), 0 8px 16px rgba(0,0,0,0.08)',
-=======
-        '2xs': '0.65rem',
->>>>>>> Stashed changes
       },
     },
   },
