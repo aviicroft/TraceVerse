@@ -12,7 +12,7 @@ from backend.app.services.blockchain.base import BlockchainProvider
 logger = logging.getLogger(__name__)
 
 TRONGRID_API_URL = "https://api.trongrid.io"
-USDT_TRON_CONTRACT = "TR7NHqjekKQxGTCi8q8ZY4pL8otSzgjLj6"
+USDT_TRON_CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
 
 
 class TronProvider(BlockchainProvider):

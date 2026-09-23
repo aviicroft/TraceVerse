@@ -339,8 +339,14 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({
                     </td>
 
                     <td className="py-3 px-4">
-                      <span className="uppercase text-xs px-2 py-0.5 rounded-full bg-surface-raised border border-border text-text-secondary font-medium">
-                        {cand.chain}
+                      <span
+                        className={`uppercase text-xs px-2.5 py-0.5 rounded-full font-medium tracking-wide border ${
+                          cand.chain.toLowerCase() === 'tron'
+                            ? 'bg-[#E63946]/10 text-[#E63946] border-[#E63946]/30'
+                            : 'bg-surface-raised border-border text-text-secondary'
+                        }`}
+                      >
+                        {cand.chain.toLowerCase() === 'tron' ? 'TRON' : 'Ethereum'}
                       </span>
                     </td>
 
@@ -434,8 +440,14 @@ export const CandidateDiscoveryView: React.FC<CandidateDiscoveryViewProps> = ({
                     </button>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="uppercase text-[10px] px-2 py-0.5 rounded-full bg-surface-raised border border-border text-text-secondary font-medium">
-                      {cand.chain}
+                    <span
+                      className={`uppercase text-[10px] px-2 py-0.5 rounded-full font-medium tracking-wide border ${
+                        cand.chain.toLowerCase() === 'tron'
+                          ? 'bg-[#E63946]/10 text-[#E63946] border-[#E63946]/30'
+                          : 'bg-surface-raised border-border text-text-secondary'
+                      }`}
+                    >
+                      {cand.chain.toLowerCase() === 'tron' ? 'TRON' : 'Ethereum'}
                     </span>
                     <span
                       className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-medium border ${

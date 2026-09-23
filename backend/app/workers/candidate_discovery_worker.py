@@ -52,6 +52,12 @@ class CandidateDiscoveryWorker:
             ready_cand = await session.scalar(
                 select(func.count(CandidateWallet.id)).where(CandidateWallet.status == "investigation_ready")
             ) or 0
+            tron_cand = await session.scalar(
+                select(func.count(CandidateWallet.id)).where(CandidateWallet.chain == "tron")
+            ) or 0
+            eth_cand = await session.scalar(
+                select(func.count(CandidateWallet.id)).where(CandidateWallet.chain == "ethereum")
+            ) or 0
             hop_1 = await session.scalar(
                 select(func.count(CandidateWallet.id)).where(CandidateWallet.min_hop_to_vasp == 1)
             ) or 0
@@ -67,6 +73,8 @@ class CandidateDiscoveryWorker:
         return {
             "total_candidates_stored": total_cand,
             "investigation_ready_count": ready_cand,
+            "tron_candidates_count": tron_cand,
+            "ethereum_candidates_count": eth_cand,
             "hop_1_count": hop_1,
             "hop_2_count": hop_2,
             "hop_3_count": hop_3,
@@ -98,7 +106,15 @@ class CandidateDiscoveryWorker:
             all_seeds = vasp_matcher.get_all_addresses()
             logger.info(f"Loaded {len(all_seeds)} candidate VASP seed addresses from registry.")
 
-            seeds_to_process = all_seeds[:max_seeds]
+            # Balance seeds across both Ethereum and Tron
+            eth_seeds = [s for s in all_seeds if s["chain"].lower() == "ethereum"]
+            tron_seeds = [s for s in all_seeds if s["chain"].lower() == "tron"]
+
+            half = max(1, max_seeds // 2)
+            seeds_to_process = tron_seeds[:half] + eth_seeds[:half]
+            if len(seeds_to_process) < max_seeds:
+                remaining = [s for s in all_seeds if s not in seeds_to_process]
+                seeds_to_process.extend(remaining[:max_seeds - len(seeds_to_process)])
 
             for seed in seeds_to_process:
                 if self.stop_requested:

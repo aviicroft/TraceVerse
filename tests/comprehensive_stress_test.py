@@ -131,31 +131,30 @@ def test_phase_2():
     record_test("VAL-ETH-09", "Address Validation", "Non-address string rejection", False, res_non_addr, "PASS" if not res_non_addr else "FAIL", "HIGH", "address_validator.py")
 
     # 10. Valid Tron Base58Check
-    tron_valid = "TR7NHqjekKQxGTCi8q8ZY4pL8otSzgjLj6" # USDT contract
+    tron_valid = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t" # USDT contract
     res_tron1 = is_valid_tron_address(tron_valid)
     record_test("VAL-TRON-01", "Address Validation", "Valid Tron Base58 address format", True, res_tron1, "PASS" if res_tron1 else "FAIL", "LOW", "address_validator.py")
 
     # 11. Invalid Base58 characters (0, O, I, l)
-    tron_bad_char = "TR7NHqjekKQxGTCi8q8ZY4pL8otSzgjLj0"
+    tron_bad_char = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj0"
     res_tron_bad = is_valid_tron_address(tron_bad_char)
     record_test("VAL-TRON-02", "Address Validation", "Invalid Base58 char '0' rejection", False, res_tron_bad, "PASS" if not res_tron_bad else "FAIL", "MEDIUM", "address_validator.py")
 
     # 12. Invalid Tron Checksum with valid Base58 chars
     # Modifying the last char of a valid Tron address creates an invalid checksum
-    tron_bad_checksum = "TR7NHqjekKQxGTCi8q8ZY4pL8otSzgjLj7"
+    tron_bad_checksum = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6a"
     res_tron_chk = is_valid_tron_address(tron_bad_checksum)
-    # The regex check accepts any 34-char string starting with T in Base58 chars without verifying sha256d checksum!
-    record_test("VAL-TRON-03", "Address Validation", "Tron Base58Check double-SHA256 checksum verification", "Should reject invalid checksum bytes", f"Accepted via regex (returned {res_tron_chk})", "FAIL", "HIGH", "address_validator.py")
+    record_test("VAL-TRON-03", "Address Validation", "Tron Base58Check double-SHA256 checksum verification", False, res_tron_chk, "PASS" if not res_tron_chk else "FAIL", "HIGH", "address_validator.py")
 
     # 13. Wrong length Tron address
-    tron_short = "TR7NHqjekKQxGTCi8q8ZY4pL8otSzgjL"
+    tron_short = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjL"
     res_tron_short = is_valid_tron_address(tron_short)
     record_test("VAL-TRON-04", "Address Validation", "Wrong length Tron address rejection", False, res_tron_short, "PASS" if not res_tron_short else "FAIL", "HIGH", "address_validator.py")
 
     # 14. Chain detection
     try:
         ch_eth = detect_blockchain("0xd8da6bf26964af9d7eed9e03e53415d37aa96045")
-        ch_tron = detect_blockchain("TR7NHqjekKQxGTCi8q8ZY4pL8otSzgjLj6")
+        ch_tron = detect_blockchain("TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t")
         record_test("VAL-CH-01", "Address Validation", "Chain detection ETH vs Tron", ("ethereum", "tron"), (ch_eth, ch_tron), "PASS" if (ch_eth == "ethereum" and ch_tron == "tron") else "FAIL", "HIGH", "address_validator.py")
     except Exception as e:
         record_test("VAL-CH-01", "Address Validation", "Chain detection ETH vs Tron", ("ethereum", "tron"), f"Error: {e}", "FAIL", "HIGH", "address_validator.py")
@@ -458,7 +457,7 @@ async def test_phase_4():
     try:
         builder_tron = TransactionGraphBuilder(blockchain_provider=provider_tron, max_hops=3, max_nodes=150)
         # Attempt to build graph for valid Tron address
-        await builder_tron.build_graph_for_wallet("TR7NHqjekKQxGTCi8q8ZY4pL8otSzgjLj6")
+        await builder_tron.build_graph_for_wallet("TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t")
         record_test("GRAPH-06", "Graph Traversal", "Tron address support in TransactionGraphBuilder", "Success", "Success", "PASS", "CRITICAL", "builder.py")
     except ValueError as ve:
         record_test("GRAPH-06", "Graph Traversal", "Tron address support in TransactionGraphBuilder", "Success", f"ValueError: {ve} (normalize_eth_address hardcoded)", "FAIL", "CRITICAL", "builder.py")

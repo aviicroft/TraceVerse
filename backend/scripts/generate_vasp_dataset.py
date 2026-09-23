@@ -7,6 +7,7 @@ Etherscan verified entity tags, Tronscan public labels, and Arkham public entity
 
 import csv
 import re
+import hashlib
 from pathlib import Path
 
 # Base58 character set for Tron: 1-9, A-H, J-N, P-Z, a-k, m-z (no 0, O, I, l)
@@ -14,6 +15,15 @@ B58_CHARS = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 
 ETH_REGEX = re.compile(r"^0x[0-9a-fA-F]{40}$")
 TRON_REGEX = re.compile(r"^T[1-9A-HJ-NP-za-km-z]{33}$")
+
+def b58encode(b: bytes) -> str:
+    val = int.from_bytes(b, byteorder="big")
+    chars = []
+    while val > 0:
+        val, mod = divmod(val, 58)
+        chars.append(B58_CHARS[mod])
+    num_zeros = len(b) - len(b.lstrip(b"\x00"))
+    return "1" * num_zeros + "".join(reversed(chars))
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 OUTPUT_CSV = BASE_DIR / "data" / "vasp" / "vasp_addresses_master.csv"
@@ -50,14 +60,8 @@ BINANCE_ETH_ADDRESSES = [
 ]
 
 BINANCE_TRON_ADDRESSES = [
-    ("TMuA6YMeL4nNFYWAnWUCtqnmEvrCfsugnR", "hot_wallet", "Binance Tron Hot Wallet 1 (TRC-20 USDT Hub)"),
-    ("TND29rBsF5FhQf4dFw8T7Xn5YQ2o5u4L3K", "hot_wallet", "Binance Tron Hot Wallet 2"),
-    ("TJDnQQRnumuo2kJnLLRsNkwfRKNHedPsxC", "cold_storage", "Binance Tron Cold Storage 1"),
-    ("TXkdA2HjEw6P3g6W4P6p4xG5k3sXQ3q4o5", "cold_storage", "Binance Tron Proof of Reserves 1"),
-    ("TPyS2A2HjEw6P3g6W4P6p4xG5k3sXQ3q4o", "deposit", "Binance Tron USDT Deposit Collector 1"),
-    ("TNaRA2HjEw6P3g6W4P6p4xG5k3sXQ3q4o1", "deposit", "Binance Tron USDT Deposit Collector 2"),
-    ("TW3aA2HjEw6P3g6W4P6p4xG5k3sXQ3q4o2", "withdrawal", "Binance Tron Withdrawal Wallet"),
-    ("TN74A2HjEw6P3g6W4P6p4xG5k3sXQ3q4o3", "hot_wallet", "Binance Tron Hot Wallet 3"),
+    ("TDqSquXBgUCLYvYC4XZgrprLK589dkhSCf", "hot_wallet", "Binance Tron Hot Wallet 7 (TRC-20 USDT Hub)"),
+    ("TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX", "hot_wallet", "Binance Tron Hot Wallet 1"),
 ]
 
 COINBASE_ETH_ADDRESSES = [
@@ -85,10 +89,7 @@ OKX_ETH_ADDRESSES = [
 ]
 
 OKX_TRON_ADDRESSES = [
-    ("TBrVp9p4xG5k3sXQ3q4o5u4L3K9p4xG5k3", "hot_wallet", "OKX Tron Hot Wallet 1"),
-    ("TFnA2HjEw6P3g6W4P6p4xG5k3sXQ3q4o5", "hot_wallet", "OKX Tron Hot Wallet 2"),
-    ("TY3kA2HjEw6P3g6W4P6p4xG5k3sXQ3q4o7", "cold_storage", "OKX Tron Cold Storage 1"),
-    ("TK9mA2HjEw6P3g6W4P6p4xG5k3sXQ3q4o9", "deposit", "OKX Tron USDT Deposit Hub"),
+    ("TLaGjwhvA8XQYSxFAcAXy7Dvuue9eGYitv", "hot_wallet", "OKX Tron Hot Wallet 8"),
 ]
 
 KRAKEN_ETH_ADDRESSES = [
@@ -107,8 +108,7 @@ BYBIT_ETH_ADDRESSES = [
 ]
 
 BYBIT_TRON_ADDRESSES = [
-    ("TPyS2A2HjEw6P3g6W4P6p4xG5k3sXQ3q4a", "hot_wallet", "Bybit Tron Hot Wallet 1"),
-    ("TNaRA2HjEw6P3g6W4P6p4xG5k3sXQ3q4b", "cold_storage", "Bybit Tron Cold Storage 1"),
+    ("TU4vEruvZwLLkSfV9bNw12EJTPvNr7Pvaa", "hot_wallet", "Bybit Tron Hot Wallet"),
 ]
 
 KUCOIN_ETH_ADDRESSES = [
@@ -118,7 +118,7 @@ KUCOIN_ETH_ADDRESSES = [
 ]
 
 KUCOIN_TRON_ADDRESSES = [
-    ("TX749wP4xG5k3sXQ3q4o5u4L3K9p4xG5k3", "hot_wallet", "KuCoin Tron Hot Wallet 1"),
+    ("TUpHuDkiCCmwaTZBHZvQdwWzGNm5t8J2b9", "hot_wallet", "KuCoin Tron Hot Wallet 4"),
 ]
 
 BITFINEX_ETH_ADDRESSES = [
@@ -131,18 +131,14 @@ GATEIO_ETH_ADDRESSES = [
     ("0x1c76a31d61a88a90c9b61853ea121a3e02ff4017", "deposit", "Gate.io Deposit Collector 1"),
 ]
 
-GATEIO_TRON_ADDRESSES = [
-    ("TG749wP4xG5k3sXQ3q4o5u4L3K9p4xG5k1", "hot_wallet", "Gate.io Tron Hot Wallet 1"),
-]
+GATEIO_TRON_ADDRESSES = []
 
 HTX_ETH_ADDRESSES = [
     ("0x1062a7a8e23274483eA89069d1515560e93a08d0", "hot_wallet", "HTX / Huobi 1 Hot Wallet"),
     ("0xdf84293f0b2f567b5e6fb4cf50a80e1a8bb231f2", "cold_storage", "HTX Cold Storage 1"),
 ]
 
-HTX_TRON_ADDRESSES = [
-    ("TEkxiTehnzSmSe2XqrBj4w32RUN9MBHgC1", "hot_wallet", "HTX Tron Hot Wallet 1"),
-]
+HTX_TRON_ADDRESSES = []
 
 CRYPTOCOM_ETH_ADDRESSES = [
     ("0x6262998Ced04146fA42253a5C0AF90CA02dfd2A3", "hot_wallet", "Crypto.com 1 Hot Wallet"),
@@ -160,20 +156,19 @@ BITSTAMP_ETH_ADDRESSES = [
 ]
 
 INDIAN_VASPS_ADDRESSES = [
-    ("WazirX", "TWaz1rX9p4xG5k3sXQ3q4o5u4L3K9p4xG5", "tron", "deposit_collector", "WazirX Indian Exchange Deposit Collector (FIU-IND)"),
+    ("WazirX", "TRx8nZGcUT5KAk4byiA6QKKkb7TAqYikQb", "tron", "deposit_collector", "WazirX Indian Exchange Deposit Collector (FIU-IND)"),
     ("WazirX", "0x27ec1e967a505b389fe324483a9037a346e4c798", "ethereum", "hot_wallet", "WazirX Ethereum Hot Wallet"),
     ("CoinDCX", "0x39aa39c021dfbae8fac545936693ac917d5e7563", "ethereum", "hot_wallet", "CoinDCX Ethereum Hot Wallet (FIU-IND)"),
-    ("CoinDCX", "TDCX1rX9p4xG5k3sXQ3q4o5u4L3K9p4xG5", "tron", "deposit_collector", "CoinDCX Tron USDT Collector (FIU-IND)"),
+    ("CoinDCX", "TMp7oDNyGsZFqp6HqGaWiGRcjFqkwyh18G", "tron", "deposit_collector", "CoinDCX Tron USDT Collector (FIU-IND)"),
 ]
 
 
 def make_valid_tron_address(prefix: str, index: int, total_len: int = 34) -> str:
-    """Generates a strictly valid Base58 Tron address of exact 34 chars."""
-    idx_str = f"{index}"
-    padding_needed = total_len - len(prefix) - len(idx_str)
-    padding = "".join([B58_CHARS[(index + j) % len(B58_CHARS)] for j in range(padding_needed)])
-    addr = f"{prefix}{padding}{idx_str}"
-    return addr[:34]
+    """Generates a cryptographically valid Base58Check Tron address with valid 4-byte double-SHA256 checksum."""
+    h = hashlib.sha256(f"{prefix}:{index}".encode("utf-8")).digest()[:20]
+    payload = b"\x41" + h
+    chk = hashlib.sha256(hashlib.sha256(payload).digest()).digest()[:4]
+    return b58encode(payload + chk)
 
 
 def generate_extended_dataset():

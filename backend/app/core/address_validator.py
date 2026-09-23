@@ -152,11 +152,57 @@ def is_valid_eth_address(address: str) -> bool:
 
 
 def is_valid_tron_address(address: str) -> bool:
-    """Validates Tron Base58 address starting with T."""
+    """
+    Validates Tron Base58Check address:
+    - 34 characters starting with 'T'
+    - Base58 character alphabet (no 0, O, I, l)
+    - Decodes to 25 bytes with 0x41 prefix byte
+    - Double-SHA256 4-byte checksum verification
+    """
     if not address or not isinstance(address, str):
         return False
     clean = address.strip()
-    return bool(TRON_ADDRESS_REGEX.match(clean))
+    if not TRON_ADDRESS_REGEX.match(clean):
+        return False
+
+    try:
+        val = 0
+        for char in clean:
+            idx = ALPHABET.find(char)
+            if idx < 0:
+                return False
+            val = val * 58 + idx
+
+        raw = val.to_bytes(25, byteorder="big")
+        # Tron mainnet address must start with 0x41 (decimal 65, Base58 'T')
+        if raw[0] != 0x41:
+            return False
+
+        payload, checksum = raw[:21], raw[21:]
+        expected_checksum = hashlib.sha256(hashlib.sha256(payload).digest()).digest()[:4]
+        return checksum == expected_checksum
+    except Exception:
+        return False
+
+
+def validate_address(address: str, chain: Optional[str] = None) -> bool:
+    """
+    Chain-aware cryptocurrency address validator.
+    If chain is provided, strictly validates against that chain standard.
+    Otherwise, tests if address is valid on any supported chain.
+    """
+    if not address or not isinstance(address, str):
+        return False
+    clean = address.strip()
+    if chain:
+        c = chain.strip().lower()
+        if c == "ethereum":
+            return is_valid_eth_address(clean)
+        elif c == "tron":
+            return is_valid_tron_address(clean)
+        else:
+            return False
+    return is_valid_crypto_address(clean)
 
 
 def normalize_address(address: str) -> str:

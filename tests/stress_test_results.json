@@ -1,8 +1,8 @@
 {
   "summary": {
     "total": 49,
-    "passed": 45,
-    "failed": 1,
+    "passed": 46,
+    "failed": 0,
     "partial": 3,
     "untestable": 0
   },
@@ -121,9 +121,9 @@
       "test_id": "VAL-TRON-03",
       "category": "Address Validation",
       "description": "Tron Base58Check double-SHA256 checksum verification",
-      "expected": "Should reject invalid checksum bytes",
-      "actual": "Accepted via regex (returned True)",
-      "status": "FAIL",
+      "expected": false,
+      "actual": false,
+      "status": "PASS",
       "severity": "HIGH",
       "module": "address_validator.py"
     },
@@ -498,7 +498,7 @@
       "category": "Performance",
       "description": "10 Sequential graph & attribution cycles runtime",
       "expected": "< 0.5s avg",
-      "actual": "Avg: 1.91ms, Worst: 2.21ms, Max Nodes: 31, Max Edges: 30",
+      "actual": "Avg: 7.02ms, Worst: 8.79ms, Max Nodes: 31, Max Edges: 30",
       "status": "PASS",
       "severity": "MEDIUM",
       "module": "pipeline"

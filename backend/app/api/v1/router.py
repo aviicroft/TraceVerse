@@ -771,10 +771,14 @@ async def get_discovered_candidates(
         )
     if search:
         search_clean = search.strip().lower()
-        stmt = stmt.where(CandidateWallet.address.ilike(f"%{search_clean}%"))
+        stmt = stmt.where(
+            (CandidateWallet.address.ilike(f"%{search_clean}%")) |
+            (CandidateWallet.discovery_vasp_name.ilike(f"%{search_clean}%")) |
+            (CandidateWallet.reachable_vasps_json.ilike(f"%{search_clean}%"))
+        )
 
     # Sorting
-    if sort_by == "txs":
+    if sort_by in ["txs", "tx_count"]:
         stmt = stmt.order_by(desc(CandidateWallet.transaction_count))
     elif sort_by == "volume":
         stmt = stmt.order_by(desc(CandidateWallet.total_volume_usd))

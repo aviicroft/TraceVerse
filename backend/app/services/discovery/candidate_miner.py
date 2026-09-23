@@ -32,7 +32,8 @@ KNOWN_CONTRACTS = {
     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",  # USDC ETH
     "0x6b175474e89094c44da98b954eedeac495271d0f",  # DAI ETH
     "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",  # WETH
-    "tr7nhqjekkqxgtci8q8zy4pl8otszgjlj6",          # USDT TRON
+    "tr7nhqjekqxgti8q8zy4pl8otszgjlj6t",          # USDT TRON (verified contract)
+    "tr7nhqjekkqxgtci8q8zy4pl8otszgjlj6",          # Legacy typo variant
     "te2rkndd5evbf1usznjup9j5tqwhs54vde",          # USDC TRON
 }
 

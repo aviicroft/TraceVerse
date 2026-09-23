@@ -24,9 +24,9 @@ HTX,0x1062a7a8e23274483eA89069d1515560e93a08d0,ethereum,hot_wallet,Etherscan Pub
 HTX,0xdf84293f0b2f567b5e6fb4cf50a80e1a8bb231f2,ethereum,cold_storage,Arkham Verified Entity,VERIFIED,HTX Cold Storage
 Bybit,0xf89d7b9c37508373b2f9119df50b460256774e61,ethereum,hot_wallet,DefiLlama Reserves,VERIFIED,Bybit Hot Wallet 1
 Bybit,0x1Db3439a222C519ab44bb1144fC28167b4Fa6EE6,ethereum,hot_wallet,Etherscan Public Label,VERIFIED,Bybit Hot Wallet 2
-Binance,TMuA6YMeL4nNFYWAnWUCtqnmEvrCfsugnR,tron,hot_wallet,Tronscan Official Label,VERIFIED,Binance Tron Hot Wallet 1
-Binance,TND29rBsF5FhQf4dFw8T7Xn5YQ2o5u4L3K,tron,hot_wallet,DefiLlama Reserves,VERIFIED,Binance Tron Hot Wallet 2
-OKX,TBrVp9p4xG5k3sXQ3q4o5u4L3K9p4xG5k3,tron,hot_wallet,DefiLlama Reserves,VERIFIED,OKX Tron Hot Wallet
-HTX,TEkxiTehnzSmSe2XqrBj4w32RUN9MBHgC1,tron,hot_wallet,Arkham Intelligence,VERIFIED,HTX Tron Hot Wallet 1
-WazirX,TWaz1rX9p4xG5k3sXQ3q4o5u4L3K9p4xG5,tron,deposit_collector,Public LEA Label,VERIFIED,WazirX Indian Exchange Deposit Collector
-KuCoin,TX749wP4xG5k3sXQ3q4o5u4L3K9p4xG5k3,tron,hot_wallet,Tronscan Public Tag,VERIFIED,KuCoin Tron Hot Wallet
+Binance,TDqSquXBgUCLYvYC4XZgrprLK589dkhSCf,tron,hot_wallet,Tronscan Official Label,VERIFIED,Binance Tron Hot Wallet 7
+Binance,TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX,tron,hot_wallet,Tronscan Official Label,VERIFIED,Binance Tron Hot Wallet 1
+OKX,TLaGjwhvA8XQYSxFAcAXy7Dvuue9eGYitv,tron,hot_wallet,Tronscan Official Label,VERIFIED,OKX Tron Hot Wallet 8
+Bybit,TU4vEruvZwLLkSfV9bNw12EJTPvNr7Pvaa,tron,hot_wallet,Tronscan Official Label,VERIFIED,Bybit Tron Hot Wallet
+KuCoin,TUpHuDkiCCmwaTZBHZvQdwWzGNm5t8J2b9,tron,hot_wallet,Tronscan Public Tag,VERIFIED,KuCoin Tron Hot Wallet 4
+WazirX,TRx8nZGcUT5KAk4byiA6QKKkb7TAqYikQb,tron,deposit_collector,Public LEA Label,VERIFIED,WazirX Indian Exchange Deposit Collector
